@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareKmMap">
+    <resultMap id="resultEcareItem" type="EcareItem">
+        <result column="ecare_no"           property="ecareNo"/>
+        <result column="itemfield_nm"       property="itemfieldNm"/>
+        <result column="knowledgemap_id"    property="knowledgemapId"/>
+        <result column="grp_cd"             property="grpCd"/>
+        <result column="user_id"            property="userId"/>
+        <result column="item_cd"            property="itemCd"/>
+        <result column="item_nm"            property="itemNm"/>
+        <result column="itemindent"         property="itemindent"/>
+        <result column="item_length"        property="itemLength"/>
+        <result column="item_type"          property="itemType"/>
+        <result column="item_format"        property="itemFormat"/>
+        <result column="query_seq"          property="querySeq"/>
+        <result column="item_pram_value"    property="itemPramValue"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <!--
+    <insert id="insertEcareKmMap" parameterType="EcareItem">
+        INSERT INTO nvecarekmmap (ecare_no, itemfield_nm, knowledgemap_id, grp_cd, user_id, item_cd, item_nm, itemindent, item_length, item_type, item_format, query_seq, item_pram_value)
+        VALUES (#{ecareNo}, #{itemfieldNm}, #{knowledgemapId}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{itemCd, jdbcType=CHAR}, #{itemNm, jdbcType=VARCHAR}, #{itemindent}, #{itemLength}, #{itemType, jdbcType=VARCHAR}, #{itemFormat, jdbcType=VARCHAR}, #{querySeq}, #{itemPramValue, jdbcType=VARCHAR})
+    </insert>
+    -->
+    <insert id="insertEcareKmMap" parameterType="EcareItem">
+        INSERT INTO nvecarekmmap (
+            ecare_no, knowledgemap_id, grp_cd, user_id, item_cd, item_nm, itemindent
+          , itemfield_nm, item_length, item_type, item_format, query_seq
+        ) VALUES (
+            #{ecareNo}, #{knowledgemapId}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{itemCd, jdbcType=CHAR}, #{itemNm, jdbcType=VARCHAR}, #{itemindent}
+          , #{itemfieldNm, jdbcType=VARCHAR}, #{itemLength}, #{itemType, jdbcType=VARCHAR}, #{itemFormat, jdbcType=VARCHAR}, #{querySeq}
+        )
+    </insert>
+
+    <insert id="insertEditorEcareItem" parameterType="EcareItem">
+        INSERT INTO nvecarekmmap (
+            ecare_no, knowledgemap_id, grp_cd, user_id, item_cd, item_nm, itemindent
+          , itemfield_nm, item_length, item_type, item_format, query_seq, item_pram_value
+        ) VALUES (
+            #{ecareNo}, #{knowledgemapId}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{itemCd, jdbcType=CHAR}, #{itemNm, jdbcType=VARCHAR}, #{itemindent}
+          , #{itemfieldNm, jdbcType=VARCHAR}, #{itemLength}, #{itemType, jdbcType=VARCHAR}, #{itemFormat, jdbcType=VARCHAR}, #{querySeq}, #{itemVal, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEditorEcareItem" parameterType="EcareItem">
+        UPDATE nvecarekmmap
+        SET item_nm = #{itemNm, jdbcType=VARCHAR}, itemfield_nm = #{itemfieldNm}, item_pram_value = #{itemVal, jdbcType=VARCHAR}
+        WHERE ecare_no = #{ecareNo}
+        AND knowledgemap_id = #{knowledgemapId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcareKmMapByPk" parameterType="map">
+        DELETE FROM nvecarekmmap
+        WHERE ecare_no = #{ecareNo}
+        AND itemfield_nm = #{itemfieldNm}
+    </delete>
+
+    <delete id="deleteEcareKMMap" parameterType="int">
+        DELETE FROM nvecarekmmap
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEditorEcareItem" parameterType="int" resultMap="resultEcareItem">
+        SELECT knowledgemap_id, grp_cd, user_id, item_nm, itemfield_nm, item_type, item_pram_value
+        FROM nvecarekmmap
+        WHERE ecare_no = #{ecareNo}
+        ORDER BY knowledgemap_id
+    </select>
+
+    <select id="selectEditorEcareItemCount" parameterType="EcareItem" resultType="int">
+        SELECT count(*)
+        FROM nvecarekmmap
+        WHERE ecare_no = #{ecareNo}
+        AND knowledgemap_id = #{knowledgemapId}
+    </select>
+
+    <select id="selectEditorEcareItemMax" resultType="string">
+        SELECT to_char(max(knowledgemap_id) + 100000)
+        FROM nvecarekmmap
+    </select>
+
+</mapper>

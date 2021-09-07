@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMailInfo">
+    <resultMap id="resultEnvSenderInfo" type="EnvSenderInfo">
+        <result column="user_id"            property="userId"/>
+        <result column="seq_no"             property="seqNo"/>
+        <result column="sender_nm"          property="senderNm"/>
+        <result column="sender_email"       property="senderEmail"/>
+        <result column="receiver_nm"        property="receiverNm"/>
+        <result column="sender_tel"         property="senderTel"/>
+        <result column="sender_fax"         property="senderFax"/>
+        <result column="receiver_fax"       property="receiverFax"/>
+        <result column="retmail_receiver"   property="retmailReceiver"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertUserMailInfo" parameterType="EnvSenderInfo">
+        INSERT INTO nvusermailinfo (user_id, seq_no, sender_nm, sender_email, receiver_nm, sender_tel, sender_fax, receiver_fax, retmail_receiver)
+        VALUES (#{userId}, 1, #{senderNm, jdbcType=VARCHAR}, #{senderEmail, jdbcType=VARCHAR}, #{receiverNm, jdbcType=VARCHAR}, #{senderTel, jdbcType=VARCHAR}, #{senderFax, jdbcType=VARCHAR}, #{receiverFax, jdbcType=VARCHAR}, #{retmailReceiver, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateUserMailInfoByUserId" parameterType="EnvSenderInfo">
+        UPDATE nvusermailinfo
+        SET
+            seq_no = 1
+          , sender_nm = #{senderNm, jdbcType=VARCHAR}
+          , sender_email = #{senderEmail, jdbcType=VARCHAR}
+          , receiver_nm = #{receiverNm, jdbcType=VARCHAR}
+          , sender_tel = #{senderTel, jdbcType=VARCHAR}
+          , sender_fax = #{senderFax, jdbcType=VARCHAR}
+          , receiver_fax = #{receiverFax, jdbcType=VARCHAR}
+          , retmail_receiver = #{retmailReceiver, jdbcType=VARCHAR}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteUserMailInfoByPk" parameterType="map">
+        DELETE FROM nvusermailinfo
+        WHERE user_id = #{userId}
+        AND seq_no = #{seqNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectUserMailInfoByUserId" parameterType="string" resultMap="resultEnvSenderInfo">
+        SELECT user_id, seq_no, sender_nm, sender_email, receiver_nm, sender_tel, sender_fax, receiver_fax, retmail_receiver
+        FROM nvusermailinfo
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

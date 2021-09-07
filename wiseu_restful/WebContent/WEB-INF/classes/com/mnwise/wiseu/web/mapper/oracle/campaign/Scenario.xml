@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Scenario">
+
+    <insert id="insertScenarioForFirst" parameterType="campaign">
+     	<selectKey keyProperty="scenarioNo" resultType="int" order="BEFORE">
+           	SELECT coalesce(max(scenario_no),0) + 1
+	        FROM nvscenario
+        </selectKey>
+        INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)
+        VALUES (#{scenarioNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{campaignNm, jdbcType=VARCHAR}, #{campaignDesc, jdbcType=VARCHAR}, 'M', #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{lastUpdateTm, jdbcType=CHAR}, 1, 'N', 'G')
+    </insert>
+
+    <insert id="insertScenario" parameterType="campaign">
+        INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)
+        VALUES (#{scenarioNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{campaignNm, jdbcType=VARCHAR}, #{campaignDesc, jdbcType=VARCHAR}, 'M', #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{lastUpdateTm, jdbcType=CHAR}, 1, 'N', 'G')
+    </insert>
+
+
+</mapper>

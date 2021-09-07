@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserPwHistory">
+    <resultMap id="resultUserPwHistory" type="UserPw">
+        <result column="user_id"        property="userId"/>
+        <result column="create_dt"      property="createDt"/>
+        <result column="pass_wd"        property="passWd"/>
+        <result column="pass_salt"      property="passSalt"/>
+        <result column="default_passyn" property="defaultPassyn"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertUserPwHistory" parameterType="User">
+        INSERT INTO nvuserpwhistory (user_id, create_dt, pass_wd, pass_salt, default_passyn)
+        VALUES (#{userId}, to_char(CURRENT TIMESTAMP, 'yyyymmddhh24miss'), #{passWd}, #{passSalt}, #{defaultPassYn})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getCheckShaPwHistory" parameterType="string" resultMap="resultUserPwHistory">
+        SELECT user_id, create_dt, pass_wd, pass_salt
+        FROM nvuserpwhistory
+        WHERE user_id = #{userId}
+        AND create_dt &gt; to_char(CURRENT TIMESTAMP - 90 days, 'yyyymmddhh24miss')
+        AND default_passyn = 'N'
+    </select>
+</mapper>

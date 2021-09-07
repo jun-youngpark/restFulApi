@@ -1,0 +1,2 @@
+-- 친구톡 이미지 링크 저장 할 컬럼 추가
+ALTER TABLE NVMOBILECONTENTS         ADD IMAGE_LINK    VARCHAR2(500);

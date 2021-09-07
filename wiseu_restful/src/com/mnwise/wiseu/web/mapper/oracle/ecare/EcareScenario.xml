@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareScenario">
+    <!--  ==================== INSERT ====================  -->
+
+    <insert id="insertEcareScenarioForFirst" parameterType="Ecare">
+    	<selectKey keyProperty="scenarioNo" resultType="int" order="BEFORE">
+           	SELECT coalesce(max(scenario_no),0) + 1
+	        FROM nvecarescenario
+        </selectKey>
+        INSERT INTO nvecarescenario (
+            scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no
+          , finish_yn, service_type, sub_type, handler_type, chrg_nm, brc_nm
+        ) VALUES (
+            #{scenarioNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{ecareNm, jdbcType=VARCHAR}, #{ecareDesc, jdbcType=VARCHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{lastUpdateTm, jdbcType=CHAR}, 1
+          , 'N', #{serviceType, jdbcType=CHAR}, #{subType, jdbcType=CHAR}, #{handlerType, jdbcType=CHAR}, #{chrgNm, jdbcType=VARCHAR}, #{brcNm, jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+
+    <insert id="insertEcareScenario" parameterType="Ecare">
+        INSERT INTO nvecarescenario (
+            scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no
+          , finish_yn, service_type, sub_type, handler_type, chrg_nm, brc_nm
+        ) VALUES (
+            #{scenarioNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{scenarioNm, jdbcType=VARCHAR}, #{scenarioDesc, jdbcType=VARCHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{lastUpdateTm, jdbcType=CHAR}, #{tagNo}
+          , 'N', #{serviceType, jdbcType=CHAR}, #{subType, jdbcType=CHAR}, #{handlerType, jdbcType=CHAR}, #{chrgNm, jdbcType=VARCHAR}, #{brcNm, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEcareScenarioByPk" parameterType="map">
+        UPDATE nvecarescenario
+        SET scenario_nm = #{ecareVo.ecareNm, jdbcType=VARCHAR}
+          , chrg_nm = #{chrgNm, jdbcType=VARCHAR}
+          , brc_nm = #{brcNm, jdbcType=VARCHAR}
+          , lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}
+        WHERE scenario_no = #{scenarioNo}
+    </update>
+
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectMaxEcareScenarioNo" resultType="int">
+        SELECT coalesce(max(scenario_no),0)+1
+        FROM nvecarescenario
+    </select>
+
+</mapper>

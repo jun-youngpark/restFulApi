@@ -1,0 +1,37 @@
+import com.mnwise.ASE.agent.messageagent.MessageAgent;
+import com.mnwise.ASE.pscript.Message;
+import java.util.Date;
+import com.mnwise.common.util.DateUtil;
+import java.text.SimpleDateFormat;
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem;
+
+MessageAgent mmsagent = new MessageAgent(context)
+
+mmsagent.open()
+
+MessageBaseItem messageItem = new MessageBaseItem();
+
+// 부서별 과금을 위해 사용
+messageItem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+messageItem.setReqUserId(context.get("_REQ_USER_ID"))
+
+messageItem.setCallback(context.get("_SENDER_TEL"))
+
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+Date dt = new Date()
+DateUtil term = new DateUtil()
+SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmmss")
+addterm = term.addTime(dt,"7","00","00","00")
+context.put("_START_DATE", time.format(dt))
+context.put("_END_DATE", time.format(addterm))
+
+ messageItem.setPhoneNo(context.get("IPHONE"))
+ messageItem.setUserId(context.get("IUSERID"))
+ messageItem.setUserName(context.get("INAME"))
+messageItem.setMsg(message.execGroovyTemplate())
+
+mmsagent.send(messageItem)
+
+mmsagent.close()

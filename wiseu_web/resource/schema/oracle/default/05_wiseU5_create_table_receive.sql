@@ -1,0 +1,148 @@
+-- 이케어링크반응결과
+CREATE TABLE NVECARELINKRESULT (
+    ECARE_NO                  NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    LINK_SEQ                  NUMERIC(2)          NOT NULL,
+    LINK_DT                   CHAR(8)             NOT NULL,
+    LINK_TM                   CHAR(6)             NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0',
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    CUSTOMER_EMAIL            VARCHAR2(100)       NOT NULL,
+    CUSTOMER_NM               VARCHAR2(100),
+    CLICK_CNT                 NUMERIC(10)
+);
+ALTER TABLE NVECARELINKRESULT ADD CONSTRAINT PK_NVECARELINKRESULT PRIMARY KEY (ECARE_NO, RESULT_SEQ, LIST_SEQ, LINK_DT, LINK_TM);
+CREATE INDEX IDX_NVECARELINKRESULT_LDT_ENO ON NVECARELINKRESULT (LINK_DT, ECARE_NO);
+
+-- 이케어수신확인
+CREATE TABLE NVECARERECEIPT (
+    ECARE_NO                  NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    OPEN_DT                   CHAR(8)             NOT NULL,
+    OPEN_TM                   CHAR(6)             NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0',
+    CUSTOMER_EMAIL            VARCHAR2(100)       NOT NULL,
+    CUSTOMER_NM               VARCHAR2(100),
+    NULL_YN                   CHAR(1),
+    READING_DT                CHAR(8),
+    READING_TM                CHAR(6),
+    READING_DURATION          NUMERIC(10),
+    VALID_CNT                 NUMERIC(10),
+    LOG_SEND_FG               VARCHAR2(1)         DEFAULT 'N',
+    SUB_ECARE_NO              NUMERIC(15)         DEFAULT 0,
+    SUB_RESULT_SEQ            NUMERIC(16)         DEFAULT 0
+);
+ALTER TABLE NVECARERECEIPT ADD CONSTRAINT PK_NVECARERECEIPT PRIMARY KEY (ECARE_NO, RESULT_SEQ, CUSTOMER_ID, LIST_SEQ, OPEN_DT, OPEN_TM);
+CREATE INDEX IDX_NVECARERECEIPT_MLT1 ON NVECARERECEIPT (OPEN_DT, ECARE_NO, READING_DURATION);
+CREATE INDEX IDX_NVECARERECEIPT_SUB1_SUB2 ON NVECARERECEIPT (SUB_RESULT_SEQ, SUB_ECARE_NO);
+
+-- 이케어수신거부
+CREATE TABLE NVECAREREJECT (
+    ECARE_NO                  NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0'    NOT NULL,
+    CUSTOMER_EMAIL            VARCHAR2(100)       NOT NULL,
+    CUSTOMER_NM               VARCHAR2(100)       NOT NULL,
+    REJECT_DT                 CHAR(8)             NOT NULL,
+    REJECT_TM                 CHAR(6)             NOT NULL
+);
+ALTER TABLE NVECAREREJECT ADD CONSTRAINT PK_NVECAREREJECT PRIMARY KEY (ECARE_NO, RESULT_SEQ, LIST_SEQ, CUSTOMER_ID, RECORD_SEQ);
+CREATE INDEX IDX_NVECAREREJECT_RDT_ENO ON NVECAREREJECT (REJECT_DT, ECARE_NO);
+
+-- 이케어반송메일
+CREATE TABLE NVECARERETURNMAIL (
+    ECARE_NO                  NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0'    NOT NULL,
+    CUSTOMER_EMAIL            VARCHAR2(100)       NOT NULL,
+    CUSTOMER_NM               VARCHAR2(100)       NOT NULL,
+    RECEIVE_DT                CHAR(8)             NOT NULL,
+    RECEIVE_TM                CHAR(6)             NOT NULL,
+    SMTPCODE                  CHAR(3)             NOT NULL,
+    UPDATE_YN                 CHAR(1)             DEFAULT 'N',
+    RETURN_MSG                VARCHAR2(200)
+);
+ALTER TABLE NVECARERETURNMAIL ADD CONSTRAINT PK_NVECARERETURNMAIL PRIMARY KEY (ECARE_NO, RESULT_SEQ, LIST_SEQ, CUSTOMER_ID, RECORD_SEQ);
+CREATE INDEX IDX_NVECARERETURNMAIL_RDT_ENO ON NVECARERETURNMAIL (RECEIVE_DT, ECARE_NO);
+
+-- 캠페인링크반응결과
+CREATE TABLE NVLINKRESULT (
+    CAMPAIGN_NO               NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    LINK_DT                   CHAR(8)             NOT NULL,
+    LINK_TM                   CHAR(6)             NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0',
+    LINK_SEQ                  NUMERIC(3)          NOT NULL,
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    CUSTOMER_NM               VARCHAR2(100)       NOT NULL,
+    CUSTOMER_EMAIL            VARCHAR2(100)       NOT NULL,
+    CLICK_CNT                 NUMERIC(10),
+    AB_TYPE                   VARCHAR2(4)
+);
+ALTER TABLE NVLINKRESULT ADD CONSTRAINT PK_NVLINKRESULT PRIMARY KEY (CAMPAIGN_NO, RESULT_SEQ, LIST_SEQ, LINK_DT, LINK_TM);
+CREATE INDEX IDX_NVLINKRESULT_LDT_CNO ON NVLINKRESULT (LINK_DT, CAMPAIGN_NO);
+
+-- 캠페인수신확인
+CREATE TABLE NVRECEIPT (
+    CAMPAIGN_NO               NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    OPEN_DT                   CHAR(8)             NOT NULL,
+    OPEN_TM                   CHAR(6)             NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0',
+    CUSTOMER_NM               VARCHAR2(100)       NOT NULL,
+    CUSTOMER_EMAIL            VARCHAR2(100)       NOT NULL,
+    READING_DT                CHAR(8),
+    READING_TM                CHAR(6),
+    READING_DURATION          NUMERIC(10),
+    VALID_CNT                 NUMERIC(10),
+    CLIENT_INFO               VARCHAR2(200),
+    MOBILE_YN                 CHAR(1)             DEFAULT 'N',
+    AB_TYPE                   VARCHAR2(4),
+    LOG_SEND_FG               VARCHAR2(1)         DEFAULT 'N' NOT NULL
+);
+ALTER TABLE NVRECEIPT ADD CONSTRAINT PK_NVRECEIPT PRIMARY KEY (CAMPAIGN_NO, RESULT_SEQ, CUSTOMER_ID, LIST_SEQ, OPEN_DT, OPEN_TM);
+CREATE INDEX IDX_NVRECEIPT_ODT_CNO ON NVRECEIPT (OPEN_DT, CAMPAIGN_NO);
+
+-- 캠페인수신거부
+CREATE TABLE NVREJECT (
+    CAMPAIGN_NO               NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0'    NOT NULL,
+    CUSTOMER_NM               VARCHAR2(100),
+    CUSTOMER_EMAIL            VARCHAR2(100)       NOT NULL,
+    REJECT_DT                 CHAR(8),
+    REJECT_TM                 CHAR(6),
+    REJECT_REASON             VARCHAR(250)
+);
+ALTER TABLE NVREJECT ADD CONSTRAINT PK_NVREJECT PRIMARY KEY (CAMPAIGN_NO, RESULT_SEQ, LIST_SEQ, CUSTOMER_ID, RECORD_SEQ);
+CREATE INDEX IDX_NVREJECT_RDT_CNO ON NVREJECT (REJECT_DT, CAMPAIGN_NO);
+
+-- 캠페인반송메일
+CREATE TABLE NVRETURNMAIL (
+    CAMPAIGN_NO               NUMERIC(15)         NOT NULL,
+    RESULT_SEQ                NUMERIC(16)         NOT NULL,
+    LIST_SEQ                  VARCHAR2(10)        NOT NULL,
+    CUSTOMER_ID               VARCHAR2(50)        NOT NULL,
+    RECORD_SEQ                VARCHAR2(10)        DEFAULT '0'    NOT NULL,
+    CUSTOMER_NM               VARCHAR2(100),
+    CUSTOMER_EMAIL            VARCHAR2(100),
+    RECEIVE_DT                CHAR(8),
+    RECEIVE_TM                CHAR(6),
+    SMTPCODE                  CHAR(3),
+    UPDATE_YN                 CHAR(1)             DEFAULT 'N',
+    RETURN_MSG                VARCHAR2(200)
+);
+ALTER TABLE NVRETURNMAIL ADD CONSTRAINT PK_NVRETURNMAIL PRIMARY KEY (CAMPAIGN_NO, RESULT_SEQ, LIST_SEQ, CUSTOMER_ID, RECORD_SEQ);
+CREATE INDEX IDX_NVRETURNMAIL_RDT_CNO ON NVRETURNMAIL (RECEIVE_DT, CAMPAIGN_NO);

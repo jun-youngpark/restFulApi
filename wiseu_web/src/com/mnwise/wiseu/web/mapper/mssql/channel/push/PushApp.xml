@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PushApp">
+    <!--<resultMap id="resultPushApp" type="PushApp">
+        <result column="push_app_id"    property="pushAppId"/>
+        <result column="push_app_nm"    property="pushAppNm"/>
+        <result column="use_testmode"   property="useTestmode"/>
+        <result column="use_yn"         property="useYn"/>
+        <result column="ins_dts"        property="insDts"/>
+        <result column="ins_id"         property="insId"/>
+        <result column="upd_dts"        property="updDts"/>
+        <result column="upd_id"         property="updId"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertPushApp" parameterType="map">
+        INSERT INTO nvpushapp (push_app_id, push_app_nm, use_testmode, use_yn, ins_dts, ins_id, upd_dts, upd_id)
+        VALUES (#{pushAppId}, #{pushAppNm}, #{useTestMode}, #{useYn}, #{insDts, jdbcType=VARCHAR}, #{insId, jdbcType=VARCHAR}, #{updDts, jdbcType=VARCHAR}, #{updId, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updatePushApp" parameterType="map">
+        UPDATE nvpushapp
+        SET
+            upd_id = #{userId, jdbcType=VARCHAR}
+          , upd_dts = #{currDts, jdbcType=VARCHAR}
+          <if test="updateType == 'update'">
+          , push_app_nm = #{pushAppNm}
+          , use_yn = #{useYn}
+          , use_testmode = #{useTestMode}
+          </if>
+        WHERE push_app_id = #{pushAppId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectPushAppList" parameterType="map" resultType="CaseInsensitiveMap">
+        SELECT
+            a.push_app_id, a.push_app_nm, a.use_testmode, a.use_yn, a.ins_dts, a.ins_id, a.upd_dts, a.upd_id
+          , b.name_kor as ins_name_kor, b.name_eng as ins_name_eng, c.name_kor as upd_name_kor, c.name_eng as upd_name_eng
+        FROM nvpushapp a
+        LEFT OUTER JOIN nvuser b ON a.ins_id = b.user_id
+        LEFT OUTER JOIN nvuser c ON a.upd_id = c.user_id
+        <if test="useOnly == 'Y'.toString()">
+        WHERE a.use_yn = 'Y'
+        </if>
+    </select>
+
+
+</mapper>

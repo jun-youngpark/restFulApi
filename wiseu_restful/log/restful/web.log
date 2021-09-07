@@ -1,0 +1,306 @@
+09-03 16:28:50.347 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-03 16:28:50.351 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-03 16:28:50.352 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-03 16:28:54.446 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-03 16:28:56.065 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-03 16:31:03.924 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?             AND b.DEPTH_NO > 1         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:31:04.147 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 500 - 52.368
+Headers : {content-length=27, postman-token=670db7b7-c740-4ffe-a18f-131983fc4aed, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"FAIL","message":"BadSqlGrammarException: \r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]\r\n### The error may involve mapper.Ecare.findOmniEcare-Inline\r\n### The error occurred while setting parameters\r\n### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?             AND b.DEPTH_NO > 1         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;\r\n### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n","data":null}
+
+09-03 16:32:53.252 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/get 200 - 5.252
+Headers : {content-length=28, postman-token=01571686-c73b-4321-b0ea-6aa7ef702929, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "campaignNo":"4"  
+}
+Response : {"code":"SUCCESS","message":"success","data":{"relationType":"N","template":"<html><body> 수정된 템플릿 입니다. 00</body></html>","userNm":null,"campaignNm":"캠페인 명 ","campaignStsNm":"보류","divideInterval":0,"scenarioNo":6,"channelType":"M","senderTel":null,"depthNo":1,"kakaoSenderKey":null,"createTm":"164912","senderEmail":"peper@mnwise.com","divideYn":"N","relationTypeNm":"일반","useYn":"Y","failbackSubject":null,"campaignNo":4,"omniList":[{"campaignNm":"켐페인명 수정","campaignStsNm":"작성중","relationTypeNm":"성공","targetCnt":0,"channelType":"M","sendStartDtm":null,"campaignNo":5,"depthNo":2}],"campaignPreface":"제목","kakaoImageNo":"0","divideCnt":0,"grpNm":null,"relationTree":"N","createDt":"20210806","segmentNo":1,"sendstartDtm":null,"campaignSts":"P","senderNm":"페퍼저축은행","failbackSendYn":"N","targetCnt":0,"kakaoButtons":null}}
+
+09-03 16:33:28.690 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]]
+09-03 16:33:28.690 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 16:33:36.327 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:33:39.799 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 500 - 7.709
+Headers : {content-length=27, postman-token=c71d12e7-b959-4950-bd6f-4a9f8959f4f4, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"FAIL","message":"BadSqlGrammarException: \r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]\r\n### The error may involve mapper.Ecare.findOmniEcare-Inline\r\n### The error occurred while setting parameters\r\n### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;\r\n### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n","data":null}
+
+09-03 16:34:13.777 http-nio-8084-exec-1 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:34:13.824 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 500 - 0.3
+Headers : {content-length=27, postman-token=64171c96-effc-447c-affb-57f784fe8654, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"FAIL","message":"BadSqlGrammarException: \r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]\r\n### The error may involve mapper.Ecare.findOmniEcare-Inline\r\n### The error occurred while setting parameters\r\n### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;\r\n### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n","data":null}
+
+09-03 16:35:32.688 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-03 16:35:32.691 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-03 16:35:32.692 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-03 16:35:36.498 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-03 16:35:37.578 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-03 16:35:57.775 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:35:57.835 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 500 - 5.869
+Headers : {content-length=27, postman-token=cf592adc-4a87-4c11-ac39-59b51122f104, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"FAIL","message":"BadSqlGrammarException: \r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]\r\n### The error may involve mapper.Ecare.findOmniEcare-Inline\r\n### The error occurred while setting parameters\r\n### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;\r\n### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n","data":null}
+
+09-03 16:36:42.846 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]]
+09-03 16:36:42.847 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 16:36:43.823 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:36:43.932 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 500 - 0.237
+Headers : {content-length=27, postman-token=d16b1598-7481-4e5f-b424-eecc19c6529a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"FAIL","message":"BadSqlGrammarException: \r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]\r\n### The error may involve mapper.Ecare.findOmniEcare-Inline\r\n### The error occurred while setting parameters\r\n### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;\r\n### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n","data":null}
+
+09-03 16:36:49.476 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]]
+09-03 16:36:49.478 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 16:36:51.685 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:36:51.735 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 500 - 0.411
+Headers : {content-length=27, postman-token=b725efc8-d11b-4500-9e80-ee4e01c08498, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"FAIL","message":"BadSqlGrammarException: \r\n### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]\r\n### The error may involve mapper.Ecare.findOmniEcare-Inline\r\n### The error occurred while setting parameters\r\n### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;\r\n### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n\n; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다\n","data":null}
+
+09-03 16:37:10.415 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]]
+09-03 16:37:10.416 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 16:37:17.546 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]]
+09-03 16:37:17.546 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 16:37:26.183 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]]
+09-03 16:37:26.184 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 16:37:28.799 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]]
+09-03 16:37:28.800 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 16:37:29.900 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 200 - 0.181
+Headers : {content-length=27, postman-token=45c99f4e-c32b-4817-9b6a-ce4895efb81a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"SUCCESS","message":"success","data":{"relationType":"N","template":null,"userNm":null,"ecareNm":"ㅈㅅㅅㄱ","divideInterval":0,"ecareNo":1,"ecareSts":"I","scenarioNo":1,"channelType":"M","senderTel":null,"sendstartTm":null,"depthNo":1,"deployType":null,"ecarePreface":null,"openType":null,"ecareStsNm":"작성중","kakaoSenderKey":null,"createTm":"143502","secuTemplate":null,"senderEmail":null,"divideYn":null,"relationTypeNm":"일반","useYn":"Y","failbackSubject":null,"omniList":[],"kakaoImageNo":"0","invokeTm":null,"divideCnt":0,"grpNm":null,"relationTree":"N","createDt":"20210817","segmentNo":0,"kakaoTmplCd":null,"mailType":null,"sendstartDt":null,"senderNm":null,"failbackSendYn":"N","targetCnt":0,"kakaoButtons":" "}}
+
+09-03 16:37:49.215 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 200 - 0.171
+Headers : {content-length=27, postman-token=8d672992-7099-4f56-898e-c3572d5b513d, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"SUCCESS","message":"success","data":{"relationType":"N","template":null,"userNm":null,"ecareNm":"ㅈㅅㅅㄱ","divideInterval":0,"ecareNo":1,"ecareSts":"I","scenarioNo":1,"channelType":"M","senderTel":null,"sendstartTm":null,"depthNo":1,"deployType":null,"ecarePreface":null,"openType":null,"ecareStsNm":"작성중","kakaoSenderKey":null,"createTm":"143502","secuTemplate":null,"senderEmail":null,"divideYn":null,"relationTypeNm":"일반","useYn":"Y","failbackSubject":null,"omniList":[{"ecareStsNm":"작성중","ecareNm":"[Omni] ㅈㅅㅅㄱ","ecareNo":23,"relationTypeNm":"성공","targetCnt":-1,"channelType":"M","depthNo":2}],"kakaoImageNo":"0","invokeTm":null,"divideCnt":0,"grpNm":null,"relationTree":"N","createDt":"20210817","segmentNo":0,"kakaoTmplCd":null,"mailType":null,"sendstartDt":null,"senderNm":null,"failbackSendYn":"N","targetCnt":0,"kakaoButtons":" "}}
+
+09-03 16:38:04.512 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/get 200 - 0.375
+Headers : {content-length=27, postman-token=447d3c13-892f-4fb7-be3c-0b7bff737077, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":1
+    
+}
+Response : {"code":"SUCCESS","message":"success","data":{"relationType":"N","template":null,"userNm":null,"ecareNm":"ㅈㅅㅅㄱ","divideInterval":0,"ecareNo":1,"ecareSts":"I","scenarioNo":1,"channelType":"M","senderTel":null,"sendstartTm":null,"depthNo":1,"deployType":null,"ecarePreface":null,"openType":null,"ecareStsNm":"작성중","kakaoSenderKey":null,"createTm":"143502","secuTemplate":null,"senderEmail":null,"divideYn":null,"relationTypeNm":"일반","useYn":"Y","failbackSubject":null,"omniList":[{"ecareStsNm":"작성중","ecareNm":"[Omni] ㅈㅅㅅㄱ","ecareNo":24,"relationTypeNm":"실패","targetCnt":-1,"channelType":"M","depthNo":2},{"ecareStsNm":"작성중","ecareNm":"[Omni] ㅈㅅㅅㄱ","ecareNo":23,"relationTypeNm":"성공","targetCnt":-1,"channelType":"M","depthNo":2}],"kakaoImageNo":"0","invokeTm":null,"divideCnt":0,"grpNm":null,"relationTree":"N","createDt":"20210817","segmentNo":0,"kakaoTmplCd":null,"mailType":null,"sendstartDt":null,"senderNm":null,"failbackSendYn":"N","targetCnt":0,"kakaoButtons":" "}}
+
+09-03 16:39:10.510 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/update 200 - 0.155
+Headers : {content-length=157, postman-token=6cdbfdac-5114-434b-b136-a585ca7d4bfe, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"18" , 
+    "ecareNm":"간단 LMS 문자 발송",
+    "senderTel":"02-855-4210",
+    "reqUserId":"박준영",
+    "reqDeptId":"IT팀"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"ecareNo":18}}
+
+09-03 16:39:11.454 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/update 200 - 0.015
+Headers : {content-length=157, postman-token=fc5a5de4-44f9-4df3-9931-b2c46de6800a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"18" , 
+    "ecareNm":"간단 LMS 문자 발송",
+    "senderTel":"02-855-4210",
+    "reqUserId":"박준영",
+    "reqDeptId":"IT팀"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"ecareNo":18}}
+
+09-03 16:39:14.157 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/update 200 - 0.019
+Headers : {content-length=89, postman-token=4c5078a3-c7db-4214-af7c-8cd6db6faca0, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"15" , 
+    "template":"이메일 발송 템플릿 입니다``````!"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"ecareNo":15}}
+
+09-03 16:39:16.106 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.dto.ReturnDto$EcareDto cannot be cast to com.mnwise.wiseu.web.rest.model.ecare.Ecare 데이터:{"ecareNo":"18","useYn":"Y"}
+09-03 16:39:16.114 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/delete 500 - 0.059
+Headers : {content-length=44, postman-token=170eba98-e94d-43bb-b2b8-49556e60a585, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"18" ,"useYn" :"Y"
+    
+}
+Response : {"code":"FAIL","message":"ClassCastException: com.mnwise.wiseu.web.rest.dto.ReturnDto$EcareDto cannot be cast to com.mnwise.wiseu.web.rest.model.ecare.Ecare","data":null}
+
+09-03 16:39:21.830 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.dto.ReturnDto$EcareDto cannot be cast to com.mnwise.wiseu.web.rest.model.ecare.Ecare 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 16:39:21.836 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/createOmni 500 - 0.114
+Headers : {content-length=75, postman-token=e3dffa74-42b2-46a6-b762-40438a11c8ae, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"2" 
+    ,"relationType" :"F"
+    ,"channelType": "S"
+}
+Response : {"code":"FAIL","message":"ClassCastException: com.mnwise.wiseu.web.rest.dto.ReturnDto$EcareDto cannot be cast to com.mnwise.wiseu.web.rest.model.ecare.Ecare","data":null}
+
+09-03 16:44:06.791 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-03 16:44:06.793 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-03 16:44:06.794 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-03 22:55:07.548 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-03 22:55:07.550 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-03 22:55:07.550 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-03 22:55:11.657 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-03 22:55:13.544 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-03 22:55:28.946 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 22:55:29.092 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/createOmni 500 - 3.485
+Headers : {content-length=75, postman-token=9a097f8d-0836-417b-bada-4eacca46db58, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"2" 
+    ,"relationType" :"F"
+    ,"channelType": "S"
+}
+Response : {"code":"FAIL","message":"MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare'","data":null}
+
+09-03 22:57:13.514 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]]
+09-03 22:57:13.514 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 22:57:17.099 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 22:57:17.153 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/createOmni 500 - 0.398
+Headers : {content-length=75, postman-token=7863777c-d250-46a5-94f8-e33631ac3a03, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"2" 
+    ,"relationType" :"F"
+    ,"channelType": "S"
+}
+Response : {"code":"FAIL","message":"MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare'","data":null}
+
+09-03 22:57:28.664 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]]
+09-03 22:57:28.665 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 22:57:31.718 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 22:57:31.747 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/createOmni 500 - 1.46
+Headers : {content-length=75, postman-token=679117cf-af18-4e4a-97f1-efb8972513a5, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"2" 
+    ,"relationType" :"F"
+    ,"channelType": "S"
+}
+Response : {"code":"FAIL","message":"MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare'","data":null}
+
+09-03 22:58:01.137 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]]
+09-03 22:58:01.137 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+09-03 22:58:03.056 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/createOmni 200 - 0.637
+Headers : {content-length=75, postman-token=a19c8c5d-0d93-476a-8c17-15ef0a7ca041, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"2" 
+    ,"relationType" :"F"
+    ,"channelType": "S"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"ecareNo":25}}
+
+09-03 22:58:06.118 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.Exception: Ecare status is already (P) 데이터:{"ecareNo":"3","ecareSts":"P"}
+09-03 22:58:06.127 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/updateState 500 - 0.028
+Headers : {content-length=52, postman-token=3f842f26-5834-4fe7-9e42-8c8d970b3aa7, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"3" 
+    ,"ecareSts" :"P"
+    
+}
+Response : {"code":"FAIL","message":"Exception: Ecare status is already (P)","data":null}
+
+09-03 23:05:06.607 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-03 23:05:06.608 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-03 23:05:06.609 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-03 23:05:07.461 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-03 23:05:08.417 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final

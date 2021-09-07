@@ -1,0 +1,39 @@
+06-02 10:13:23.042 http-nio-8080-exec-7 EcareMsg.selectEcareNoBySvcId
+06-02 10:13:23.044 http-nio-8080-exec-7 ==>  Preparing: SELECT ecare_no FROM nvecaremsg WHERE svc_id = ? 
+06-02 10:13:23.044 http-nio-8080-exec-7 ==> Parameters: SVCID1(String)
+06-02 10:13:23.046 http-nio-8080-exec-7 <==      Total: 0
+06-02 10:13:41.765 http-nio-8080-exec-9 EcareMsg.selectEcareNoBySvcId
+06-02 10:13:41.765 http-nio-8080-exec-9 ==>  Preparing: SELECT ecare_no FROM nvecaremsg WHERE svc_id = ? 
+06-02 10:13:41.765 http-nio-8080-exec-9 ==> Parameters: SVCID(String)
+06-02 10:13:41.782 http-nio-8080-exec-9 <==      Total: 1
+06-02 10:13:43.767 http-nio-8080-exec-9 RealTimeAccept.insertRealTimeAccept
+06-02 10:13:43.767 http-nio-8080-exec-9 ==>  Preparing: INSERT INTO nvrealtimeaccept ( seq ,ecare_no ,result_seq ,channel ,req_user_id ,req_dt ,req_tm ,tmpl_type ,receiver_id ,receiver_nm ,receiver ,sender_nm ,sender ,subject ,send_fg ,secu_key ,preview_type ,data_cnt ,file_path1 ,file_path2 ,file_path3 ,jonmun ,slot1 ,slot2 ,slot3 ,slot4 ,slot5 ,slot6 ,slot7 ,slot8 ,slot9 ,slot10 ,req_seq ) VALUES ( ? ,? ,0 ,? ,? ,to_char(sysdate, 'yyyyMMdd') ,to_char(sysdate, 'HH24MISS') ,? ,? ,? ,? ,? ,? ,? ,? ,? ,'N' ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ) 
+06-02 10:13:43.806 http-nio-8080-exec-9 ==> Parameters: cac2d656-90a6-4bc8-b617-4654a445b73e(String), 64(Integer), M(String), REQUSERID(String), J(String), ID(String), NAME(String), YONNG547@MNWISE.COM(String), 茄拳积疙(String), yonng547@hanwha.com(String), 力格(String), R(String), null, 0(Integer), [{"filePath":"/hli_app/data/hltm","fileNm":"a.html"},{"filePath":"/../../.hltm","fileNm":"a.html"},{"filePath":"/../../.hltm","fileNm":"a.html"}](String), null, null, {"TEST":"TEST"}(String), null, null, null, null, null, null, null, null, null, null, 1234(String)
+06-02 10:13:43.823 http-nio-8080-exec-9 <==    Updates: 1
+06-02 10:14:53.361 ardEngine[Catalina]] Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+06-02 10:15:13.350 ardEngine[Catalina]] Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+06-02 10:15:24.860 ocalhost-startStop-1 Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+06-02 10:15:34.487 http-nio-8080-exec-4 EcareMsg.selectEcareNoBySvcId
+06-02 10:15:34.489 http-nio-8080-exec-4 ==>  Preparing: SELECT ecare_no FROM nvecaremsg WHERE svc_id = ? 
+06-02 10:15:34.502 http-nio-8080-exec-4 ==> Parameters: SVCID(String)
+06-02 10:15:34.530 http-nio-8080-exec-4 <==      Total: 1
+06-02 10:15:36.313 http-nio-8080-exec-4 RealTimeAccept.insertRealTimeAccept
+06-02 10:15:36.313 http-nio-8080-exec-4 ==>  Preparing: INSERT INTO nvrealtimeaccept ( seq ,ecare_no ,result_seq ,channel ,req_user_id ,req_dt ,req_tm ,tmpl_type ,receiver_id ,receiver_nm ,receiver ,sender_nm ,sender ,subject ,send_fg ,secu_key ,preview_type ,data_cnt ,file_path1 ,file_path2 ,file_path3 ,jonmun ,slot1 ,slot2 ,slot3 ,slot4 ,slot5 ,slot6 ,slot7 ,slot8 ,slot9 ,slot10 ,req_seq ) VALUES ( ? ,? ,0 ,? ,? ,to_char(sysdate, 'yyyyMMdd') ,to_char(sysdate, 'HH24MISS') ,? ,? ,? ,? ,? ,? ,? ,? ,? ,'N' ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ) 
+06-02 10:15:36.360 http-nio-8080-exec-4 ==> Parameters: aed3592d-1ab3-4619-bf98-6a16bf2446e4(String), 64(Integer), M(String), REQUSERID(String), J(String), ID(String), NAME(String), YONNG547@MNWISE.COM(String), 茄拳积疙(String), yonng547@hanwha.com(String), 力格(String), R(String), null, 0(Integer), [{"filePath":"/hli_app/data/hltm","fileNm":"a.html"},{"filePath":"/../../.hltm","fileNm":"a.html"},{"filePath":"/../../.hltm","fileNm":"a.html"}](String), null, null, {"TEST":"TEST"}(String), null, null, null, null, null, null, null, null, null, null, 1234(String)
+06-02 10:15:36.375 http-nio-8080-exec-4 <==    Updates: 1
+06-02 10:15:40.850 http-nio-8080-exec-5 EcareMsg.selectEcareNoBySvcId
+06-02 10:15:40.850 http-nio-8080-exec-5 ==>  Preparing: SELECT ecare_no FROM nvecaremsg WHERE svc_id = ? 
+06-02 10:15:40.851 http-nio-8080-exec-5 ==> Parameters: SVCID1(String)
+06-02 10:15:40.853 http-nio-8080-exec-5 <==      Total: 0
+06-02 15:18:15.006 http-nio-8080-exec-8 EcareMsg.selectEcareNoBySvcId
+06-02 15:18:15.007 http-nio-8080-exec-8 ==>  Preparing: SELECT ecare_no FROM nvecaremsg WHERE svc_id = ? 
+06-02 15:18:15.007 http-nio-8080-exec-8 ==> Parameters: EHCA0001(String)
+06-02 15:18:15.010 http-nio-8080-exec-8 <==      Total: 1
+06-02 15:18:17.108 http-nio-8080-exec-8 RealTimeAccept.insertRealTimeAccept
+06-02 15:18:17.109 http-nio-8080-exec-8 ==>  Preparing: INSERT INTO nvrealtimeaccept ( seq ,ecare_no ,result_seq ,channel ,req_user_id ,req_dt ,req_tm ,tmpl_type ,receiver_id ,receiver_nm ,receiver ,sender_nm ,sender ,subject ,send_fg ,secu_key ,preview_type ,data_cnt ,file_path1 ,file_path2 ,file_path3 ,jonmun ,slot1 ,slot2 ,slot3 ,slot4 ,slot5 ,slot6 ,slot7 ,slot8 ,slot9 ,slot10 ,req_seq ) VALUES ( ? ,? ,0 ,? ,? ,to_char(sysdate, 'yyyyMMdd') ,to_char(sysdate, 'HH24MISS') ,? ,? ,? ,? ,? ,? ,? ,? ,? ,'N' ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ,? ) 
+06-02 15:18:17.114 http-nio-8080-exec-8 ==> Parameters: 3105f4aa-2dc4-4ae1-a0ce-94975b00e98e(String), 50(Integer), M(String), REQUSERID(String), J(String), ID(String), NAME(String), YONNG547@MNWISE.COM(String), 茄拳积疙(String), yonng547@hanwha.com(String), 力格(String), R(String), null, 0(Integer), [{"filePath":"/hli_app/data/hltm","fileNm":"a.html"},{"filePath":"/../../.hltm","fileNm":"a.html"},{"filePath":"/../../.hltm","fileNm":"a.html"}](String), null, null, {"TEST":"TEST"}(String), null, null, null, null, null, null, null, null, null, null, 1234(String)
+06-02 15:18:17.121 http-nio-8080-exec-8 <==    Updates: 1
+06-02 15:31:57.140 ttp-nio-8080-exec-10 SendLog.selectSendlog
+06-02 15:31:57.140 ttp-nio-8080-exec-10 ==>  Preparing: SELECT seq ,'M' channel ,error_cd ,err_msg ,customer_key ,customer_nm ,customer_email ,send_dt ,send_tm ,open_dt ,slot1 ,slot2 FROM nvecaresendlog WHERE send_dtm between ? and ? 
+06-02 15:31:57.140 ttp-nio-8080-exec-10 ==> Parameters: 20210531160422(String), 20210531190422(String)
+06-02 15:31:57.165 ttp-nio-8080-exec-10 <==      Total: 4

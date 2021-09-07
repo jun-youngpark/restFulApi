@@ -1,0 +1,188 @@
+09-02 12:12:32.853 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-02 12:12:32.861 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/applicationContext.xml
+09-02 12:12:32.861 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:/dev/workspace_peper/wiseu_web/conf/web/log4jdbc.log4j2.properties
+09-02 12:12:42.503 ocalhost-startStop-1 DEBUG c.m.w.w.c.batch.CsvCleanManager    26 CSVCleanManager Start.. ThreadPool[1, 10]
+09-02 12:12:42.556 Thread-4             DEBUG c.m.w.w.c.batch.CsvCleanManager    42 CSVClean Status..Active : 1 / Maximum : 10
+09-02 12:12:42.556 SfdcBatchSend-1      DEBUG c.m.wiseu.web.base.util.BaseThread    33 Created SfdcBatchSend-1
+09-02 12:12:42.567 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+09-02 12:12:44.638 ocalhost-startStop-1 INFO  c.m.w.web.admin.service.MenuService    72 top menu loading...
+09-02 12:12:44.803 ocalhost-startStop-1 INFO  c.m.w.web.admin.service.MenuService    85 sub menu loading...
+09-02 12:25:50.332 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/account.properties
+09-02 12:25:50.375 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/account_ko.properties
+09-02 12:25:50.390 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/button.properties
+09-02 12:25:50.405 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/button_ko.properties
+09-02 12:25:50.417 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/campaign.properties
+09-02 12:25:50.451 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/campaign_ko.properties
+09-02 12:25:50.467 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/common.properties
+09-02 12:25:50.494 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/common_ko.properties
+09-02 12:25:50.512 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/ecare.properties
+09-02 12:25:50.540 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/ecare_ko.properties
+09-02 12:25:50.561 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/editor.properties
+09-02 12:25:50.588 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/editor_ko.properties
+09-02 12:25:50.603 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/env.properties
+09-02 12:25:50.624 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/env_ko.properties
+09-02 12:25:50.640 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/report.properties
+09-02 12:25:50.669 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/report_ko.properties
+09-02 12:25:50.687 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/resend.properties
+09-02 12:25:50.702 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/resend_ko.properties
+09-02 12:25:50.714 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/segment.properties
+09-02 12:25:50.748 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/segment_ko.properties
+09-02 12:25:50.765 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/template.properties
+09-02 12:25:50.790 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/template_ko.properties
+09-02 12:25:50.803 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/watch.properties
+09-02 12:25:50.820 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/watch_ko.properties
+09-02 12:25:50.832 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/valid.properties
+09-02 12:25:50.850 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [62D59AF36A4B9FA9DE8019059A3D0E6D] GET /i18n/valid_ko.properties
+09-02 12:26:05.374 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-02 12:26:05.380 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/applicationContext.xml
+09-02 12:26:05.380 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:/dev/workspace_peper/wiseu_web/conf/web/log4jdbc.log4j2.properties
+09-02 12:26:14.642 ocalhost-startStop-1 DEBUG c.m.w.w.c.batch.CsvCleanManager    26 CSVCleanManager Start.. ThreadPool[1, 10]
+09-02 12:26:14.715 Thread-4             DEBUG c.m.w.w.c.batch.CsvCleanManager    42 CSVClean Status..Active : 1 / Maximum : 10
+09-02 12:26:14.716 SfdcBatchSend-1      DEBUG c.m.wiseu.web.base.util.BaseThread    33 Created SfdcBatchSend-1
+09-02 12:26:14.723 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+09-02 12:26:17.444 ocalhost-startStop-1 INFO  c.m.w.web.admin.service.MenuService    72 top menu loading...
+09-02 12:26:17.516 ocalhost-startStop-1 INFO  c.m.w.web.admin.service.MenuService    85 sub menu loading...
+09-02 12:26:22.309 ttp-nio-18084-exec-2 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 1359 MB
+09-02 12:26:22.310 ttp-nio-18084-exec-2 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+09-02 12:26:22.310 ttp-nio-18084-exec-2 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 559 MB
+09-02 12:26:22.311 ttp-nio-18084-exec-2 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+09-02 12:26:22.350 ttp-nio-18084-exec-2 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+09-02 12:26:23.014 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaignList.do
+09-02 12:26:29.783 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaignList.do
+09-02 12:26:31.480 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaign1Step.do
+09-02 12:31:51.300 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaignList.do
+09-02 12:31:53.304 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaignList.do
+09-02 12:32:14.220 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaign1Step.do
+09-02 12:32:16.375 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaignList.do
+09-02 12:33:34.712 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaignList.do
+09-02 12:33:36.319 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7B1D1A79329EE4CC23565AD7D62F11AB] GET /campaign/campaignList.do
+09-02 15:01:42.175 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [6E0D9E8270302669F7891FE6A9F1D931] GET /campaign/campaign1Step.do
+09-02 15:01:46.362 ttp-nio-18084-exec-3 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 336 MB
+09-02 15:01:46.363 ttp-nio-18084-exec-3 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+09-02 15:01:46.363 ttp-nio-18084-exec-3 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 236 MB
+09-02 15:01:46.364 ttp-nio-18084-exec-3 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+09-02 15:01:46.365 ttp-nio-18084-exec-3 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+09-02 15:01:46.560 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaignList.do
+09-02 15:01:48.911 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign1Step.do
+09-02 15:01:52.330 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:01:52.820 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:01:53.354 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:01:53.356 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/smsContsList.do
+09-02 15:01:53.768 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /jsp/editor/smsContsList.jsp
+09-02 15:01:53.858 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:01:53.885 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:01:53.950 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorPhoneTemplate.json
+09-02 15:01:53.951 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:01:54.123 ttp-nio-18084-exec-6 DEBUG c.m.w.w.e.s.EditorCampaignService   124 개인인자 수: 5
+09-02 15:01:56.274 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditor.json
+09-02 15:01:56.292 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditorHandler.json
+09-02 15:01:56.306 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditorTemplate.json
+09-02 15:01:56.399 ttp-nio-18084-exec-2 DEBUG c.m.w.w.e.s.EditorCampaignService   692 SMS segmentNo -> 8
+09-02 15:01:56.401 ttp-nio-18084-exec-2 DEBUG c.m.w.w.e.s.EditorCampaignService   514 개인인자 수: 5
+09-02 15:01:56.438 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/campaign2Step.do
+09-02 15:01:56.481 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:01:56.702 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:01:57.191 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:01:57.193 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/smsContsList.do
+09-02 15:01:57.204 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /jsp/editor/smsContsList.jsp
+09-02 15:01:57.243 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:01:57.243 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:01:57.329 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorPhoneTemplate.json
+09-02 15:01:57.330 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:01:57.336 ttp-nio-18084-exec-5 DEBUG c.m.w.w.e.s.EditorCampaignService   124 개인인자 수: 5
+09-02 15:01:58.550 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign3Step.do
+09-02 15:02:02.434 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaignList.do
+09-02 15:02:04.551 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaignList.do
+09-02 15:02:19.326 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign1Step.do
+09-02 15:02:20.536 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign3Step.do
+09-02 15:02:23.908 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:02:24.195 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:02:24.681 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:02:24.722 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:02:24.723 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:02:24.815 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorMultipartfile.json
+09-02 15:02:24.854 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:02:24.872 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorTemplate.json
+09-02 15:02:24.879 ttp-nio-18084-exec-2 DEBUG c.m.w.w.e.s.EditorCampaignService   124 개인인자 수: 3
+09-02 15:02:24.907 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/selectEditorMaxLinkSeq.json
+09-02 15:02:26.346 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /segment/segmentSelectPopup.do
+09-02 15:02:26.580 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /jsp/segment/segmentSelectPopup.jsp
+09-02 15:02:28.036 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:02:29.326 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/setCampaignStsInfo.json
+09-02 15:02:29.332 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditor.json
+09-02 15:02:29.370 ttp-nio-18084-exec-5 DEBUG c.m.w.w.e.s.EditorCampaignService   514 개인인자 수: 5
+09-02 15:02:29.417 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/campaign2Step.do
+09-02 15:02:29.457 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:02:29.700 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:02:30.204 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:02:30.270 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:02:30.271 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:02:30.369 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorMultipartfile.json
+09-02 15:02:30.394 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:02:30.409 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorTemplate.json
+09-02 15:02:30.413 ttp-nio-18084-exec-1 DEBUG c.m.w.w.e.s.EditorCampaignService   124 개인인자 수: 5
+09-02 15:02:30.438 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/selectEditorMaxLinkSeq.json
+09-02 15:02:32.016 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign3Step.do
+09-02 15:02:40.276 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/setRegistCampaignDivideScheduleInfo.json
+09-02 15:02:40.680 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign3Step.do
+09-02 15:02:58.533 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/setRegistCampaignDivideScheduleInfo.json
+09-02 15:02:58.596 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign3Step.do
+09-02 15:02:59.533 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/setRegistCampaignDivideScheduleInfo.json
+09-02 15:02:59.564 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign3Step.do
+09-02 15:13:19.537 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign1Step.do
+09-02 15:13:23.493 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/campaign1Step.do
+09-02 15:13:23.660 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:13:26.677 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:13:27.989 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:13:27.993 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/frtContsList.do
+09-02 15:13:28.022 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:13:28.028 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:13:28.098 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorPhoneTemplate.json
+09-02 15:13:28.098 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:13:28.675 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /jsp/editor/frtContsList.jsp
+09-02 15:13:28.955 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/loadHandler.json
+09-02 15:14:26.762 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:14:27.053 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:14:27.573 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:14:27.576 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/frtContsList.do
+09-02 15:14:27.597 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /jsp/editor/frtContsList.jsp
+09-02 15:14:27.601 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:14:27.601 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:14:27.956 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/loadHandler.json
+09-02 15:14:27.958 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorPhoneTemplate.json
+09-02 15:14:27.959 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:14:29.394 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /segment/segmentSelectPopup.do
+09-02 15:14:29.451 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /jsp/segment/segmentSelectPopup.jsp
+09-02 15:14:30.819 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:14:33.311 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditor.json
+09-02 15:14:33.326 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditorHandler.json
+09-02 15:14:33.367 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditorTemplate.json
+09-02 15:14:33.368 ttp-nio-18084-exec-1 DEBUG c.m.w.w.e.s.EditorCampaignService   765 SMS segmentNo -> 8
+09-02 15:14:33.370 ttp-nio-18084-exec-1 DEBUG c.m.w.w.e.s.EditorCampaignService   514 개인인자 수: 5
+09-02 15:14:33.398 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/campaign2Step.do
+09-02 15:14:33.428 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:14:33.634 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:14:34.097 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:14:34.098 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/frtContsList.do
+09-02 15:14:34.119 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:14:34.119 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /jsp/editor/frtContsList.jsp
+09-02 15:14:34.120 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:14:34.226 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorPhoneTemplate.json
+09-02 15:14:34.227 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:14:34.233 ttp-nio-18084-exec-7 DEBUG c.m.w.w.e.s.EditorCampaignService   124 개인인자 수: 5
+09-02 15:15:12.197 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditor.json
+09-02 15:15:12.214 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditorHandler.json
+09-02 15:15:12.229 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/updateEditorTemplate.json
+09-02 15:15:12.231 ttp-nio-18084-exec-1 DEBUG c.m.w.w.e.s.EditorCampaignService   765 SMS segmentNo -> 8
+09-02 15:15:12.233 ttp-nio-18084-exec-1 DEBUG c.m.w.w.e.s.EditorCampaignService   514 개인인자 수: 5
+09-02 15:15:12.282 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /campaign/campaign2Step.do
+09-02 15:15:12.381 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /campaign/campaign2Step.do
+09-02 15:15:12.737 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] GET /editor/editor.do
+09-02 15:15:13.289 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditor.json
+09-02 15:15:13.292 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/frtContsList.do
+09-02 15:15:13.311 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /jsp/editor/frtContsList.jsp
+09-02 15:15:13.312 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /env/getHandlerUseList.do
+09-02 15:15:13.316 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorHandler.json
+09-02 15:15:13.680 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorPhoneTemplate.json
+09-02 15:15:13.680 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [36CD1E44C3A7D51C68BEA094630ED5F7] POST /editor/selectEditorCampaignSemantic.json
+09-02 15:15:13.686 ttp-nio-18084-exec-3 DEBUG c.m.w.w.e.s.EditorCampaignService   124 개인인자 수: 5

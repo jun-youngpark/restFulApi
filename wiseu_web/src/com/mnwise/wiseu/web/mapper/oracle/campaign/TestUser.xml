@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TestUser">
+    <!--<resultMap id="resultTestUser" type="TestUser">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="campaign_type"          property="campaignType"/>
+        <result column="user_id"                property="userId"/>
+        <result column="seq_no"                 property="seqNo"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <!--<insert id="insertTestUser" parameterType="TestUser">
+        INSERT INTO nvtestuser (campaign_no, campaign_type, user_id, seq_no)
+        VALUES (#{campaignNo}, #{campaignType}, #{userId}, #{seqNo})
+    </insert>-->
+
+    <insert id="insertTestUser" parameterType="Tester">
+        INSERT INTO nvtestuser (campaign_no, campaign_type, user_id, seq_no)
+        VALUES (#{serviceNo}, #{serviceType}, #{userId}, #{seqNo})
+    </insert>
+
+    <insert id="copyTestUserByCampaign" parameterType="Campaign">
+        INSERT INTO nvtestuser (campaign_no, campaign_type, user_id, seq_no)
+        SELECT #{newCampaignNo}, campaign_type, user_id, seq_no
+        FROM nvtestuser
+        WHERE campaign_no = #{campaignNo}
+        AND campaign_type = 'C'
+    </insert>
+
+    <insert id="copyTestUserByEcare" parameterType="Ecare">
+        INSERT INTO nvtestuser (campaign_no, campaign_type, user_id, seq_no)
+        SELECT #{newEcareNo}, campaign_type, user_id, seq_no
+        FROM nvtestuser
+        WHERE campaign_no = #{ecareNo}
+        AND campaign_type = 'E'
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteTestUserAll" parameterType="Scenario">
+        DELETE FROM nvtestuser
+        <if test="campaignVo.campaignNoArray != null">
+        WHERE campaign_no IN (
+        <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+            #{campaignNo}
+        </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <delete id="deleteTestUser" parameterType="Tester">
+        DELETE FROM nvtestuser
+        WHERE campaign_no = #{serviceNo}
+        AND campaign_type = #{serviceType}
+    </delete>
+
+    <delete id="deleteEcareTestUser" parameterType="map">
+        DELETE FROM nvtestuser
+        WHERE campaign_no = #{ecareNo}
+        AND campaign_type = 'E'
+        AND user_id = #{userId}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+
+</mapper>

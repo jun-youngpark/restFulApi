@@ -1,0 +1,19 @@
+import com.mnwise.ASE.agent.faxagent.FaxAgent;
+import com.mnwise.ASE.agent.faxagent.FaxData;
+import com.mnwise.ASE.agent.util.TextReader;
+import com.mnwise.ASE.pscript.Message;
+
+FaxAgent faxagent = new FaxAgent(context);
+Message message = new Message(context);
+message.prepareGroovyTemplate();
+
+FaxData faxdata = new FaxData();
+faxdata.setSubject("");
+faxdata.setFrom(context.get("_SENDER_NM"), context.get("_SENDER_EMAIL"));
+faxdata.setReceiverId(context.get("IUSERID"));
+faxdata.setTo(context.get("INAME"), context.get("IFAX"));
+faxdata.setContent(message.execGroovyTemplate());
+
+faxagent.send(faxdata);
+
+faxagent.close();

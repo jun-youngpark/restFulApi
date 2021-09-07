@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.StatusReqResult">
+    <!--<resultMap id="resultStatusReqResult" type="StatusReqResult">
+        <result column="server_id"      property="serverId"/>
+        <result column="req_create_tm"  property="reqCreateTm"/>
+        <result column="task_id"        property="taskId"/>
+        <result column="req"            property="req"/>
+        <result column="result"         property="result"/>
+        <result column="result_msg"     property="resultMsg"/>
+        <result column="create_tm"      property="createTm"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <!--<insert id="insertStatusReqResult" parameterType="StatusReqResult">
+        INSERT INTO nv_status_req_result (server_id, req_create_tm, task_id, req, result, result_msg, create_tm)
+        VALUES (#{serverId}, #{reqCreateTm}, #{taskId}, #{req}, #{result}, #{resultMsg, jdbcType=VARCHAR}, #{createTm, jdbcType=VARCHAR})
+    </insert>-->
+
+    <!--  ==================== UPDATE ====================  -->
+    <!--<update id="updateStatusReqResultByPk" parameterType="StatusReqResult">
+        UPDATE nv_status_req_result
+        SET
+            result = #{result}
+          , result_msg = #{resultMsg, jdbcType=VARCHAR}
+          , create_tm = #{createTm, jdbcType=VARCHAR}
+        WHERE server_id = #{serverId}
+        AND req_create_tm = #{reqCreateTm}
+        AND task_id = #{taskId}
+        AND req = #{req}
+    </update>-->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteStatusReqResultByPk" parameterType="map">
+        DELETE FROM nv_status_req_result
+        WHERE server_id = #{serverId}
+        AND req_create_tm = #{reqCreateTm}
+        AND task_id = #{taskId}
+        AND req = #{req}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!--<select id="selectStatusReqResultByPk" parameterType="map" resultMap="resultStatusReqResult">
+        SELECT server_id, req_create_tm, task_id, req, result, result_msg, create_tm
+        FROM nv_status_req_result
+        WHERE server_id = #{serverId}
+        AND req_create_tm = #{reqCreateTm}
+        AND task_id = #{taskId}
+        AND req = #{req}
+    </select>-->
+
+    <select id="retrieveSvcStatusReqResult" parameterType="map" resultType="CaseInsensitiveMap">
+        SELECT
+            (SELECT count(server_id) FROM nv_status_req_result WHERE req_create_tm = #{createTm} AND task_id = #{taskId} AND req = #{req}) as tot_cnt
+          , (SELECT count(server_id) FROM nv_status_req_result WHERE req_create_tm = #{createTm} AND task_id = #{taskId} AND req = #{req} AND result = 1) as cnt
+          , (SELECT count(server_id) FROM nv_status_req_result WHERE req_create_tm = #{createTm} AND task_id = #{taskId} AND req = #{req} AND result = 3) as err_cnt
+          , (SELECT mts_cnt FROM nv_svc_main WHERE t_id = #{taskId}) mts_cnt
+    </select>
+</mapper>

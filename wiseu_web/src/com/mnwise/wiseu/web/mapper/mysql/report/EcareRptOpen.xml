@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareRptOpen">
+    <!--<resultMap id="resultEcareRptOpen" type="EcareRptOpen">
+        <result column="ecare_no"       property="ecareNo"/>
+        <result column="result_seq"     property="resultSeq"/>
+        <result column="report_dt"      property="reportDt"/>
+        <result column="report_tm"      property="reportTm"/>
+        <result column="start_dt"       property="startDt"/>
+        <result column="open_cnt"       property="openCnt"/>
+        <result column="refuse_cnt"     property="refuseCnt"/>
+        <result column="open_ocnt"      property="openOcnt"/>
+        <result column="open_dcnt"      property="openDcnt"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectOpenCnt" parameterType="EcareScenarioInfo" resultType="int">
+        SELECT coalesce(sum(open_ocnt),0) as open_cnt
+        FROM nvecarerptopen
+        WHERE ecare_no = #{ecareInfoVo.ecareNo}
+        AND result_seq = #{ecareInfoVo.resultSeq}
+    </select>
+
+</mapper>

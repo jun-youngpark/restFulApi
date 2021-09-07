@@ -1,0 +1,9 @@
+<script src="/js/editor/line.js"></script>
+<script src="/js/editor/map.js"></script>
+<script src="/js/editor/common.js"></script>
+<script src="/js/editor/handler.js"></script>
+<script src="/js/editor/option.js"></script>
+<script src="/js/editor/realtime.js"></script>
+<script src="/plugin/tiny_mce/tiny_mce.js"></script>
+<script src="/js/common/common2step.js"></script>
+<script src="/js/editor/ecareEditor.js"></script>

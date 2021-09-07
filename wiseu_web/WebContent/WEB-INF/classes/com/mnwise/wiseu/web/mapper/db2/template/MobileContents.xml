@@ -1,0 +1,879 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MobileContents">
+    <resultMap id="resultMobileContents" type="Mobile">
+        <result column="conts_no"               property="contsNo"/>
+        <result column="user_id"                property="userId"/>
+        <result column="conts_nm"               property="contsNm"/>
+        <result column="conts_desc"             property="contsDesc"/>
+        <result column="file_path"              property="filePath"/>
+        <result column="file_name"              property="fileName"/>
+        <result column="image_url"              property="imageUrl"/>
+        <result column="image_link"             property="imageLink"/>
+        <result column="detour_file_path"       property="detourFilePath"/>
+        <result column="detour_file_name"       property="detourFileName"/>
+        <result column="detour_preview_path"    property="detourPreviewPath"/>
+        <result column="detour_preview_name"    property="detourPreviewName"/>
+        <result column="file_type"              property="fileType"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="auth_type"              property="authType"/>
+        <result column="tag_no"                 property="tagNo"/>
+        <result column="conts_txt"              property="contsTxt"/>
+        <result column="file_preview_path"      property="filePreviewPath"/>
+        <result column="file_preview_name"      property="filePreviewName"/>
+        <result column="grp_cd"                 property="grpCd"/>
+        <result column="category_cd"            property="categoryCd"/>
+        <result column="file_size"              property="fileSize"/>
+        <result column="kakao_sender_key"       property="kakaoSenderKey"/>
+        <result column="kakao_tmpl_cd"          property="kakaoTmplCd"/>
+        <result column="kakao_tmpl_status"      property="kakaoTmplStatus"/>
+        <result column="kakao_insp_status"      property="kakaoInspStatus"/>
+        <result column="kakao_buttons"          property="kakaoButtons"/>
+        <result column="use_yn"                 property="useYn"/>
+        <result column="content_type"           property="contentType"/>
+        <result column="unsubscribe_content"    property="unsubscribeContent"/>
+        <result column="message_type"           property="messageType"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="tag_nm"                 property="tagNm"/>
+        <result column="user_nm"                property="userNm"/>
+        <result column="grp_nm"                 property="grpNm"/>
+        <result column="kakao_yellow_id"        property="kakaoYellowId"/>
+        <result column="kakao_insp_status_nm"   property="kakaoInspStatusNm"/>
+        <result column="kakao_tmpl_status_nm"   property="kakaoTmplStatusNm"/>
+        <result column="kakao_tmpl_msg_type"    property="kakaoTmplMsgType"/>
+        <result column="kakao_tmpl_ad"          property="kakaoTmplAd"/>
+        <result column="kakao_tmpl_ex"          property="kakaoTmplEx"/>
+        <result column="kakao_security_yn"      property="kakaoSecurityYn"/>
+        <result column="kakao_em_type"          property="kakaoEmType"/>
+        <result column="kakao_em_type"          property="kakaoEmType"/>
+        <result column="kakao_em_title"         property="kakaoEmTitle"/>
+        <result column="kakao_em_subtitle"      property="kakaoEmSubtitle"/>
+        <result column="kakao_quick_replies"    property="kakaoQuickReplies"/>
+    </resultMap>
+
+    <resultMap id="resultMms" type="Mms">
+        <result column="user_id"            property="userId"/>
+        <result column="conts_no"           property="contsNo"/>
+        <result column="conts_nm"           property="contsNm"/>
+        <result column="file_path"          property="filePath"/>
+        <result column="file_name"          property="fileName"/>
+        <result column="file_type"          property="fileType"/>
+        <result column="conts_txt"          property="contsTxt"/>
+        <result column="file_preview_path"  property="filePreviewPath"/>
+        <result column="file_preview_name"  property="filePreviewName"/>
+        <result column="file_size"          property="fileSize"/>
+        <result column="create_dt"          property="createDt"/>
+        <result column="create_tm"      property="createTm"/>
+    </resultMap>
+
+    <resultMap id="resultSms" type="Sms">
+        <result column="user_id"    property="userId"/>
+        <result column="conts_nm"   property="contsNm"/>
+        <result column="conts_txt"  property="contsTxt"/>
+        <result column="create_dt"  property="createDt"/>
+        <result column="create_tm"  property="createTm"/>
+    </resultMap>
+
+    <resultMap id="resultKakao" type="Mobile">
+        <result column="user_id"                property="userId"/>
+        <result column="conts_no"               property="contsNo"/>
+        <result column="conts_nm"               property="contsNm"/>
+        <result column="file_path"              property="filePath"/>
+        <result column="file_name"              property="fileName"/>
+        <result column="file_type"              property="fileType"/>
+        <result column="conts_txt"              property="contsTxt"/>
+        <result column="file_preview_path"      property="filePreviewPath"/>
+        <result column="file_preview_name"      property="filePreviewName"/>
+        <result column="file_size"              property="fileSize"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="kakao_sender_key"       property="kakaoSenderKey"/>
+        <result column="kakao_tmpl_cd"          property="kakaoTmplCd"/>
+        <result column="image_link"             property="imageLink"/>
+        <result column="kakao_buttons"          property="kakaoButtons"/>
+        <result column="content_type"           property="contentType"/>
+        <result column="unsubscribe_content"    property="unsubscribeContent"/>
+        <result column="message_type"           property="messageType"/>
+        <result column="kakao_yellow_id"        property="kakaoYellowId"/>
+        <result column="kakao_tmpl_msg_type"    property="kakaoTmplMsgType"/>
+        <result column="kakao_security_yn"           property="kakaoSecurityYn"/>
+        <result column="kakao_em_type"        property="kakaoEmType"/>
+        <result column="kakao_quick_replies"        property="kakaoQuickReplies"/>
+    </resultMap>
+
+    <resultMap id="resultBrandTalkTemplate" type="BrandTalkTemplate">
+        <result column="conts_no"               property="contsNo"/>
+        <result column="user_id"                property="userId"/>
+        <result column="user_nm"                property="userNm"/>
+        <result column="grp_cd"                 property="grpCd"/>
+        <result column="grp_nm"                 property="grpNm"/>
+        <result column="conts_nm"               property="templateName"/>
+        <result column="conts_txt"              property="content"/>
+        <result column="conts_desc"             property="contsDesc"/>
+        <result column="file_type"              property="fileType"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="auth_type"              property="authType"/>
+        <result column="kakao_sender_key"       property="senderKey"/>
+        <result column="kakao_tmpl_cd"          property="code"/>
+        <result column="kakao_insp_status"      property="kakaoInspStatus"/>
+        <result column="kakao_insp_status_nm"   property="kakaoInspStatusNm"/>
+        <result column="kakao_yellow_id"        property="kakaoYellowId"/>
+        <result column="use_yn"                 property="useYn"/>
+        <result column="message_type"           property="messageType"/>
+        <result column="content_type"           property="contentType"/>
+        <result column="unsubscribe_content"    property="unsubscribeContent"/>
+        <result column="kakao_tmpl_status"      property="kakaoTmplStatus"/>
+        <result column="kakao_tmpl_status_nm"   property="kakaoTmplStatusNm"/>
+        <result column="image_link"   property="imageLink"/>
+        <result column="file_preview_name"   property="filePreviewName"/>
+        <result column="file_preview_path"   property="filePreviewPath"/>
+        <result column="file_path"   property="filePath"/>
+        <result column="file_name"   property="fileName"/>
+        <result column="kakao_buttons"   property="kakaoButtons"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <!--
+    <insert id="insertMobileContents" parameterType="Mobile">
+        INSERT INTO nvmobilecontents (conts_no, user_id, conts_nm, conts_desc, file_path, file_name, image_url, image_link, detour_file_path, detour_file_name, detour_preview_path, detour_preview_name, file_type, create_dt, create_tm, auth_type, tag_no, conts_txt, file_preview_path, file_preview_name, grp_cd, category_cd, file_size, kakao_sender_key, kakao_tmpl_cd, kakao_tmpl_status, kakao_insp_status, kakao_buttons, use_yn, content_type, unsubscribe_content, message_type)
+        VALUES (#{contsNo}, #{userId, jdbcType=VARCHAR}, #{contsNm, jdbcType=VARCHAR}, #{contsDesc, jdbcType=VARCHAR}, #{filePath, jdbcType=VARCHAR}, #{fileName, jdbcType=VARCHAR}, #{imageUrl, jdbcType=VARCHAR}, #{imageLink, jdbcType=VARCHAR}, #{detourFilePath, jdbcType=VARCHAR}, #{detourFileName, jdbcType=VARCHAR}, #{detourPreviewPath, jdbcType=VARCHAR}, #{detourPreviewName, jdbcType=VARCHAR}, #{fileType, jdbcType=CHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{authType, jdbcType=CHAR}, #{tagNo}, #{contsTxt, jdbcType=VARCHAR}, #{filePreviewPath, jdbcType=VARCHAR}, #{filePreviewName, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{categoryCd, jdbcType=VARCHAR}, #{fileSize}, #{kakaoSenderKey, jdbcType=VARCHAR}, #{kakaoTmplCd, jdbcType=VARCHAR}, #{kakaoTmplStatus, jdbcType=CHAR}, #{kakaoInspStatus, jdbcType=VARCHAR}, #{kakaoButtons, jdbcType=VARCHAR}, #{useYn}, #{contentType, jdbcType=VARCHAR}, #{unsubscribeContent, jdbcType=VARCHAR}, #{messageType, jdbcType=VARCHAR})
+    </insert>
+    -->
+
+    <insert id="insertMobileContents" parameterType="Mobile">
+        INSERT INTO nvmobilecontents (
+            conts_no, user_id, conts_nm, file_path, file_name, image_url, image_link, detour_file_path, detour_file_name, detour_preview_path
+          , detour_preview_name, file_type, create_dt, create_tm, auth_type, tag_no, conts_txt, file_preview_path, file_preview_name, file_size
+          , grp_cd
+          <if test="contsDesc      != null and contsDesc      != ''">, conts_desc</if>
+          <if test="categoryCd     != null and categoryCd     != ''">, category_cd</if>
+          <if test="kakaoSenderKey != null and kakaoSenderKey != ''">, kakao_sender_key, kakao_tmpl_cd, kakao_tmpl_status, kakao_insp_status, kakao_buttons, kakao_tmpl_msg_type, kakao_tmpl_ad, kakao_tmpl_ex, kakao_security_yn, kakao_em_type, kakao_em_title, kakao_em_subtitle, kakao_quick_replies</if>
+        ) VALUES (
+            #{contsNo}, #{userId, jdbcType=VARCHAR}, #{contsNm, jdbcType=VARCHAR}, #{filePath, jdbcType=VARCHAR}, #{fileName, jdbcType=VARCHAR}, #{imageUrl, jdbcType=VARCHAR}, #{imageLink, jdbcType=VARCHAR}, #{detourFilePath, jdbcType=VARCHAR}, #{detourFileName, jdbcType=VARCHAR}, #{detourPreviewPath, jdbcType=VARCHAR}
+          , #{detourPreviewName, jdbcType=VARCHAR}, #{fileType, jdbcType=CHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{authType, jdbcType=CHAR}, #{tagNo}, #{contsTxt, jdbcType=VARCHAR}, #{filePreviewPath, jdbcType=VARCHAR}, #{filePreviewName, jdbcType=VARCHAR}, #{fileSize}
+          , (SELECT grp_cd FROM nvuser WHERE user_id = #{userId, jdbcType=VARCHAR})
+          <if test="contsDesc      != null and contsDesc      != ''">, #{contsDesc, jdbcType=VARCHAR}</if>
+          <if test="categoryCd     != null and categoryCd     != ''">, #{categoryCd, jdbcType=VARCHAR}</if>
+          <if test="kakaoSenderKey != null and kakaoSenderKey != ''">, #{kakaoSenderKey, jdbcType=VARCHAR}, #{kakaoTmplCd, jdbcType=VARCHAR}, #{kakaoTmplStatus, jdbcType=CHAR}, #{kakaoInspStatus, jdbcType=VARCHAR}, #{kakaoButtons, jdbcType=VARCHAR}, #{kakaoTmplMsgType, jdbcType=CHAR}, #{kakaoTmplAd, jdbcType=VARCHAR}, #{kakaoTmplEx, jdbcType=VARCHAR}, #{kakaoSecurityYn, jdbcType=CHAR}, #{kakaoEmType, jdbcType=VARCHAR}, #{kakaoEmTitle, jdbcType=VARCHAR}, #{kakaoEmSubtitle, jdbcType=VARCHAR}, #{kakaoQuickReplies, jdbcType=VARCHAR}</if>
+        )
+    </insert>
+
+    <insert id="insertBrandTalkContents" parameterType="BrandTalkTemplate">
+        INSERT INTO nvmobilecontents (
+            conts_no, user_id, conts_nm, conts_txt, file_path, file_name, file_preview_path, file_preview_name, file_type, create_dt
+          , create_tm, auth_type, tag_no, kakao_buttons, image_url, image_link, unsubscribe_content, message_type, grp_cd
+          <if test="senderKey        != null and senderKey        != ''">, kakao_sender_key</if>
+          <if test="inspectionStatus != null and inspectionStatus != ''">, kakao_insp_status</if>
+          <if test="code             != null and code             != ''">, kakao_tmpl_cd</if>
+          <if test="kakaoTmplStatus  != null and kakaoTmplStatus  != ''">, kakao_tmpl_status</if>
+          <if test="contentType      != null and contentType      != ''">, content_type</if>
+        ) VALUES (
+            #{contsNo}, #{userId, jdbcType=VARCHAR}, #{templateName, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, #{filePath, jdbcType=VARCHAR}, #{fileName, jdbcType=VARCHAR}, #{filePreviewPath, jdbcType=VARCHAR}, #{fileName, jdbcType=VARCHAR}, #{fileType, jdbcType=CHAR}, #{createDt, jdbcType=CHAR}
+          , #{createTm, jdbcType=CHAR}, #{authType, jdbcType=CHAR}, 0, #{kakaoButtons, jdbcType=VARCHAR}, #{imageUrl, jdbcType=VARCHAR}, #{imageLink, jdbcType=VARCHAR}, #{unsubscribeContent, jdbcType=VARCHAR}, #{messageType, jdbcType=VARCHAR}
+          , (SELECT grp_cd FROM nvuser WHERE user_id = #{userId, jdbcType=VARCHAR})
+          <if test="senderKey        != null and senderKey        != ''">, #{senderKey, jdbcType=VARCHAR}</if>
+          <if test="inspectionStatus != null and inspectionStatus != ''">, #{inspectionStatus, jdbcType=VARCHAR}</if>
+          <if test="code             != null and code             != ''">, #{code, jdbcType=VARCHAR}</if>
+          <if test="kakaoTmplStatus  != null and kakaoTmplStatus  != ''">, #{kakaoTmplStatus, jdbcType=CHAR}</if>
+          <if test="contentType      != null and contentType      != ''">, #{contentType, jdbcType=VARCHAR}</if>
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateMobileContentsByPk" parameterType="Mobile">
+        UPDATE nvmobilecontents
+        SET
+            user_id = #{userId, jdbcType=VARCHAR}
+          , conts_nm = #{contsNm, jdbcType=VARCHAR}
+          , conts_desc = #{contsDesc, jdbcType=VARCHAR}
+          , file_path = #{filePath, jdbcType=VARCHAR}
+          , file_name = #{fileName, jdbcType=VARCHAR}
+          , image_url = #{imageUrl, jdbcType=VARCHAR}
+          , image_link = #{imageLink, jdbcType=VARCHAR}
+          , detour_file_path = #{detourFilePath, jdbcType=VARCHAR}
+          , detour_file_name = #{detourFileName, jdbcType=VARCHAR}
+          , detour_preview_path = #{detourPreviewPath, jdbcType=VARCHAR}
+          , detour_preview_name = #{detourPreviewName, jdbcType=VARCHAR}
+          , file_type = #{fileType, jdbcType=CHAR}
+          , create_dt = #{createDt, jdbcType=CHAR}
+          , create_tm = #{createTm, jdbcType=CHAR}
+          , auth_type = #{authType, jdbcType=CHAR}
+          , tag_no = #{tagNo}
+          , conts_txt = #{contsTxt, jdbcType=VARCHAR}
+          , file_preview_path = #{filePreviewPath, jdbcType=VARCHAR}
+          , file_preview_name = #{filePreviewName, jdbcType=VARCHAR}
+          , grp_cd = #{grpCd, jdbcType=VARCHAR}
+          , category_cd = #{categoryCd, jdbcType=VARCHAR}
+          , file_size = #{fileSize}
+          , kakao_sender_key = #{kakaoSenderKey, jdbcType=VARCHAR}
+          , kakao_tmpl_cd = #{kakaoTmplCd, jdbcType=VARCHAR}
+          , kakao_tmpl_status = #{kakaoTmplStatus, jdbcType=CHAR}
+          , kakao_insp_status = #{kakaoInspStatus, jdbcType=VARCHAR}
+          , kakao_buttons = #{kakaoButtons, jdbcType=VARCHAR}
+          , use_yn = #{useYn}
+          , content_type = #{contentType, jdbcType=VARCHAR}
+          , unsubscribe_content = #{unsubscribeContent, jdbcType=VARCHAR}
+          , message_type = #{messageType, jdbcType=VARCHAR}
+        WHERE conts_no = #{contsNo}
+    </update>
+
+    <update id="updateKakaoTemplate" parameterType="Mobile">
+        UPDATE nvmobilecontents
+        SET
+            conts_txt = #{contsTxt, jdbcType=VARCHAR}
+          , kakao_insp_status = #{kakaoInspStatus, jdbcType=VARCHAR}
+          , kakao_tmpl_status = #{kakaoTmplStatus, jdbcType=CHAR}
+          , kakao_buttons = #{kakaoButtons, jdbcType=VARCHAR}
+          , kakao_tmpl_msg_type = #{kakaoTmplMsgType, jdbcType=CHAR}
+          , kakao_tmpl_ad = #{kakaoTmplAd, jdbcType=VARCHAR}
+          , kakao_tmpl_ex = #{kakaoTmplEx, jdbcType=VARCHAR}
+          , kakao_em_type = #{kakaoEmType, jdbcType=VARCHAR}
+          , kakao_em_title = #{kakaoEmTitle, jdbcType=VARCHAR}
+          , kakao_em_subtitle = #{kakaoEmSubtitle, jdbcType=VARCHAR}
+          , kakao_security_yn = #{kakaoSecurityYn, jdbcType=CHAR}
+          , kakao_quick_replies = #{kakaoQuickReplies, jdbcType=VARCHAR}
+          , file_path = #{filePath, jdbcType=VARCHAR}
+          , file_name = #{fileName, jdbcType=VARCHAR}
+          , image_url = #{imageUrl, jdbcType=VARCHAR}
+          , file_preview_path = #{filePreviewPath, jdbcType=VARCHAR}
+          , file_preview_name = #{filePreviewName, jdbcType=VARCHAR}
+          <if test="newKakaoSenderKey != null and newKakaoSenderKey != ''">, kakao_sender_key = #{newKakaoSenderKey, jdbcType=VARCHAR}</if>
+          <if test="newKakaoTmplCd    != null and newKakaoTmplCd    != ''">, kakao_tmpl_cd = #{newKakaoTmplCd, jdbcType=VARCHAR}</if>
+          <if test="contsNm           != null and contsNm           != ''">, conts_nm = #{contsNm, jdbcType=VARCHAR}</if>
+          <if test="authType          != null and authType          != ''">, auth_type = #{authType, jdbcType=CHAR}</if>
+          <if test="contsDesc         != null and contsDesc         != ''">, conts_desc = #{contsDesc, jdbcType=VARCHAR}</if>
+          <if test="categoryCd        != null and categoryCd        != ''">, category_cd = #{categoryCd, jdbcType=VARCHAR}</if>
+          <if test="useYn             != null and useYn             != ''">, use_yn = #{useYn}</if>
+        WHERE kakao_sender_key = #{kakaoSenderKey}
+        AND kakao_tmpl_cd = #{kakaoTmplCd}
+    </update>
+
+    <update id="updateKakaoTemplateAuthType" parameterType="Mobile">
+        UPDATE nvmobilecontents
+        SET auth_type = #{authType, jdbcType=CHAR}, conts_desc = #{contsDesc, jdbcType=VARCHAR}, use_yn = #{useYn}, category_cd = #{categoryCd, jdbcType=VARCHAR}
+        WHERE conts_no = #{contsNo}
+    </update>
+
+    <update id="modifyMobileContents" parameterType="Mobile">
+        UPDATE nvmobilecontents
+        SET
+            conts_desc = #{contsDesc, jdbcType=VARCHAR}
+          <if test="tagNo             != null and tagNo             != ''">, tag_no = #{tagNo}</if>
+          <if test="contsNm           != null and contsNm           != ''">, conts_nm = #{contsNm, jdbcType=VARCHAR}</if>
+          <if test="authType          != null and authType          != ''">, auth_type = #{authType, jdbcType=CHAR}</if>
+          <if test="fileName          != null and fileName          != ''">, file_name = #{fileName, jdbcType=VARCHAR}</if>
+          <if test="filePath          != null and filePath          != ''">, file_path = #{filePath, jdbcType=VARCHAR}</if>
+          <if test="filePreviewName   != null and filePreviewName   != ''">, file_preview_name = #{filePreviewName, jdbcType=VARCHAR}</if>
+          <if test="filePreviewPath   != null and filePreviewPath   != ''">, file_preview_path = #{filePreviewPath, jdbcType=VARCHAR}</if>
+          <if test="detourFilePath    != null and detourFilePath    != ''">, detour_file_path = #{detourFilePath, jdbcType=VARCHAR}</if>
+          <if test="detourFileName    != null and detourFileName    != ''">, detour_file_name = #{detourFileName, jdbcType=VARCHAR}</if>
+          <if test="detourPreviewPath != null and detourPreviewPath != ''">, detour_preview_path = #{detourPreviewPath, jdbcType=VARCHAR}</if>
+          <if test="detourPreviewName != null and detourPreviewName != ''">, detour_preview_name = #{detourPreviewName, jdbcType=VARCHAR}</if>
+          <if test="imageUrl          != null and imageUrl          != ''">, image_url = #{imageUrl, jdbcType=VARCHAR}</if>
+          <if test="imageLink         != null and imageLink         != ''">, image_link = #{imageLink, jdbcType=VARCHAR}</if>
+          <if test="fileType == 'D'.toString()">, conts_txt = #{contsTxt, jdbcType=VARCHAR}</if>
+          <if test="fileType == 'T'.toString()">, conts_txt = #{contsTxt, jdbcType=VARCHAR}</if>
+        WHERE conts_no = #{contsNo}
+    </update>
+
+    <update id="updateBrandTalkTemplate" parameterType="BrandTalkTemplate">
+        UPDATE nvmobilecontents
+        SET
+            kakao_sender_key = #{senderKey, jdbcType=VARCHAR}
+          <if test="templateName       != null and templateName       != ''">, conts_nm = #{templateName, jdbcType=VARCHAR}</if>
+          <if test="messageType        != null and messageType        != ''">, message_type = #{messageType, jdbcType=VARCHAR}</if>
+          <if test="content            != null and content            != ''">, conts_txt = #{content, jdbcType=VARCHAR}</if>
+          <if test="contentType        != null and contentType        != ''">, content_type = #{contentType, jdbcType=VARCHAR}</if>
+          <if test="unsubscribeContent != null and unsubscribeContent != ''">, unsubscribe_content = #{unsubscribeContent, jdbcType=VARCHAR}</if>
+          <if test="authType           != null and authType           != ''">, auth_type = #{authType, jdbcType=CHAR}</if>
+          <if test="fileName           != null and fileName           != ''">, file_name = #{fileName, jdbcType=VARCHAR}</if>
+          <if test="filePath           != null and filePath           != ''">, file_path = #{filePath, jdbcType=VARCHAR}</if>
+          <if test="filePreviewPath    != null and filePreviewPath    != ''">, file_preview_path = #{filePreviewPath, jdbcType=VARCHAR}</if>
+          <if test="imageLink          != null and imageLink          != ''">, image_link = #{imageLink, jdbcType=VARCHAR}</if>
+          <if test="kakaoButtons       != null and kakaoButtons       != ''">, kakao_buttons = #{kakaoButtons, jdbcType=VARCHAR}</if>
+          <if test="kakaoTmplStatus    != null and kakaoTmplStatus    != ''">, kakao_tmpl_status = #{kakaoTmplStatus, jdbcType=CHAR}</if>
+        WHERE conts_no = #{contsNo}
+    </update>
+
+    <update id="updateUseYnToN" parameterType="Mobile">
+        UPDATE nvmobilecontents
+        SET use_yn = 'N'
+        <if test="mobileNoArray != null">
+        WHERE conts_no IN (<foreach collection="mobileNoArray" item="contsNo" separator=",">#{contsNo}</foreach>)
+        </if>
+        <if test="contsNo != 0">
+        WHERE conts_no = #{contsNo}
+        </if>
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteMobileContentsByPk" parameterType="int">
+        DELETE FROM nvmobilecontents
+        WHERE conts_no = #{contsNo}
+    </delete>
+
+    <delete id="deleteAlimtalkTemplate" parameterType="Mobile">
+        DELETE FROM nvmobilecontents
+        WHERE kakao_sender_key = #{kakaoSenderKey}
+        AND kakao_tmpl_cd = #{kakaoTmplCd}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectMobileContentsByPk" parameterType="map" resultMap="resultMobileContents">
+        SELECT
+            conts_no, user_id, conts_nm, conts_desc, file_path, file_name, image_url, image_link, detour_file_path, detour_file_name
+          , detour_preview_path, detour_preview_name, file_type, create_dt, create_tm, auth_type, tag_no, conts_txt, file_preview_path, file_preview_name
+          , grp_cd, category_cd, file_size, kakao_sender_key, kakao_tmpl_cd, kakao_tmpl_status, kakao_insp_status, kakao_buttons, use_yn, content_type
+          , unsubscribe_content, message_type
+        FROM nvmobilecontents
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <select id="selectMobileInfo" parameterType="Mobile" resultMap="resultMobileContents">
+        SELECT
+            conts_no, user_id, conts_nm, conts_desc, file_path, file_name, image_url, image_link, detour_file_path, detour_file_name, detour_preview_path
+          , detour_preview_name, file_type, auth_type, tag_no, conts_txt, file_preview_path, file_preview_name, grp_cd, kakao_sender_key, kakao_tmpl_cd
+          , to_char(to_date(create_dt, 'YYYYMMDD'), 'YYYY-MM-DD') as create_dt
+          , to_char(to_date(create_tm, 'HH24MISS'), 'HH:MI:SS') as create_tm
+          , coalesce((SELECT tag_nm FROM nvmobilecontentstag WHERE tag_no = a.tag_no),' ') as tag_nm
+          , (SELECT name_kor FROM nvuser WHERE user_id = a.user_id) as user_nm
+        FROM nvmobilecontents a
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <select id="selectNextContsNo" resultType="int">
+        SELECT coalesce(max(conts_no),0)+1
+        FROM nvmobilecontents
+    </select>
+
+    <select id="getCampaignKakaoImageUrl" parameterType="int" resultType="string">
+        SELECT image_url
+        FROM nvmobilecontents
+        WHERE conts_no = (
+            SELECT kakao_image_no
+            FROM nvcampaign
+            WHERE campaign_no = #{campaignNo}
+        )
+    </select>
+
+    <select id="getEcareKakaoImageUrl" parameterType="int" resultType="string">
+        SELECT image_url
+        FROM nvmobilecontents
+        WHERE conts_no = (
+            SELECT kakao_image_no
+            FROM nvecaremsg
+            WHERE ecare_no = #{ecareNo}
+        )
+    </select>
+
+    <select id="getFriendtalkImagePath" parameterType="int" resultType="string">
+        SELECT detour_file_path
+        FROM nvmobilecontents
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <select id="getKakaoImageUrl" parameterType="int" resultMap="resultMobileContents">
+        SELECT image_url, detour_file_path
+        FROM nvmobilecontents
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <select id="selectEditorMmsContentsFilePreviewPath" parameterType="string" resultType="string">
+        SELECT file_preview_path
+        FROM nvmobilecontents
+        WHERE file_path = #{filePath}
+    </select>
+
+    <select id="selectMobileContentsListMax" parameterType="Mobile" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents
+        <if test="fileType == 'T'.toString()">
+        WHERE file_type IN ('T','D')
+        </if>
+        <if test="fileType != 'T'.toString()">
+        WHERE file_type = #{fileType}
+        </if>
+        <if test="fileType == 'A'.toString()">
+        AND kakao_insp_status = 'APR'
+        </if>
+        <if test="userVo.userTypeCd == 'M'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+
+        <if test="contsTxt != null and contsTxt != ''">
+        AND conts_txt LIKE '%' || #{contsTxt} || '%'
+        </if>
+        AND use_yn = 'Y'
+    </select>
+
+    <select id="selectMobileContentsList" parameterType="Mobile" resultMap="resultMobileContents">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY conts_no DESC) as rnum
+              , conts_no, user_id, conts_nm, file_path, file_name, file_type, conts_txt, file_preview_path, file_preview_name, file_size
+              , kakao_sender_key, kakao_tmpl_cd, kakao_buttons
+              , to_char(to_date(create_dt, 'YYYYMMDD'), 'YYYY-MM-DD') as create_dt
+              , to_char(to_date(create_tm, 'HH24MISS'), 'HH:MI:SS') as create_tm
+            FROM nvmobilecontents
+            <if test="fileType == 'T'.toString()">
+            WHERE file_type IN ('T','D')
+            </if>
+            <if test="fileType != 'T'.toString()">
+            WHERE file_type = #{fileType}
+            </if>
+            <if test="fileType == 'A'.toString()">
+            AND kakao_insp_status = 'APR'
+            </if>
+            <if test="userVo.userTypeCd == 'M'.toString()">
+                <if test="userVo.userId != null and userVo.userId != ''">
+            AND (
+                user_id = #{userVo.userId}
+                OR (auth_type = 'G' AND grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+                OR auth_type = 'A'
+            )
+                </if>
+            </if>
+            <if test="userVo.userTypeCd == 'U'.toString()">
+                <if test="userVo.userId != null and userVo.userId != ''">
+            AND (
+                user_id = #{userVo.userId}
+                OR (auth_type = 'G' AND grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+                OR auth_type = 'A'
+            )
+                </if>
+            </if>
+
+            <if test="contsTxt != null and contsTxt != ''">
+            AND conts_txt LIKE '%' || #{contsTxt} || '%'
+            </if>
+            AND use_yn = 'Y'
+        ) a
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <sql id="editorListWhereQuery">
+        <if test="userVo.userTypeCd == 'M'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="contsTxt != null and contsTxt != ''">
+        AND conts_txt LIKE '%' || #{contsTxt} || '%'
+        </if>
+    </sql>
+
+    <select id="selectEditorMmsContentsListMax" parameterType="Mms" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents
+        <if test="fileType == 'T'.toString()">
+        WHERE file_type IN ('T','D')
+        </if>
+        <if test="fileType != 'T'.toString()">
+        WHERE file_type = #{fileType}
+        </if>
+        <include refid="editorListWhereQuery"/>
+    </select>
+
+    <select id="selectEditorMmsContentsList" parameterType="Mms" resultMap="resultMms">
+        SELECT
+            user_id, conts_no, conts_nm, file_path, file_name, file_type, conts_txt, file_preview_path, file_preview_name, file_size
+          , to_char(to_date(create_dt,'YYYYMMDD'),'YYYY-MM-DD') create_dt, to_char(to_date(create_tm,'HH24MISS'),'HH:MI:SS') create_tm
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY conts_no DESC) as rnum
+              , user_id, conts_no, conts_nm, file_path, file_name, file_type, conts_txt, file_preview_path, file_preview_name, file_size
+              , create_dt, create_tm
+            FROM nvmobilecontents
+            <if test="fileType == 'T'.toString()"><!-- 장문/단문 모두 표현 -->
+            WHERE file_type IN ('T','D')
+            </if>
+            <if test="fileType != 'T'.toString()"><!-- 넘겨받은 값에 해당하는 템플릿 표현 -->
+            WHERE file_type = #{fileType}
+            </if>
+            <include refid="editorListWhereQuery"/>
+            ORDER BY conts_no DESC
+        ) a
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="selectEditorSmsContentsListMax" parameterType="Sms" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents
+        WHERE file_type = 'D'
+        <include refid="editorListWhereQuery"/>
+    </select>
+
+    <select id="selectEditorSmsContentsList" parameterType="Sms" resultMap="resultSms">
+        SELECT
+            user_id, conts_nm, conts_txt
+          , to_char(to_date(create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt, to_char(to_date(create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+        FROM (
+            SELECT row_number() OVER (ORDER BY conts_no DESC) as rnum, conts_no, user_id, conts_nm, conts_txt, create_dt, create_tm
+            FROM nvmobilecontents
+            WHERE file_type = 'D'
+            <include refid="editorListWhereQuery"/>
+            ORDER BY conts_no DESC
+        )
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <sql id="kakaoListWhereQuery">
+        <if test="userVo.userTypeCd == 'M'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            a.user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND a.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            a.user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND a.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="searchColumn != null and searchColumn != '' and searchWord != null and searchWord != ''">
+           <if test="searchColumn == 'contsNm'">
+            AND conts_nm LIKE '%'||#{searchWord}||'%'
+            </if>
+           <if test="searchColumn == 'kakaoTmplCd'">
+            AND kakao_tmpl_cd LIKE '%'||#{searchWord}||'%'
+            </if>
+            <if test="searchColumn == 'contsTxt'">
+            AND conts_txt LIKE '%'||#{searchWord}||'%'
+            </if>
+        </if>
+        <if test="fileType == 'B'.toString()">
+            <if test="subType != null and subType != ''"><!-- 준실시간만 변수형 사용하도록 설정 -->
+                <if test="subType != 'N'.toString()">
+        AND content_type != 'V'
+                </if>
+            </if>
+        </if>
+        <if test="contsNo     != 0"                         >AND conts_no = #{contsNo}</if>
+        <if test="contsTxt    != null and contsTxt    != ''">AND conts_txt LIKE '%'||#{contsTxt}||'%'</if>
+        <if test="contsNm     != null and contsNm     != ''">AND conts_nm LIKE '%'||#{contsNm}||'%'</if>
+        <if test="kakaoTmplCd != null and kakaoTmplCd != ''">AND kakao_tmpl_cd LIKE '%'||#{kakaoTmplCd}||'%'</if>
+        <if test="kakaoSenderKey  != null and kakaoSenderKey  != ''">AND kakao_sender_key = #{kakaoSenderKey}</if>
+        <if test="kakaoInspStatus != null and kakaoInspStatus != ''">AND kakao_insp_status = #{kakaoInspStatus}</if>
+        <if test="kakaoTmplStatus != null and kakaoTmplStatus != ''">AND kakao_tmpl_status = #{kakaoTmplStatus}</if>
+    </sql>
+
+    <select id="selectKakaoContentsListMax" parameterType="Mobile" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents a
+        <if test="fileType == 'T'.toString()">
+        WHERE file_type IN ('T','D')
+        </if>
+        <if test="fileType != 'T'.toString()">
+        WHERE file_type = #{fileType}
+        </if>
+         AND use_yn='Y'
+        <include refid="kakaoListWhereQuery"/>
+    </select>
+
+    <select id="selectKakaoContentsList" parameterType="Mobile" resultMap="resultKakao">
+        SELECT
+            user_id, conts_no, conts_nm, file_path, file_name, file_type, conts_txt, file_preview_path, file_preview_name, file_size
+          , kakao_sender_key, kakao_tmpl_cd, image_link, kakao_buttons, content_type, unsubscribe_content, message_type
+          , to_char(to_date(create_dt, 'YYYYMMDD'), 'YYYY-MM-DD') as create_dt, to_char(to_date(create_tm, 'HH24MISS'), 'HH:MI:SS') as create_tm
+          , (SELECT kakao_yellow_id FROM nvkakaoprofile WHERE user_id = #{userId} AND kakao_sender_key = a.kakao_sender_key) as kakao_yellow_id
+          , kakao_tmpl_msg_type, kakao_security_yn, kakao_em_type, kakao_quick_replies
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY conts_no DESC) as rnum
+              , user_id, conts_no, conts_nm, file_path, file_name, file_type, conts_txt, file_preview_path, file_preview_name, file_size
+              , kakao_sender_key, kakao_tmpl_cd, image_link, kakao_buttons, content_type, unsubscribe_content, message_type, create_dt, create_tm
+              , kakao_tmpl_msg_type, kakao_security_yn, kakao_em_type, kakao_quick_replies
+            FROM nvmobilecontents a
+            <if test="fileType == 'T'.toString()">
+            WHERE file_type IN ('T','D')
+            </if>
+            <if test="fileType != 'T'.toString()">
+            WHERE file_type = #{fileType}
+            </if>
+            <include refid="kakaoListWhereQuery"/>
+            AND use_yn = 'Y'
+            ORDER BY conts_no DESC
+        ) a
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="selectKakaoContent" parameterType="Mobile" resultMap="resultKakao">
+        SELECT
+            user_id, conts_no, conts_nm, file_path, file_name, file_type, conts_txt, file_preview_path, file_preview_name, file_size
+          , kakao_sender_key, kakao_tmpl_cd, image_link, kakao_buttons, content_type, unsubscribe_content, message_type
+          , to_char(to_date(create_dt, 'YYYYMMDD'), 'YYYY-MM-DD') as create_dt, to_char(to_date(create_tm, 'HH24MISS'), 'HH:MI:SS') as create_tm
+          , (SELECT kakao_yellow_id FROM nvkakaoprofile WHERE user_id = #{userId} AND kakao_sender_key = a.kakao_sender_key) as kakao_yellow_id
+        FROM nvmobilecontents a
+        <if test="fileType == 'T'.toString()">
+        WHERE file_type IN ('T','D')
+        </if>
+        <if test="fileType != 'T'.toString()">
+        WHERE file_type = #{fileType}
+        </if>
+        <include refid="kakaoListWhereQuery"/>
+    </select>
+
+    <sql id="mobileListWhereQuery">
+        <if test="userVo.userTypeCd == 'M'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            b.user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND b.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            b.user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND b.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="searchWord     != null and searchWord     != ''">AND conts_nm LIKE '%' || #{searchWord} || '%'</if>
+        <if test="searchQstartDt != null and searchQstartDt != ''">AND create_dt &gt;= #{searchQstartDt}</if>
+        <if test="searchQendDt   != null and searchQendDt   != ''">AND create_dt &lt;= #{searchQendDt}</if>
+        <if test="fileType       != null and fileType       != ''">AND file_type = #{fileType}</if>
+        <if test="tagNo          != -1"                           >AND tag_no = #{tagNo}</if>
+    </sql>
+
+    <select id="selectMobileTotalCount" parameterType="Mobile" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents a, nvuser b
+        WHERE a.user_id = b.user_id
+        AND a.file_type NOT IN ('A', 'B')
+        <include refid="mobileListWhereQuery"/>
+    </select>
+
+    <select id="selectMobileContentList" parameterType="Mobile" resultMap="resultMobileContents">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY a.conts_no DESC) as rnum
+              , a.conts_no, a.conts_nm, a.conts_desc, a.file_type, a.auth_type, a.tag_no, b.user_id, b.grp_cd, b.name_kor as user_nm, c.grp_nm
+              , to_char(to_date(a.create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt
+              , to_char(to_date(a.create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+              , (SELECT tag_nm FROM nvmobilecontentstag WHERE tag_no = a.tag_no) as tag_nm
+            FROM nvmobilecontents a, nvuser b, nvusergrp c
+            WHERE a.user_id = b.user_id
+            AND b.grp_cd = c.grp_cd
+            AND a.file_type NOT IN ('A', 'B')
+            <include refid="mobileListWhereQuery"/>
+            ORDER BY a.conts_no DESC
+        ) d
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="selectMobileContentListForEditor" parameterType="map" resultMap="resultMobileContents">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY conts_no DESC) as rnum
+              , conts_no, user_id, conts_nm, conts_desc, file_path, file_name, file_type, auth_type, tag_no, conts_txt
+              , file_preview_path, file_preview_name, kakao_sender_key, kakao_tmpl_cd
+              , to_char(to_date(create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt
+              , to_char(to_date(create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+              , coalesce((SELECT tag_nm FROM nvmobilecontentstag WHERE tag_no = a.tag_no),' ') as tag_nm
+              , (SELECT name_kor FROM nvuser WHERE user_id = a.user_id) user_nm
+            FROM nvmobilecontents a
+        ) b
+        WHERE rnum BETWEEN #{start} AND #{end}
+    </select>
+
+    <select id="selectKakaoTemplate" parameterType="Mobile" resultMap="resultMobileContents">
+        SELECT coalesce(conts_txt,'') conts_txt, kakao_buttons
+        FROM nvmobilecontents
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <select id="selectRegStatusTemplate" parameterType="string" resultMap="resultMobileContents">
+        SELECT a.kakao_sender_key, a.kakao_tmpl_cd
+        FROM nvmobilecontents a, nvuser b, nvusergrp c
+        WHERE a.user_id = b.user_id
+        AND b.grp_cd = c.grp_cd
+        AND a.file_type = 'A'
+        AND a.kakao_insp_status = 'REG'
+        AND b.user_id = #{userId}
+    </select>
+
+    <select id="selectAlimtalkTemplateInfo" parameterType="Mobile" resultMap="resultMobileContents">
+        SELECT
+            conts_no, user_id, conts_nm, conts_desc, auth_type, conts_txt, grp_cd, category_cd, kakao_sender_key, kakao_tmpl_cd
+          , kakao_tmpl_status, kakao_insp_status, kakao_buttons, use_yn
+          , to_char(to_date(create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt
+          , to_char(to_date(create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+          , (SELECT name_kor FROM nvuser WHERE user_id = a.user_id) as user_nm
+          , (SELECT kakao_yellow_id FROM nvkakaoprofile WHERE user_id = #{userId} AND kakao_sender_key = a.kakao_sender_key) as kakao_yellow_id
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = 'KA011' AND cd = a.kakao_insp_status) as kakao_insp_status_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = 'KA012' AND cd = a.kakao_tmpl_status) as kakao_tmpl_status_nm
+          , kakao_tmpl_msg_type, kakao_tmpl_ad, kakao_tmpl_ex, kakao_security_yn, kakao_em_type, kakao_em_title, kakao_em_subtitle, kakao_quick_replies
+          , file_preview_path, file_path, file_preview_name
+        FROM nvmobilecontents a
+        WHERE conts_no = #{contsNo}
+    </select>
+
+
+    <select id="selectAlimtalkTotalCount" parameterType="Mobile" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents a, nvuser b
+        WHERE a.user_id = b.user_id
+        AND a.file_type = 'A'
+        <if test="useYn != null and useYn != ''">
+            <if test="useYn != 'A'.toString()">
+                AND use_yn = #{useYn}
+            </if>
+        </if>
+        <include refid="kakaoListWhereQuery"/>
+    </select>
+
+    <select id="selectAlimtalkContentList" parameterType="Mobile" resultMap="resultMobileContents">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY a.conts_no DESC) as rnum
+              , a.conts_no, a.conts_nm, a.conts_desc, a.file_type, a.auth_type, a.tag_no, a.conts_txt, a.kakao_sender_key, a.kakao_tmpl_cd, a.kakao_insp_status
+              , a.use_yn, b.user_id, b.name_kor as user_nm, b.grp_cd, c.grp_nm
+              , to_char(to_date(a.create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt
+              , to_char(to_date(a.create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+              , (SELECT tag_nm FROM nvmobilecontentstag WHERE tag_no = a.tag_no) as tag_nm
+              , (SELECT kakao_yellow_id FROM nvkakaoprofile WHERE user_id = #{userId} AND kakao_sender_key = a.kakao_sender_key) as kakao_yellow_id
+              , (SELECT val FROM nv_cd_mst WHERE cd_cat = 'KA011' AND cd = a.kakao_insp_status) as kakao_insp_status_nm
+            FROM nvmobilecontents a, nvuser b, nvusergrp c
+            WHERE a.user_id = b.user_id
+            AND b.grp_cd = c.grp_cd
+            AND a.file_type = 'A'
+            <if test="useYn != null and useYn != ''">
+                <if test="useYn != 'A'.toString()">
+                    AND use_yn = #{useYn}
+                </if>
+            </if>
+            <include refid="kakaoListWhereQuery"/>
+            ORDER BY a.conts_no DESC
+        ) b
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="selectAlimtalkTemplates" parameterType="Mobile" resultMap="resultMobileContents">
+        SELECT a.kakao_sender_key, a.kakao_tmpl_cd, a.conts_nm, a.conts_txt
+        FROM nvmobilecontents a, nvuser b, nvusergrp c
+        WHERE a.user_id = b.user_id
+        AND b.grp_cd = c.grp_cd
+        AND a.file_type = 'A'
+        <include refid="kakaoListWhereQuery"/>
+        AND a.conts_no IN (<foreach collection="mobileNoArray" item="contsNo" separator=",">#{contsNo}</foreach>)
+    </select>
+
+    <select id="selectBrandTalkContentInfo" parameterType="BrandTalkTemplate" resultMap="resultBrandTalkTemplate">
+        SELECT
+            conts_no, user_id, conts_nm, conts_desc, file_path, file_name, image_url, image_link, file_type, auth_type, conts_txt, file_preview_path
+          , file_preview_name, grp_cd, kakao_sender_key, kakao_tmpl_cd, kakao_tmpl_status, kakao_buttons, content_type, unsubscribe_content, message_type
+          , to_char(to_date(create_dt, 'YYYYMMDD'), 'YYYY-MM-DD') as create_dt
+          , to_char(to_date(create_tm, 'HH24MISS'), 'HH:MI:SS') as create_tm
+          , (SELECT name_kor FROM nvuser WHERE user_id = a.user_id) as user_nm
+          , (SELECT kakao_yellow_id FROM nvkakaoprofile WHERE user_id = #{userId} AND kakao_sender_key = a.kakao_sender_key) as kakao_yellow_id
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = 'KA012' AND cd = a.kakao_tmpl_status) as kakao_tmpl_status_nm
+        FROM nvmobilecontents a
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <sql id="brandtalkListWhereQuery">
+        <if test="userVo.userTypeCd == 'M'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            b.user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND b.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND (
+            b.user_id = #{userVo.userId}
+            OR (auth_type = 'G' AND b.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+            OR auth_type = 'A'
+        )
+            </if>
+        </if>
+        <if test="useYn != null and useYn != ''">
+            <if test="useYn != 'A'.toString()">
+        AND use_yn = #{useYn}
+            </if>
+        </if>
+        <if test="searchWord       != null and searchWord       != ''">AND conts_nm LIKE '%' || #{searchWord} || '%'</if>
+        <if test="senderKey        != null and senderKey        != ''">AND kakao_sender_key = #{senderKey}</if>
+        <if test="inspectionStatus != null and inspectionStatus != ''">AND kakao_insp_status = #{kakaoInspStatus}</if>
+        <if test="kakaoTmplStatus  != null and kakaoTmplStatus  != ''">AND kakao_tmpl_status = #{kakaoTmplStatus}</if>
+    </sql>
+
+    <select id="selectBrandTalkContentListCount" parameterType="BrandTalkTemplate" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents a, nvuser b
+        WHERE a.user_id = b.user_id
+        AND a.file_type = #{fileType}
+        <include refid="brandtalkListWhereQuery"/>
+    </select>
+
+    <select id="selectBrandTalkContentList" parameterType="BrandTalkTemplate" resultMap="resultBrandTalkTemplate">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY a.conts_no DESC) as rnum
+              , conts_no, a.conts_nm, a.conts_txt, a.conts_desc, a.file_type, a.auth_type, a.kakao_tmpl_cd, a.kakao_insp_status, a.kakao_sender_key, a.use_yn
+              , a.message_type, a.content_type, a.unsubscribe_content, a.kakao_tmpl_status, b.user_id, b.name_kor as user_nm, b.grp_cd, c.grp_nm
+              , to_char(to_date(a.create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt
+              , to_char(to_date(a.create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+              , (SELECT kakao_yellow_id FROM nvkakaoprofile WHERE user_id = #{userId} AND kakao_sender_key = a.kakao_sender_key) as kakao_yellow_id
+              , (SELECT val FROM nv_cd_mst WHERE cd_cat = 'KA011' AND cd = a.kakao_insp_status) as kakao_insp_status_nm
+              , (SELECT val FROM nv_cd_mst WHERE cd_cat = 'KA012' AND cd = a.kakao_tmpl_status) as kakao_tmpl_status_nm
+            FROM nvmobilecontents a, nvuser b, nvusergrp c
+            WHERE a.user_id = b.user_id
+            AND b.grp_cd = c.grp_cd
+            AND a.file_type = #{fileType}
+            <include refid="brandtalkListWhereQuery"/>
+            ORDER BY a.conts_no DESC
+        ) d
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+
+</mapper>

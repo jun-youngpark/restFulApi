@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TestGrp">
+    <resultMap id="resultTestGrp" type="TestGrp">
+        <result column="test_grp_cd"            property="testGrpCd"/>
+        <result column="test_grp_nm"            property="testGrpNm"/>
+        <result column="test_supragrp_cd"       property="testSupragrpCd"/>
+        <result column="user_id"                property="userId"/>
+        <result column="active_yn"              property="activeYn"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="test_supragrp_nm"       property="testSupragrpNm"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertTestGrp" parameterType="TestGrp">
+        <selectKey keyProperty="testGrpCd" resultType="int" order="BEFORE">
+            SELECT coalesce(max(test_grp_cd),0) + 1 as test_grp_cd
+            FROM nv_test_grp
+        </selectKey>
+        INSERT INTO nv_test_grp (test_grp_cd, test_grp_nm, test_supragrp_cd, user_id, active_yn)
+        VALUES (#{testGrpCd}, #{testGrpNm, jdbcType=VARCHAR}, CASE WHEN #{testSupragrpCd} = 0 THEN null ELSE #{testSupragrpCd} END, #{userId, jdbcType=VARCHAR}, 'Y')
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateTestGrp" parameterType="TestGrp">
+        UPDATE nv_test_grp
+        SET test_grp_nm = #{testGrpNm, jdbcType=VARCHAR}
+        WHERE test_grp_cd = #{testGrpCd}
+    </update>
+
+    <update id="updateTestGrpActiveYn" parameterType="int">
+        UPDATE nv_test_grp
+        SET active_yn = 'N'
+        WHERE test_grp_cd = #{testGrpCd}
+        AND 0 = (
+            SELECT count(*)
+            FROM nv_test_grp
+            WHERE active_yn = 'Y'
+            AND test_supragrp_cd = #{testGrpCd}
+        )
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getTestGrpList" parameterType="string" resultMap="resultTestGrp">
+        SELECT test_grp_cd, test_grp_nm, coalesce(test_supragrp_cd,-1) test_supragrp_cd
+        FROM nv_test_grp
+        WHERE user_id = #{userId}
+        AND active_yn = 'Y'
+    </select>
+
+    <select id="getTestGrpInfo" parameterType="map" resultMap="resultTestGrp">
+        SELECT
+            test_grp_cd, test_grp_nm, coalesce(test_supragrp_cd,0) test_supragrp_cd
+          , (SELECT test_grp_nm FROM nv_test_grp WHERE test_grp_cd = a.test_supragrp_cd) test_supragrp_nm
+        FROM nv_test_grp a
+        WHERE user_id = #{userId}
+        AND active_yn = 'Y'
+        <if test="testGrpCd != 0">
+        AND test_grp_cd = #{testGrpCd}
+        </if>
+        <if test="testGrpCd == 0">
+        AND test_supragrp_cd IS NULL
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,72 @@
+/* 나눔고딕 weight 400 */
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/nanum-gothic/nanum-gothic-v17-korean-regular.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+}
+/* 나눔고딕 weight 800 */
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/nanum-gothic/nanum-gothic-v17-korean-800.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+}
+/* 나눔고딕 weight 700 */
+@font-face {
+  font-family: 'Nanum Gothic';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/nanum-gothic/nanum-gothic-v17-korean-700.eot?#iefix') format('embedded-opentype');/* IE6-IE8 */
+}
+
+/* noto-sans weight 300  */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/noto-Sans/noto-sans-kr-v13-korean-300.eot?#iefix') format('embedded-opentype');/* IE6-IE8 */
+}
+/* noto-sans weight 400  */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src:  url('/fonts/noto-Sans/noto-sans-kr-v13-korean-regular.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+}
+/* noto-sans weight 500  */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/noto-Sans/noto-sans-kr-v13-korean-500.eot?#iefix') format('embedded-opentype');/* IE6-IE8 */
+}
+
+ /* roboto weight 300  */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url('/fonts/roboto/roboto-v20-latin-300.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+}
+/* roboto weight 400  */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/roboto/roboto-v20-latin-regular.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+}
+/* roboto weight 500  */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/roboto/roboto-v20-latin-500.eot?#iefix') format('embedded-opentype');/* IE6-IE8 */
+}
+/* roboto weight 700  */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/roboto/roboto-v20-latin-700.eot?#iefix') format('embedded-opentype'); /* IE6-IE8 */
+}

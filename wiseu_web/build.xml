@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wiseu_web" default="wiseuweb" basedir="." >
+
+	<!-- 경로 설정 -->
+	<property name="tomcat.home" value="D:/wiseu/tomcat" />
+	<property name="build.classpath" value="D:/dev/workspace/wiseu_web_failover/build" />
+	
+	<!-- 클래스패스 설정 -->
+	<path id="classpath">
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<!-- WAS default lib -->
+		<fileset dir="${tomcat.home}/common/lib">
+			<include name="*.jar" />
+		</fileset>
+
+		<!-- javadoc생성을 위한 추가 클래스 패스 -->
+		<fileset dir="${build.classpath}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<!-- war 파일 생성을 위해 deploy 용 디렉토리를 생성 -->
+	<target name="prepare">
+		<mkdir dir="${basedir}/deploy" />
+		<mkdir dir="${basedir}/deploy/WebContent/WEB-INF" />
+		<mkdir dir="${basedir}/deploy/WebContent/WEB-INF/classes" />
+	</target>
+
+	<target name="build" depends="prepare">
+		<!-- java 소스를 classes 폴더로 컴파일한다. -->
+		<javac srcdir="${basedir}/src" destdir="${basedir}/deploy/WebContent/WEB-INF/classes" encoding="euc-kr">
+			<include name="**/*.java" />
+			<classpath refid="classpath" />
+		</javac>
+
+		<!-- class path 에 위치해야 하는 resource 파일들을 복사한다. -->
+		<copy todir="${basedir}/deploy/WebContent/WEB-INF/classes">
+			<fileset dir="${basedir}/src">
+				<include name="**/*.properties" />
+				<include name="**/*.dtd" />
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+
+		<!-- web 관련 파일들을 복사한다 -->
+		<echo message="WebContent Copy .." />
+		<copy todir="${basedir}/deploy/WebContent">
+			<fileset dir="${basedir}/WebContent">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+
+		<!-- 설정(conf 등) 파일을 교체한다. -->
+		<delete file="${basedir}/deploy/WebContent/WEB-INF/app_conf/application.conf"></delete>
+		<delete file="${basedir}/deploy/WebContent/WEB-INF/prop/jdbc.properties"></delete>
+		<delete file="${basedir}/deploy/WebContent/WEB-INF/prop/preview.conf"></delete>
+	</target>
+
+	<!-- war 파일이 존재하면 삭제하고 war 파일을 생성한다. -->
+	<target name="package" depends="build">
+		<delete file="${basedir}/deploy/www.war" />
+		<jar jarfile="${basedir}/deploy/www.war">
+			<fileset dir="${basedir}/deploy/WebContent" includes="**" />
+		</jar>
+		<delete dir="${basedir}/deploy/WebContent" />
+	</target>
+
+	<!-- war 파일을 FTP 를 통해 올림 -->
+	<target name="wiseuweb" depends="package">
+		<!--<echo message="Deploying Web Application Server ..." />
+		<ftp server="203.173.119.15" userid="wiseuweb" password="1111" remotedir="wiseu/www">
+			<fileset dir="${basedir}/deploy"/>
+		</ftp>-->
+	</target>
+	
+	<target name="wiseudemo" depends="package">
+		<echo message="Deploying Web Application Server ..." />
+		<ftp server="203.173.119.15" userid="wiseudemo" password="1111" remotedir="demo/www">
+			<fileset dir="${basedir}/deploy"/>
+		</ftp>
+	</target>
+	
+	<target name="skt_cms" depends="package">
+		<echo message="[SKT] Deploying Web Application Server ..." />
+		<ftp server="203.236.1.125" userid="wisecms" password="imasup" remotedir="wiseu/www">
+			<fileset dir="${basedir}/deploy"/>
+		</ftp>
+	</target>
+	
+	<target name="skt_real" depends="package">
+		<echo message="[SKT] Deploying Web Application Server ..." />
+		<ftp server="203.236.1.125" userid="wisereal" password="imasup" remotedir="wiseu/www">
+			<fileset dir="${basedir}/deploy"/>
+		</ftp>
+	</target>
+
+</project>
+

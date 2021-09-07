@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EmTranMms">
+    <!--<resultMap id="resultEmTranMms" type="EmTranMms">
+        <result column="mms_seq"            property="mmsSeq"/>
+        <result column="file_cnt"           property="fileCnt"/>
+        <result column="build_yn"           property="buildYn"/>
+        <result column="mms_body"           property="mmsBody"/>
+        <result column="mms_subject"        property="mmsSubject"/>
+        <result column="file_type1"         property="fileType1"/>
+        <result column="file_type2"         property="fileType2"/>
+        <result column="file_type3"         property="fileType3"/>
+        <result column="file_type4"         property="fileType4"/>
+        <result column="file_type5"         property="fileType5"/>
+        <result column="file_name1"         property="fileName1"/>
+        <result column="file_name2"         property="fileName2"/>
+        <result column="file_name3"         property="fileName3"/>
+        <result column="file_name4"         property="fileName4"/>
+        <result column="file_name5"         property="fileName5"/>
+        <result column="service_dep1"       property="serviceDep1"/>
+        <result column="service_dep2"       property="serviceDep2"/>
+        <result column="service_dep3"       property="serviceDep3"/>
+        <result column="service_dep4"       property="serviceDep4"/>
+        <result column="service_dep5"       property="serviceDep5"/>
+        <result column="skn_file_name"      property="sknFileName"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="result_seq_page"    property="resultSeqPage"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertDBROLMSTRAN" parameterType="Message">
+        INSERT INTO em_tran_mms (mms_seq, file_cnt, mms_body, mms_subject, result_seq, list_seq, result_seq_page)
+        VALUES (
+            <if test="mmsSeq == null or mmsSeq == ''">
+            em_tran_mms_seq.nextval
+            </if>
+            <if test="mmsSeq != null and mmsSeq != ''">
+            #{mmsSeq}
+            </if>
+          , #{fileCnt}, #{sendMessage}, #{subject, jdbcType=VARCHAR}, #{resultSeq}, #{listSeq, jdbcType=VARCHAR}, #{resultSeqPage}
+        )
+    </insert>
+
+    <insert id="insertDBROMMSTRAN" parameterType="Message">
+        INSERT INTO em_tran_mms (mms_seq, file_cnt, mms_body, mms_subject, file_type1, file_name1, file_name2, file_name3, service_dep1, result_seq, list_seq, result_seq_page)
+        VALUES (
+            <if test="mmsSeq == null or mmsSeq == ''">
+            em_tran_mms_seq.nextval
+            </if>
+            <if test="mmsSeq != null and mmsSeq != ''">
+            #{mmsSeq}
+            </if>
+          , #{fileCnt}, #{sendMessage}, #{subject, jdbcType=VARCHAR}, #{fileType, jdbcType=VARCHAR}, #{fileName1, jdbcType=VARCHAR}, #{fileName2, jdbcType=VARCHAR}, #{fileName3, jdbcType=VARCHAR}, 'ALL', #{resultSeq}, #{listSeq, jdbcType=VARCHAR}, #{resultSeqPage}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getSequence" parameterType="Message" resultMap="mapper.Common.resultMessage">
+        SELECT mms_seq, list_seq
+        FROM em_tran_mms
+        WHERE result_seq = #{resultSeq}
+        AND result_seq_page = #{resultSeqPage}
+    </select>
+
+    <select id="getEmTranMmsSequence" resultType="int">
+        SELECT em_tran_mms_seq.nextval
+        FROM sysibm.sysdummy1
+    </select>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Application">
+    <!--<resultMap id="resultApplication" type="Application">
+        <result column="campaign_no"    property="campaignNo"/>
+        <result column="type"           property="type"/>
+        <result column="appsource"      property="appsource"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="copyApplication" parameterType="Campaign">
+        INSERT INTO nvapplication (campaign_no, type, appsource)
+        VALUES (#{newCampaignNo}, #{handlerVo.type, jdbcType=CHAR}, #{handlerVo.handler, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertEditorCampaignHandler" parameterType="Handler">
+        INSERT INTO nvapplication (campaign_no, type, appsource)
+        VALUES (#{no}, #{type, jdbcType=CHAR}, #{handler, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEditorCampaignHandler" parameterType="Handler">
+        UPDATE nvapplication
+        SET appsource = #{handler, jdbcType=VARCHAR}
+        WHERE campaign_no = #{no}
+    </update>
+
+    <update id="updateCampaignHandlerFromDefault" parameterType="map">
+        UPDATE nvapplication
+        SET appsource = #{handler, jdbcType=VARCHAR}
+        WHERE campaign_no = #{serviceNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteApplicationAll" parameterType="Scenario">
+        DELETE FROM nvapplication
+        <if test="campaignVo.campaignNoArray != null">
+        WHERE campaign_no IN (
+        <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+            #{campaignNo}
+        </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEditorCampaignHandler" parameterType="int" resultMap="mapper.EcMsgHandler.resultHandler">
+        SELECT type, appsource
+        FROM nvapplication
+        WHERE campaign_no = #{no}
+    </select>
+
+    <select id="selectEditorCampaignHandlerCount" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM nvapplication
+        WHERE campaign_no = #{no}
+    </select>
+
+</mapper>

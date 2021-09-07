@@ -1,0 +1,165 @@
+//***************************************************/
+// 친구톡 캠페인 핸들러
+//***************************************************/
+import com.mnwise.ASE.agent.dbagent.DBAgent
+import com.mnwise.ASE.agent.dbagent.DBConnection
+import com.mnwise.ASE.agent.dbagent.DBPreparedStatement
+import com.mnwise.ASE.agent.dbagent.DBRecordSet
+import com.mnwise.ASE.agent.kakaoagent.TalkAgent
+import com.mnwise.ASE.agent.kakaoagent.TalkData
+import com.mnwise.ASE.agent.util.AseUtil
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.ASE.pscript.ScrProperties
+import com.mnwise.common.util.DateUtil
+import com.mnwise.common.util.LoggerAid
+import com.mnwise.common.util.Util
+import com.mnwise.mts.Config
+
+import java.text.SimpleDateFormat
+
+boolean useResend = Config.getLstResendUse();
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+
+TalkAgent alimtalkAgent = new TalkAgent(context);
+ExceptionLogger exlogger = new ExceptionLogger(context);
+Date dt = new Date();
+DateUtil term = new DateUtil();
+SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmmss");
+addterm = term.addTime(dt,"7","00","00","00");
+context.put("_START_DATE", time.format(dt));
+context.put("_END_DATE", time.format(addterm));
+_KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ");
+_NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ");
+_MMS_FIELD_SEQ = context.getInt("_MMS_FIELD_SEQ");
+TextReader target = new TextReader(context);
+Message message = new Message(context);
+message.prepareGroovyTemplateWithCustomVariable("#{", "}", "<%=(record.getString(\"", "\"))%>", true)
+//챗버블 개인화
+message.prepareGroovyTemplateWithCustomVariable("#{", "}", "<%=(record.getString(\"", "\"))%>", true , "KAKAO_BUTTONS" , context.get("_KAKAO_BUTTONS"))
+
+//DB커넥션 생성
+DBAgent dbagent = new DBAgent(context.get("_jdbc.driver"))
+DBConnection conn = dbagent.getConnection(context.get("_jdbc.url"),context.get("_jdbc.user"),context.get("_jdbc.password"))
+DBRecordSet rs = null
+// 핸들러 오류 로그테이블 적재 추가
+DBPreparedStatement pstmt = null;
+
+if(isSendMode) {
+    pstmt = conn.prepareStatement(getMzLogQuery(useResend));
+}
+
+//변수 정의
+String errMsg = null
+String msg = null
+
+TalkData ad = null
+int nEcareNo = Integer.parseInt(context.get("_CAMPAIGN_NO"))
+String sResultSeq = context.get("_RESULT_SEQ")
+String sSenderKey = context.get("_KAKAO_SENDER_KEY")
+String sTmplCd = context.get("_KAKAO_TMPL_CD")
+String sSenderTel = context.get("_SENDER_TEL")
+String smsSendYn = context.get("_FAILBACK_SEND_YN")
+String lmsSubject = context.get("_FAILBACK_SUBJECT")
+
+while (target.next()) {
+    try {
+        // 본문에서도 수신대상자의 정보를 사용할수 있도록 context객체에 담기
+        context.put("record", target.getRecord())
+        msg = message.execGroovyTemplate()
+        ad = new TalkData();
+        ad.setSenderKey(sSenderKey)
+        ad.setPhoneNo(target.getString(_MMS_FIELD_SEQ))
+        ad.setUserName(target.getString(_NAME_FIELD_SEQ));
+        ad.setTmplCd(sTmplCd)
+        ad.setSndMsg(msg)
+        ad.setSmsSndNum(sSenderTel)
+        ad.setReqDeptId(context.get("_REQ_DEPT_ID"))
+        ad.setReqUserId(context.get("_REQ_USER_ID"))
+        ad.setReqDtm(time.format(new Date()))
+        ad.setServiceType(context.get("_CLIENT"));
+        ad.setServiceNo(nEcareNo);
+        ad.setResultSeq(Long.parseLong(sResultSeq));
+        ad.setSmsSndYn(smsSendYn);
+        ad.setSubject(lmsSubject);
+        ad.setKakaoButton(message.execGroovyTemplate("KAKAO_BUTTONS"))
+
+        if(useResend) {
+            ad.setUserId(target.getString(_KEY_FIELD_SEQ))
+        }
+
+        alimtalkAgent.send(ad)
+    } catch(Exception e) {
+        context.put("_EXCEPTION", e);
+        exlogger.write(target.toString(), e)
+        if(isSendMode) {
+            try {
+                errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+                exlogger.insertSendLog(target, target.getString(_MMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"));
+                insertMzLogData(pstmt, target, context, msg, errMsg, useResend);
+            } catch(Exception sub_e){
+                exlogger.write("insert sendlog fail", sub_e)
+            }finally {
+                pstmt.clearParameters();
+            }
+        }
+    }
+}   //  end While
+
+AseUtil.closeQuietly(pstmt);
+AseUtil.closeQuietly(conn);
+exlogger.close()
+target.close()
+alimtalkAgent.close()
+
+
+/**
+ * 핸들러 오류 로그테이블 적재 추가 친구톡(MZFTSENDLOG)
+ */
+def getMzLogQuery(boolean useResend) {
+    StringBuffer sb = new StringBuffer();
+    sb.append(" INSERT INTO MZFTSENDLOG (")
+    sb.append(" SN, SENDER_KEY, CHANNEL, PHONE_NUM, SMS_SND_NUM, ")
+    sb.append(" TMPL_CD, SND_MSG, REQ_DEPT_CD, REQ_USR_ID, REQ_DTM, ")
+    sb.append(" TRAN_STS, SLOT1, SLOT2, SND_DTM, RSLT_CD, RCPT_MSG, RCPT_DTM ")
+    if(useResend) {
+        sb.append(" , CUSTOMER_KEY, LIST_SEQ ")
+    }
+    sb.append(" ) VALUES (?, ?, ?, ?, ?,")
+    sb.append(" ?, ?, ?, ?, ?, ")
+    sb.append(" '4', ?, ?, ?, ?, ?, ? ")
+    if(useResend) {
+        sb.append(" , ?, ? )")
+    }
+    sb.append(" )")
+    return sb.toString();
+}
+
+/**
+ * MZFTSENDLOG 테이블에 적재
+ */
+def insertMzLogData(DBPreparedStatement pstmt, TextReader target, ScrProperties context, String msg, String errMsg, boolean useResend) {
+    SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmmss");
+    pstmt.setString(1, String.valueOf(Util.getResultSeq()));
+    pstmt.setString(2, context.get("_KAKAO_SENDER_KEY"));
+    pstmt.setString(3, "C");
+    pstmt.setString(4, target.getString(_MMS_FIELD_SEQ));
+    pstmt.setString(5, context.get("_SENDER_TEL"));
+    pstmt.setString(6, context.get("_KAKAO_TMPL_CD"));
+    pstmt.setString(7, msg.substring(0,1000));
+    pstmt.setString(8, context.get("_REQ_DEPT_ID"));
+    pstmt.setString(9, context.get("_REQ_USER_ID"));
+    pstmt.setString(10, time.format(new Date()));
+    pstmt.setString(11, context.get("_CAMPAIGN_NO"));
+    pstmt.setLong(12, Long.parseLong(context.get("_RESULT_SEQ")));
+    pstmt.setString(13, time.format(new Date()));
+    pstmt.setString(14, "9999");
+    pstmt.setString(15, errMsg);
+    pstmt.setString(16, time.format(new Date()));
+    if(useResend) {
+        pstmt.setString(17, target.getString(_KEY_FIELD_SEQ));
+        pstmt.setString(18, Util.format(target.getSeq(), 10,(char) '0'));
+    }
+    pstmt.executeUpdate();
+}

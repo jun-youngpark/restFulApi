@@ -1,0 +1,25 @@
+<%
+mmsagent = com.mnwise.ASE.agent.mmsagent.MmsAgent.new(context)
+mmsagent.setRetry(context.get("_RETRY_CNT"))
+mmsagent.open()
+mmsagent.setDongbo("FALSE")
+mmsagent.setCallbackNo(context.get("_SENDER_TEL"))
+message = com.mnwise.ASE.pscript.Message.new(context)
+message.prepareTemplate()
+dt = java.util.Date.new()
+term = com.mnwise.common.util.DateUtil.new()
+time = java.text.SimpleDateFormat.new("yyyyMMddHHmmss")
+addterm = term.addTime(dt,"7","00","00","00")
+context.put("_START_DATE", time.format(dt))
+context.put("_END_DATE", time.format(addterm))
+mmsagent.setCpDepartId("mnwise")
+mmsagent.setCpExtendId("mnwise")
+
+mmsagent.setSubject("")
+
+context.put("record", "TCP")
+mmsagent.setRcpt(context.get("TEL_NO"), context.get("IUSERID"), context.get("INAME"), "0")
+msg = message.execTemplate()
+mmsagent.send(msg)
+mmsagent.close()
+%>

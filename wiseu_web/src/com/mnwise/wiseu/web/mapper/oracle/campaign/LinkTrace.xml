@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.LinkTrace">
+    <resultMap id="resultLinkTrace" type="LinkTrace">
+        <result column="campaign_no"        property="no"/>
+        <result column="link_seq"           property="linkSeq"/>
+        <result column="link_url"           property="linkUrl"/>
+        <result column="link_desc"          property="linkDesc"/>
+        <result column="link_title"         property="linkTitle"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="ecare_no"           property="no"/>
+    </resultMap>
+
+    <resultMap id="resultLinkTraceResult2" type="LinkTraceResult2">
+        <result column="campaign_no"        property="campaignNo"/>
+        <result column="linktrace_cnt"      property="linktraceCnt"/>
+        <result column="unique_link_cnt"    property="uniqueLinkCnt"/>
+        <result column="all_link_cnt"       property="allLinkCnt"/>
+        <result column="link_url"           property="linkUrl"/>
+        <result column="link_title"         property="linkTitle"/>
+        <result column="best_link_cnt"      property="bestLinkCnt"/>
+    </resultMap>
+
+    <resultMap id="resultLinkclick" type="Linkclick">
+        <result column="campaign_no"        property="serviceNo"/>
+        <result column="link_seq"           property="linkSeq"/>
+        <result column="link_url"           property="linkUrl"/>
+        <result column="link_desc"          property="linkDesc"/>
+        <result column="link_title"         property="linkTitle"/>
+        <result column="link_cnt"           property="linkCnt"/>
+        <result column="scenario_no"        property="scenarioNo"/>
+        <result column="scenario_nm"        property="scenarioNm"/>
+        <result column="create_dt"          property="createDt"/>
+        <result column="create_tm"          property="createTm"/>
+    </resultMap>
+
+    <resultMap type="CampaignReportLinkClick" id="resultCampaignReportLinkClick">
+        <result column="link_seq"           property="linkSeq"/>
+        <result column="link_url"           property="linkUrl"/>
+        <result column="link_desc"          property="linkDesc"/>
+        <result column="link_title"         property="linkTitle"/>
+        <result column="total_cnt"          property="totalCnt"/>
+        <result column="gid"                property="gid"/>
+        <result column="one_click_cnt"      property="oneClickCnt"/>
+        <result column="more_click_cnt"     property="moreClickCnt"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertLinkTrace" parameterType="LinkTrace">
+        INSERT INTO nvlinktrace (campaign_no, link_seq, link_url, link_desc, link_title)
+        VALUES (#{no}, #{linkSeq}, #{linkUrl, jdbcType=VARCHAR}, #{linkDesc, jdbcType=VARCHAR}, #{linkTitle, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="copyLinkTrace" parameterType="Campaign">
+        INSERT INTO nvlinktrace (campaign_no, link_seq, link_url, link_desc, link_title)
+        SELECT #{newCampaignNo}, link_seq, link_url, link_desc, link_title
+        FROM nvlinktrace
+        WHERE campaign_no = #{campaignNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteCampLinkTraceAll" parameterType="Scenario">
+        DELETE FROM nvlinktrace
+        <if test="campaignVo.campaignNoArray != null">
+        WHERE campaign_no IN (
+        <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+            #{campaignNo}
+        </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEditorCampaignLinkseqMax" parameterType="int" resultType="int">
+        SELECT coalesce(max(link_seq),0) link_seq
+        FROM nvlinktrace
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectEditorCampaignLinktraceExist" parameterType="Linktrace" resultType="int">
+        SELECT count(*)
+        FROM nvlinktrace
+        WHERE campaign_no = #{no}
+        AND link_seq = #{linkSeq}
+    </select>
+
+    <select id="selectSummaryLinkTraceResult2List" parameterType="map" resultMap="resultLinkTraceResult2">
+        SELECT
+            campaign_no, max(link_url) as link_url, max(link_title) as link_title, sum(link_cnt) as linktrace_cnt
+          , sum(unique_link_cnt) as unique_link_cnt, sum(all_link_cnt) as all_link_cnt, sum(best_link_cnt) as best_link_cnt
+        FROM (
+            SELECT
+                a.campaign_no, '' as link_url, '' as link_title, count(a.link_seq) as link_cnt
+              , sum(b.unique_link_cnt) as unique_link_cnt, sum(b.all_link_cnt) as all_link_cnt, 0 as best_link_cnt
+            FROM nvlinktrace a, (
+                SELECT campaign_no, link_seq, sum(link_cnt) as unique_link_cnt, sum(link_ocnt) as all_link_cnt
+                FROM nvrptlink
+                WHERE campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+                GROUP BY campaign_no, link_seq
+            ) b
+            WHERE a.campaign_no = b.campaign_no
+            AND a.link_seq = b.link_seq
+            AND a.campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+            GROUP BY a.campaign_no
+
+            UNION ALL
+            SELECT
+                a.campaign_no, a.link_url, a.link_title, 0 as link_cnt, 0 as unique_link_cnt
+              , 0 as all_link_cnt, b.best_link_cnt
+            FROM nvlinktrace a, (
+                SELECT campaign_no, link_seq, sum(link_cnt) as best_link_cnt, rank() OVER (PARTITION BY campaign_no ORDER BY sum(link_cnt) DESC ) as rk
+                FROM nvrptlink
+                WHERE campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+                GROUP BY campaign_no, link_seq
+            ) b
+            WHERE a.campaign_no = b.campaign_no
+            AND a.link_seq = b.link_seq
+            AND b.rk = 1
+            AND b.campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+        ) x
+        GROUP BY campaign_no
+        ORDER BY campaign_no DESC
+    </select>
+
+    <select id="selectLinkCampaignInfo" parameterType="int" resultMap="resultLinkclick">
+        SELECT campaign_no, a.link_seq, link_url, link_desc, link_title, coalesce(link_cnt,0) link_cnt
+        FROM nvlinktrace a LEFT OUTER JOIN (
+            SELECT link_seq, sum(link_ocnt) as link_cnt
+            FROM nvrptlink
+            WHERE campaign_no = #{campaignNo}
+            GROUP BY link_seq
+        ) b
+        ON a.link_seq = b.link_seq
+        WHERE campaign_no = #{campaignNo}
+        ORDER BY a.link_seq
+    </select>
+
+    <select id="getCampaignReportLinkClickList" parameterType="map" resultMap="resultCampaignReportLinkClick">
+        SELECT
+            y.no, CASE y.no WHEN 2 THEN 'Total' ELSE link_url END link_url
+          , max(x.link_seq) link_seq, max(x.link_desc) link_desc, max(x.link_url) link_url, max(x.link_title) link_title
+          , coalesce(sum(cnt),0) total_cnt, coalesce(count(one_click_cnt),0) one_click_cnt, coalesce(count(more_click_cnt),0) more_click_cnt
+          , CASE y.no WHEN 2 THEN 1 ELSE 0 END gid
+        FROM (
+            SELECT
+                a.link_seq, b.customer_id, max(a.link_desc) link_desc, max(a.link_url) link_url, max(a.link_title) link_title, count(*) cnt
+              , CASE WHEN count(*) &gt;= 1 THEN 1 END one_click_cnt, CASE WHEN count(*) &gt; 1 THEN 1 END more_click_cnt
+            FROM nvlinktrace a, nvlinkresult b, nvsendresult c
+            WHERE a.campaign_no = b.campaign_no
+            AND a.link_seq = b.link_seq
+            AND b.result_seq = c.result_seq
+            AND a.campaign_no = #{campaignNo}
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+            GROUP BY a.link_seq, b.customer_id
+        ) x, (
+            SELECT no
+            FROM copy_t
+            WHERE no &lt;= 2
+        ) y
+        GROUP BY y.no, CASE y.no WHEN 2 THEN 'Total' ELSE link_url END
+        ORDER BY gid
+    </select>
+
+    <select id="getCampaignReportLinkClickTotal" parameterType="map" resultMap="resultCampaignReportLinkClick">
+        SELECT coalesce(count(one_click_cnt),0) one_click_cnt, coalesce(count(more_click_cnt),0) more_click_cnt
+        FROM (
+            SELECT
+                a.link_seq, b.customer_id
+              , CASE WHEN count(*) = 1 THEN 1 ELSE NULL END one_click_cnt
+              , CASE WHEN count(*) &gt; 1 THEN 1 ELSE NULL END more_click_cnt
+            FROM nvlinktrace a, nvlinkresult b, nvsendresult c
+            WHERE a.campaign_no = b.campaign_no
+            AND a.link_seq = b.link_seq
+            AND b.result_seq = c.result_seq
+            AND a.campaign_no = #{campaignNo}
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+            GROUP BY a.link_seq, b.customer_id
+        ) x
+    </select>
+
+</mapper>

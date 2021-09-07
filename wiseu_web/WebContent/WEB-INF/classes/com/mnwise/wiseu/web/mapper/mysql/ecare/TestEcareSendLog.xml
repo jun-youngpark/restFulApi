@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TestEcareSendLog">
+    <!--<resultMap id="resultTestEcareSendLog" type="TestEcareSendLog">
+        <result column="ecare_no"       property="ecareNo"/>
+        <result column="result_seq"     property="resultSeq"/>
+        <result column="list_seq"       property="listSeq"/>
+        <result column="customer_key"   property="customerKey"/>
+        <result column="record_seq"     property="recordSeq"/>
+        <result column="customer_email" property="customerEmail"/>
+        <result column="customer_nm"    property="customerNm"/>
+        <result column="sid"            property="sid"/>
+        <result column="send_dt"        property="sendDt"/>
+        <result column="send_tm"        property="sendTm"/>
+        <result column="send_domain"    property="sendDomain"/>
+        <result column="error_cd"       property="errorCd"/>
+        <result column="err_msg"        property="errMsg"/>
+        <result column="slot1"          property="slot1"/>
+        <result column="slot2"          property="slot2"/>
+        <result column="resend_yn"      property="resendYn"/>
+        <result column="req_dept_id"    property="reqDeptId"/>
+        <result column="req_user_id"    property="reqUserId"/>
+        <result column="message_key"    property="messageKey"/>
+        <result column="seq"            property="seq"/>
+        <result column="part_message"   property="partMessage"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getTestEcareSendListCount" parameterType="int" resultType="int">
+        SELECT count(list_seq)
+        FROM nvtestecaresendlog
+        WHERE ecare_no = #{ecareNo}
+        AND result_seq = (
+            SELECT max(result_seq)
+            FROM nvtestecaresendlog
+            WHERE ecare_no = #{ecareNo}
+        )
+    </select>
+
+    <select id="selectTestEcareSendList" parameterType="TestSend" resultMap="mapper.TestSendLog.resultTestSend">
+        SELECT  *
+        FROM (
+            SELECT *
+            FROM (
+                SELECT
+                    a.ecare_no, a.list_seq, a.customer_nm, a.customer_email, a.send_dt, a.send_tm, a.error_cd, a.err_msg
+                  , (SELECT error_desc FROM nvsenderr WHERE error_cd = a.error_cd) as err_msg_kor
+                FROM nvtestecaresendlog a
+                WHERE ecare_no = #{serviceNo}
+                AND result_seq = (
+                    SELECT max(result_seq)
+                    FROM nvtestecaresendlog
+                    WHERE ecare_no = #{serviceNo}
+                )
+                ORDER BY list_seq
+                LIMIT ${endRow}
+            ) b
+            ORDER BY list_seq DESC
+            LIMIT 10
+        ) c
+        ORDER BY list_seq
+    </select>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.DivideSchedule">
+    <resultMap id="resultDivideSchedule" type="DivideSchedule">
+        <result column="client"         property="client"/>
+        <result column="service_no"     property="serviceNo"/>
+        <result column="divide_seq"     property="divideSeq"/>
+        <result column="target_cnt"     property="targetCnt"/>
+        <result column="start_dt"       property="startDt"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertDivideSchedule" parameterType="DivideSchedule">
+        INSERT INTO nvdivideschedule (client, service_no, divide_seq, target_cnt, start_dt)
+        VALUES (#{client}, #{serviceNo}, #{divideSeq}, #{targetCnt}, #{startDt, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="copyDivideSchedule" parameterType="Campaign">
+        INSERT INTO nvdivideschedule (client, service_no, divide_seq, target_cnt, start_dt)
+        SELECT client, #{newCampaignNo}, divide_seq, target_cnt, start_dt
+        FROM nvdivideschedule
+        WHERE service_no = #{campaignNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteDivideScheduleAll" parameterType="Scenario">
+        DELETE FROM nvdivideschedule
+        WHERE client = 'EM'
+        <if test="campaignVo.campaignNoArray != null">
+        AND service_no IN (
+        <foreach collection="campaignVo.campaignNoArray" item="serviceNo" separator=",">
+            #{serviceNo}
+        </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        AND service_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <delete id="deleteDivideSchedule" parameterType="int">
+        DELETE FROM nvdivideschedule
+        WHERE SERVICE_NO = #{campaignNo}
+        AND client = 'EM'
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectDivideSchedule" parameterType="int" resultMap="resultDivideSchedule">
+        SELECT client, service_no, divide_seq, target_cnt, start_dt
+        FROM nvdivideschedule
+        WHERE client = 'EM'
+        AND service_no = #{campaignNo}
+    </select>
+
+</mapper>

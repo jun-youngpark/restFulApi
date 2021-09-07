@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SvcMts">
+    <resultMap id="resultSvcMts" type="SvcMts">
+        <result column="t_id"               property="tId"/>
+        <result column="server_id"          property="serverId"/>
+        <result column="start_tm"           property="startTm"/>
+        <result column="end_tm"             property="endTm"/>
+        <result column="service_sts"        property="serviceSts"/>
+        <result column="tot_cnt"            property="totCnt"/>
+        <result column="made_cnt"           property="madeCnt"/>
+        <result column="max_retry"          property="maxRetry"/>
+        <result column="send_cnt"           property="sendCnt"/>
+        <result column="success_cnt"        property="successCnt"/>
+        <result column="unknown_user_cnt"   property="unknownUserCnt"/>
+        <result column="unknown_host_cnt"   property="unknownHostCnt"/>
+        <result column="smtp_except_cnt"    property="smtpExceptCnt"/>
+        <result column="no_route_cnt"       property="noRouteCnt"/>
+        <result column="refused_cnt"        property="refusedCnt"/>
+        <result column="etc_except_cnt"     property="etcExceptCnt"/>
+        <result column="invalid_addr_cnt"   property="invalidAddrCnt"/>
+        <result column="queue_cnt"          property="queueCnt"/>
+        <result column="thread_cnt"         property="threadCnt"/>
+        <result column="handler_thread_cnt" property="handlerThreadCnt"/>
+        <result column="err_msg"            property="errMsg"/>
+        <result column="update_tm"          property="updateTm"/>
+        <result column="create_tm"          property="createTm"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSvcMts" parameterType="SvcMts">
+        INSERT INTO nv_svc_mts (t_id, server_id, start_tm, end_tm, service_sts, tot_cnt, made_cnt, max_retry, send_cnt, success_cnt, unknown_user_cnt, unknown_host_cnt, smtp_except_cnt, no_route_cnt, refused_cnt, etc_except_cnt, invalid_addr_cnt, queue_cnt, thread_cnt, handler_thread_cnt, err_msg, update_tm, create_tm)
+        VALUES (#{tId}, #{serverId}, #{startTm, jdbcType=VARCHAR}, #{endTm, jdbcType=VARCHAR}, #{serviceSts, jdbcType=VARCHAR}, #{totCnt}, #{madeCnt}, #{maxRetry}, #{sendCnt}, #{successCnt}, #{unknownUserCnt}, #{unknownHostCnt}, #{smtpExceptCnt}, #{noRouteCnt}, #{refusedCnt}, #{etcExceptCnt}, #{invalidAddrCnt}, #{queueCnt}, #{threadCnt}, #{handlerThreadCnt}, #{errMsg, jdbcType=VARCHAR}, #{updateTm, jdbcType=VARCHAR}, #{createTm, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSvcMtsByPk" parameterType="SvcMts">
+        UPDATE nv_svc_mts
+        SET
+            start_tm = #{startTm, jdbcType=VARCHAR}
+          , end_tm = #{endTm, jdbcType=VARCHAR}
+          , service_sts = #{serviceSts, jdbcType=VARCHAR}
+          , tot_cnt = #{totCnt}
+          , made_cnt = #{madeCnt}
+          , max_retry = #{maxRetry}
+          , send_cnt = #{sendCnt}
+          , success_cnt = #{successCnt}
+          , unknown_user_cnt = #{unknownUserCnt}
+          , unknown_host_cnt = #{unknownHostCnt}
+          , smtp_except_cnt = #{smtpExceptCnt}
+          , no_route_cnt = #{noRouteCnt}
+          , refused_cnt = #{refusedCnt}
+          , etc_except_cnt = #{etcExceptCnt}
+          , invalid_addr_cnt = #{invalidAddrCnt}
+          , queue_cnt = #{queueCnt}
+          , thread_cnt = #{threadCnt}
+          , handler_thread_cnt = #{handlerThreadCnt}
+          , err_msg = #{errMsg, jdbcType=VARCHAR}
+          , update_tm = #{updateTm, jdbcType=VARCHAR}
+          , create_tm = #{createTm, jdbcType=VARCHAR}
+        WHERE t_id = #{tId}
+        AND server_id = #{serverId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSvcMtsByPk" parameterType="map">
+        DELETE FROM nv_svc_mts
+        WHERE t_id = #{tId}
+        AND server_id = #{serverId}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectSvcMtsByPk" parameterType="map" resultMap="resultSvcMts">
+        SELECT *
+        FROM nv_svc_mts
+        WHERE t_id = #{tId}
+        AND server_id = #{serverId}
+    </select>
+
+
+    <select id="getInfoService_mts" parameterType="string" resultMap="resultSvcMts">
+        SELECT
+            t_id, server_id, start_tm, end_tm, service_sts, tot_cnt, made_cnt, max_retry, send_cnt, success_cnt
+          , unknown_user_cnt, unknown_host_cnt, smtp_except_cnt, no_route_cnt, refused_cnt, etc_except_cnt, invalid_addr_cnt, queue_cnt, thread_cnt, handler_thread_cnt
+          , err_msg, update_tm, create_tm
+        FROM nv_svc_mts
+        WHERE t_id = #{tId}
+        ORDER BY server_id
+    </select>
+</mapper>

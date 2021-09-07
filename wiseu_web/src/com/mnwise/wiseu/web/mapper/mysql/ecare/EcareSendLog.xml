@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareSendLog">
+    <!--<resultMap id="resultEcareSendLog" type="EcareSendLog">
+        <result column="ecare_no"               property="ecareNo"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="list_seq"               property="listSeq"/>
+        <result column="customer_key"           property="customerKey"/>
+        <result column="record_seq"             property="recordSeq"/>
+        <result column="sid"                    property="sid"/>
+        <result column="customer_nm"            property="customerNm"/>
+        <result column="customer_email"         property="customerEmail"/>
+        <result column="send_dt"                property="sendDt"/>
+        <result column="send_tm"                property="sendTm"/>
+        <result column="end_dt"                 property="endDt"/>
+        <result column="end_tm"                 property="endTm"/>
+        <result column="error_cd"               property="errorCd"/>
+        <result column="send_domain"            property="sendDomain"/>
+        <result column="err_msg"                property="errMsg"/>
+        <result column="slot1"                  property="slot1"/>
+        <result column="slot2"                  property="slot2"/>
+        <result column="resend_yn"              property="resendYn"/>
+        <result column="req_dept_id"            property="reqDeptId"/>
+        <result column="req_user_id"            property="reqUserId"/>
+        <result column="message_key"            property="messageKey"/>
+        <result column="seq"                    property="seq"/>
+        <result column="srfidd"                 property="srfidd"/>
+        <result column="open_dt"                property="openDt"/>
+        <result column="eai_send_fg"            property="eaiSendFg"/>
+        <result column="sub_ecare_no"           property="subEcareNo"/>
+        <result column="sub_result_seq"         property="subResultSeq"/>
+        <result column="part_message"           property="partMessage"/>
+        <result column="fail_back_channel"      property="failBackChannel"/>
+        <result column="fail_back_result_cd"    property="failBackResultCd"/>
+        <result column="fail_back_senddtm"      property="failBackSenddtm"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <resultMap id="resultEcarePerHistory" type="EcarePerHistory">
+        <result column="ecare_no"           property="ecareNo"/>
+        <result column="resend_ecare_no"    property="resendEcareNo"/>
+        <result column="ecare_nm"           property="ecareNm"/>
+        <result column="service_type"       property="serviceType"/>
+        <result column="sub_type"           property="subType"/>
+        <result column="customer_email"     property="customerEmail"/>
+        <result column="customer_nm"        property="customerNm"/>
+        <result column="customer_key"       property="customerKey"/>
+        <result column="error_cd"           property="errorCd"/>
+        <result column="err_msg"            property="errMsg"/>
+        <result column="err_msg_kor"        property="errMsgKor"/>
+        <result column="send_dt"            property="sendDt"/>
+        <result column="send_tm"            property="sendTm"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="record_seq"         property="recordSeq"/>
+        <result column="seq"                property="seq"/>
+        <result column="send_seq"           property="sendSeq"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="resend_sts"         property="resendSts"/>
+        <result column="open_dt"            property="receiptDate"/>
+        <result column="flag"               property="logSendFg"/>
+        <result column="sms_rslt_cd"        property="smsRsltCd"/>
+        <result column="msg_type"           property="msgType"/>
+        <result column="snd_msg"            property="sndMsg"/>
+        <result column="req_user_id"        property="reqUserId"/>
+        <result column="req_dept_id"        property="reqDeptId"/>
+        <result column="sender"             property="sender"/>
+        <result column="sms_rslt_msg"       property="smsRsltMsg"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectTotalCount" parameterType="EcarePerHistory" resultType="int">
+        SELECT count(*)
+        FROM nvecaresendlog a, nvecaremsg b
+        WHERE a.ecare_no = b.ecare_no
+        <if test="errorCd != null and errorCd != ''">
+            <if test="errorCd == 'FAIL'">
+        AND a.error_cd != '250'
+            </if>
+            <if test="errorCd != 'FAIL'">
+        AND a.error_cd = #{errorCd}
+            </if>
+        </if>
+        <if test="searchQstartDt != null and searchQstartDt != ''">
+            <if test="searchQendDt != null and searchQendDt != ''">
+        AND a.send_dt BETWEEN #{searchQstartDt} AND #{searchQendDt}
+              </if>
+        </if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND b.user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.grpCd != null and userVo.grpCd != ''">
+        AND b.grp_cd LIKE concat(#{userVo.grpCd}, '%')
+            </if>
+        </if>
+        <if test="customerKey   != null and customerKey   != ''">AND a.customer_key = #{customerKey}</if>
+        <if test="customerNm    != null and customerNm    != ''">AND a.customer_nm = #{customerNm}</if>
+        <if test="customerEmail != null and customerEmail != ''">AND a.customer_email = #{customerEmail}</if>
+        <if test="resultSeq     != null and resultSeq     != ''">AND a.result_seq = #{resultSeq}</if>
+        <if test="sn            != null and sn            != ''">AND a.seq = #{sn}</if>
+        <if test="ecareNo       != null and ecareNo       != ''">AND b.ecare_no = #{ecareNo}</if>
+        <if test="channel       != null and channel       != ''">AND b.channel_type = #{channel}</if>
+        <if test="ecareNm       != null and ecareNm       != ''">AND b.ecare_nm LIKE concat('%', #{ecareNm}, '%')</if>
+    </select>
+
+    <select id="selectFaxSrfidd" parameterType="map" resultType="string">
+        SELECT srfidd
+        FROM nvecaresendlog
+        WHERE ecare_no = #{serviceNo}
+        AND seq = #{seq}
+    </select>
+
+    <select id="selectPushEcareSendlogCount" parameterType="map" resultType="CaseInsensitiveMap">
+        SELECT
+            coalesce(and_send_cnt,0) as and_send_cnt, coalesce(and_succ_cnt,0) as and_succ_cnt, coalesce(and_fail_cnt,0) as and_fail_cnt
+          , coalesce(ios_send_cnt,0) as ios_send_cnt, coalesce(ios_succ_cnt,0) as ios_succ_cnt, coalesce(ios_fail_cnt,0) as ios_fail_cnt
+          , coalesce(etc_send_cnt,0) as etc_send_cnt, coalesce(etc_succ_cnt,0) as etc_succ_cnt
+          , coalesce(etc_req_cnt,0) as etc_req_cnt, coalesce(etc_fail_cnt,0) as etc_fail_cnt
+          , coalesce(and_send_cnt + ios_send_cnt + etc_send_cnt,0) as send_cnt, coalesce(and_succ_cnt + ios_succ_cnt + etc_req_cnt,0) as succ_cnt
+        FROM (
+            SELECT
+                sum(CASE WHEN send_domain='AND' THEN 1 ELSE 0 END) as and_send_cnt
+              , sum(CASE WHEN send_domain='IOS' THEN 1 ELSE 0 END) as ios_send_cnt
+              , sum(CASE WHEN send_domain='AND' AND error_cd = '000' THEN 1 ELSE 0 END) as and_succ_cnt
+              , sum(CASE WHEN send_domain='IOS' AND error_cd = '000' THEN 1 ELSE 0 END) as ios_succ_cnt
+              , sum(CASE WHEN send_domain='AND' THEN (CASE WHEN error_cd = '000' THEN 0 ELSE 1 END) ELSE 0 END) as and_fail_cnt
+              , sum(CASE WHEN send_domain='IOS' THEN (CASE WHEN error_cd = '000' THEN 0 ELSE 1 END) ELSE 0 END) as ios_fail_cnt
+              , sum(CASE WHEN send_domain='IOS' OR send_domain='AND' THEN 0 ELSE 1 END) as etc_send_cnt
+              , sum(CASE WHEN send_domain='IOS' OR send_domain='AND' THEN 0 ELSE (CASE WHEN error_cd = '000' THEN 1 ELSE 0 END) END) as etc_succ_cnt
+              , sum(CASE WHEN send_domain='IOS' OR send_domain='AND' THEN 0 ELSE (CASE WHEN error_cd = '000' THEN 0 WHEN error_cd = '250' THEN 1 ELSE 0 END) END) as etc_req_cnt
+              , sum(CASE WHEN send_domain='IOS' OR send_domain='AND' THEN 0 ELSE (CASE WHEN error_cd = '000' OR error_cd = '250' THEN 0 ELSE 1 END) END) as etc_fail_cnt
+            FROM nvecaresendlog
+            WHERE ecare_no = #{service_no}
+            <if test="result_seq != 0">
+            AND result_seq = #{result_seq}
+            </if>
+            <if test="start_dt != null and start_dt != ''">
+            AND send_dt BETWEEN #{start_dt} AND #{end_dt}
+            </if>
+        ) a
+    </select>
+
+    <select id="selectEcarePushErrorReportList" parameterType="map" resultMap="mapper.Common.resultCampaignReportError">
+        SELECT
+            x.error_cd, x.send_cnt, x.rnum, x.gid
+          , CASE x.gid WHEN 0 THEN y.val END error_gubun
+          , CASE x.gid WHEN 1 THEN 'Sub Total' WHEN 3 THEN 'Total' ELSE x.val END error_msg
+        FROM (
+            SELECT
+                e.error_cd, e.send_cnt, e.val, e.error_gubun
+              , CASE WHEN e.error_gubun IS NULL AND e.error_cd IS NULL THEN 3 WHEN e.error_gubun IS NOT NULL AND e.error_cd IS NULL THEN 1 ELSE 0 END gid
+              , @rownum := @rownum + 1 as rnum
+            FROM (
+                SELECT
+                    c.cd_cat error_gubun, a.error_cd error_cd, count(a.error_cd) send_cnt, max(c.val) error_msg
+                  <if test="lang == 'ko'">, max(coalesce(c.val, '알수없는 에러코드')) val</if>
+                  <if test="lang == 'en'">, max(coalesce(c.val, 'unknown error code')) val</if>
+                FROM nvecaresendlog a, nvecaremsg b, nv_cd_mst c, (SELECT @rownum := 0) d
+                WHERE a.ecare_no = b.ecare_no
+                AND a.error_cd = c.cd
+                AND a.ecare_no = #{ecare_no}
+                <if test="result_seq != 0">
+                AND a.result_seq = #{result_seq}
+                </if>
+                <if test="send_dt != null and send_dt != ''">
+                AND a.send_dt = #{send_dt}
+                </if>
+                <if test="successCodeArray != null">
+                AND a.error_cd NOT IN (<foreach collection="successCodeArray" item="successCode" separator=",">#{successCode}</foreach>)
+                </if>
+                AND b.channel_type = 'P'
+                AND c.par_cd_cat LIKE 'AP00%'
+                AND c.lang = #{lang}
+                GROUP BY error_gubun, error_cd WITH ROLLUP
+            ) e
+        ) x LEFT OUTER JOIN nv_cd_mst y
+        ON x.error_gubun = y.cd_cat
+        AND y.par_cd_cat = 'AP00'
+        AND y.lang = #{lang}
+        ORDER BY CASE x.gid WHEN 3 THEN 2 ELSE 1 END, x.error_gubun, x.rnum
+    </select>
+
+    <sql id="ecareWhereQuery">
+       <if test="ecareNm      != null and ecareNm      != ''">AND a.ecare_nm LIKE concat('%',#{ecareNm},'%')</if>
+       <if test="ecareNo      != null and ecareNo      != ''">AND a.ecare_no = #{ecareNo}</if>
+       <if test="channel      != null and channel      != ''">AND a.channel_type = #{channel}</if>
+       <if test="userVo.grpCd != null and userVo.grpCd != ''">AND a.grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+       <if test="userVo.userTypeCd == 'U'.toString()"        >AND a.user_id = #{userVo.userId}</if>
+    </sql>
+
+    <sql id="commonWhereQuery">
+        <if test="searchQstartDt != null and searchQstartDt != ''">
+            <if test="searchQendDt != null and searchQendDt != ''">
+        AND b.send_dt BETWEEN #{searchQstartDt} AND #{searchQendDt}
+            </if>
+        </if>
+        <if test="errorCd != null and errorCd != ''">
+            <if test="errorCd == 'FAIL'">
+        AND b.error_cd NOT IN ('250', '0', '0000')
+            </if>
+            <if test="errorCd != 'FAIL'">
+        AND b.error_cd = #{errorCd}
+            </if>
+        </if>
+        <if test="customerKey   != null and customerKey   != ''">AND b.customer_key = #{customerKey}</if>
+        <if test="customerNm    != null and customerNm    != ''">AND b.customer_nm = #{customerNm}</if>
+        <if test="customerEmail != null and customerEmail != ''">AND b.customer_email = #{customerEmail}</if>
+        <if test="seq           != null and seq           != ''">AND b.seq = #{seq}</if>
+        <if test="listSeq       != null and listSeq       != ''">AND b.list_seq = #{listSeq}</if>
+        <if test="resultSeq     != null and resultSeq     != ''">AND b.result_seq = #{resultSeq}</if>
+        <if test="slot1         != null and slot1         != ''">AND b.slot1 = #{slot1}</if>
+        <if test="slot2         != null and slot2         != ''">AND b.slot2 = #{slot2}</if>
+        <if test="superSeq      != null and superSeq      != ''">AND c.super_seq = #{superSeq}</if>
+        <if test="resendSts     != null and resendSts  == 'Ori'">AND c.resend_sts IS NULL</if>
+        <if test="resendSts     != null and resendSts  == 'Re'" >AND c.resend_sts IS NOT NULL</if>
+    </sql>
+
+    <select id="selectEcareTotalCount" parameterType="EcarePerHistory" resultType="int">
+        SELECT count(*)
+        FROM nvecaremsg a, nvecaresendlog b, nvecaresendresult c
+        WHERE a.ecare_no = b.ecare_no
+        AND b.ecare_no = c.ecare_no
+        AND b.result_seq = c.result_seq
+        <include refid="ecareWhereQuery"/>
+        <include refid="commonWhereQuery"/>
+    </select>
+
+    <sql id="errorMsgKor">
+        <if test="channel == 'M'.toString()">, (SELECT error_desc FROM nvsenderr WHERE error_cd = b.error_cd) as err_msg_kor</if>
+        <if test="channel == 'A'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AA0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'C'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AC0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'B'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AB0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'S'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat IN ('AS0001','AS0002','AS0003') AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'T'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat IN ('AS0001','AS0002','AS0003') AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'F'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AF0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'P'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AP0101' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+    </sql>
+
+    <select id="selectEcarePerHistoryList" parameterType="EcarePerHistory" resultMap="resultEcarePerHistory">
+        SELECT *
+        FROM (
+            SELECT *
+            FROM (
+                SELECT
+                    a.ecare_no, a.ecare_nm, a.service_type, a.sub_type, coalesce(a.resend_ecare_no, 0) as resend_ecare_no, coalesce(b.fail_back_channel, a.channel_type) as msg_type
+                  <if test="channel == 'M'.toString()">, a.sender_email as sender</if>
+                  <if test="channel != 'M'.toString()">, a.sender_tel as sender</if>
+                  , b.customer_email, b.customer_nm, b.customer_key, b.error_cd, b.err_msg, b.send_dt, b.send_tm, b.result_seq, b.list_seq, b.record_seq
+                  , coalesce(b.seq, ' ') as seq, b.customer_key as send_seq, coalesce(b.slot1,' ') as slot1, coalesce(b.slot2,' ') as slot2, coalesce(b.open_dt,'') open_dt
+                  , b.part_message as snd_msg, b.req_user_id, b.req_dept_id, b.fail_back_result_cd sms_rslt_cd, c.resend_sts
+                  , CASE WHEN b.open_dt IS NULL THEN 'N' ELSE 'Y' END as flag
+                  , (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat IN ('AS0001','AS0002','AS0003') AND cd = b.fail_back_result_cd AND lang = #{userVo.language}) as sms_rslt_msg
+                  <include refid="errorMsgKor"/>
+                FROM nvecaremsg a, nvecaresendlog b, nvecaresendresult c
+                WHERE a.ecare_no = b.ecare_no
+                AND b.ecare_no = c.ecare_no
+                AND b.result_seq = c.result_seq
+                <include refid="ecareWhereQuery"/>
+                <include refid="commonWhereQuery"/>
+                ORDER BY b.send_dt DESC, b.send_tm DESC
+                LIMIT #{endRow}
+            ) d
+            ORDER BY send_dt, send_tm
+            LIMIT #{listCnt}
+        ) e
+        ORDER BY send_dt DESC, send_tm DESC
+    </select>
+
+    <select id="selectEcarePrevious" parameterType="LstResend" resultMap="mapper.Common.resultLstResend">
+        SELECT
+            a.ecare_no as service_no, a.ecare_nm as service_nm, a.service_type, coalesce(a.sub_type,' ') sub_type, a.channel_type
+          , b.customer_email, b.customer_nm, b.customer_key, b.error_cd, b.err_msg, b.send_dt, b.send_tm, b.result_seq, b.list_seq, b.record_seq
+          , coalesce(b.seq, ' ') as seq, coalesce(b.slot1,' ') as slot1, coalesce(b.slot2,' ') as slot2, b.tmpl_cd
+          , coalesce(c.resend_sts,' ') resend_sts, c.super_seq, ' ' as resend_reason, ' ' as ab_test_type
+          , coalesce((SELECT file_preview_path FROM nvmobilecontents WHERE conts_no = a.kakao_image_no),' ') as file_preview_path
+          <include refid="errorMsgKor"/>
+        FROM nvecaremsg a, nvecaresendlog b, nvecaresendresult c
+        WHERE a.ecare_no = b.ecare_no
+        AND b.ecare_no = c.ecare_no
+        AND b.result_seq = c.result_seq
+        AND a.ecare_no = #{serviceNo}
+        AND a.channel_type = #{channel}
+        AND b.result_seq = #{resultSeq}
+        AND b.list_seq = #{listSeq}
+        <if test="subType == 'N'.toString()">
+        AND b.seq = #{seq}
+        </if>
+        <if test="subType != 'N'.toString()">
+        AND b.customer_key = #{customerKey}
+        </if>
+    </select>
+
+    <select id="selectEcareResendTargetCount" parameterType="map" resultType="int">
+         SELECT count(*)
+         FROM nvecaremsg a, nvecaresendlog b, nvecaresendresult c
+         WHERE a.ecare_no = b.ecare_no
+         AND b.ecare_no = c.ecare_no
+         AND b.result_seq = c.result_seq
+         AND a.channel_type = #{channel}
+         <include refid="ecareWhereQuery"/>
+         <include refid="commonWhereQuery"/>
+         <if test="resendErrorCdArray != null">
+         AND b.error_cd NOT IN (<foreach collection="resendErrorCdArray" item="errorCd" separator=",">#{errorCd}</foreach>)
+         </if>
+    </select>
+
+    <select id="selectFaxLogList" parameterType="EcareScenarioInfo" resultMap="mapper.DomainLog.resultDomainLog">
+        SELECT a.error_cd, b.val as error_desc, count(*) as target_cnt, '' as bounce
+        FROM nvecaresendlog a, nv_cd_mst b
+        WHERE a.error_cd = b.cd
+        AND a.send_dt = #{ecareInfoVo.reportDt}
+        AND a.ecare_no = #{ecareInfoVo.ecareNo}
+        <if test="ecareInfoVo.serviceType == 'S'.toString()">
+            <if test="ecareInfoVo.subType == 'S'.toString()">
+        AND a.result_seq = #{ecareInfoVo.resultSeq}
+            </if>
+        </if>
+        AND a.error_cd != '0'
+        AND b.cd_cat = 'AF0001'
+        GROUP BY a.error_cd, b.val
+        ORDER BY a.error_cd
+    </select>
+
+    <select id="selectKakaoLogList" parameterType="EcareScenarioInfo" resultMap="mapper.DomainLog.resultDomainLog">
+        SELECT a.error_cd, b.cd_desc as error_desc, count(a.error_cd) as target_cnt, '' as bounce
+        FROM nvecaresendlog a, nv_cd_mst b
+        WHERE a.error_cd = b.cd
+        <if test="ecareInfoVo.reportDt != null and ecareInfoVo.reportDt != ''">
+        AND a.send_dt = #{ecareInfoVo.reportDt}
+        </if>
+        AND a.ecare_no = #{ecareInfoVo.ecareNo}
+        <if test="ecareInfoVo.resultSeq != null and ecareInfoVo.resultSeq != ''">
+            <if test="ecareInfoVo.resultSeq != 0">
+        AND a.result_seq = #{ecareInfoVo.resultSeq}
+            </if>
+        </if>
+        AND a.error_cd NOT IN (<foreach collection="searchCodes" item="errorCd" separator=",">#{errorCd}</foreach>)
+        AND b.cd_cat = #{serarchCdCat}
+        GROUP BY a.error_cd, b.cd_desc
+        ORDER BY a.error_cd
+    </select>
+
+</mapper>

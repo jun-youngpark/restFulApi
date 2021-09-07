@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EmTran">
+    <!--<resultMap id="resultEmTran" type="EmTran">
+        <result column="tran_pr"            property="tranPr"/>
+        <result column="tran_refkey"        property="tranRefkey"/>
+        <result column="tran_id"            property="tranId"/>
+        <result column="tran_phone"         property="tranPhone"/>
+        <result column="tran_callback"      property="tranCallback"/>
+        <result column="tran_status"        property="tranStatus"/>
+        <result column="tran_date"          property="tranDate"/>
+        <result column="tran_rsltdate"      property="tranRsltdate"/>
+        <result column="tran_reportdate"    property="tranReportdate"/>
+        <result column="tran_rslt"          property="tranRslt"/>
+        <result column="tran_net"           property="tranNet"/>
+        <result column="tran_msg"           property="tranMsg"/>
+        <result column="tran_etc1"          property="tranEtc1"/>
+        <result column="tran_etc2"          property="tranEtc2"/>
+        <result column="tran_etc3"          property="tranEtc3"/>
+        <result column="tran_etc4"          property="tranEtc4"/>
+        <result column="tran_type"          property="tranType"/>
+        <result column="req_dept_cd"        property="reqDeptCd"/>
+        <result column="service_type"       property="serviceType"/>
+        <result column="service_no"         property="serviceNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="seq"                property="seq"/>
+        <result column="svc_id"             property="svcId"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="req_user_id"        property="reqUserId"/>
+        <result column="req_dept_id"        property="reqDeptId"/>
+        <result column="tran_status2"       property="tranStatus2"/>
+        <result column="tran_mcc"           property="tranMcc"/>
+        <result column="tran_mnc"           property="tranMnc"/>
+        <result column="message_id"         property="messageId"/>
+        <result column="tran_sn"            property="tranSn"/>
+        <result column="agent_id"           property="agentId"/>
+        <result column="infobip_id"         property="infobipId"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertDBROSMS" parameterType="Message">
+        insert into em_tran (
+            tran_phone, tran_callback, tran_status, tran_date, tran_msg, tran_etc2, tran_etc3, tran_type, req_dept_id
+          , req_user_id, service_type, service_no, result_seq
+        ) VALUES (
+            #{phoneNum}, #{callBack, jdbcType=VARCHAR}, '1'
+            <if test="reqDtm == null or reqDtm == ''">
+          , now()
+            </if>
+            <if test="reqDtm != null and reqDtm != ''">
+          , date_format(#{reqDtm}, '%Y-%m-%d %H:%i:%s')
+            </if>
+          , #{sendMessage, jdbcType=VARCHAR}, 'S', 'sms', 4, #{reqDeptCd, jdbcType=VARCHAR}
+          , #{reqUsrId, jdbcType=VARCHAR}, #{serviceType, jdbcType=CHAR}, #{serviceNo}, #{resultSeq}
+        )
+    </insert>
+
+    <insert id="insertDBROLMS" parameterType="Message">
+        INSERT INTO em_tran (
+            tran_phone, tran_callback, tran_status, tran_date, tran_etc2, tran_etc3, tran_etc4, tran_type, req_dept_id
+          , req_user_id, service_type, service_no, result_seq
+        ) VALUES (
+            #{phoneNum}, #{callBack, jdbcType=VARCHAR}, '1'
+            <if test="reqDtm == null or reqDtm == ''">
+          , now()
+            </if>
+            <if test="reqDtm != null and reqDtm != ''">
+          , date_format(#{reqDtm}, '%Y-%m-%d %H:%i:%s')
+            </if>
+          , 'S', 'lms', #{mmsSeq}, 6, #{reqDeptCd, jdbcType=VARCHAR}
+          , #{reqUsrId, jdbcType=VARCHAR}, #{serviceType, jdbcType=CHAR}, #{serviceNo}, #{resultSeq}
+        )
+    </insert>
+
+    <insert id="insertDBROMMS" parameterType="Message">
+        INSERT INTO em_tran (
+            tran_phone, tran_callback, tran_status, tran_date, tran_etc2, tran_etc3, tran_etc4, tran_type, req_dept_id
+          , req_user_id, service_type, service_no, result_seq
+        ) VALUES (
+            #{phoneNum}, #{callBack, jdbcType=VARCHAR}, '1'
+            <if test="reqDtm == null or reqDtm == ''">
+          , now()
+            </if>
+            <if test="reqDtm != null and reqDtm != ''">
+          , date_format(#{reqDtm}, '%Y-%m-%d %H:%i:%s')
+            </if>
+          , 'S', 'mms', #{mmsSeq}, 6, #{reqDeptCd, jdbcType=VARCHAR}
+          , #{reqUsrId, jdbcType=VARCHAR}, #{serviceType, jdbcType=CHAR}, #{serviceNo}, #{resultSeq}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+
+</mapper>

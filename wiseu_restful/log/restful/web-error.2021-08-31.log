@@ -1,0 +1,409 @@
+08-31 16:24:12.530 http-nio-8084-exec-2 ERROR c.m.w.w.rest.service.CommonService    61 APILOG기록중 에러가 발생하였습니다.org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+### The error may involve mapper.Common.insertApiLog-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO NV_API_LOG (   REGDATE,   SEQ,   REGTYPE,   INTERFACE_ID,   MSG,   IN_VAL,   DTL_MSG  ) VALUES (   to_char(systimestamp, 'yyyyMMddHH24MISSFF3')   ,?   ,?   ,?   ,?   ,?   ,?  )
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:230)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy14.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:278)
+	at com.mnwise.wiseu.web.rest.parent.BaseDao.insert(BaseDao.java:53)
+	at com.mnwise.wiseu.web.rest.dao.common.CommonDao.insertApiLog(CommonDao.java:36)
+	at com.mnwise.wiseu.web.rest.service.CommonService.insertApiLog(CommonService.java:27)
+	at com.mnwise.wiseu.web.rest.service.CommonService.regApiLog(CommonService.java:57)
+	at com.mnwise.wiseu.web.rest.factory.AspectContext.LogginApi(AspectContext.java:47)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:627)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:609)
+	at org.springframework.aop.aspectj.AspectJMethodBeforeAdvice.before(AspectJMethodBeforeAdvice.java:43)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:55)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:168)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.mnwise.wiseu.web.rest.web.v1.CampaignController$$EnhancerBySpringCGLIB$$754d0cd.create(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:854)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:765)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.mnwise.wiseu.web.rest.web.LoggingFilter.doFilter(LoggingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:217)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:518)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1091)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:673)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:509)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:461)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1104)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:550)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:268)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:655)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:270)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:91)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:970)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1205)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3666)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeInternal(T4CPreparedStatement.java:1426)
+	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:3778)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1081)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:197)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:197)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy60.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:46)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy58.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:198)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 69 more
+Caused by: Error : 942, Position : 12, Sql = INSERT INTO NV_API_LOG (
+		REGDATE,
+		SEQ,
+		REGTYPE,
+		INTERFACE_ID,
+		MSG,
+		IN_VAL,
+		DTL_MSG
+	) VALUES (
+		to_char(systimestamp, 'yyyyMMddHH24MISSFF3')
+		,:1 
+		,:2 
+		,:3 
+		,:4 
+		,:5 
+		,:6 
+	), OriginalSql = INSERT INTO NV_API_LOG (
+		REGDATE,
+		SEQ,
+		REGTYPE,
+		INTERFACE_ID,
+		MSG,
+		IN_VAL,
+		DTL_MSG
+	) VALUES (
+		to_char(systimestamp, 'yyyyMMddHH24MISSFF3')
+		,?
+		,?
+		,?
+		,?
+		,?
+		,?
+	), Error Msg = ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:513)
+	... 108 more
+
+08-31 16:49:56.704 http-nio-8084-exec-4 ERROR c.m.w.w.r.web.v1.CampaignController    53 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","segmentNo":8,"campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","scenarioNo":29,"handlerSeq":8,"handler":"import com.mnwise.ASE.agent.messageagent.MessageAgent
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MessageAgent smsagent = new MessageAgent(context)
+
+smsagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _SMS_FIELD_SEQ = context.getInt("_SMS_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+MessageBaseItem smsitem = null;
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+while (target.next()) {
+  try {
+    smsitem = new MessageBaseItem();
+    // 부서별 과금을 위해 사용
+    smsitem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    smsitem.setReqUserId(context.get("_REQ_USER_ID"))
+    smsitem.setCallback(context.get("_SENDER_TEL"))
+    context.put("record", target.getRecord())
+
+    smsitem.setPhoneNo(target.getString(_SMS_FIELD_SEQ))
+    smsitem.setUserId(target.getString(_KEY_FIELD_SEQ));
+    smsitem.setUserName(target.getString(_NAME_FIELD_SEQ));
+    smsitem.setSlot1("0")
+    smsitem.setSlot2("")
+    smsitem.setMsg(message.execGroovyTemplate())
+    smsagent.send(smsitem)
+
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_SMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  }
+}
+
+exlogger.close()
+target.close()
+smsagent.close()","template":"SMS로 문자발송 테스트하기","language":"ko"}
+08-31 16:51:13.731 http-nio-8084-exec-1 ERROR c.m.w.w.r.web.v1.CampaignController    53 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","segmentNo":8,"campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","scenarioNo":29,"handlerSeq":8,"handler":"import com.mnwise.ASE.agent.messageagent.MessageAgent
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MessageAgent smsagent = new MessageAgent(context)
+
+smsagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _SMS_FIELD_SEQ = context.getInt("_SMS_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+MessageBaseItem smsitem = null;
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+while (target.next()) {
+  try {
+    smsitem = new MessageBaseItem();
+    // 부서별 과금을 위해 사용
+    smsitem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    smsitem.setReqUserId(context.get("_REQ_USER_ID"))
+    smsitem.setCallback(context.get("_SENDER_TEL"))
+    context.put("record", target.getRecord())
+
+    smsitem.setPhoneNo(target.getString(_SMS_FIELD_SEQ))
+    smsitem.setUserId(target.getString(_KEY_FIELD_SEQ));
+    smsitem.setUserName(target.getString(_NAME_FIELD_SEQ));
+    smsitem.setSlot1("0")
+    smsitem.setSlot2("")
+    smsitem.setMsg(message.execGroovyTemplate())
+    smsagent.send(smsitem)
+
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_SMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  }
+}
+
+exlogger.close()
+target.close()
+smsagent.close()","template":"SMS로 문자발송 테스트하기","language":"ko"}
+08-31 16:51:26.111 http-nio-8084-exec-4 ERROR c.m.w.w.r.web.v1.CampaignController    53 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","segmentNo":8,"campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","scenarioNo":29,"handlerSeq":8,"handler":"import com.mnwise.ASE.agent.messageagent.MessageAgent
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MessageAgent smsagent = new MessageAgent(context)
+
+smsagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _SMS_FIELD_SEQ = context.getInt("_SMS_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+MessageBaseItem smsitem = null;
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+while (target.next()) {
+  try {
+    smsitem = new MessageBaseItem();
+    // 부서별 과금을 위해 사용
+    smsitem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    smsitem.setReqUserId(context.get("_REQ_USER_ID"))
+    smsitem.setCallback(context.get("_SENDER_TEL"))
+    context.put("record", target.getRecord())
+
+    smsitem.setPhoneNo(target.getString(_SMS_FIELD_SEQ))
+    smsitem.setUserId(target.getString(_KEY_FIELD_SEQ));
+    smsitem.setUserName(target.getString(_NAME_FIELD_SEQ));
+    smsitem.setSlot1("0")
+    smsitem.setSlot2("")
+    smsitem.setMsg(message.execGroovyTemplate())
+    smsagent.send(smsitem)
+
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_SMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  }
+}
+
+exlogger.close()
+target.close()
+smsagent.close()","template":"SMS로 문자발송 테스트하기","language":"ko"}
+08-31 17:22:57.484 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    43 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{}
+08-31 17:23:51.785 http-nio-8084-exec-4 ERROR c.m.w.w.r.web.RestExceptionHandler    43 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{}
+08-31 17:36:44.425 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    43 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{}
+08-31 17:55:57.355 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    47 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터: - 
+08-31 17:59:35.366 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    48 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터: - 

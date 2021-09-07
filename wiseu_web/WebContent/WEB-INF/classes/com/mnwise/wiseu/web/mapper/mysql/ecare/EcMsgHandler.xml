@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcMsgHandler">
+    <resultMap id="resultHandler" type="Handler">
+        <result column="ecare_no"       property="no"/>
+        <result column="type"           property="type"/>
+        <result column="appsource"      property="handler"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertEcMsgHandler" parameterType="Handler">
+        INSERT INTO nvecmsghandler (ecare_no, type, appsource)
+        VALUES (#{no}, #{type, jdbcType=CHAR}, #{handler, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="copyEcmHandler" parameterType="Ecare">
+        INSERT INTO nvecmsghandler (ecare_no, type, appsource)
+        VALUES (#{newEcareNo}, #{handlerVo.type}, #{handlerVo.handler, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEditorEcareHandler" parameterType="Handler">
+        UPDATE nvecmsghandler
+        SET appsource = #{handler, jdbcType=VARCHAR}
+        WHERE ecare_no = #{no}
+    </update>
+
+    <update id="updateEcareHandlerFromDefault" parameterType="map">
+        UPDATE nvecmsghandler
+        SET appsource = #{handler, jdbcType=VARCHAR}
+        WHERE ecare_no = #{serviceNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcMsgHandlerByPk" parameterType="map">
+        DELETE FROM nvecmsghandler
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEcMsgHandlerByPk" parameterType="int" resultMap="resultHandler">
+        SELECT ecare_no, type, appsource
+        FROM nvecmsghandler
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <!--핸들러 다운로드 -->
+    <select id="selectHandlerList" resultMap="resultHandler">
+        SELECT ecare_no, type, appsource
+        FROM nvecmsghandler
+    </select>
+
+    <select id="selectEditorEcareHandlerCount" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM nvecmsghandler
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+</mapper>

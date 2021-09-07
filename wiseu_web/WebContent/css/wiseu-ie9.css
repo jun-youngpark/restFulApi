@@ -1,0 +1,44 @@
+/* 날짜 컴포넌트 달력 아이콘 위치 조정
+ * - 주의사항 : 아래 CSS 설정 -ms-overflow-style 보다 위에 선언되어야 달력 아이콘 위치가 중앙에 표시됨 */
+.input_datebox::after {top:20% !important;}
+
+/* 페이징 번호 너비 */
+.pagination-sm .page-link {padding: 4.4px 12px !important;}
+
+/* 대메뉴 폰트 크기 */
+.navbar-vertical .navbar-nav .nav-link {font-size: 14px !important;}
+
+/* 중메뉴 폰트 크기, 너비 */
+.navbar-vertical .navbar-nav .nav-sm .nav-link {font-size: 13px !important; padding-left: 48px !important}
+
+/* 대메뉴 접힘(>) 아이콘 */
+.navbar-vertical .navbar-nav .nav-link[data-toggle='collapse']:after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 700;
+    font-style: normal;
+    font-variant: normal;
+    display: inline-block;
+    margin-left: auto;
+    content: '\f105';
+    transition: all .15s ease;
+    color: #ced4da;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 대메뉴 펼침(V) 아이콘 */
+.navbar-vertical .navbar-nav .nav-link[data-toggle='collapse'][aria-expanded='true']:after {-ms-transform: rotate(90deg); color: #5e72e4;}
+
+/* 스크롤바 재정의 - IE11 컬러로 맞춤 */
+html {
+    scrollbar-face-color: #cdcdcd;
+    scrollbar-track-color: #f0f0f0;
+    scrollbar-arrow-color: #606060;
+    scrollbar-highlight-color: #f0f0f0;
+    scrollbar-3dlight-color: #f0f0f0;
+    scrollbar-shadow-color: #f0f0f0;
+    scrollbar-darkshadow-color: #f0f0f0;
+}
+
+/* 기본 IE 스크롤바 숨김 */
+-ms-overflow-style: none;

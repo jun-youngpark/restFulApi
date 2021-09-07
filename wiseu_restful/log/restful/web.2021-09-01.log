@@ -1,0 +1,442 @@
+09-01 16:37:17.477 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:37:17.530 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:37:17.531 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:37:21.622 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:37:22.682 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:38:27.684 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    45 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:null
+09-01 16:38:27.971 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 27.898
+Headers : {content-length=487, postman-token=0b70e537-4e38-483e-b56b-e525bccf3e26, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+"}
+
+09-01 16:39:52.419 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:39:52.420 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:39:52.420 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:39:53.250 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:39:53.953 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:40:08.047 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:40:08.049 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:40:08.049 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:40:09.367 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:42:20.269 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:42:20.272 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:42:20.272 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:42:24.728 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:42:26.084 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:43:26.843 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    45 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:null
+09-01 16:43:50.008 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 60.324
+Headers : {content-length=487, postman-token=bbc6b29a-0a24-4b97-9d00-66a50b2a6bb5, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+"}
+
+09-01 16:48:04.644 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:48:04.647 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:48:04.648 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:48:07.580 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:48:08.202 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:48:34.285 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:48:34.287 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:48:34.288 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:48:35.384 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:48:35.929 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:49:01.258 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:49:01.262 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:49:01.262 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:49:03.004 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:49:04.316 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:49:18.727 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:49:18.728 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:49:18.729 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:49:22.087 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:49:22.895 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:49:58.552 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:49:58.553 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:49:58.553 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:49:59.262 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:49:59.778 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:51:42.281 http-nio-8084-exec-5 ERROR c.m.w.w.r.web.RestExceptionHandler    45 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:null
+09-01 16:51:44.613 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 4.243
+Headers : {content-length=487, postman-token=0879355a-383c-4d26-896f-53e6bb7c75f3, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+"}
+
+09-01 16:52:04.467 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:52:04.469 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:52:04.469 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:52:09.047 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:52:10.303 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:55:43.509 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:55:43.511 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:55:43.511 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:55:44.695 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:59:10.695 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 16:59:10.697 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 16:59:10.697 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 16:59:14.307 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 16:59:15.280 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 16:59:27.167 http-nio-8084-exec-2 ERROR c.m.w.w.r.web.RestExceptionHandler    50 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-01 16:59:35.849 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 19.124
+Headers : {content-length=487, postman-token=7b64a3de-8439-46de-8152-5f86921203fd, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+"}
+
+09-01 17:12:26.540 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:12:26.543 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:12:26.544 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:12:31.296 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:12:32.538 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:12:38.349 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create1 404 - 0.004
+Headers : {content-length=487, postman-token=e4f29c4d-9a25-468e-89c4-86e1c72a937c, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+09-01 17:13:06.796 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 200 - 2.886
+Headers : {content-length=235, postman-token=d12712fa-f055-447f-8080-b50b260bc88f, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":29}}
+
+09-01 17:22:58.669 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:22:58.673 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:22:58.673 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:23:00.404 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:23:01.486 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:23:14.166 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:23:14.169 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:23:14.169 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:23:17.643 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:23:18.518 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:23:48.569 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/update 200 - 2.573
+Headers : {content-length=142, postman-token=674ff4e4-262e-45bb-af7a-544727a68d98, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "campaignNo":4 , 
+    "campaignNm":"캠페인 명 ",
+    "template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":4}}
+
+09-01 17:24:02.160 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/ecare/update 200 - 0.156
+Headers : {content-length=157, postman-token=997bcb29-2490-45f4-b5fa-5e3c20562675, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "ecareNo":"18" , 
+    "ecareNm":"간단 LMS 문자 발송",
+    "senderTel":"02-855-4210",
+    "reqUserId":"박준영",
+    "reqDeptId":"IT팀"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"ecareNo":18}}
+
+09-01 17:31:12.970 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 200 - 1.398
+Headers : {content-length=235, postman-token=fcadcba7-3193-4bab-8db6-f24c24020325, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":30}}
+
+09-01 17:31:31.344 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 400 - 0.004
+Headers : {content-length=27, postman-token=789c1de6-0d34-419e-ae43-a25cfdfe2dff, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+ 
+}
+Response : {"code":"FAIL","message":"[Malformed JSON request] JSON 요청 값 형식 오류입니다.JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 4, column: 2]","data":{}}
+
+09-01 17:31:44.017 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 400 - 1.342
+Headers : {content-length=23, postman-token=fcd77f4b-c6cf-467d-9e77-fd06f25f52fd, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" 
+}
+Response : {"code":"FAIL","message":"[channelType](은)는 필수값 입니다. 입력된 값: [null]
+[userId](은)는 필수값 입니다. 입력된 값: [null]
+[campaignNm](은)는 필수값 입니다. 입력된 값: [null]
+"}
+
+09-01 17:32:50.849 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/update 200 - 0.017
+Headers : {content-length=142, postman-token=f50264f9-d601-42f0-8933-17f9b240f04a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "campaignNo":4 , 
+    "campaignNm":"캠페인 명 ",
+    "template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":4}}
+
+09-01 17:33:24.498 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/update 200 - 0.018
+Headers : {content-length=142, postman-token=9c70849a-5fd2-4c13-b8d7-9973715a1694, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "campaignNo":4 , 
+    "campaignNm":"캠페인 명 ",
+    "template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":4}}
+
+09-01 17:34:26.020 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:34:26.023 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:34:26.024 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:34:31.061 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:34:32.756 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:34:48.122 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/update 200 - 2.515
+Headers : {content-length=142, postman-token=cfd9ad76-e392-4e45-abda-12edfadb1a4c, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "campaignNo":4 , 
+    "campaignNm":"캠페인 명 ",
+    "template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":4}}
+
+09-01 17:35:20.244 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:35:20.247 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:35:20.248 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:35:21.453 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:35:22.310 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:37:53.765 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:37:53.767 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:37:53.767 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:37:57.415 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:37:58.748 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:41:17.404 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:41:17.409 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:41:17.410 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:41:24.549 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:41:26.164 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:41:43.616 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:41:43.621 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:41:43.621 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:41:45.790 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:41:47.145 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:41:57.225 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    51 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-01 17:41:57.808 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 8.513
+Headers : {content-length=339, postman-token=5c71db36-79e9-402c-a0f9-1837abf22673, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+"}
+
+09-01 17:46:09.866 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:46:09.867 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:46:09.867 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:46:10.672 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:59:11.987 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+09-01 17:59:11.989 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+09-01 17:59:11.990 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+09-01 17:59:16.534 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+09-01 17:59:17.561 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+09-01 17:59:24.080 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-01 17:59:24.226 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 5.16
+Headers : {content-length=339, postman-token=b2d75e30-12d6-4f84-a9e6-28fd26c4f8c2, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"\r\n### Error updating database.  Cause: java.sql.SQLException: ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]\r\n### The error may involve mapper.Scenario.insertScenarioForFirst-Inline\r\n### The error occurred while setting parameters\r\n### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')\r\n### Cause: java.sql.SQLException: ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n\n; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n; nested exception is java.sql.SQLException: ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n","data":null}
+
+09-01 17:59:52.340 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-01 17:59:52.368 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 1.437
+Headers : {content-length=339, postman-token=12dac6cf-4cd3-4263-a53d-bbfd439aa5c7, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"\r\n### Error updating database.  Cause: java.sql.SQLException: ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n\r\n### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]\r\n### The error may involve mapper.Scenario.insertScenarioForFirst-Inline\r\n### The error occurred while setting parameters\r\n### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')\r\n### Cause: java.sql.SQLException: ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n\n; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n; nested exception is java.sql.SQLException: ORA-12899: \"WISEU7\".\"NVSCENARIO\".\"SCENARIO_NM\" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)\n","data":null}
+

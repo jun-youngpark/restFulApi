@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PushServiceInfo">
+    <!--<resultMap id="resultPushServiceInfo" type="PushServiceInfo">
+        <result column="svc_type"               property="svcType"/>
+        <result column="svc_no"                 property="svcNo"/>
+        <result column="push_app_id"            property="pushAppId"/>
+        <result column="push_msg_type"          property="pushMsgType"/>
+        <result column="push_menu_id"           property="pushMenuId"/>
+        <result column="push_pop_img_use"       property="pushPopImgUse"/>
+        <result column="push_img_url"           property="pushImgUrl"/>
+        <result column="push_pop_big_img_use"   property="pushPopBigImgUse"/>
+        <result column="push_big_img_url"       property="pushBigImgUrl"/>
+        <result column="push_click_link"        property="pushClickLink"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertPushServiceInfo" parameterType="map">
+        INSERT INTO nvpushserviceinfo (
+            svc_type, svc_no, push_app_id
+          <if test="pushMsgType      != null and pushMsgType      != ''">, push_msg_type</if>
+          <if test="pushMenuId       != null and pushMenuId       != ''">, push_menu_id</if>
+          <if test="pushPopImgUse    != null and pushPopImgUse    != ''">, push_pop_img_use</if>
+          <if test="pushImgUrl       != null and pushImgUrl       != ''">, push_img_url</if>
+          <if test="pushPopBigImgUse != null and pushPopBigImgUse != ''">, push_pop_big_img_use</if>
+          <if test="pushBigImgUrl    != null and pushBigImgUrl    != ''">, push_big_img_url</if>
+          <if test="pushClickLink    != null and pushClickLink    != ''">, push_click_link</if>
+        ) VALUES (
+            #{svcType}, #{svcNo}, #{pushAppId}
+          <if test="pushMsgType      != null and pushMsgType      != ''">, #{pushMsgType, jdbcType=VARCHAR}</if>
+          <if test="pushMenuId       != null and pushMenuId       != ''">, #{pushMenuId, jdbcType=VARCHAR}</if>
+          <if test="pushPopImgUse    != null and pushPopImgUse    != ''">, #{pushPopImgUse}</if>
+          <if test="pushImgUrl       != null and pushImgUrl       != ''">, #{pushImgUrl, jdbcType=VARCHAR}</if>
+          <if test="pushPopBigImgUse != null and pushPopBigImgUse != ''">, #{pushPopBigImgUse}</if>
+          <if test="pushBigImgUrl    != null and pushBigImgUrl    != ''">, #{pushBigImgUrl, jdbcType=VARCHAR}</if>
+          <if test="pushClickLink    != null and pushClickLink    != ''">, #{pushClickLink, jdbcType=VARCHAR}</if>
+        )
+    </insert>
+
+    <insert id="copyPushServiceInfo" parameterType="map">
+        INSERT INTO nvpushserviceinfo (svc_type, svc_no, push_app_id, push_msg_type, push_pop_img_use, push_img_url, push_big_img_url, push_click_link, push_pop_big_img_use)
+        SELECT svc_type, #{newSvcNo} as svc_no, push_app_id, push_msg_type, push_pop_img_use, push_img_url, push_big_img_url, push_click_link, push_pop_big_img_use
+        FROM nvpushserviceinfo
+        WHERE svc_type = #{svcType}
+        AND svc_no = #{svcNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updatePushServiceInfo" parameterType="map">
+        UPDATE nvpushserviceinfo
+        SET
+            push_app_id = #{pushAppId}
+          <if test="pushMsgType      != null and pushMsgType      != ''">, push_msg_type = #{pushMsgType, jdbcType=VARCHAR}</if>
+          <if test="pushMenuId       != null"                           >, push_menu_id = #{pushMenuId, jdbcType=VARCHAR}</if>
+          <if test="pushPopImgUse    != null and pushPopImgUse    != ''">, push_pop_img_use = #{pushPopImgUse}</if>
+          <if test="pushImgUrl       != null"                           >, push_img_url = #{pushImgUrl, jdbcType=VARCHAR}</if>
+          <if test="pushPopBigImgUse != null and pushPopBigImgUse != ''">, push_pop_big_img_use = #{pushPopBigImgUse}</if>
+          <if test="pushBigImgUrl    != null"                           >, push_big_img_url = #{pushBigImgUrl, jdbcType=VARCHAR}</if>
+          <if test="pushClickLink    != null"                           >, push_click_link = #{pushClickLink, jdbcType=VARCHAR}</if>
+        WHERE svc_type = #{svcType}
+        AND svc_no = #{svcNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deletePushServiceInfoByPk" parameterType="map">
+        DELETE FROM nvpushserviceinfo
+        WHERE svc_type = #{svcType}
+        AND svc_no = #{svcNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectPushServiceInfo" parameterType="map" resultType="CaseInsensitiveMap">
+        SELECT svc_type, svc_no, push_app_id, push_msg_type, push_pop_img_use, push_img_url, push_big_img_url, push_click_link, push_pop_big_img_use, push_menu_id
+        FROM nvpushserviceinfo
+        WHERE svc_type = #{svcType}
+        AND svc_no = #{svcNo}
+    </select>
+
+</mapper>

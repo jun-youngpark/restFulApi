@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/decorators">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+        <pattern>*/color_picker.htm</pattern>
+        <pattern>/index.html</pattern>
+        <pattern>/admin/index.do</pattern>
+        <pattern>/admin/index_ex.do</pattern>
+        <pattern>*Popup*.do*</pattern>
+        <pattern>*Div.do*</pattern>
+        <pattern>/*include*</pattern>
+        <pattern>*/editor/*</pattern>
+        <pattern>*preview*.do*</pattern>
+        <pattern>*/watch/watch_*</pattern>
+        <pattern>*/watch/processStatus_*</pattern>
+        <pattern>*/watch/service*</pattern>
+        <pattern>*groupUser.do*</pattern>
+        <pattern>*smtpCodeList.do*</pattern>
+        <pattern>/template/template/*</pattern>
+        <pattern>*/dbclient/*</pattern>
+        <pattern>*/resend/*</pattern>
+        <pattern>/account/userList.do*</pattern>
+        <pattern>/account/deptRoleList.do*</pattern>
+        <pattern>/env/envJsonVaildator.do*</pattern>
+        <pattern>/ecare/ext_requestView.do*</pattern>
+        
+    </excludes>
+
+    <decorator name="target" page="target.jsp">
+        <pattern>/target/*</pattern>
+    </decorator>
+
+    <!-- decorator 태그안에 page의 경로는 web-app/decorators/main.jsp가 된다.-->
+    <decorator name="main" page="main.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <decorator name="watch" page="watch.jsp">
+        <pattern>/watch/*</pattern>
+    </decorator>
+
+    <decorator name="panel" page="panel.jsp"/>
+    <decorator name="blank" page="blank.jsp"/>
+</decorators>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareCancel">
+    <resultMap id="resultEcareCancel" type="EcareCancel">
+        <result property="canReqDtm"	column="CAN_REQ_DTM" />
+		<result property="canSeq"		column="CAN_SEQ" />
+		<result property="orgSeq"		column="ORG_SEQ" />
+		<result property="orgReqDt"		column="ORG_REQ_DT" />
+		<result property="ecareNo"		column="ECARE_NO" />
+		<result property="canFg"		column="CAN_FG" />
+		<result property="canDtm"		column="CAN_DTM" />
+		<result property="acceptDtm"	column="ACCEPT_DTM" />
+		<result property="rsltCd"		column="RSLT_CD" />
+		<result property="rsltMsg"		column="RSLT_MSG" />
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <sql id="requestTableWhere">
+        WHERE 
+        a.req_dt||a.req_tm BETWEEN #{searchQstartDt}||#{searchStartReqTm} AND #{searchQendDt}||#{searchEndReqTm}
+        <if test="searchWord != null and searchWord != ''">
+            AND a.receiver LIKE '%'||#{searchWord}||'%'
+        </if>
+        <if test="searchSeq != null and searchSeq != ''">
+            AND a.seq LIKE '%'||#{searchSeq}||'%'
+        </if>
+        <if test="searchColumn != null and searchColumn != ''">
+            AND a.ecare_no = #{searchColumn}
+        </if>
+        <if test="searchChannel != null and searchChannel != ''">
+            AND a.channel = #{searchChannel}
+        </if>
+        <if test="searchSendFg != null and searchSendFg != ''">
+             AND a.send_fg = #{searchSendFg}
+        </if>
+    </sql>
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertCancel" parameterType="map">
+        INSERT INTO NVCANCEL (CAN_REQ_DTM, CAN_SEQ, ORG_SEQ, ORG_REQ_DT, ECARE_NO)
+        VALUES (#{canReqDtm, jdbcType=VARCHAR}, #{canSeq, jdbcType=VARCHAR},#{orgSeq, jdbcType=VARCHAR}, #{orgReqDt, jdbcType=VARCHAR}, #{ecareNo, jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertMultiCancel" parameterType="map">
+        INSERT INTO nvcancel (can_req_dtm, can_seq, org_seq, org_req_dt, ecare_no)
+        SELECT
+		    TO_CHAR(SYSDATE, 'yyyymmddhh24miss') AS can_req_dtm ,
+		    ecare_no || TO_CHAR(SYSDATE, '_yyyymmddhh24missSSS') || ROW_NUMBER() OVER (ORDER BY req_dt) AS can_seq,
+		    seq AS org_seq,
+		    req_dt AS org_req_dt,
+		    ecare_no
+		FROM
+		    V_REALTIME_BATCH a 
+            <include refid="requestTableWhere"/>
+    </insert>
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectCancelList" parameterType="EcareCancel" resultMap="resultEcareCancel">
+    	SELECT * FROM (
+	    	SELECT
+	    		row_number() OVER(ORDER BY CAN_REQ_DTM DESC) rnum,
+	    		CAN_REQ_DTM, CAN_SEQ, ORG_SEQ, ORG_REQ_DT, ECARE_NO,
+	    		CAN_FG, CAN_DTM, ACCEPT_DTM, RSLT_CD, RSLT_MSG
+	    	FROM NVCANCEL A
+	    	WHERE 
+	   		<include refid="ecareCancelWhereQuery"/>
+	   		ORDER BY CAN_REQ_DTM DESC
+	   	) B
+   		WHERE rnum &gt;= ((#{nowPage} - 1) * #{listCountPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{listCountPerPage}
+    </select>
+    
+    <select id="selectCancelTotalCount" parameterType="EcareCancel" resultType="int">
+    	SELECT COUNT(*) AS CNT
+    	FROM NVCANCEL
+    	WHERE
+    	<include refid="ecareCancelWhereQuery"/>
+    </select>
+    
+    <sql id="ecareCancelWhereQuery">
+        CAN_REQ_DTM BETWEEN #{searchQstartDt, jdbcType=VARCHAR} AND #{searchQendDt, jdbcType=VARCHAR}
+   		<if test="ecareNo != 0">AND ECARE_NO = #{ecareNo, jdbcType=INTEGER}</if>
+   		<if test="orgSeq != '' and orgSeq != null">AND ORG_SEQ = #{orgSeq}</if>
+   		<if test="canFg != '' and canFg != null">AND CAN_FG = #{canFg}</if>
+   		<if test="rsltCd != '' and rsltCd != null">AND RSLT_CD = #{rsltCd}</if>
+    </sql>
+    
+    
+    <select id="selectRealInterface" parameterType="map" resultType="NrealtimeRequest">
+        SELECT
+            SEQ AS seq,
+            RESULT_SEQ AS resultSeq,
+            LIST_SEQ AS listSeq,
+            REQ_DT AS reqDt,
+            REQ_TM AS reqTm,
+            ECARE_NO AS ecareNo,
+            NVL(RESERVED_DATE,' ') AS reservedDate,
+            CHANNEL AS channel,
+            NVL(RECEIVER_ID,' ') AS receiverId,
+            NVL(RECEIVER_NM,' ') AS receiverNm,
+            NVL(RECEIVER,' ') AS receiver,
+            SEND_FG AS sendFg,
+            NVL(ERROR_MSG,' ') AS errorMsg
+        FROM NVREALTIMEACCEPT
+        WHERE 
+            SEQ=#{seq}
+            AND REQ_DT=#{reqDt}
+    </select>
+    
+    <select id="selectBatchInterface" parameterType="map" resultType="NrealtimeRequest">
+        SELECT
+            SEQ AS seq,
+            RESULT_SEQ AS resultSeq,
+            LIST_SEQ AS listSeq,
+            REQ_DT AS reqDt,
+            REQ_TM AS reqTm,
+            ECARE_NO AS ecareNo,
+            NVL(RESERVED_DATE,' ') AS reservedDate,
+            CHANNEL AS channel,
+            NVL(RECEIVER_ID,' ') AS receiverId,
+            NVL(RECEIVER_NM,' ') AS receiverNm,
+            NVL(RECEIVER,' ') AS receiver,
+            SEND_FG AS sendFg,
+            NVL(ERROR_MSG,' ') AS errorMsg
+        FROM NVBATCH
+        WHERE 
+            SEQ=#{seq}
+            AND REQ_DT=#{reqDt}
+    </select>
+        <resultMap id="resultEcareSendLog" type="EcareSendLog">
+        <result column="ecare_no"               property="ecareNo"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="list_seq"               property="listSeq"/>
+        <result column="customer_key"           property="customerKey"/>
+        <result column="record_seq"             property="recordSeq"/>
+        <result column="sid"                    property="sid"/>
+        <result column="customer_nm"            property="customerNm"/>
+        <result column="customer_email"         property="customerEmail"/>
+        <result column="send_dt"                property="sendDt"/>
+        <result column="send_tm"                property="sendTm"/>
+        <result column="end_dt"                 property="endDt"/>
+        <result column="end_tm"                 property="endTm"/>
+        <result column="error_cd"               property="errorCd"/>
+        <result column="send_domain"            property="sendDomain"/>
+        <result column="err_msg"                property="errMsg"/>
+<!--         <result column="slot1"                  property="slot1"/> -->
+<!--         <result column="slot2"                  property="slot2"/> -->
+<!--         <result column="resend_yn"              property="resendYn"/> -->
+<!--         <result column="req_dept_id"            property="reqDeptId"/> -->
+<!--         <result column="req_user_id"            property="reqUserId"/> -->
+<!--         <result column="message_key"            property="messageKey"/> -->
+<!--         <result column="seq"                    property="seq"/> -->
+<!--         <result column="srfidd"                 property="srfidd"/> -->
+        <result column="open_dt"                property="openDt"/>
+<!--         <result column="eai_send_fg"            property="eaiSendFg"/> -->
+<!--         <result column="sub_ecare_no"           property="subEcareNo"/> -->
+<!--         <result column="sub_result_seq"         property="subResultSeq"/> -->
+<!--         <result column="part_message"           property="partMessage"/> -->
+<!--         <result column="fail_back_channel"      property="failBackChannel"/> -->
+<!--         <result column="fail_back_result_cd"    property="failBackResultCd"/> -->
+<!--         <result column="fail_back_senddtm"      property="failBackSenddtm"/> -->
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+    <select id="selectEcareSendLogByPk" parameterType="map" resultMap="resultEcareSendLog">
+        SELECT *
+        FROM nvecaresendlog
+        WHERE ecare_no = #{ecareNo}
+        AND result_seq = #{resultSeq}
+        AND list_seq = #{listSeq}
+        AND customer_key = #{customerKey}
+        <if test="recordSeq != null and recordSeq != ''">
+            AND record_seq = #{recordSeq}
+        </if>
+    </select>
+</mapper>

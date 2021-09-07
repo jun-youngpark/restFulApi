@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Common">
+    <resultMap id="ajaxSearchResult" type="AjaxSearch">
+        <result column="searched_word"          property="searchedWord"/>
+    </resultMap>
+
+    <resultMap id="resultMailPreview" type="MailPreview">
+        <result column="segment_no"             property="segmentNo"/>
+        <result column="service_nm"             property="serviceNm"/>
+        <result column="user_id"                property="userId"/>
+        <result column="service_class"          property="serviceClass"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="retmail_receiver"       property="retmailReceiver"/>
+        <result column="sender_nm"              property="senderNm"/>
+        <result column="sender_email"           property="senderEmail"/>
+        <result column="sender_tel"             property="senderTel"/>
+        <result column="receiver_nm"            property="receiverNm"/>
+        <result column="retry_cnt"              property="retryCnt"/>
+        <result column="campaign_type"          property="campaignType"/>
+        <result column="sending_mode"           property="sendingMode"/>
+        <result column="sendstart_dt"           property="sendStartDt"/>
+        <result column="sendstart_tm"           property="sendStartTm"/>
+        <result column="service_type"           property="serviceType"/>
+        <result column="sub_type"               property="subType"/>
+        <result column="handler_type"           property="handlerType"/>
+        <result column="survey_no"              property="surveyNo"/>
+        <result column="resend_ecare_no"        property="resendEcareNo" />
+        <result column="campaign_preface"       property="servicePreface" />
+        <result column="campaign_preface_ab"    property="servicePrefaceAb" />
+        <result column="relation_type"          property="relationType"/>
+        <result column="depth_no"               property="depthNo"/>
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="appsource"              property="appsource" />
+        <result column="seg"                    property="seg"/>
+        <result column="template"               property="template"/>
+        <result column="ecare_no"               property="serviceNo"/>
+        <result column="cover_ver"              property="coverVer"/>
+        <result column="tmpl_ver"               property="templateVer"/>
+        <result column="preface_ver"            property="prefaceVer"/>
+        <result column="mail_type"              property="mailType"/>
+    </resultMap>
+
+    <resultMap id="resultMessage" type="Message">
+        <result column="campaign_preface"       property="subject"/>
+        <result column="sender_tel"             property="callBack"/>
+        <result column="kakao_sender_key"       property="senderKey"/>
+        <result column="kakao_tmpl_cd"          property="tmplCd"/>
+        <result column="failback_send_yn"       property="smsSndYn"/>
+        <result column="failback_subject"       property="failbackSubject"/>
+        <result column="kakao_image_no"         property="fileName1"/>
+        <result column="campaign_class"         property="adFlag"/>
+        <result column="channel_type"           property="channel"/>
+        <result column="ecare_preface"          property="subject"/>
+        <result column="ecare_class"            property="adFlag"/>
+        <result column="mms_seq"                property="mmsSeq"/>
+        <result column="list_seq"               property="listSeq"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignReportError" type="CampaignReportError">
+        <result column="error_gubun"            property="errorGubun"/>
+        <result column="error_cd"               property="errorCd"/>
+        <result column="error_msg"              property="errorMsg"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="gid"                    property="gid"/>
+        <result column="rnum"                   property="rnum"/>
+    </resultMap>
+
+    <resultMap id="resultLstResend" type="LstResend">
+        <result column="customer_nm"            property="customerNm"/>
+        <result column="customer_email"         property="customerEmail"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="send_dt"                property="sendDt"/>
+        <result column="send_tm"                property="sendTm"/>
+        <result column="error_cd"               property="errorCd"/>
+        <result column="err_msg"                property="errMsg"/>
+        <result column="err_msg_kor"            property="errMsgKor"/>
+        <result column="service_no"             property="serviceNo"/>
+        <result column="service_nm"             property="serviceNm"/>
+        <result column="seq"                    property="seq"/>
+        <result column="customer_key"           property="customerKey"/>
+        <result column="slot1"                  property="slot1"/>
+        <result column="slot2"                  property="slot2"/>
+        <result column="sub_type"               property="subType"/>
+        <result column="resend_sts"             property="resendSts"/>
+        <result column="super_seq"              property="superSeq"/>
+        <result column="list_seq"               property="listSeq"/>
+        <result column="resend_reason"          property="resendReason"/>
+        <result column="ab_test_type"           property="abTestType"/>
+        <result column="file_preview_path"      property="filePreviewPath"/>
+        <result column="tmpl_cd"                property="tmplCd"/>
+    </resultMap>
+
+    <resultMap id="resultRptSendResult" type="RptSendResult">
+        <result column="report_dt"              property="reportDt"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="fail_cnt"               property="failCnt"/>
+        <result column="soft_bounce_cnt"        property="softBounceCnt"/>
+        <result column="hard_bounce_cnt"        property="hardBounceCnt"/>
+        <result column="returnmail_cnt"         property="returnMailCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="link_cnt"               property="linkCnt"/>
+        <result column="sms_success_cnt"        property="smsSuccessCnt"/>
+        <result column="sms_fail_cnt"           property="smsFailCnt"/>
+        <result column="lms_success_cnt"        property="lmsSuccessCnt"/>
+        <result column="lms_fail_cnt"           property="lmsFailCnt"/>
+        <result column="start_dt"               property="sendStartDt"/>
+        <result column="start_tm"               property="sendStartTm"/>
+        <result column="end_dt"                 property="sendEndDt"/>
+        <result column="end_tm"                 property="sendEndTm"/>
+        <result column="resend_sts"             property="resendSts"/>
+    </resultMap>
+
+    <resultMap id="resultTemplate" type="Template">
+        <result column="campaign_no"    property="campaignNo"/>
+        <result column="seg"            property="seg"/>
+        <result column="template"       property="template"/>
+        <result column="kakao_buttons"  property="kakaoButtons"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="seg_no"         property="segNo"/>
+        <result column="image_url"      property="imageUrl"/>
+        <result column="ecare_no"       property="no"/>
+        <result column="conts_no"       property="contsNo"/>
+        <result column="kakao_quick_replies"       property="kakaoQuickReplies"/>
+    </resultMap>
+
+    <resultMap id="resultHistory" type="History">
+        <result column="ecare_no"       property="ecareNo"/>
+        <result column="seg"            property="seg"/>
+        <result column="tmpl_ver"       property="tmplVer"/>
+        <result column="user_id"        property="userId"/>
+        <result column="lastupdate_dt"  property="lastupdateDt"/>
+        <result column="lastupdate_tm"  property="lastupdateTm"/>
+        <result column="template"       property="template"/>
+        <result column="history_msg"    property="historyMsg"/>
+        <result column="kakao_buttons"  property="kakaoButtons"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="handler_ver"    property="handlerVer"/>
+        <result column="type"           property="type"/>
+        <result column="appsource"      property="appsource"/>
+    </resultMap>
+
+    <resultMap id="resultEcareContsHistory" type="EcareContsHistory">
+        <result column="l_rank"         property="no"/>
+        <result column="ecare_no"       property="ecareNo"/>
+        <result column="ecare_nm"       property="ecareNm"/>
+        <result column="seg"            property="seg"/>
+        <result column="template"       property="template"/>
+        <result column="tmpl_ver"       property="tmplVer"/>
+        <result column="name_kor"       property="userNm"/>
+        <result column="lastupdate_dt"  property="lastupdateDt"/>
+        <result column="lastupdate_tm"  property="lastupdateTm"/>
+        <result column="handler_ver"    property="handlerVer"/>
+        <result column="appsource"      property="source"/>
+        <result column="name_kor"       property="userNm"/>
+        <result column="channel_type"   property="channelType"/>
+        <result column="history_msg"    property="historyMsg"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectCount" parameterType="string" resultType="int">
+        ${value}
+    </select>
+
+    <select id="scenarioNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT scenario_nm as searched_word
+        FROM nvscenario
+        WHERE upper(scenario_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="segmentNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT segment_nm as searched_word
+        FROM nvsegment
+        WHERE upper(segment_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="ecareScenarioNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT scenario_nm as searched_word
+        FROM nvecarescenario
+        WHERE upper(scenario_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="scenarioTagNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT tag_nm as searched_word
+        FROM nvcamptag
+        WHERE upper(tag_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="ecareScenarioTagNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT tag_nm as searched_word
+        FROM nvecaremsgtag
+        WHERE upper(tag_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="segmentTagNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT tag_nm as searched_word
+        FROM nvsegmenttag
+        WHERE upper(tag_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="contentsNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT conts_nm as searched_word
+        FROM nvcontents
+        WHERE upper(conts_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="contentsTagNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT tag_nm as searched_word
+        FROM nvcontentstag
+        WHERE upper(tag_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="mobileTagSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT tag_nm as searched_word
+        FROM nvmobilecontentstag
+        WHERE upper(tag_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="mobileNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT conts_nm as searched_word
+        FROM nvmobilecontents
+        WHERE upper(conts_nm) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="campaignPrefaceNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT campaign_preface as searched_word
+        FROM nvcampaign
+        WHERE upper(campaign_preface) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="ecarePrefaceNmSearch" parameterType="AjaxSearch" resultMap="ajaxSearchResult">
+        SELECT ecare_preface as searched_word
+        FROM nvecaremsg
+        WHERE upper(ecare_preface) LIKE '%' + upper(#{q}) + '%'
+    </select>
+
+    <select id="selectHandlerUseServiceList" parameterType="map" resultType="CaseInsensitiveMap">
+        SELECT ecare_no as service_no, template_type, handler_seq, ecare_preface as service_preface, (CASE WHEN service_type = 'P' THEN 'P' ELSE 'A' END) as msg_type
+        FROM nvecaremsg
+        WHERE handler_seq = #{handlerSeq}
+        AND ecare_sts NOT IN ('E', 'O')
+
+        UNION ALL
+        SELECT campaign_no as service_no, template_type, handler_seq, campaign_preface as service_preface, 'C' as msg_type
+        FROM nvcampaign
+        WHERE handler_seq = #{handlerSeq}
+        AND campaign_sts NOT IN ('E', 'O')
+    </select>
+</mapper>

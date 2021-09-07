@@ -1,0 +1,118 @@
+09-02 11:02:21.150 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: java.util.HashMap cannot be cast to com.mnwise.wiseu.web.rest.dto.DataMap 데이터:{"campaignNo":"4"}
+09-02 11:37:53.073 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.dto.CampaignDto$get cannot be cast to com.mnwise.wiseu.web.rest.model.campaign.Campaign 데이터:{"campaignNo":"4"}
+09-02 11:40:29.571 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.dto.CampaignDto$get cannot be cast to com.mnwise.wiseu.web.rest.dto.CampaignDto 데이터:{"campaignNo":"4"}
+09-02 12:12:15.910 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.TooManyResultsException: Expected one result (or null) to be returned by selectOne(), but found: 2 데이터:{"campaignNo":"4"}
+09-02 12:14:04.376 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.IllegalArgumentException: Cannot deserialize instance of `net.sf.json.JSONObject` out of START_ARRAY token
+ at [Source: UNKNOWN; line: -1, column: -1] 데이터:{"campaignNo":"4"}
+09-02 12:18:37.331 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: null object; nested exception is com.fasterxml.jackson.databind.JsonMappingException: null object (through reference chain: com.mnwise.wiseu.web.rest.dto.ResultDto["data"]->net.sf.json.JSONObject["omniList"]->net.sf.json.JSONArray[0]->net.sf.json.JSONObject["createDt"]) 데이터:{"campaignNo":"4"}
+09-02 12:36:35.009 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: null object; nested exception is com.fasterxml.jackson.databind.JsonMappingException: null object (through reference chain: com.mnwise.wiseu.web.rest.dto.ResultDto["data"]->net.sf.json.JSONObject["omniList"]->net.sf.json.JSONArray[0]->net.sf.json.JSONObject["sendStartDtm"]) 데이터:{"campaignNo":"4"}
+09-02 12:38:47.673 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: null object; nested exception is com.fasterxml.jackson.databind.JsonMappingException: null object (through reference chain: com.mnwise.wiseu.web.rest.dto.ResultDto["data"]->net.sf.json.JSONObject["omniList"]->net.sf.json.JSONArray[0]->net.sf.json.JSONObject["sendStartDtm"]) 데이터:{"campaignNo":"4"}
+09-02 12:43:09.401 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-02 12:43:16.852 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+### The error may involve mapper.Campaign.updateCampaign-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE nvcampaign         SET           lastupdate_dt = ?          , lastupdate_tm = ?                                                  , segment_no = ?                                    , campaign_nm = ?                                                   , target_cnt = ?                                      , retry_cnt = ?                                                                                                                        , kakao_image_no = ?                                         , failback_send_yn = ?                                                        , failback_subject = ''                                                                                     WHERE campaign_no = ?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+; SQL []; ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+ 데이터:{"campaignNo":4,"campaignNm":"캠페인 명 ","template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"}
+09-02 12:46:48.485 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+### The error may involve mapper.Campaign.updateCampaign-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE nvcampaign         SET           lastupdate_dt = ?          , lastupdate_tm = ?                                                  , segment_no = ?                                    , campaign_nm = ?                                                   , target_cnt = ?                                      , retry_cnt = ?                                                                                                                        , kakao_image_no = ?                                         , failback_send_yn = ?                                                        , failback_subject = ''                                                                                     WHERE campaign_no = ?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+; SQL []; ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+ 데이터:{"campaignNo":4,"campaignNm":"캠페인 명 ","template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"}
+09-02 12:48:17.624 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.Exception: Campaign status is already (P) 데이터:{"campaignNo":"3","campaignSts":"P","sendStartDt":"20211130","sendStartTm":"120000"}
+09-02 12:48:20.054 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.Exception: Campaign status is already (P) 데이터:{"campaignNo":"3","campaignSts":"P","sendStartDt":"20211130","sendStartTm":"120000"}
+09-02 12:49:26.068 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+### The error may involve mapper.Campaign.updateCampaign-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE nvcampaign         SET           lastupdate_dt = ?          , lastupdate_tm = ?                                                  , segment_no = ?                                    , campaign_nm = ?                                                   , target_cnt = ?                                      , retry_cnt = ?                                                                                                                        , kakao_image_no = ?                                         , failback_send_yn = ?                                                        , failback_subject = ''                                                                                     WHERE campaign_no = ?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+; SQL []; ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+ 데이터:{"campaignNo":4,"campaignNm":"캠페인 명 ","template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"}
+09-02 12:49:39.544 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+### The error may involve mapper.Campaign.updateCampaign-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE nvcampaign         SET           lastupdate_dt = ?          , lastupdate_tm = ?                                                  , segment_no = ?                                    , campaign_nm = ?                                                   , target_cnt = ?                                      , retry_cnt = ?                                                                                                                        , kakao_image_no = ?                                         , failback_send_yn = ?                                                        , failback_subject = ''                                                                                     WHERE campaign_no = ?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+; SQL []; ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+ 데이터:{"campaignNo":4,"campaignNm":"캠페인 명 ","template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"}
+09-02 12:49:42.507 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+### The error may involve mapper.Campaign.updateCampaign-Inline
+### The error occurred while setting parameters
+### SQL: UPDATE nvcampaign         SET           lastupdate_dt = ?          , lastupdate_tm = ?                                                  , segment_no = ?                                    , campaign_nm = ?                                                   , target_cnt = ?                                      , retry_cnt = ?                                                                                                                        , kakao_image_no = ?                                         , failback_send_yn = ?                                                        , failback_subject = ''                                                                                     WHERE campaign_no = ?
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+
+; SQL []; ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-02291: 무결성 제약조건(WISEU7.FK_SEGMENT_CAMPAIGN)이 위배되었습니다- 부모 키가 없습니다
+ 데이터:{"campaignNo":4,"campaignNm":"캠페인 명 ","template":"<html><body> 수정된 템플릿 입니다. 00</body></html>"}
+09-02 15:18:33.318 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 열의 정의가 애매합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]
+### The error may involve mapper.Campaign.selectCampaign-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  campaign_no,segment_no,campaign_nm,campaign_preface,campaign_sts     ,create_dt,create_tm,sendstart_dt,sendstart_tm,target_cnt,sender_nm,sender_email     ,sender_tel,channel_type,scenario_no,divide_yn,divide_interval,divide_cnt     ,kakao_sender_key,kakao_tmpl_cd,kakao_image_no,failback_send_yn,failback_subject,use_yn     ,relation_type,relation_tree,depth_no     , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = a.campaign_sts AND lang = 'ko') campaign_sts_nm     , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = a.relation_type AND lang = 'ko') relation_type_nm           ,b.template ,b.kakao_buttons         FROM nvcampaign a, nvtemplate b         WHERE campaign_no = ?         AND  a.campaign_no = b.campaign_no
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 열의 정의가 애매합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: 열의 정의가 애매합니다
+ 데이터:{"campaignNo":"4"}
+09-02 15:18:57.566 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 열의 정의가 애매합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]
+### The error may involve mapper.Campaign.selectCampaign-Inline
+### The error occurred while setting parameters
+### SQL: SELECT  campaign_no,segment_no,campaign_nm,campaign_preface,campaign_sts     ,create_dt,create_tm,sendstart_dt,sendstart_tm,target_cnt,sender_nm,sender_email     ,sender_tel,channel_type,scenario_no,divide_yn,divide_interval,divide_cnt     ,kakao_sender_key,kakao_tmpl_cd,kakao_image_no,failback_send_yn,failback_subject,use_yn     ,relation_type,relation_tree,depth_no     , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = a.campaign_sts AND lang = 'ko') campaign_sts_nm     , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = a.relation_type AND lang = 'ko') relation_type_nm           ,b.template ,b.kakao_buttons         FROM nvcampaign a, nvtemplate b         WHERE a.campaign_no = ?         AND  a.campaign_no = b.campaign_no
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00918: 열의 정의가 애매합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00918: 열의 정의가 애매합니다
+ 데이터:{"campaignNo":"4"}
+09-02 15:54:44.305 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SENDSTART_TM": 부적합한 식별자
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]
+### The error may involve mapper.Campaign.selectCampaignList-Inline
+### The error occurred while setting parameters
+### SQL: SELECT *   FROM(    SELECT     row_number() OVER(ORDER BY a.campaign_no DESC) rnum,     a.campaign_no,segment_no,campaign_nm,campaign_preface,campaign_sts     ,create_dt,create_tm,sendstart_dt,sendstart_tm,target_cnt,sender_nm,sender_email     ,sender_tel,channel_type,scenario_no,divide_yn,divide_interval,divide_cnt     ,kakao_sender_key,kakao_image_no,failback_send_yn,failback_subject,use_yn     ,relation_type,relation_tree,depth_no     ,concat(c.sendstart_dt, c.sendstart_tm) as sendstart_dtm     , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = a.campaign_sts AND lang = 'ko') campaign_sts_nm     , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = a.relation_type AND lang = 'ko') relation_type_nm           ,'' as template ,'' as kakao_buttons    FROM NVCAMPAIGN a           WHERE a.use_yn = 'Y'                              AND a.create_dt >= ?           AND a.create_dt <= ?                               ORDER BY campaign_no DESC    )   WHERE rnum >= ((? - 1) * ? + 1)         AND rnum <= ? * ?
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SENDSTART_TM": 부적합한 식별자
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00904: "C"."SENDSTART_TM": 부적합한 식별자
+ 데이터:{"searchStartDt":"20210801","searchEndDt":"20210809","limit":30,"nowPage":1}
+09-02 16:09:57.989 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.NullPointerException 데이터:{"searchStartDt":"20200801","searchEndDt":"20210909","limit":30,"nowPage":1}
+09-02 16:10:56.185 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.NullPointerException 데이터:{"searchStartDt":"20200801","searchEndDt":"20210909","limit":30,"nowPage":1}
+09-02 16:13:52.729 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.NullPointerException 데이터:{"searchStartDt":"20200801","searchEndDt":"20210909","limit":30,"nowPage":1}
+09-02 16:16:23.244 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.web.v1.CampaignController cannot be cast to org.aspectj.lang.reflect.MethodSignature 데이터:{"searchStartDt":"20200801","searchEndDt":"20210909","limit":30,"nowPage":1}
+09-02 16:17:29.939 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.web.v1.CampaignController cannot be cast to org.aspectj.lang.reflect.MethodSignature 데이터:{"searchStartDt":"20200801","searchEndDt":"20210909","limit":30,"nowPage":1}
+09-02 16:18:45.026 http-nio-8084-exec-1 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.NullPointerException 데이터:{"ecareNo":"18","ecareNm":"간단 LMS 문자 발송","senderTel":"02-855-4210","reqUserId":"박준영","reqDeptId":"IT팀"}
+09-02 16:20:34.620 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.Exception: 설정파일 on/off 기능 누락 데이터:{"ecareNo":"18","ecareNm":"간단 LMS 문자 발송","senderTel":"02-855-4210","reqUserId":"박준영","reqDeptId":"IT팀"}

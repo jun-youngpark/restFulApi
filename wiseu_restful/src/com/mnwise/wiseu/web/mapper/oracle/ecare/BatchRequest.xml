@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BatchRequest">
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertBatchRequest" parameterType="BatchRequest">
+      	INSERT INTO NVBATCHREQUEST
+      	(
+	      	batch_seq,
+	      	ecare_no,
+	      	svc_id,
+	      	datCnt,
+	      	file_path
+      	)
+		VALUES
+		(
+			 #{batchSeq,jdbcType=VARCHAR}
+			,#{ecareNo,jdbcType=INTEGER }
+			,#{svcId  ,jdbcType=VARCHAR}
+			,#{datCnt}
+			,#{filePath,jdbcType=VARCHAR}
+		)
+    </insert>
+
+</mapper>

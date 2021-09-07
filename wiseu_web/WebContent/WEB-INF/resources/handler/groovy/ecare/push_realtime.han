@@ -1,0 +1,61 @@
+import com.mnwise.ASE.pscript.Message;
+import com.mnwise.ASE.agent.util.ExceptionLogger;
+
+import com.mnwise.ASE.agent.pushagent.PushData;
+import com.mnwise.ASE.agent.pushagent.PushAgent;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.mnwise.common.util.Util;
+import com.mnwise.common.util.DateUtil;
+
+PushAgent pushAgent = new PushAgent(context);
+Message message = new Message(context);
+
+message.prepareGroovyTemplate();
+message.prepareGroovyTemplate("POPUP", context.get("_TEMPLATE_POPUP"));
+
+Date dt = new Date();
+DateUtil term = new DateUtil();
+SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmmss");
+addterm = term.addTime(dt,"7","00","00","00");
+context.put("_START_DATE", time.format(dt));
+context.put("_END_DATE", time.format(addterm));
+
+context.put("record", "TCP");
+
+String userId = context.get("IUSERID");
+String userName = context.get("INAME");
+String phone = context.get("IPHONE");
+
+ExceptionLogger exlogger = new ExceptionLogger(context);
+
+PushData pushData = null;
+
+try {
+    pushData = new PushData();
+
+    // set push key
+    pushData.setPushSeq(String.valueOf(Util.getResultSeq()));
+
+    // push data setting
+    pushData.setRcpt(phone, userId, userName);
+    // pushData.setTitle(context.get("_SERVICE_PREFACE"));
+    // PUSH 솔루션 사용자 정보.
+    pushData.setRequestInfo("adminGrp","admin");
+
+    // set content.
+    pushData.setContent(message.execGroovyTemplate());
+    pushData.setPopupContent(message.execGroovyTemplate("POPUP"));
+
+    pushAgent.send(pushData);
+} catch(Exception e) {
+    exlogger.write("PUSH REALTIME ERROR", e);
+    e.printStackTrace();
+} finally {
+    pushData = null;
+}
+
+exlogger.close();
+pushAgent.close();

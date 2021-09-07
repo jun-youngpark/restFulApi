@@ -1,0 +1,53 @@
+import com.mnwise.ASE.agent.mailagent.MailAgent5
+import com.mnwise.ASE.agent.mailagent.MailBody
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MailAgent5 mailagent = new MailAgent5(context)
+mailagent.setRetry(context.get("_RETRY_CNT"))
+mailagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+// 캠페인에서 사용 기능 파악 필요
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _EMAIL_FIELD_SEQ = context.getInt("_EMAIL_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+String errMsg= "";
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+while (target.next()) {
+  try {
+    mailagent.setMailFrom(context.get("_RETMAIL_RECEIVER"))
+    context.put("record", target.getRecord())
+    MailBody body = new MailBody(context)
+    body.setEncodingType("base64")
+    body.setCharset("euc-kr")
+
+    body.setSubject(context.get("_SERVICE_PREFACE", target))
+
+    body.setFrom(context.get("_SENDER_NM"), context.get("_SENDER_EMAIL"))
+    body.setTo(target.getString(_NAME_FIELD_SEQ), target.getString(_EMAIL_FIELD_SEQ))
+    mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0")
+    String msg = message.execGroovyTemplate()
+    body.setContent("text/html", msg)
+    body.makeHeader()
+    body.makeBody()
+    mailagent.send(body)
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+   }
+  }
+}
+
+exlogger.close()
+target.close()
+mailagent.close()

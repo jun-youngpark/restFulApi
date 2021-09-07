@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Receipt">
+    <!--<resultMap id="resultReceipt" type="Receipt">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="customer_id"            property="customerId"/>
+        <result column="list_seq"               property="listSeq"/>
+        <result column="open_dt"                property="openDt"/>
+        <result column="open_tm"                property="openTm"/>
+        <result column="record_seq"             property="recordSeq"/>
+        <result column="customer_nm"            property="customerNm"/>
+        <result column="customer_email"         property="customerEmail"/>
+        <result column="reading_dt"             property="readingDt"/>
+        <result column="reading_tm"             property="readingTm"/>
+        <result column="reading_duration"       property="readingDuration"/>
+        <result column="valid_cnt"              property="validCnt"/>
+        <result column="client_info"            property="clientInfo"/>
+        <result column="mobile_yn"              property="mobileYn"/>
+        <result column="ab_type"                property="abType"/>
+        <result column="log_send_fg"            property="logSendFg"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectPushReceiptCount" parameterType="map" resultType="CaseInsensitiveMap">
+        SELECT coalesce(sum(Ios_receipt),0) ios_receipt, coalesce(sum(and_receipt),0) and_receipt
+        FROM (
+            SELECT
+                CASE WHEN client_info ='IOS' THEN 1 ELSE 0 END as ios_receipt
+              , CASE WHEN client_info ='AND' THEN 1 ELSE 0 END as and_receipt
+            FROM nvreceipt b
+            WHERE campaign_no = #{campaignNo}
+            AND EXISTS (
+                SELECT 0
+                FROM nvsendlog a
+                WHERE a.campaign_no = b.campaign_no
+                AND a.result_seq = b.result_seq
+                AND a.list_seq = b.list_seq
+                AND a.customer_key = b.customer_id
+                <if test="start_dt != null and start_dt != ''">
+                AND a.send_dt BETWEEN #{start_dt} AND #{end_dt}
+                </if>
+            )
+        ) c
+    </select>
+
+    <select id="getCampaignSummaryReceive" parameterType="int" resultMap="mapper.SendResult.resultCampaignReport">
+        SELECT
+            a.scenario_no, b.campaign_no, coalesce(sum(d.open_cnt),0) open_cnt, coalesce(sum(d.duration_cnt),0) duration_cnt
+          , coalesce(sum(d.duplication_cnt),0) duplication_cnt, coalesce(sum(d.mobile_cnt),0) mobile_cnt
+        FROM nvscenario a, nvcampaign b, nvsendresult c, (
+            SELECT
+                campaign_no, list_seq, sum(open_fg) open_cnt, sum(duplication_fg) duplication_cnt, sum(mobile_fg) mobile_cnt, sum(duration_fg) duration_cnt
+            FROM (
+                SELECT
+                    campaign_no, customer_id, list_seq
+                  , CASE WHEN duplication_fg = 0 THEN 0 ELSE 1 END open_fg
+                  , CASE WHEN duplication_fg = 1 THEN 0 ELSE 1 END duplication_fg
+                  , CASE WHEN mobile_fg = 0 THEN 0 ELSE 1 END mobile_fg
+                  , CASE WHEN duration_fg = 0 THEN 0 ELSE 1 END duration_fg
+                FROM (
+                    SELECT
+                        campaign_no, customer_id, list_seq, count(customer_id) duplication_fg
+                      , count(CASE WHEN mobile_yn = 'Y' THEN 1 ELSE NULL END) mobile_fg
+                      , count(CASE WHEN reading_duration &gt;= 10 THEN 1 ELSE NULL END) duration_fg
+                    FROM nvreceipt
+                    WHERE campaign_no = #{campaignNo}
+                    GROUP BY campaign_no, customer_id, list_seq
+                ) x
+            ) y
+            GROUP BY campaign_no, list_seq
+        ) d
+        WHERE a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND b.campaign_no = d.campaign_no
+        AND b.campaign_no = #{campaignNo}
+        AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+        GROUP BY a.scenario_no, b.campaign_no
+    </select>
+
+    <select id="getCampaignReportAbRealOpenCnt" parameterType="int" resultType="int">
+        SELECT count(ab_type)
+        FROM (
+            SELECT customer_id, ab_type
+            FROM nvreceipt
+            WHERE campaign_no = #{campaignNo}
+            AND ab_type IN ('RA','RB')
+            GROUP BY customer_id, ab_type
+        ) a
+        GROUP BY ab_type
+    </select>
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.KakaoProfile">
+    <resultMap id="resultKakaoProfile" type="KakaoProfile">
+        <result column="user_id"            property="userId"/>
+        <result column="kakao_sender_key"   property="kakaoSenderKey"/>
+        <result column="kakao_yellow_id"    property="kakaoYellowId"/>
+        <result column="last_sync_dtm"      property="lastSyncDtm"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertKakaoProfile" parameterType="KakaoProfile">
+        INSERT INTO nvkakaoprofile (user_id, kakao_sender_key, kakao_yellow_id, last_sync_dtm)
+        VALUES (#{userId}, #{kakaoSenderKey}, #{kakaoYellowId}, #{lastSyncDtm, jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 플러스친구ID 권한을 추가한다. -->
+    <insert id="insertUserKakaoProfile" parameterType="map">
+        INSERT INTO nvkakaoprofile (user_id, kakao_sender_key, kakao_yellow_id)
+        VALUES (#{userId}, #{kakaoSenderKey}, (SELECT kakao_yellow_id FROM nvkakaoprofile WHERE user_id = #{masterId} AND kakao_sender_key = #{kakaoSenderKey}))
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateKakaoProfileByPk" parameterType="map">
+        UPDATE nvkakaoprofile
+        SET
+            kakao_yellow_id = #{kakaoYellowId}
+          , last_sync_dtm = #{lastSyncDtm, jdbcType=VARCHAR}
+        WHERE user_id = #{userId}
+        AND kakao_sender_key = #{kakaoSenderKey}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteKakaoProfileByPk" parameterType="map">
+        DELETE FROM nvkakaoprofile
+        WHERE user_id = #{userId}
+        AND kakao_sender_key = #{kakaoSenderKey}
+    </delete>
+
+    <!-- 유저의 플러스친구ID 권한을 삭제한다. -->
+    <delete id="deleteUserKakaoProfile" parameterType="string">
+        DELETE FROM nvkakaoprofile
+        WHERE user_id = #{userId}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectKakaoProfileByPk" parameterType="map" resultMap="resultKakaoProfile">
+        SELECT user_id, kakao_sender_key, kakao_yellow_id, last_sync_dtm
+        FROM nvkakaoprofile
+        WHERE user_id = #{userId}
+        AND kakao_sender_key = #{kakaoSenderKey}
+    </select>
+
+    <select id="selectKakaoProfileList" parameterType="string" resultMap="resultKakaoProfile">
+        SELECT user_id, kakao_sender_key, kakao_yellow_id, last_sync_dtm
+        FROM nvkakaoprofile
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- User의 발신프로필키 리스트를 가져온다. -->
+    <select id="getUserKakaoSenderKeyList" parameterType="string" resultType="CaseInsensitiveMap">
+        SELECT user_id, kakao_sender_key, kakao_yellow_id, last_sync_dtm
+        FROM nvkakaoprofile
+        WHERE user_id = #{userId}
+    </select>
+
+     <!-- 채널 ID를 통해 발신프로필키를 가져온다. -->
+    <select id="selectKakaoProfileByYellowId" parameterType="map" resultMap="resultKakaoProfile">
+        SELECT user_id, kakao_sender_key, kakao_yellow_id, last_sync_dtm
+        FROM nvkakaoprofile
+        WHERE kakao_yellow_id = #{kakaoYellowId}
+        AND    user_id = #{userId}
+    </select>
+
+</mapper>

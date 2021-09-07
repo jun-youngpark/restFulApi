@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MultipartFile">
+    <resultMap id="resultMultipartFile" type="MultipartFile">
+        <result column="campaign_no"    property="no"/>
+        <result column="seq"            property="seq"/>
+        <result column="file_alias"     property="fileAlias"/>
+        <result column="file_path"      property="filePath"/>
+        <result column="file_size"      property="fileSize"/>
+        <result column="file_name"      property="fileName"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="ecare_no"       property="no"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertMultipartFile" parameterType="MultipartFile">
+        INSERT INTO nvmultipartfile (campaign_no, seq, file_alias, file_path, file_size, file_name)
+        VALUES (#{no}, #{seq}, #{fileAlias}, #{filePath}, #{fileSize}, #{fileName})
+    </insert>
+
+    <insert id="copyMultipartFile" parameterType="Campaign">
+        INSERT INTO nvmultipartfile (campaign_no, seq, file_alias, file_path, file_size, file_name)
+        SELECT #{newCampaignNo}, seq, file_alias, file_path, file_size, file_name
+        FROM nvmultipartfile
+        WHERE campaign_no = #{campaignNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEditorCampaignMultipartFile" parameterType="MultipartFile">
+        DELETE FROM nvmultipartfile
+        WHERE campaign_no = #{no}
+        AND file_alias = #{fileAlias}
+    </delete>
+
+    <delete id="deleteMultipartFileAll" parameterType="Scenario">
+        DELETE FROM nvmultipartfile
+        <if test="campaignVo.campaignNoArray != null">
+        WHERE campaign_no IN (
+            <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+                #{campaignNo}
+            </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEditorCampaignMultipartFile" parameterType="int" resultMap="resultMultipartFile">
+        SELECT file_alias, file_path, file_size, file_name
+        FROM nvmultipartfile
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectEditorCampaignMultipartFileOne" parameterType="Multipartfile" resultMap="resultMultipartFile">
+        SELECT file_alias, file_path, file_size, file_name
+        FROM nvmultipartfile
+        WHERE campaign_no = #{no}
+        AND file_alias = #{fileAlias}
+    </select>
+
+    <select id="selectEditorCampaignMultipartFileMax" resultType="int">
+        SELECT coalesce(max(seq), 0) + 1
+        FROM nvmultipartfile
+    </select>
+
+</mapper>

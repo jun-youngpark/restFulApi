@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Segment">
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSegment" parameterType="Segment">
+        INSERT INTO nvsegment (segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter, lastupdate_dt, segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, share_yn, active_yn, category_cd, segment_sts, tag_no, psegment_no, plink_seq, seg_type, testquery, updatequery)
+        VALUES (#{segmentNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{segmentNm, jdbcType=VARCHAR}, #{dbinfoSeq}, #{segmentDesc, jdbcType=VARCHAR}, #{sqlHead, jdbcType=VARCHAR}, #{sqlTail, jdbcType=VARCHAR}, #{sqlBody , jdbcType=VARCHAR}, #{sqlfilter, jdbcType=VARCHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{segmentSize, jdbcType=VARCHAR}, #{crtGrpCd, jdbcType=VARCHAR}, #{segmentType, jdbcType=CHAR}, #{fileToDbYn, jdbcType=CHAR}, #{editorId, jdbcType=VARCHAR}, #{shareYn, jdbcType=CHAR}, #{activeYn, jdbcType=CHAR}, #{categoryCd, jdbcType=VARCHAR}, #{segmentSts, jdbcType=CHAR}, #{tagNo}, #{psegmentNo}, #{plinkSeq, jdbcType=VARCHAR}, #{segType, jdbcType=CHAR}, #{testQuery, jdbcType=VARCHAR}, #{updateQuery, jdbcType=VARCHAR})
+    </insert>
+
+    <resultMap id="resultSegment" type="Segment">
+        <result column="segment_no"         property="segmentNo"/>
+        <result column="user_id"            property="userId"/>
+        <result column="grp_cd"             property="grpCd"/>
+        <result column="segment_nm"         property="segmentNm"/>
+        <result column="dbinfo_seq"         property="dbinfoSeq"/>
+        <result column="segment_desc"       property="segmentDesc"/>
+        <result column="sqlhead"            property="sqlHead"/>
+        <result column="sqltail"            property="sqlTail"/>
+        <result column="sqlbody"            property="sqlBody"/>
+        <result column="sqlfilter"          property="sqlfilter"/>
+        <result column="lastupdate_dt"      property="lastUpdateDt"/>
+        <result column="segment_size"       property="segmentSize"/>
+        <result column="crtgrp_cd"          property="crtGrpCd"/>
+        <result column="segment_type"       property="segmentType"/>
+        <result column="filetodb_yn"        property="fileToDbYn"/>
+        <result column="editor_id"          property="editorId"/>
+        <result column="share_yn"           property="shareYn"/>
+        <result column="active_yn"          property="activeYn"/>
+        <result column="category_cd"        property="categoryCd"/>
+        <result column="segment_sts"        property="segmentSts"/>
+        <result column="tag_no"             property="tagNo"/>
+        <result column="psegment_no"        property="psegmentNo"/>
+        <result column="plink_seq"          property="plinkSeq"/>
+        <result column="seg_type"           property="segType"/>
+        <result column="testquery"          property="testQuery"/>
+        <result column="updatequery"        property="updateQuery"/>
+        <result column="name_kor"           property="nameKor"/>
+        <result column="tag_nm"             property="tagNm"/>
+        <result column="service_sts"        property="serviceSts"/>
+        <result column="field_key"          property="fieldKey"/>
+        <result column="permission_count"   property="permissionCount"/>
+    </resultMap>
+
+  	<!--  ==================== SELECT ====================  -->
+    <select id="selectSegmentByPk" parameterType="int" resultMap="resultSegment">
+        SELECT
+            segment_no, user_id, grp_cd, segment_nm, coalesce(dbinfo_seq,0) dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, coalesce(segment_size,0) segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, coalesce(share_yn,'N') share_yn, coalesce(active_yn,'Y') active_yn, category_cd, segment_sts
+          , coalesce(tag_no,0) tag_no, coalesce(psegment_no,0) psegment_no, plink_seq, seg_type, testquery, updatequery
+          , (SELECT name_kor FROM nvuser WHERE user_id = coalesce(a.editor_id, a.user_id)) name_kor
+          , (SELECT tag_nm FROM nvsegmenttag WHERE tag_no = a.tag_no) as tag_nm
+        FROM nvsegment a
+        WHERE segment_no = #{segmentNo}
+    </select>
+
+  	<select id="selectNextSegmentNo" resultType="int">
+        SELECT coalesce(max(segment_no),0)+1
+        FROM nvsegment
+    </select>
+
+    <insert id="copySegmentForResend" parameterType="Segment">
+        INSERT INTO nvsegment (
+            segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, share_yn, active_yn, category_cd, segment_sts
+          , tag_no, psegment_no, plink_seq, seg_type
+        )
+        SELECT
+            #{segmentNo}, user_id, grp_cd, #{segmentNm}, dbinfo_seq, segment_desc, coalesce(#{sqlHead},sqlhead), sqltail, coalesce(#{sqlBody},sqlbody), #{sqlfilter, jdbcType=VARCHAR}
+          , lastupdate_dt, #{segmentSize}, crtgrp_cd, segment_type, filetodb_yn, editor_id, 'N', 'N', category_cd, segment_sts
+          , tag_no, #{psegmentNo}, plink_seq, #{segType, jdbcType=CHAR}
+        FROM nvsegment
+        WHERE segment_no = #{psegmentNo}
+    </insert>
+
+</mapper>

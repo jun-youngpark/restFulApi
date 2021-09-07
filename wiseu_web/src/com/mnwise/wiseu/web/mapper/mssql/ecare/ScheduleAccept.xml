@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ScheduleAccept">
+    <!--<resultMap id="resultScheduleAccept" type="ScheduleAccept">
+        <result column="ecare_no"       property="ecareNo"/>
+        <result column="seq"            property="seq"/>
+        <result column="result_seq"     property="resultSeq"/>
+        <result column="list_seq"       property="listSeq"/>
+        <result column="channel"        property="channel"/>
+        <result column="svc_id"         property="svcId"/>
+        <result column="req_user_id"    property="reqUserId"/>
+        <result column="req_dept_id"    property="reqDeptId"/>
+        <result column="req_dt"         property="reqDt"/>
+        <result column="req_tm"         property="reqTm"/>
+        <result column="tmpl_type"      property="tmplType"/>
+        <result column="receiver_id"    property="receiverId"/>
+        <result column="receiver_nm"    property="receiverNm"/>
+        <result column="receiver"       property="receiver"/>
+        <result column="sender_nm"      property="senderNm"/>
+        <result column="sender"         property="sender"/>
+        <result column="subject"        property="subject"/>
+        <result column="send_fg"        property="sendFg"/>
+        <result column="slot1"          property="slot1"/>
+        <result column="slot2"          property="slot2"/>
+        <result column="secu_key"       property="secuKey"/>
+        <result column="security_path"  property="securityPath"/>
+        <result column="error_msg"      property="errorMsg"/>
+        <result column="reserved_date"  property="reservedDate"/>
+        <result column="preview_type"   property="previewType"/>
+        <result column="data_cnt"       property="dataCnt"/>
+        <result column="file_path1"     property="filePath1"/>
+        <result column="file_path2"     property="filePath2"/>
+        <result column="file_path3"     property="filePath3"/>
+        <result column="srfidd"         property="srfidd"/>
+        <result column="jonmun"         property="jonmun"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <!-- 고객이력조회 결과보기 건별 재발송 jonmun 컬럼이 long 타입일 경우 처리 -->
+    <select id="selectJeonmun" parameterType="MimeView" resultType="string">
+        SELECT jonmun
+        FROM nvscheduleaccept
+        WHERE ecare_no = #{serviceNo}
+        AND seq = #{condition}
+    </select>
+</mapper>

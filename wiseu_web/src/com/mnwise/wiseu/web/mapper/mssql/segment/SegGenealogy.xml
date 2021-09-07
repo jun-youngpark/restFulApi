@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SegGenealogy">
+    <resultMap id="resultSegGenealogy" type="SegGenealogy">
+        <result column="segment_no"         property="segmentNo"/>
+        <result column="genealogy_seq"      property="genealogySeq"/>
+        <result column="suprasegment_no"    property="supraSegmentNo"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSegGenealogy" parameterType="map">
+        INSERT INTO nvseggenealogy (segment_no, genealogy_seq, suprasegment_no)
+        VALUES (#{segmentNo}, #{genealogySeq}, #{supraSegmentNo})
+    </insert>
+
+    <insert id="copySegGenealogy" parameterType="map">
+        INSERT INTO nvseggenealogy (segment_no, genealogy_seq, suprasegment_no)
+        SELECT #{toSegmentNo}, (SELECT max(coalesce(genealogy_seq,0))+1 FROM nvseggenealogy WHERE segment_no = a.segment_no), suprasegment_no
+        FROM nvseggenealogy a
+        WHERE segment_no = #{fromSegmentNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSegGenealogyByPk" parameterType="map">
+        UPDATE nvseggenealogy
+        SET
+            suprasegment_no = #{supraSegmentNo}
+        WHERE segment_no = #{segmentNo}
+        AND genealogy_seq = #{genealogySeq}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSegGenealogyByPk" parameterType="map">
+        DELETE FROM nvseggenealogy
+        WHERE segment_no = #{segmentNo}
+        AND genealogy_seq = #{genealogySeq}
+    </delete>
+
+    <delete id="deleteSegGenealogyBySegmentNo" parameterType="int">
+        DELETE FROM nvseggenealogy
+        WHERE segment_no = #{segmentNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectSegGenealogyByPk" parameterType="map" resultMap="resultSegGenealogy">
+        SELECT *
+        FROM nvseggenealogy
+        WHERE segment_no = #{segmentNo}
+        AND genealogy_seq = #{genealogySeq}
+    </select>
+
+    <select id="selectSegGenealogyList" parameterType="int" resultMap="resultSegGenealogy">
+        SELECT segment_no, genealogy_seq, suprasegment_no
+        FROM nvseggenealogy
+        WHERE segment_no = #{segmentNo}
+        ORDER BY genealogy_seq
+    </select>
+
+    <select id="getSubSegmentCnt" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM nvseggenealogy
+        WHERE suprasegment_no = #{segmentNo}
+    </select>
+</mapper>

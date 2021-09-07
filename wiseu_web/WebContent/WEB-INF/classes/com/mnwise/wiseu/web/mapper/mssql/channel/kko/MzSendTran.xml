@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MzSendTran">
+    <!--<resultMap id="resultMzSendTran" type="MzSendTran">
+        <result column="sn"                 property="sn"/>
+        <result column="sender_key"         property="senderKey"/>
+        <result column="channel"            property="channel"/>
+        <result column="snd_type"           property="sndType"/>
+        <result column="phone_num"          property="phoneNum"/>
+        <result column="tmpl_cd"            property="tmplCd"/>
+        <result column="subject"            property="subject"/>
+        <result column="snd_msg"            property="sndMsg"/>
+        <result column="sms_snd_msg"        property="smsSndMsg"/>
+        <result column="sms_snd_num"        property="smsSndNum"/>
+        <result column="req_dept_cd"        property="reqDeptCd"/>
+        <result column="req_usr_id"         property="reqUsrId"/>
+        <result column="req_dtm"            property="reqDtm"/>
+        <result column="snd_dtm"            property="sndDtm"/>
+        <result column="rslt_cd"            property="rsltCd"/>
+        <result column="rcpt_msg"           property="rcptMsg"/>
+        <result column="rcpt_dtm"           property="rcptDtm"/>
+        <result column="sms_snd_dtm"        property="smsSndDtm"/>
+        <result column="sms_rslt_cd"        property="smsRsltCd"/>
+        <result column="sms_rcpt_msg"       property="smsRcptMsg"/>
+        <result column="sms_rcpt_dtm"       property="smsRcptDtm"/>
+        <result column="sms_gb"             property="smsGb"/>
+        <result column="sms_snd_yn"         property="smsSndYn"/>
+        <result column="tran_sn"            property="tranSn"/>
+        <result column="tran_sts"           property="tranSts"/>
+        <result column="agent_id"           property="agentId"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="tr_type_cd"         property="trTypeCd"/>
+        <result column="attachment"         property="attachment"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="customer_key"       property="customerKey"/>
+        <result column="service_no"         property="serviceNo"/>
+        <result column="service_type"       property="serviceType"/>
+        <result column="result_seq"         property="resultSeq"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertAlimtalk" parameterType="Message">
+        INSERT INTO mzsendtran (
+            sn, sender_key, channel, snd_type, phone_num, tmpl_cd, subject, snd_msg, sms_snd_num, sms_snd_yn
+          , req_dept_cd, req_usr_id, req_dtm, tran_sts, tr_type_cd, service_type, service_no, result_seq
+        ) VALUES (
+            #{sn}, #{senderKey}, 'A', 'P', #{phoneNum}, #{tmplCd}, #{subject, jdbcType=VARCHAR}, #{sendMessage}, #{callBack, jdbcType=VARCHAR}, #{smsSndYn, jdbcType=VARCHAR}
+          , #{reqDeptCd}, #{reqUsrId},
+            <if test="reqDtm == null or reqDtm == ''">
+          , replace(replace(replace(convert(VARCHAR,getdate(),120),'-',''),':',''),' ','')
+            </if>
+            <if test="reqDtm != null and reqDtm != ''">
+          , #{reqDtm}
+            </if>
+          , '1', 'B', #{serviceType, jdbcType=VARCHAR}, #{serviceNo}, #{resultSeq}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+
+</mapper>

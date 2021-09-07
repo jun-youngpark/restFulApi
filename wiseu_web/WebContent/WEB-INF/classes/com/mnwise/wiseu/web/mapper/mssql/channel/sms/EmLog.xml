@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EmLog">
+    <!--<resultMap id="resultEmLog" type="EmLog">
+        <result column="tran_pr"            property="tranPr"/>
+        <result column="tran_refkey"        property="tranRefkey"/>
+        <result column="tran_id"            property="tranId"/>
+        <result column="tran_phone"         property="tranPhone"/>
+        <result column="tran_callback"      property="tranCallback"/>
+        <result column="tran_status"        property="tranStatus"/>
+        <result column="tran_date"          property="tranDate"/>
+        <result column="tran_rsltdate"      property="tranRsltdate"/>
+        <result column="tran_reportdate"    property="tranReportdate"/>
+        <result column="tran_rslt"          property="tranRslt"/>
+        <result column="tran_net"           property="tranNet"/>
+        <result column="tran_msg"           property="tranMsg"/>
+        <result column="tran_etc1"          property="tranEtc1"/>
+        <result column="tran_etc2"          property="tranEtc2"/>
+        <result column="tran_etc3"          property="tranEtc3"/>
+        <result column="tran_etc4"          property="tranEtc4"/>
+        <result column="tran_type"          property="tranType"/>
+        <result column="req_dept_cd"        property="reqDeptCd"/>
+        <result column="service_type"       property="serviceType"/>
+        <result column="service_no"         property="serviceNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="seq"                property="seq"/>
+        <result column="svc_id"             property="svcId"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="req_user_id"        property="reqUserId"/>
+        <result column="req_dept_id"        property="reqDeptId"/>
+        <result column="sync_flag"          property="syncFlag"/>
+        <result column="tran_status2"       property="tranStatus2"/>
+        <result column="tran_mcc"           property="tranMcc"/>
+        <result column="tran_mnc"           property="tranMnc"/>
+        <result column="message_id"         property="messageId"/>
+        <result column="tran_sn"            property="tranSn"/>
+        <result column="agent_id"           property="agentId"/>
+        <result column="infobip_id"         property="infobipId"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getCampaignReportSMSErrorList" parameterType="map" resultMap="mapper.Common.resultCampaignReportError">
+        SELECT
+            error_gubun, error_cd, CASE WHEN error_cd = '' THEN 'TOTAL' ELSE error_msg END error_msg
+          , coalesce(send_cnt,0) send_cnt, rnum, CASE WHEN error_cd = '' THEN '3' ELSE '0' END gid
+        FROM (
+            SELECT '' as error_gubun, coalesce(a.cd,'') as error_cd, max(a.val) as error_msg, sum(b.send_cnt) as send_cnt, 0 as rnum, 0 as gid
+            FROM (
+                SELECT cd, val, cd_cat
+                FROM nv_cd_mst
+                WHERE cd_cat IN ('AS0001','AS0002','AS0003')
+            ) a, (
+                SELECT tran_rslt, count(tran_rslt) as send_cnt
+                FROM v_sms_error_result
+                WHERE service_no = #{campaignNo}
+                AND service_type = 'em'
+                AND result_seq = #{resultSeq}
+                GROUP BY tran_rslt
+            ) b
+            WHERE a.cd = b.tran_rslt
+            GROUP BY a.cd WITH ROLLUP
+        ) x
+        ORDER BY gid
+    </select>
+
+    <select id="selectSMSLogList" parameterType="EcareScenarioInfo" resultMap="mapper.DomainLog.resultDomainLog">
+        SELECT a.tran_rslt as error_cd, b.val as error_desc, count(*) as target_cnt, '' as bounce
+        FROM v_sms_error_result a, nv_cd_mst b
+        WHERE a.tran_rslt = b.cd
+        AND a.service_type = 'ec'
+        AND a.tran_date LIKE #{ecareInfoVo.reportDt} + '%'
+        AND a.service_no = #{ecareInfoVo.ecareNo}
+        <if test="ecareInfoVo.serviceType == 'S'.toString()">
+            <if test="ecareInfoVo.subType == 'S'.toString()">
+        AND a.result_seq = #{ecareInfoVo.resultSeq}
+            </if>
+        </if>
+        AND b.cd_cat IN ('AS0001','AS0002','AS0003')
+        AND b.cd != '0'
+        GROUP BY a.tran_rslt, b.val
+        ORDER BY a.tran_rslt
+    </select>
+
+</mapper>

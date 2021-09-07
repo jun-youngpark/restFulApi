@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties>
+    </properties>
+    <settings>
+        <setting name="defaultStatementTimeout" value="300000" />
+    </settings>
+    <typeAliases>
+        <!-- ========== 사용자정의 DTO (ABC순) ========== -->
+
+        <!-- ========== DB DTO (ABC순) ========== -->
+        <!--
+        <typeAlias type="com.mnwise.wiseu.web.common.model.MenuVo"             alias="MenuVo" />
+        <typeAlias type="com.mnwise.wiseu.web.common.model.MenuLang"           alias="MenuLang" />
+        <typeAlias type="com.mnwise.wiseu.web.common.model.MenuRole"           alias="MenuRole" />
+        <typeAlias type="com.mnwise.wiseu.web.campaign.model.ScenarioVo"       alias="ScenarioVo" />
+        <typeAlias type="com.mnwise.wiseu.web.account.model.UserVo"            alias="UserVo" />
+        <typeAlias type="com.mnwise.wiseu.web.account.model.UserGrpVo"         alias="UserGrpVo" />
+        -->
+        <typeAlias alias="AjaxSearch"                   type="com.mnwise.wiseu.web.common.model.AjaxSearchVo"/>
+        <typeAlias alias="BadWord"                      type="com.mnwise.wiseu.web.env.model.BadWordVo"/>
+        <typeAlias alias="Bookmark"                     type="com.mnwise.wiseu.web.segment.model.BookmarkVo"/>
+        <typeAlias alias="BrandTalkTemplate"            type="com.mnwise.wiseu.web.template.model.BrandtalkTemplateVo"/>
+        <typeAlias alias="Campaign"                     type="com.mnwise.wiseu.web.campaign.model.CampaignVo"/>
+        <typeAlias alias="CampaignAbTest"               type="com.mnwise.wiseu.web.report.model.campaign.CampaignAbTestVo"/>
+        <typeAlias alias="CampaignEditor"               type="com.mnwise.wiseu.web.editor.model.CampaignEditorVo"/>
+        <typeAlias alias="CampaignInfo"                 type="com.mnwise.wiseu.web.report.model.campaign.CampaignInfoVo"/>
+        <typeAlias alias="CampaignPerHistory"           type="com.mnwise.wiseu.web.campaign.model.CampaignPerHistoryVo"/>
+        <typeAlias alias="CampaignReactionResult2"      type="com.mnwise.wiseu.web.report.model.campaign.CampaignReactionResult2Vo"/>
+        <typeAlias alias="CampaignReport"               type="com.mnwise.wiseu.web.report.model.campaign.CampaignReportVo"/>
+        <typeAlias alias="CampaignReportBasic"          type="com.mnwise.wiseu.web.report.model.campaign.CampaignReportBasicVo"/>
+        <typeAlias alias="CampaignReportError"          type="com.mnwise.wiseu.web.report.model.campaign.CampaignReportErrorVo"/>
+        <typeAlias alias="CampaignReportLinkClick"      type="com.mnwise.wiseu.web.report.model.campaign.CampaignReportLinkClickVo"/>
+        <typeAlias alias="CampaignReportReceive"        type="com.mnwise.wiseu.web.report.model.campaign.CampaignReportReceiveVo"/>
+        <typeAlias alias="CampaignReportReturnMail"     type="com.mnwise.wiseu.web.report.model.campaign.CampaignReportReturnMailVo"/>
+        <typeAlias alias="CampaignSendResult"           type="com.mnwise.wiseu.web.report.model.campaign.CampaignSendResultVo"/>
+        <typeAlias alias="CaseInsensitiveMap"           type="org.apache.commons.collections.map.CaseInsensitiveMap"/>
+        <typeAlias alias="CdMst"                        type="com.mnwise.wiseu.web.common.model.CdMstVo"/>
+        <typeAlias alias="Contents"                     type="com.mnwise.wiseu.web.template.model.ContentVo"/>
+        <typeAlias alias="CycleItem"                    type="com.mnwise.wiseu.web.ecare.model.CycleItemVo"/>
+        <typeAlias alias="DataBaseClient"               type="com.mnwise.wiseu.web.dbclient.model.DataBaseClientVo"/>
+        <typeAlias alias="DbInfo"                       type="com.mnwise.wiseu.web.segment.model.DbInfoVo"/>
+        <typeAlias alias="DefaultHandler"               type="com.mnwise.wiseu.web.editor.model.DefaultHandlerVo"/>
+        <typeAlias alias="DivideSchedule"               type="com.mnwise.wiseu.web.campaign.model.DivideSchedule"/>
+        <typeAlias alias="DomainLog"                    type="com.mnwise.wiseu.web.report.model.DomainLogVo"/>
+        <typeAlias alias="Ecare"                        type="com.mnwise.wiseu.web.ecare.model.EcareVo"/>
+        <typeAlias alias="EcareContsHistory"            type="com.mnwise.wiseu.web.ecare.model.EcareContsHistoryVo"/>
+        <typeAlias alias="EcareEditor"                  type="com.mnwise.wiseu.web.editor.model.EcareEditorVo"/>
+        <typeAlias alias="EcareInfo"                    type="com.mnwise.wiseu.web.report.model.ecare.EcareInfoVo"/>
+        <typeAlias alias="EcareItem"                    type="com.mnwise.wiseu.web.editor.model.EcareItemVo"/>
+        <typeAlias alias="EcareMonitor"                 type="com.mnwise.wiseu.web.watch.model.EcareMonitorVO"/>
+        <typeAlias alias="EcarePerHistory"              type="com.mnwise.wiseu.web.ecare.model.EcarePerHistoryVo"/>
+        <typeAlias alias="EcareScenario"                type="com.mnwise.wiseu.web.ecare.model.EcareScenarioVo"/>
+        <typeAlias alias="EcareScenarioInfo"            type="com.mnwise.wiseu.web.report.model.ecare.EcareScenarioInfoVo"/>
+        <typeAlias alias="EcareSchedule"                type="com.mnwise.wiseu.web.ecare.model.EcareScheduleVo"/>
+        <typeAlias alias="EcareSendResult"              type="com.mnwise.wiseu.web.ecare.model.EcareSendResultVo"/>
+        <typeAlias alias="EnvDomain"                    type="com.mnwise.wiseu.web.env.model.EnvDomainVo"/>
+        <!--typeAlias alias="EnvHandler"                   type="com.mnwise.wiseu.web.env.model.EnvHandlerVo"/-->
+        <typeAlias alias="EnvMyInfo"                    type="com.mnwise.wiseu.web.env.model.EnvMyInfoVo"/>
+        <typeAlias alias="EnvSenderInfo"                type="com.mnwise.wiseu.web.env.model.EnvSenderInfoVo"/>
+        <!--typeAlias alias="EnvSmtpCodeList"              type="com.mnwise.wiseu.web.env.model.EnvSmtpCodeListVo"/-->
+        <typeAlias alias="GrpMenuRole"                  type="com.mnwise.wiseu.web.account.model.GrpMenuRole"/>
+        <typeAlias alias="Handler"                      type="com.mnwise.wiseu.web.editor.model.HandlerVo"/>
+        <typeAlias alias="History"                      type="com.mnwise.wiseu.web.editor.model.HistoryVo"/>
+        <typeAlias alias="KakaoProfile"                 type="com.mnwise.wiseu.web.template.model.KakaoProfile"/>
+        <typeAlias alias="Linkclick"                    type="com.mnwise.wiseu.web.segment.model.LinkclickVo"/>
+        <typeAlias alias="LinkTrace"                    type="com.mnwise.wiseu.web.editor.model.LinkTraceVo"/>
+        <typeAlias alias="LinkTraceResult"              type="com.mnwise.wiseu.web.report.model.LinkTraceResultVo"/>
+        <typeAlias alias="LinkTraceResult2"             type="com.mnwise.wiseu.web.report.model.LinkTraceResult2Vo"/>
+        <typeAlias alias="LstResend"                    type="com.mnwise.wiseu.web.resend.model.LstResendVo"/>
+        <typeAlias alias="MailPreview"                  type="com.mnwise.wiseu.web.common.model.MailPreviewVo"/>
+        <typeAlias alias="Menu"                         type="com.mnwise.wiseu.web.common.model.MenuVo"/>
+        <!-- typeAlias alias="MenuLang"                     type="com.mnwise.wiseu.web.account.model.MenuLang"/-->
+        <typeAlias alias="MenuRole"                     type="com.mnwise.wiseu.web.account.model.MenuRole"/>
+        <typeAlias alias="Message"                      type="com.mnwise.wiseu.web.common.model.MessageVo"/>
+        <typeAlias alias="MimeView"                     type="com.mnwise.wiseu.web.common.model.MimeViewVo"/>
+        <typeAlias alias="Mms"                          type="com.mnwise.wiseu.web.editor.model.MmsVo"/>
+        <typeAlias alias="Mobile"                       type="com.mnwise.wiseu.web.template.model.MobileVo"/>
+        <typeAlias alias="MultipartFile"                type="com.mnwise.wiseu.web.editor.model.MultipartFileVo"/>
+        <typeAlias alias="NrealtimeRequest"             type="com.mnwise.wiseu.web.rest.model.NrealtimeRequestVo"/>
+        <typeAlias alias="Permission"                   type="com.mnwise.wiseu.web.account.model.PermissionVo"/>
+        <typeAlias alias="RealtimeAcceptData"           type="com.mnwise.wiseu.web.ecare.model.RealtimeAcceptDataVo"/>
+        <typeAlias alias="RptSendResult"                type="com.mnwise.wiseu.web.report.model.RptSendResultVo"/>
+        <typeAlias alias="Scenario"                     type="com.mnwise.wiseu.web.campaign.model.ScenarioVo"/>
+        <typeAlias alias="ScenarioInfo"                 type="com.mnwise.wiseu.web.report.model.campaign.ScenarioInfoVo"/>
+        <typeAlias alias="Schedule"                     type="com.mnwise.wiseu.web.campaign.model.ScheduleVo"/>
+        <typeAlias alias="SegGenealogy"                 type="com.mnwise.wiseu.web.segment.model.SegGenealogyVo"/>
+        <typeAlias alias="Segment"                      type="com.mnwise.wiseu.web.segment.model.SegmentVo"/>
+        <typeAlias alias="Semantic"                     type="com.mnwise.wiseu.web.segment.model.SemanticVo"/>
+        <typeAlias alias="SendBlockDate"                type="com.mnwise.wiseu.web.env.model.SendBlockDateVo"/>
+        <typeAlias alias="SendErr"                      type="com.mnwise.wiseu.web.common.model.SendErrVo"/>
+        <typeAlias alias="SendField"                    type="com.mnwise.wiseu.web.common.model.SendFieldVo"/>
+        <typeAlias alias="SendLog"                      type="com.mnwise.wiseu.web.report.model.SendLogVo"/>
+        <typeAlias alias="EcareSendLog"                 type="com.mnwise.wiseu.web.report.model.EcareSendLogVo"/>
+        <typeAlias alias="SendResult"                   type="com.mnwise.wiseu.web.campaign.model.SendResultVo"/>
+        <typeAlias alias="ServerInfo"                   type="com.mnwise.wiseu.web.editor.model.ServerInfoVo"/>
+        <typeAlias alias="Sms"                          type="com.mnwise.wiseu.web.editor.model.SmsVo"/>
+        <typeAlias alias="SmtpCodeTreeEelement"         type="com.mnwise.wiseu.web.env.model.json.SmtpCodeTreeEelement"/>
+        <typeAlias alias="StatusReq"                    type="com.mnwise.wiseu.web.watch.model.StatusReq"/>
+        <typeAlias alias="SvcMain"                      type="com.mnwise.wiseu.web.watch.model.SvcMain"/>
+        <typeAlias alias="SvcMts"                       type="com.mnwise.wiseu.web.watch.model.SvcMts"/>
+        <typeAlias alias="SvrInfo"                      type="com.mnwise.wiseu.web.watch.model.SvrInfo"/>
+        <typeAlias alias="Tag"                          type="com.mnwise.wiseu.web.common.model.Tag"/>
+        <typeAlias alias="Target"                       type="com.mnwise.wiseu.web.segment.model.TargetVo"/>
+        <typeAlias alias="TargetQueryInfo"              type="com.mnwise.wiseu.web.common.model.TargetQueryInfo"/>
+        <typeAlias alias="Template"                     type="com.mnwise.wiseu.web.editor.model.TemplateVo"/>
+        <typeAlias alias="Tester"                       type="com.mnwise.wiseu.web.common.model.TesterVo"/>
+        <typeAlias alias="TestGrp"                      type="com.mnwise.wiseu.web.common.model.TestGrpVo"/>
+        <typeAlias alias="TestSend"                     type="com.mnwise.wiseu.web.common.model.TestSendVo"/>
+        <typeAlias alias="TestSendLog"                  type="com.mnwise.wiseu.web.campaign.model.TestSendLog"/>
+        <typeAlias alias="TestUserPool"                 type="com.mnwise.wiseu.web.common.model.TesterPoolVo"/>
+        <typeAlias alias="TraceInfo"                    type="com.mnwise.wiseu.web.campaign.model.TraceInfoVo"/>
+        <typeAlias alias="TreeEelement"                 type="com.mnwise.wiseu.web.account.model.json.TreeEelement"/>
+        <typeAlias alias="User"                         type="com.mnwise.wiseu.web.account.model.UserVo"/>
+        <typeAlias alias="UserGrp"                      type="com.mnwise.wiseu.web.account.model.UserGrpVo"/>
+        <typeAlias alias="UserPw"                       type="com.mnwise.wiseu.web.account.model.UserPwVo"/>
+        <typeAlias alias="UsingSegment"                 type="com.mnwise.wiseu.web.segment.model.UsingSegmentVo"/>
+        <typeAlias alias="AddQuery"                      type="com.mnwise.wiseu.web.ecare.model.AddQueryVo"/>
+        <typeAlias alias="Realtimeaccept"               type="com.mnwise.wiseu.web.report.model.ecare.RealtimeacceptVo"/>
+        <typeAlias alias="EcareCancel"                       type="com.mnwise.wiseu.web.ecare.model.CancelVo"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.mnwise.wiseu.web.base.MyBatisInterceptor"/>
+    </plugins>
+</configuration>

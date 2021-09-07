@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Contents">
+    <resultMap id="resultContents" type="Contents">
+        <result column="conts_no"       property="contsNo"/>
+        <result column="grp_cd"         property="grpCd"/>
+        <result column="category_cd"    property="categoryCd"/>
+        <result column="user_id"        property="userId"/>
+        <result column="conts_nm"       property="contsNm"/>
+        <result column="conts_desc"     property="contsDesc"/>
+        <result column="file_url_name"  property="fileUrlName"/>
+        <result column="file_type"      property="fileType"/>
+        <result column="file_name"      property="fileName"/>
+        <result column="create_dt"      property="createDt"/>
+        <result column="create_tm"      property="createTm"/>
+        <result column="auth_type"      property="authType"/>
+        <result column="tag_no"         property="tagNo"/>
+        <result column="user_nm"        property="userNm"/>
+        <result column="file_name"      property="fileNm"/>
+    </resultMap>
+    
+    <!--  ==================== INSERT ====================  -->
+	<insert id="insertContents" parameterType="customContents">
+	    <selectKey keyProperty="contsNo" resultType="int" order="BEFORE">
+	        SELECT coalesce(max(conts_no),0)+1
+	        FROM nvcontents
+	    </selectKey>
+        INSERT INTO nvcontents (conts_no, grp_cd, user_id, conts_nm, conts_desc, file_url_name, file_type, file_name, create_dt, create_tm, auth_type, tag_no)
+        VALUES (#{contsNo}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{templateName, jdbcType=VARCHAR}, #{contsDesc, jdbcType=VARCHAR}, #{fileUrlName, jdbcType=VARCHAR}, #{fileType, jdbcType=CHAR}, #{fileName, jdbcType=VARCHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{authType, jdbcType=CHAR},1)
+    </insert>
+    <insert id="insertTemplateMassage" parameterType="customContents">
+    </insert>
+    <insert id="insertTemplateAlimTalk" parameterType="customContents">
+    
+    </insert>
+    <insert id="insertMobileContents" parameterType="mobileContents">
+        INSERT INTO nvmobilecontents (
+            conts_no, user_id, conts_nm, file_path, file_name, image_url, image_link, detour_file_path, detour_file_name, detour_preview_path
+          , detour_preview_name, file_type, create_dt, create_tm, auth_type, tag_no, conts_txt, file_preview_path, file_preview_name, file_size
+          , grp_cd
+          <if test="contsDesc      != null and contsDesc      != ''">, conts_desc</if>
+          <if test="categoryCd     != null and categoryCd     != ''">, category_cd</if>
+          <if test="kakaoSenderKey != null and kakaoSenderKey != ''">, kakao_sender_key, kakao_tmpl_cd, kakao_tmpl_status, kakao_insp_status, kakao_buttons, kakao_tmpl_msg_type, kakao_tmpl_ad, kakao_tmpl_ex, kakao_security_yn, kakao_em_type, kakao_em_title, kakao_em_subtitle, kakao_quick_replies</if>
+        ) VALUES (
+            #{contsNo}, #{userId, jdbcType=VARCHAR}, #{templateName, jdbcType=VARCHAR}, #{filePath, jdbcType=VARCHAR}, #{fileName, jdbcType=VARCHAR}, #{imageUrl, jdbcType=VARCHAR}, #{imageLink, jdbcType=VARCHAR}, #{detourFilePath, jdbcType=VARCHAR}, #{detourFileName, jdbcType=VARCHAR}, #{detourPreviewPath, jdbcType=VARCHAR}
+          , #{detourPreviewName, jdbcType=VARCHAR}, #{fileType, jdbcType=CHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{authType, jdbcType=CHAR}, 1, #{template, jdbcType=VARCHAR}, #{filePreviewPath, jdbcType=VARCHAR}, #{filePreviewName, jdbcType=VARCHAR}, #{fileSize, jdbcType=VARCHAR}
+          , (SELECT grp_cd FROM nvuser WHERE user_id = #{userId, jdbcType=VARCHAR})
+          <if test="contsDesc      != null and contsDesc      != ''">, #{contsDesc, jdbcType=VARCHAR}</if>
+          <if test="categoryCd     != null and categoryCd     != ''">, #{categoryCd, jdbcType=VARCHAR}</if>
+          <if test="kakaoSenderKey != null and kakaoSenderKey != ''">, #{kakaoSenderKey, jdbcType=VARCHAR}, #{kakaoTmplCd, jdbcType=VARCHAR}, #{kakaoTmplStatus, jdbcType=CHAR}, #{kakaoInspStatus, jdbcType=VARCHAR}, #{kakaoButtons, jdbcType=VARCHAR}, #{kakaoTmplMsgType, jdbcType=CHAR}, #{kakaoTmplAd, jdbcType=VARCHAR}, #{kakaoTmplEx, jdbcType=VARCHAR}, #{kakaoSecurityYn, jdbcType=CHAR}, #{kakaoEmType, jdbcType=VARCHAR}, #{kakaoEmTitle, jdbcType=VARCHAR}, #{kakaoEmSubtitle, jdbcType=VARCHAR}, #{kakaoQuickReplies, jdbcType=VARCHAR}</if>
+        )
+    </insert>
+    
+    
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateTemplateMail" parameterType="customContents">
+        UPDATE nvcontents
+        SET
+            tag_no = 1
+            <if test="templateName != null and templateName != ''">
+           , conts_nm = #{templateName, jdbcType=VARCHAR}
+            </if>
+            <if test="contsDesc != null and contsDesc != ''">
+          , conts_desc = #{contsDesc, jdbcType=VARCHAR}
+            </if>
+            <if test="fileType != null and fileType != ''">
+          , file_type = #{fileType, jdbcType=CHAR}
+            </if>
+            <if test="fileName != null and fileName != ''">
+          , file_url_name = #{fileUrlName, jdbcType=VARCHAR}
+          , file_name = #{fileName, jdbcType=VARCHAR}
+            </if>
+            <if test="createDt != null and createDt != ''">
+          , create_dt = #{createDt, jdbcType=CHAR}
+          , create_tm = #{createTm, jdbcType=CHAR}
+            </if>
+          , auth_type = #{authType, jdbcType=CHAR}
+        WHERE conts_no = #{contsNo}
+    </update>
+    <update id="updateKakaoTemplate" parameterType="customContents">
+        UPDATE nvmobilecontents
+        SET
+            conts_txt = #{template, jdbcType=VARCHAR}
+          , kakao_insp_status = #{kakaoInspStatus, jdbcType=VARCHAR}
+          , kakao_tmpl_status = #{kakaoTmplStatus, jdbcType=CHAR}
+          , kakao_buttons = #{kakaoButtons, jdbcType=VARCHAR}
+          , kakao_tmpl_msg_type = #{kakaoTmplMsgType, jdbcType=CHAR}
+          , kakao_tmpl_ad = #{kakaoTmplAd, jdbcType=VARCHAR}
+          , kakao_tmpl_ex = #{kakaoTmplEx, jdbcType=VARCHAR}
+          , kakao_em_type = #{kakaoEmType, jdbcType=VARCHAR}
+          , kakao_em_title = #{kakaoEmTitle, jdbcType=VARCHAR}
+          , kakao_em_subtitle = #{kakaoEmSubtitle, jdbcType=VARCHAR}
+          , kakao_security_yn = #{kakaoSecurityYn, jdbcType=CHAR}
+          , kakao_quick_replies = #{kakaoQuickReplies, jdbcType=VARCHAR}
+          , file_path = #{filePath, jdbcType=VARCHAR}
+          , file_name = #{fileName, jdbcType=VARCHAR}
+          , image_url = #{imageUrl, jdbcType=VARCHAR}
+          , file_preview_path = #{filePreviewPath, jdbcType=VARCHAR}
+          , file_preview_name = #{filePreviewName, jdbcType=VARCHAR}
+          <if test="kakaoSenderKey != null and kakaoSenderKey != ''">, kakao_sender_key = #{kakaoSenderKey, jdbcType=VARCHAR}</if>
+          <if test="kakaoTmplCd    != null and kakaoTmplCd    != ''">, kakao_tmpl_cd = #{kakaoTmplCd, jdbcType=VARCHAR}</if>
+          <if test="contsNm           != null and contsNm           != ''">, conts_nm = #{TemplateName, jdbcType=VARCHAR}</if>
+          <if test="authType          != null and authType          != ''">, auth_type = #{authType, jdbcType=CHAR}</if>
+          <if test="contsDesc         != null and contsDesc         != ''">, conts_desc = #{contsDesc, jdbcType=VARCHAR}</if>
+          <if test="categoryCd        != null and categoryCd        != ''">, category_cd = #{categoryCd, jdbcType=VARCHAR}</if>
+          <if test="useYn             != null and useYn             != ''">, use_yn = #{useYn}</if>
+        WHERE kakao_sender_key = #{kakaoSenderKey}
+        AND kakao_tmpl_cd = #{kakaoTmplCd}
+    </update>
+    <update id="updateMobileTemplate" parameterType="customContents">
+        UPDATE nvmobilecontents
+        SET
+          tag_no = 1
+          <if test="contsDesc         != null and contsDesc       != ''">, conts_desc = #{contsDesc, jdbcType=VARCHAR}</if>
+          <if test="templateName           != null and templateName           != ''">, conts_nm = #{templateName, jdbcType=VARCHAR}</if>
+          <if test="authType          != null and authType          != ''">, auth_type = #{authType, jdbcType=CHAR}</if>
+          <if test="fileName          != null and fileName          != ''">, file_name = #{fileName, jdbcType=VARCHAR}</if>
+          <if test="filePath          != null and filePath          != ''">, file_path = #{filePath, jdbcType=VARCHAR}</if>
+          <if test="filePreviewName   != null and filePreviewName   != ''">, file_preview_name = #{filePreviewName, jdbcType=VARCHAR}</if>
+          <if test="filePreviewPath   != null and filePreviewPath   != ''">, file_preview_path = #{filePreviewPath, jdbcType=VARCHAR}</if>
+          <if test="detourFilePath    != null and detourFilePath    != ''">, detour_file_path = #{detourFilePath, jdbcType=VARCHAR}</if>
+          <if test="detourFileName    != null and detourFileName    != ''">, detour_file_name = #{detourFileName, jdbcType=VARCHAR}</if>
+          <if test="detourPreviewPath != null and detourPreviewPath != ''">, detour_preview_path = #{detourPreviewPath, jdbcType=VARCHAR}</if>
+          <if test="detourPreviewName != null and detourPreviewName != ''">, detour_preview_name = #{detourPreviewName, jdbcType=VARCHAR}</if>
+          <if test="imageUrl          != null and imageUrl          != ''">, image_url = #{imageUrl, jdbcType=VARCHAR}</if>
+          <if test="imageLink         != null and imageLink         != ''">, image_link = #{imageLink, jdbcType=VARCHAR}</if>
+          <if test="fileType == 'D'.toString()">, conts_txt = #{template, jdbcType=VARCHAR}</if>
+          <if test="fileType == 'T'.toString()">, conts_txt = #{template, jdbcType=VARCHAR}</if>
+        WHERE conts_no = #{contsNo}
+    </update>
+    <!--  ==================== SELECT ====================  -->
+    <resultMap id="resultMobileContents" type="customContents">
+        <result column="conts_no"               property="contsNo"/>
+        <result column="conts_nm"               property="templateName"/>
+        <result column="conts_desc"             property="contsDesc"/>
+        <result column="file_path"              property="filePath"/>
+        <result column="file_name"              property="fileName"/>
+        <result column="file_url_name"              property="fileUrlName"/>
+        <result column="image_url"              property="imageUrl"/>
+        <result column="image_link"             property="imageLink"/>
+        <result column="detour_file_path"       property="detourFilePath"/>
+        <result column="detour_file_name"       property="detourFileName"/>
+        <result column="detour_preview_path"    property="detourPreviewPath"/>
+        <result column="detour_preview_name"    property="detourPreviewName"/>
+        <result column="file_type"              property="fileType"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="auth_type"              property="authType"/>
+        <result column="tag_no"                 property="tagNo"/>
+        <result column="conts_txt"              property="template"/>
+        <result column="file_preview_path"      property="filePreviewPath"/>
+        <result column="file_preview_name"      property="filePreviewName"/>
+        <result column="category_cd"            property="categoryCd"/>
+        <result column="file_size"              property="fileSize"/>
+        <result column="kakao_sender_key"       property="kakaoSenderKey"/>
+        <result column="kakao_tmpl_cd"          property="kakaoTmplCd"/>
+        <result column="kakao_tmpl_status"      property="kakaoTmplStatus"/>
+        <result column="kakao_insp_status"      property="kakaoInspStatus"/>
+        <result column="kakao_buttons"          property="kakaoButtons"/>
+        <result column="use_yn"                 property="useYn"/>
+        <result column="content_type"           property="contentType"/>
+        <result column="unsubscribe_content"    property="unsubscribeContent"/>
+        <result column="message_type"           property="messageType"/>
+    </resultMap>
+    <select id="selectAlimtalkTemplateInfo" parameterType="customContents" resultMap="resultMobileContents">
+        SELECT
+            conts_no, conts_nm, conts_desc, auth_type, conts_txt, category_cd, kakao_sender_key, kakao_tmpl_cd
+          , kakao_tmpl_status, kakao_insp_status, kakao_buttons, use_yn
+          , file_preview_path, file_path, file_preview_name
+        FROM nvmobilecontents a
+        WHERE conts_no = #{contsNo}
+    </select>
+    <select id="selectTemplateMail" parameterType="customContents" resultMap="resultMobileContents">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY conts_no DESC) as rnum
+              , conts_no, conts_nm, conts_desc, file_url_name, file_type, file_name
+              , create_dt
+              , create_tm
+            FROM nvcontents
+            WHERE
+                create_dt &gt;= #{searchStartDt}
+              AND
+                create_dt &lt;= #{searchEndDt}
+              AND
+                rownum &lt;= #{limit}*#{nowPage}
+        ) a
+        WHERE rnum &gt; #{limit}*(#{nowPage} - 1)
+            order by conts_no 
+    </select>
+    <select id="selectTemplateMassage" parameterType="customContents" resultMap="resultMobileContents">
+         SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY conts_no DESC) as rnum
+              , conts_no, conts_nm, file_path, file_name, conts_txt, file_size
+              , kakao_sender_key, kakao_tmpl_cd, kakao_buttons
+              , create_dt
+              , create_tm
+            FROM nvmobilecontents
+            WHERE
+                file_type != 'A'
+              AND
+                create_dt &gt;= #{searchStartDt}
+              AND
+                create_dt &lt;= #{searchEndDt}
+              AND
+            rownum &lt;= #{limit}*#{nowPage}
+        ) a
+        WHERE rnum > #{limit}*(#{nowPage} - 1)
+        
+    </select>
+    <select id="selectTemplateAlimTalk" parameterType="customContents" resultMap="resultMobileContents">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY conts_no DESC) as rnum
+              , conts_no, conts_nm, file_path, file_name, conts_txt, file_size
+              , kakao_sender_key, kakao_tmpl_cd, kakao_buttons
+              , create_dt
+              , create_tm
+            FROM nvmobilecontents
+            WHERE
+                file_type = 'A'
+              AND
+                create_dt &gt;= #{searchStartDt}
+              AND
+                create_dt &lt;= #{searchEndDt}
+              AND
+            rownum &lt;= #{limit}*#{nowPage}
+        ) a
+        WHERE rnum > #{limit}*(#{nowPage} - 1)
+    </select>
+    <select id="selectAlimtalkInspect" parameterType="customContents" resultType="String">
+        SELECT
+          (SELECT val FROM nv_cd_mst WHERE cd_cat = 'KA011' AND cd = a.kakao_insp_status) as kakao_insp_status
+        FROM nvmobilecontents a
+        WHERE conts_no = #{contsNo}
+    </select>
+    <select id="selectNextContsNo" resultType="int">
+        SELECT coalesce(max(conts_no),0)+1
+        FROM nvcontents
+    </select>
+    <select id="selectNextMobileContsNo" resultType="int">
+        SELECT coalesce(max(conts_no),0)+1
+        FROM nvmobilecontents
+    </select>
+    <select id="selectTemplateCount" parameterType="customContents" resultType="int">
+        SELECT count(*)
+        FROM nvcontents
+    </select>
+    <select id="selectMobileTemplateCount" parameterType="customContents" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents
+        WHERE
+            file_type != 'A'
+    </select>
+    <select id="selectAilmTalkTemplateCount" parameterType="customContents" resultType="int">
+        SELECT count(*)
+        FROM nvmobilecontents
+        WHERE
+            file_type = 'A'
+    </select>
+    
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteContentsByPk" parameterType="int">
+        DELETE FROM nvcontents
+        WHERE conts_no = #{contsNo}
+    </delete>
+    <delete id="deleteMobileContentsByPk" parameterType="int">
+        DELETE FROM nvmobilecontents
+        WHERE conts_no = #{contsNo}
+    </delete>
+
+    <delete id="deleteAlimtalkTemplate" parameterType="customContents">
+        DELETE FROM nvmobilecontents
+        WHERE kakao_sender_key = #{kakaoSenderKey}
+        AND kakao_tmpl_cd = #{kakaoTmplCd}
+    </delete>
+</mapper>

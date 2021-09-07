@@ -1,0 +1,101 @@
+import com.mnwise.ASE.agent.dbagent.QueryExecutor
+import com.mnwise.ASE.agent.pushagent.PushAgent
+import com.mnwise.ASE.agent.pushagent.PushData
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.agent.util.ValueMapper
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.jeonmun.JsonJeonmun
+import com.mnwise.common.util.LoggerAid
+import com.mnwise.common.util.StringUtil
+
+ExceptionLogger exLogger = null
+TextReader target = null
+QueryExecutor queryExecutor = null
+
+try {
+    exLogger = new ExceptionLogger(context)
+
+    target = new TextReader(context)
+
+    Message message = new Message(context)
+    message.prepareGroovyTemplateWithCustomVariable("#{", "}", "<%=(jRecord.getString(\"", "\"))%>")
+    message.prepareGroovyTemplateWithCustomVariable("#{", "}", "<%=(jRecord.getString(\"", "\"))%>","POPUP", context.get("_TEMPLATE_POPUP"))
+
+    ValueMapper mapper = new ValueMapper(context, target)
+
+    queryExecutor = new QueryExecutor(context, target, message)
+    queryExecutor.init()
+    queryExecutor.executeDataQueryByOnce()
+
+    PushAgent pushAgent = new PushAgent(context)
+
+    while (target.next()) {
+        try {
+            queryExecutor.executeDataQueryByTarget()
+
+            PushData data = new PushData()
+            data.setPushSeq(target.getString("SEQ"))
+            data.setRcpt(getPhoneNo(target), target.getString("RECEIVER_ID"), target.getString("RECEIVER_NM"))
+            data.setRequestInfo(target.getString("REQ_DEPT_ID"), target.getString("REQ_USER_ID"))
+            data.setTitle(target.getString("SUBJECT"))
+
+            if ("J".equals(target.getString("TMPL_TYPE"))) {
+                message.setBindingProperty("record", target.getRecord())
+                message.setBindingProperty("jRecord", new JsonJeonmun(context.get("data1").get("JONMUN")))
+                data.setContent(message.execGroovyTemplate())
+                data.setPopupContent(message.execGroovyTemplate("POPUP"))
+            } else {
+                data.setContent(context.get("data1").get("JONMUN"))
+            }
+
+            // SLOT1 ~ 10 필드 개인화
+            Map additionalDataMap = new HashMap()
+            for (int i = 1; i <= 10; i++) {
+                additionalDataMap.put("SLOT" + i, mapper.apply(context.get("_SLOT" + i + "_FIELD")))
+            }
+
+            data.setAdditionalDataMap(additionalDataMap)
+
+            pushAgent.send(data)
+
+            context.put("_SEND_FG", "E")
+            context.put("_ERROR_MESSAGE", "")
+        } catch (Exception e) {
+            context.put("_SEND_FG", "O")
+            context.put("_ERROR_MESSAGE", StringUtil.defaultIfBlank(e.getMessage(), "Error Message is null"))
+            context.put("_EXCEPTION", e)
+            exLogger.write(target.toString(), e)
+
+            if (!"Y".equals(context.get("_PREVIEW_YN"))) {
+                String errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+                exLogger.insertSendLog(target, target.getString("RECEIVER"), target.getString("RECEIVER_ID"), target.getString("RECEIVER_NM"), errMsg, target.getString("SEQ"), target.getString("REQ_DEPT_ID"))
+            }
+        } finally {
+            queryExecutor.executeResultQueryByTarget()
+        }
+    }
+
+    queryExecutor.executeResultQueryByOnce()
+} finally {
+    if (exLogger != null) {
+        exLogger.close()
+    }
+    if (target != null) {
+        target.close()
+    }
+    if (queryExecutor != null) {
+        queryExecutor.close()
+    }
+}
+
+/*
+ * 시뮬레이션 모드("SIMUL")면 발송되지 않는 연락처로 변경
+ */
+private String getPhoneNo(TextReader target) {
+    if ("SIMUL".equals(context.get("_DEPLOY_TYPE"))) {
+        return "SIMULATION"
+    } else {
+        return target.getString("RECEIVER")
+    }
+}

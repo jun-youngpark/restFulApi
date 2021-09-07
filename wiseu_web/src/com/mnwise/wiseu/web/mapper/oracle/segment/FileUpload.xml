@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.FileUpload">
+    <resultMap id="resultFileUpload" type="Target">
+        <result column="target_no"          property="targetNo"/>
+        <result column="customer_id"        property="customerId"/>
+        <result column="customer_nm"        property="customerNm"/>
+        <result column="customer_email"     property="customerEmail"/>
+        <result column="customer_tel"       property="customerTel"/>
+        <result column="customer_fax"       property="customerFax"/>
+        <result column="seg"                property="seg"/>
+        <result column="call_back"          property="callback"/>
+        <result column="sender_nm"          property="senderNm"/>
+        <result column="sender_email"       property="senderEmail"/>
+        <result column="retmail_receiver"   property="retmailReceiver"/>
+        <result column="sentence"           property="sentence"/>
+        <result column="customer_slot1"     property="customerSlot1"/>
+        <result column="customer_slot2"     property="customerSlot2"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="slot3"              property="slot3"/>
+        <result column="slot4"              property="slot4"/>
+        <result column="slot5"              property="slot5"/>
+        <result column="slot6"              property="slot6"/>
+        <result column="slot7"              property="slot7"/>
+        <result column="slot8"              property="slot8"/>
+        <result column="slot9"              property="slot9"/>
+        <result column="slot11"             property="slot11"/>
+        <result column="slot10"             property="slot10"/>
+        <result column="slot12"             property="slot12"/>
+        <result column="slot13"             property="slot13"/>
+        <result column="slot14"             property="slot14"/>
+        <result column="slot15"             property="slot15"/>
+        <result column="slot16"             property="slot16"/>
+        <result column="slot17"             property="slot17"/>
+        <result column="slot18"             property="slot18"/>
+        <result column="slot19"             property="slot19"/>
+        <result column="slot20"             property="slot20"/>
+        <result column="slot21"             property="slot21"/>
+        <result column="slot22"             property="slot22"/>
+        <result column="slot23"             property="slot23"/>
+        <result column="slot24"             property="slot24"/>
+        <result column="slot25"             property="slot25"/>
+        <result column="slot26"             property="slot26"/>
+        <result column="slot27"             property="slot27"/>
+        <result column="slot28"             property="slot28"/>
+        <result column="slot29"             property="slot29"/>
+        <result column="slot30"             property="slot30"/>
+        <result column="slot31"             property="slot31"/>
+        <result column="slot32"             property="slot32"/>
+        <result column="slot33"             property="slot33"/>
+        <result column="slot34"             property="slot34"/>
+        <result column="slot35"             property="slot35"/>
+        <result column="slot36"             property="slot36"/>
+        <result column="slot37"             property="slot37"/>
+        <result column="slot38"             property="slot38"/>
+        <result column="slot39"             property="slot39"/>
+        <result column="slot40"             property="slot40"/>
+        <result column="slot41"             property="slot41"/>
+        <result column="slot42"             property="slot42"/>
+        <result column="slot43"             property="slot43"/>
+        <result column="slot44"             property="slot44"/>
+        <result column="slot45"             property="slot45"/>
+        <result column="slot46"             property="slot46"/>
+        <result column="slot47"             property="slot47"/>
+        <result column="slot48"             property="slot48"/>
+        <result column="slot49"             property="slot49"/>
+        <result column="slot50"             property="slot50"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertFileUpload" parameterType="Target">
+        INSERT INTO nvfileupload (
+            target_no, customer_id, customer_nm, customer_email, customer_tel, customer_fax, seg
+          , call_back, sender_nm, sender_email, retmail_receiver, sentence, customer_slot1, customer_slot2
+          , slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10
+          , slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20
+          , slot21, slot22, slot23, slot24, slot25, slot26, slot27, slot28, slot29, slot30
+          , slot31, slot32, slot33, slot34, slot35, slot36, slot37, slot38, slot39, slot40
+          , slot41, slot42, slot43, slot44, slot45, slot46, slot47, slot48, slot49, slot50
+        ) VALUES (
+            #{targetNo}, #{customerId}, #{customerNm, jdbcType=VARCHAR}, #{customerEmail, jdbcType=VARCHAR}, #{customerTel, jdbcType=VARCHAR}, #{customerFax, jdbcType=VARCHAR}, #{seg, jdbcType=VARCHAR}
+          , #{callback, jdbcType=VARCHAR}, #{senderNm, jdbcType=VARCHAR}, #{senderEmail, jdbcType=VARCHAR}, #{retmailReceiver, jdbcType=VARCHAR}, #{sentence, jdbcType=VARCHAR}, #{customerSlot1, jdbcType=VARCHAR}, #{customerSlot2, jdbcType=VARCHAR}
+          , #{slot1, jdbcType=VARCHAR}, #{slot2, jdbcType=VARCHAR}, #{slot3, jdbcType=VARCHAR}, #{slot4, jdbcType=VARCHAR}, #{slot5, jdbcType=VARCHAR}, #{slot6, jdbcType=VARCHAR}, #{slot7, jdbcType=VARCHAR}, #{slot8, jdbcType=VARCHAR}, #{slot9, jdbcType=VARCHAR}, #{slot10, jdbcType=VARCHAR}
+          , #{slot11, jdbcType=VARCHAR}, #{slot12, jdbcType=VARCHAR}, #{slot13, jdbcType=VARCHAR}, #{slot14, jdbcType=VARCHAR}, #{slot15, jdbcType=VARCHAR}, #{slot16, jdbcType=VARCHAR}, #{slot17, jdbcType=VARCHAR}, #{slot18, jdbcType=VARCHAR}, #{slot19, jdbcType=VARCHAR}, #{slot20, jdbcType=VARCHAR}
+          , #{slot21, jdbcType=VARCHAR}, #{slot22, jdbcType=VARCHAR}, #{slot23, jdbcType=VARCHAR}, #{slot24, jdbcType=VARCHAR}, #{slot25, jdbcType=VARCHAR}, #{slot26, jdbcType=VARCHAR}, #{slot27, jdbcType=VARCHAR}, #{slot28, jdbcType=VARCHAR}, #{slot29, jdbcType=VARCHAR}, #{slot30, jdbcType=VARCHAR}
+          , #{slot31, jdbcType=VARCHAR}, #{slot32, jdbcType=VARCHAR}, #{slot33, jdbcType=VARCHAR}, #{slot34, jdbcType=VARCHAR}, #{slot35, jdbcType=VARCHAR}, #{slot36, jdbcType=VARCHAR}, #{slot37, jdbcType=VARCHAR}, #{slot38, jdbcType=VARCHAR}, #{slot39, jdbcType=VARCHAR}, #{slot40, jdbcType=VARCHAR}
+          , #{slot41, jdbcType=VARCHAR}, #{slot42, jdbcType=VARCHAR}, #{slot43, jdbcType=VARCHAR}, #{slot44, jdbcType=VARCHAR}, #{slot45, jdbcType=VARCHAR}, #{slot46, jdbcType=VARCHAR}, #{slot47, jdbcType=VARCHAR}, #{slot48, jdbcType=VARCHAR}, #{slot49, jdbcType=VARCHAR}, #{slot50, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertBulkFileUpload" parameterType="map">
+        INSERT INTO nvfileupload (
+            target_no, customer_id, customer_nm, customer_email, customer_tel, customer_fax, seg
+          , call_back, sender_nm, sender_email, retmail_receiver, sentence, customer_slot1, customer_slot2
+          , slot1, slot2, slot3, slot4, slot5, slot6, slot7, slot8, slot9, slot10
+          , slot11, slot12, slot13, slot14, slot15, slot16, slot17, slot18, slot19, slot20
+          , slot21, slot22, slot23, slot24, slot25, slot26, slot27, slot28, slot29, slot30
+          , slot31, slot32, slot33, slot34, slot35, slot36, slot37, slot38, slot39, slot40
+          , slot41, slot42, slot43, slot44, slot45, slot46, slot47, slot48, slot49, slot50
+        ) VALUES (
+            #{TARGET_NO}, #{CUSTOMER_ID}, #{CUSTOMER_NM, jdbcType=VARCHAR}, #{CUSTOMER_EMAIL, jdbcType=VARCHAR}, #{CUSTOMER_TEL, jdbcType=VARCHAR}, #{CUSTOMER_FAX, jdbcType=VARCHAR}, #{SEG, jdbcType=VARCHAR}
+          , #{CALL_BACK, jdbcType=VARCHAR}, #{SENDER_NM, jdbcType=VARCHAR}, #{SENDER_EMAIL, jdbcType=VARCHAR}, #{RETMAIL_RECEIVER, jdbcType=VARCHAR}, #{SENTENCE, jdbcType=VARCHAR}, #{CUSTOMER_SLOT1, jdbcType=VARCHAR}, #{CUSTOMER_SLOT2, jdbcType=VARCHAR}
+          , #{SLOT1, jdbcType=VARCHAR}, #{SLOT2, jdbcType=VARCHAR}, #{SLOT3, jdbcType=VARCHAR}, #{SLOT4, jdbcType=VARCHAR}, #{SLOT5, jdbcType=VARCHAR}, #{SLOT6, jdbcType=VARCHAR}, #{SLOT7, jdbcType=VARCHAR}, #{SLOT8, jdbcType=VARCHAR}, #{SLOT9, jdbcType=VARCHAR}, #{SLOT10, jdbcType=VARCHAR}
+          , #{SLOT11, jdbcType=VARCHAR}, #{SLOT12, jdbcType=VARCHAR}, #{SLOT13, jdbcType=VARCHAR}, #{SLOT14, jdbcType=VARCHAR}, #{SLOT15, jdbcType=VARCHAR}, #{SLOT16, jdbcType=VARCHAR}, #{SLOT17, jdbcType=VARCHAR}, #{SLOT18, jdbcType=VARCHAR}, #{SLOT19, jdbcType=VARCHAR}, #{SLOT20, jdbcType=VARCHAR}
+          , #{SLOT21, jdbcType=VARCHAR}, #{SLOT22, jdbcType=VARCHAR}, #{SLOT23, jdbcType=VARCHAR}, #{SLOT24, jdbcType=VARCHAR}, #{SLOT25, jdbcType=VARCHAR}, #{SLOT26, jdbcType=VARCHAR}, #{SLOT27, jdbcType=VARCHAR}, #{SLOT28, jdbcType=VARCHAR}, #{SLOT29, jdbcType=VARCHAR}, #{SLOT30, jdbcType=VARCHAR}
+          , #{SLOT31, jdbcType=VARCHAR}, #{SLOT32, jdbcType=VARCHAR}, #{SLOT33, jdbcType=VARCHAR}, #{SLOT34, jdbcType=VARCHAR}, #{SLOT35, jdbcType=VARCHAR}, #{SLOT36, jdbcType=VARCHAR}, #{SLOT37, jdbcType=VARCHAR}, #{SLOT38, jdbcType=VARCHAR}, #{SLOT39, jdbcType=VARCHAR}, #{SLOT40, jdbcType=VARCHAR}
+          , #{SLOT41, jdbcType=VARCHAR}, #{SLOT42, jdbcType=VARCHAR}, #{SLOT43, jdbcType=VARCHAR}, #{SLOT44, jdbcType=VARCHAR}, #{SLOT45, jdbcType=VARCHAR}, #{SLOT46, jdbcType=VARCHAR}, #{SLOT47, jdbcType=VARCHAR}, #{SLOT48, jdbcType=VARCHAR}, #{SLOT49, jdbcType=VARCHAR}, #{SLOT50, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateFileUploadByPk" parameterType="Target">
+        UPDATE nvfileupload
+        SET
+            customer_nm = #{customerNm, jdbcType=VARCHAR}
+          , customer_email = #{customerEmail, jdbcType=VARCHAR}
+          , customer_tel = #{customerTel, jdbcType=VARCHAR}
+          , customer_fax = #{customerFax, jdbcType=VARCHAR}
+          , seg = #{seg, jdbcType=VARCHAR}
+          , call_back = #{callBack, jdbcType=VARCHAR}
+          , sender_nm = #{senderNm, jdbcType=VARCHAR}
+          , sender_email = #{senderEmail, jdbcType=VARCHAR}
+          , retmail_receiver = #{retmailReceiver, jdbcType=VARCHAR}
+          , sentence = #{sentence, jdbcType=VARCHAR}
+          , customer_slot1 = #{customerSlot1, jdbcType=VARCHAR}
+          , customer_slot2 = #{customerSlot2, jdbcType=VARCHAR}
+          , slot1 = #{slot1, jdbcType=VARCHAR}
+          , slot2 = #{slot2, jdbcType=VARCHAR}
+          , slot3 = #{slot3, jdbcType=VARCHAR}
+          , slot4 = #{slot4, jdbcType=VARCHAR}
+          , slot5 = #{slot5, jdbcType=VARCHAR}
+          , slot6 = #{slot6, jdbcType=VARCHAR}
+          , slot7 = #{slot7, jdbcType=VARCHAR}
+          , slot8 = #{slot8, jdbcType=VARCHAR}
+          , slot9 = #{slot9, jdbcType=VARCHAR}
+          , slot10 = #{slot10, jdbcType=VARCHAR}
+          , slot11 = #{slot11, jdbcType=VARCHAR}
+          , slot12 = #{slot12, jdbcType=VARCHAR}
+          , slot13 = #{slot13, jdbcType=VARCHAR}
+          , slot14 = #{slot14, jdbcType=VARCHAR}
+          , slot15 = #{slot15, jdbcType=VARCHAR}
+          , slot16 = #{slot16, jdbcType=VARCHAR}
+          , slot17 = #{slot17, jdbcType=VARCHAR}
+          , slot18 = #{slot18, jdbcType=VARCHAR}
+          , slot19 = #{slot19, jdbcType=VARCHAR}
+          , slot20 = #{slot20, jdbcType=VARCHAR}
+          , slot21 = #{slot21, jdbcType=VARCHAR}
+          , slot22 = #{slot22, jdbcType=VARCHAR}
+          , slot23 = #{slot23, jdbcType=VARCHAR}
+          , slot24 = #{slot24, jdbcType=VARCHAR}
+          , slot25 = #{slot25, jdbcType=VARCHAR}
+          , slot26 = #{slot26, jdbcType=VARCHAR}
+          , slot27 = #{slot27, jdbcType=VARCHAR}
+          , slot28 = #{slot28, jdbcType=VARCHAR}
+          , slot29 = #{slot29, jdbcType=VARCHAR}
+          , slot30 = #{slot30, jdbcType=VARCHAR}
+          , slot31 = #{slot31, jdbcType=VARCHAR}
+          , slot32 = #{slot32, jdbcType=VARCHAR}
+          , slot33 = #{slot33, jdbcType=VARCHAR}
+          , slot34 = #{slot34, jdbcType=VARCHAR}
+          , slot35 = #{slot35, jdbcType=VARCHAR}
+          , slot36 = #{slot36, jdbcType=VARCHAR}
+          , slot37 = #{slot37, jdbcType=VARCHAR}
+          , slot38 = #{slot38, jdbcType=VARCHAR}
+          , slot39 = #{slot39, jdbcType=VARCHAR}
+          , slot40 = #{slot40, jdbcType=VARCHAR}
+          , slot41 = #{slot41, jdbcType=VARCHAR}
+          , slot42 = #{slot42, jdbcType=VARCHAR}
+          , slot43 = #{slot43, jdbcType=VARCHAR}
+          , slot44 = #{slot44, jdbcType=VARCHAR}
+          , slot45 = #{slot45, jdbcType=VARCHAR}
+          , slot46 = #{slot46, jdbcType=VARCHAR}
+          , slot47 = #{slot47, jdbcType=VARCHAR}
+          , slot48 = #{slot48, jdbcType=VARCHAR}
+          , slot49 = #{slot49, jdbcType=VARCHAR}
+          , slot50 = #{slot50, jdbcType=VARCHAR}
+        WHERE target_no = #{targetNo}
+        AND customer_id = #{customerId}
+    </update>
+
+    <update id="updateSegmentTarget" parameterType="Target">
+        UPDATE nvfileupload
+        SET
+            customer_email = #{customerEmail, jdbcType=VARCHAR}
+          <if test="customerNm  != null and customerNm  != ''">, customer_nm = #{customerNm, jdbcType=VARCHAR}</if>
+          <if test="customerTel != null and customerTel != ''">, customer_tel = #{customerTel, jdbcType=VARCHAR}</if>
+          <if test="customerFax != null and customerFax != ''">, customer_fax = #{customerFax, jdbcType=VARCHAR}</if>
+          <if test="slot1       != null and slot1       != ''">, slot1 = #{slot1, jdbcType=VARCHAR}</if>
+          <if test="slot2       != null and slot2       != ''">, slot2 = #{slot2, jdbcType=VARCHAR}</if>
+          <if test="slot3       != null and slot3       != ''">, slot3 = #{slot3, jdbcType=VARCHAR}</if>
+          <if test="slot4       != null and slot4       != ''">, slot4 = #{slot4, jdbcType=VARCHAR}</if>
+          <if test="slot5       != null and slot5       != ''">, slot5 = #{slot5, jdbcType=VARCHAR}</if>
+          <if test="slot6       != null and slot6       != ''">, slot6 = #{slot6, jdbcType=VARCHAR}</if>
+        WHERE target_no = #{targetNo}
+        AND customer_id = #{customerId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteFileUploadByPk" parameterType="map">
+        DELETE FROM nvfileupload
+        WHERE target_no = #{targetNo}
+        AND customer_id = #{customerId}
+    </delete>
+
+    <delete id="deleteFileUploadByTargetNo" parameterType="int">
+        DELETE FROM nvfileupload
+        WHERE target_no = #{targetNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectFileUploadByPk" parameterType="map" resultMap="resultFileUpload">
+        SELECT *
+        FROM nvfileupload
+        WHERE target_no = #{targetNo}
+        AND customer_id = #{customerId}
+    </select>
+
+    <select id="selectNextTargetNo" resultType="int">
+        SELECT coalesce(max(target_no),0)+1
+        FROM nvfileupload
+    </select>
+
+    <select id="selectImportedDataCnt" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM nvfileupload
+        WHERE target_no = #{targetNo}
+    </select>
+
+    <select id="getCustomerIdCount" parameterType="map" resultType="integer">
+        SELECT rownum
+        FROM nvfileupload
+        WHERE target_no = #{targetNo}
+        AND customer_id = #{customerId}
+        AND rownum = 1
+    </select>
+</mapper>

@@ -1,0 +1,173 @@
+09-03 11:21:55.420 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [6167930231214F0FF3ABC7B275551F0E] GET /campaign/campaignList.do
+09-03 11:21:59.482 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 419 MB
+09-03 11:21:59.483 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+09-03 11:21:59.484 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 288 MB
+09-03 11:21:59.484 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+09-03 11:21:59.484 ttp-nio-18084-exec-1 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+09-03 11:21:59.651 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController   201 잘못된 비밀번호 입니다 ID : admin
+09-03 11:22:08.628 ttp-nio-18084-exec-4 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 428 MB
+09-03 11:22:08.629 ttp-nio-18084-exec-4 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+09-03 11:22:08.629 ttp-nio-18084-exec-4 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 262 MB
+09-03 11:22:08.629 ttp-nio-18084-exec-4 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+09-03 11:22:08.629 ttp-nio-18084-exec-4 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+09-03 11:22:08.720 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /campaign/campaignList.do
+09-03 11:22:13.096 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:22:18.267 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:22:19.481 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/mmsContsList.do
+09-03 11:22:19.481 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:22:19.510 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:22:19.547 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /jsp/editor/mmsContsList.jsp
+09-03 11:22:19.640 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:22:19.640 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:22:19.750 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:22:19.769 ttp-nio-18084-exec-7 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 0
+09-03 11:22:42.217 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:22:45.448 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:22:45.880 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/mmsContsList.do
+09-03 11:22:45.881 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:22:45.895 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /jsp/editor/mmsContsList.jsp
+09-03 11:22:45.918 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:22:46.001 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:22:46.001 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:22:46.034 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:22:46.038 ttp-nio-18084-exec-3 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 0
+09-03 11:22:48.864 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:26:11.960 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:26:37.431 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:26:49.874 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:27:53.911 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:27:55.138 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare1Step.do
+09-03 11:27:56.448 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:27:57.632 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:27:58.067 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/smsContsList.do
+09-03 11:27:58.067 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:27:58.090 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /jsp/editor/smsContsList.jsp
+09-03 11:27:58.096 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:27:58.150 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:27:58.150 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:27:58.179 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:27:58.184 ttp-nio-18084-exec-6 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 3
+09-03 11:28:05.121 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:28:07.729 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:28:08.213 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/selectPushAppList.json
+09-03 11:28:08.213 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:28:08.235 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:28:08.277 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:28:08.277 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:28:08.324 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:28:08.330 ttp-nio-18084-exec-9 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 0
+09-03 11:28:43.405 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:29:46.605 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:29:51.144 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:29:51.598 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:29:51.599 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/selectPushAppList.json
+09-03 11:29:51.636 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:29:51.675 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:29:51.675 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:29:51.708 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:29:51.713 ttp-nio-18084-exec-9 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 0
+09-03 11:29:55.606 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:30:04.879 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:30:23.401 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:31:13.562 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:33:24.839 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /ecare/ecare2StepInfo.json
+09-03 11:40:49.882 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:40:53.025 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:40:53.589 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/smsContsList.do
+09-03 11:40:53.591 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:40:53.602 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /jsp/editor/smsContsList.jsp
+09-03 11:40:53.625 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:40:53.698 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:40:53.698 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:40:53.746 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:40:53.750 ttp-nio-18084-exec-1 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 0
+09-03 11:40:57.447 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:40:57.925 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:40:57.937 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:40:57.962 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:40:57.962 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:40:58.135 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorTemplate.json
+09-03 11:41:03.833 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:41:04.372 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:41:04.373 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/selectPushAppList.json
+09-03 11:41:04.403 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:41:04.443 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:41:04.444 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:41:04.495 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:41:04.500 ttp-nio-18084-exec-6 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 0
+09-03 11:41:51.173 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:41:53.015 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:41:53.460 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/mmsContsList.do
+09-03 11:41:53.460 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:41:53.474 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /jsp/editor/mmsContsList.jsp
+09-03 11:41:53.497 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:41:53.570 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:41:53.571 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:41:53.622 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorPhoneTemplate.json
+09-03 11:41:53.626 ttp-nio-18084-exec-7 DEBUG c.m.w.w.e.s.EditorEcareService   271 개인인자 수: 0
+09-03 11:41:56.958 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecareList.do
+09-03 11:41:58.424 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] GET /ecare/ecare2Step.do
+09-03 11:41:58.859 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditor.json
+09-03 11:41:58.870 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /include/ecareOmniChannel.do
+09-03 11:41:58.893 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /env/getHandlerUseList.do
+09-03 11:41:58.893 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorHandler.json
+09-03 11:41:58.951 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A35710C44DB532DE61DC078E29B59D72] POST /editor/selectEditorTemplate.json
+09-03 14:57:02.377 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [BCA84303B23790190939627C809E638C] GET /ecare/ecareList.do
+09-03 15:47:00.170 ttp-nio-18084-exec-9 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 451 MB
+09-03 15:47:00.171 ttp-nio-18084-exec-9 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+09-03 15:47:00.171 ttp-nio-18084-exec-9 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 309 MB
+09-03 15:47:00.172 ttp-nio-18084-exec-9 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+09-03 15:47:00.172 ttp-nio-18084-exec-9 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+09-03 15:47:00.282 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A71C6192136549466A5C96D4EDD14799] GET /campaign/campaignList.do
+09-03 15:47:03.099 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A71C6192136549466A5C96D4EDD14799] GET /ecare/ecare1Step.do
+09-03 16:04:39.019 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [A71C6192136549466A5C96D4EDD14799] GET /template/mobileTemplateReg.do
+09-03 16:14:23.234 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 399 MB
+09-03 16:14:23.235 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+09-03 16:14:23.235 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 229 MB
+09-03 16:14:23.237 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+09-03 16:14:23.237 ttp-nio-18084-exec-6 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+09-03 16:14:23.289 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /campaign/campaignList.do
+09-03 16:14:31.132 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /ecare/ecare1Step.do
+09-03 16:14:38.813 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /ecare/ecare1Step.do
+09-03 16:14:38.999 ttp-nio-18084-exec-9 DEBUG c.m.w.web.segment.dao.SegmentDao    98 DbInfo_seq: 1
+09-03 16:14:39.134 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /ecare/ecare2Step.do
+09-03 16:14:39.661 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditor.json
+09-03 16:14:39.674 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /include/ecareOmniChannel.do
+09-03 16:14:39.704 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/getHandlerUseList.do
+09-03 16:14:39.705 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorHandler.json
+09-03 16:14:39.761 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorTemplate.json
+09-03 16:14:40.263 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/loadHandler.json
+09-03 16:14:44.468 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /ecare/ecareEditor.json
+09-03 16:14:44.595 ttp-nio-18084-exec-9 DEBUG c.m.w.w.e.s.EditorEcareService   476 개인인자 수: 0
+09-03 16:14:44.597 ttp-nio-18084-exec-9 DEBUG c.m.w.w.e.s.EditorEcareService   476 개인인자 수: 0
+09-03 16:37:39.358 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /ecare/ecareList.do
+09-03 16:37:41.558 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /ecare/ecareList.do
+09-03 16:37:42.702 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /ecare/ecare2Step.do
+09-03 16:37:43.276 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditor.json
+09-03 16:37:43.294 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /include/ecareOmniChannel.do
+09-03 16:37:43.324 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/getHandlerUseList.do
+09-03 16:37:43.324 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorHandler.json
+09-03 16:37:43.386 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorTemplate.json
+09-03 16:37:43.887 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/loadHandler.json
+09-03 16:37:46.256 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /ecare/resend.do
+09-03 16:37:46.478 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /ecare/ecare2Step.do
+09-03 16:37:46.955 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditor.json
+09-03 16:37:46.993 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /include/ecareOmniChannel.do
+09-03 16:37:47.054 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/getHandlerUseList.do
+09-03 16:37:47.062 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorHandler.json
+09-03 16:37:47.161 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/loadHandler.json
+09-03 16:37:47.162 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorTemplate.json
+09-03 16:37:59.844 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditor.json
+09-03 16:37:59.866 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /include/ecareOmniChannel.do
+09-03 16:37:59.895 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/getHandlerUseList.do
+09-03 16:37:59.895 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorHandler.json
+09-03 16:38:00.421 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/loadHandler.json
+09-03 16:38:00.425 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorTemplate.json
+09-03 16:38:01.582 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /ecare/resend.do
+09-03 16:38:01.647 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] GET /ecare/ecare2Step.do
+09-03 16:38:02.372 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditor.json
+09-03 16:38:02.395 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /include/ecareOmniChannel.do
+09-03 16:38:02.428 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/getHandlerUseList.do
+09-03 16:38:02.427 ttp-nio-18084-exec-9 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorHandler.json
+09-03 16:38:02.612 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /env/loadHandler.json
+09-03 16:38:02.613 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [E2537BD11336517EC7546C1DE48930CA] POST /editor/selectEditorTemplate.json

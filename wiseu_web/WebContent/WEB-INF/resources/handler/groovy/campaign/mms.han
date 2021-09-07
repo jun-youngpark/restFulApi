@@ -1,0 +1,64 @@
+import com.mnwise.ASE.agent.messageagent.MessageAgent
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MessageAgent mmsagent = new MessageAgent(context)
+mmsagent.open()
+
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+
+String template = context.get("_TEMPLATE")
+String tId = context.get("_TID")
+String strMsg =  ""
+
+mmsagent.removeImageTag(context)    //이미지 태그와 템플릿 분리
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+message.prepareGroovyTemplate();
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _MMS_FIELD_SEQ = context.getInt("_MMS_FIELD_SEQ")
+
+MessageBaseItem messageItem = null;
+String errMsg= "";
+while (target.next()) {
+  try {
+    messageItem = new MessageBaseItem();
+    messageItem.setSubject(context.get("_SERVICE_PREFACE", target))
+     // 부서별 과금을 위해 사용
+    messageItem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    messageItem.setReqUserId(context.get("_REQ_USER_ID"))
+
+    context.put("record", target.getRecord())
+    messageItem.setPhoneNo(target.getString(_MMS_FIELD_SEQ))
+    messageItem.setUserId(target.getString(_KEY_FIELD_SEQ))
+    messageItem.setUserName(target.getString(_NAME_FIELD_SEQ))
+    messageItem.setMsg(message.execGroovyTemplate())
+    messageItem.setCallback(context.get("_SENDER_TEL"))
+     if (context.get("_IMAGE_FILE_CNT") != null) {  //이미지 설정
+        messageItem.setFileCnt((Integer) context.get("_IMAGE_FILE_CNT"))
+        messageItem.setArrFileName((String[]) context.get("_IMAGE_FILE_PATHS"))
+        messageItem.setArrPrevFileName((String[]) context.get("_IMAGE_PREVIEW_PATHS"))
+    }
+    mmsagent.send(messageItem)
+
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_MMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  } finally {
+      messageItem = null;
+  }
+}
+
+exlogger.close()
+target.close()
+mmsagent.close()

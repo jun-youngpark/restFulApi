@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MakeData">
+    <!-- [20190521][김형준][테스트데이터 발송 관리 : 채널에 해당하는 서비스 리스트]-->
+    <select id="selectServiceList" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        SELECT  CHANNEL_TYPE AS channel,
+                ECARE_NO AS ecareNo,
+                ECARE_NM AS ecareNm
+        FROM    NVECAREMSG
+        WHERE   1=1
+        <if test="channel != '' and channel != null">
+            AND CHANNEL_TYPE = #{channel}
+        </if>
+        <choose>    <!-- 발송상태에 따른 분기처리 -->
+            <when test='status == "W"'> <!-- 작성중/중지 -->
+                AND ECARE_STS IN ('I','P')
+            </when>
+            <when test='status == "R"'> <!-- 발송중 -->
+                AND ECARE_STS='R'
+            </when>
+        </choose>       
+        AND     DEPTH_NO = 1
+        AND     ECARE_NO != 0
+        ORDER BY ECARE_NO
+    </select>
+    
+    <select id="getServiceInfo" resultType="java.util.HashMap">
+        SELECT  A.CHANNEL_TYPE,
+                A.ECARE_NO,
+                A.ECARE_NM,
+                A.ECARE_PREFACE,
+                A.USER_ID,
+                A.GRP_CD,
+                A.SEGMENT_NO,
+                A.SENDER_NM,
+                A.SENDER_EMAIL,
+                A.SENDER_TEL,
+                A.RETMAIL_RECEIVER,
+                A.SUB_TYPE,
+                A.RETRY_CNT,
+                A.REQ_DEPT_ID,
+                A.REQ_USER_ID,
+                A.SECURITY_MAIL_YN,
+                B.PUSH_APP_ID,
+                B.PUSH_MSG_TYPE,
+<!--                B.PUSH_TEMPLATE_CODE, -->
+                A.KAKAO_IMAGE_NO
+        FROM    NVECAREMSG A
+        LEFT OUTER JOIN NVPUSHSERVICEINFO B
+        ON A.ECARE_NO = B.SVC_NO AND B.SVC_TYPE = 'E'
+        WHERE   A.ECARE_NO = #{serviceNo}
+        <choose>    <!-- 발송상태에 따른 분기처리 -->
+            <when test='status == "W"'> <!-- 작성중/중지 -->
+                AND A.ECARE_STS IN ('I','P')
+            </when>
+            <when test='status == "R"'> <!-- 발송중 -->
+                AND A.ECARE_STS='R'
+            </when>
+        </choose>       
+    </select>
+    
+    <select id="getTempleteMsg" resultType="String">
+        SELECT  TEMPLATE
+        FROM    NVECARETEMPLATE
+        WHERE   ECARE_NO = #{value}
+        AND     SEG != 'POPUP'
+        AND     trim(SEG)  IS NULL
+    </select>
+    
+    <select id="getCoverTemplateMsg" resultType="String">
+        SELECT  TEMPLATE
+        FROM    NVECARETEMPLATE
+        WHERE   ECARE_NO = #{value}
+        AND     SEG = 'COVER'
+    </select>
+    
+    <select id="getPushPopMsg" resultType="String">
+        SELECT  TEMPLATE
+        FROM    NVECARETEMPLATE
+        WHERE   ECARE_NO = #{value}
+        AND     SEG = 'POPUP'
+    </select>
+    
+    <select id="getSemanticList" resultType="java.util.HashMap">
+        SELECT  FIELD_SEQ,
+                FIELD_NM,
+                FIELD_DESC
+        FROM    NVSEMANTIC
+        WHERE   SEGMENT_NO = #{value}
+    </select>
+    
+    <insert id="insertMakeBatchData" parameterType="java.util.HashMap">
+        INSERT INTO NVBATCH
+        (
+            SEQ, 
+            ECARE_NO, CHANNEL, REQ_DT, REQ_TM, TMPL_TYPE, RECEIVER_ID, RECEIVER_NM, RECEIVER,
+            SENDER_NM, SENDER, SUBJECT, RESERVED_DATE,
+            REQ_USER_ID, REQ_DEPT_ID, SECU_KEY, JONMUN, FILE_PATH1
+            <choose>
+                <when test='channelType == "P"'>
+                    ,APP_NO, MSG_TYPE, PUSH_TMPLT_TPCD, RETRY_CNT, PUSH_DTL_MSG_DVCD, CNTS
+                </when>
+                <when test='channelType == "C"'>
+                    ,SRFIDD
+                </when>
+                <when test='channelType == "A"'>
+                    ,SRFIDD
+                </when>
+            </choose>
+        )
+        VALUES (
+            TO_CHAR(SYSTIMESTAMP, 'yyyyMMddhh24missff3') || LPAD(SEQ_IF_BATCH_PK.nextval, 15, '0'), 
+            #{ECARE_NO}, #{channelType}, TO_CHAR(SYSDATE, 'yyyyMMdd'), TO_CHAR(SYSDATE, 'hh24miss'), #{tmplType}, #{receiverId}, #{receiverNm}, #{receiver},
+            NVL(#{senderNm,jdbcType=VARCHAR}, ' '), NVL(#{sender,jdbcType=VARCHAR}, '01099999999'), #{ecare_preface,jdbcType=VARCHAR}, TO_CHAR(SYSDATE, 'yyyyMMddhh24miss'),
+            #{reqUserId,jdbcType=VARCHAR}, #{reqDeptId,jdbcType=VARCHAR}, #{secuKey,jdbcType=VARCHAR}, #{jonmun,jdbcType=CLOB}, #{filePath1,jdbcType=VARCHAR}
+            <choose>
+                <when test='channelType == "P"'>
+                    ,#{appNo,jdbcType=INTEGER}, #{msgType}, NVL(#{pushTmpltTpcd,jdbcType=VARCHAR}, ' '), #{retryCnt,jdbcType=INTEGER}, #{pushDtlMsgDvcd}, #{cnts}
+                </when>
+                <when test='channelType == "C"'>
+                    ,#{kakaoImageNo}
+                </when>
+                <when test='channelType == "A"'>
+                    ,#{kakaoImageNo}
+                </when>
+            </choose>
+        )
+    </insert>
+    
+    <insert id="insertMakeAcceptData" parameterType="java.util.HashMap">
+        INSERT INTO NVREALTIMEACCEPT
+        (
+            SEQ, 
+            ECARE_NO, CHANNEL, REQ_DT, REQ_TM, TMPL_TYPE, RECEIVER_ID, RECEIVER_NM, RECEIVER,
+            SENDER_NM, SENDER, SUBJECT, RESERVED_DATE,
+            REQ_USER_ID, REQ_DEPT_ID, SECU_KEY, JONMUN, FILE_PATH1
+            <choose>
+                <when test='channelType == "P"'>
+                    ,APP_NO, MSG_TYPE, PUSH_TMPLT_TPCD, RETRY_CNT, PUSH_DTL_MSG_DVCD, CNTS
+                </when>
+                <when test='channelType == "C"'>
+                    ,SRFIDD
+                </when>
+                <when test='channelType == "A"'>
+                    ,SRFIDD
+                </when>
+            </choose>
+            
+        )
+        VALUES (
+            TO_CHAR(SYSTIMESTAMP, 'yyyyMMddhh24missff3') || LPAD(SEQ_IF_REAL_PK.nextval, 15, '0'), 
+            #{ECARE_NO}, #{channelType}, TO_CHAR(SYSDATE, 'yyyyMMdd'), TO_CHAR(SYSDATE, 'hh24miss'), #{tmplType}, #{receiverId}, #{receiverNm}, #{receiver},
+            NVL(#{senderNm,jdbcType=VARCHAR}, ' '), NVL(#{sender,jdbcType=VARCHAR}, '01099999999'), #{ecare_preface,jdbcType=VARCHAR}, TO_CHAR(SYSDATE, 'yyyyMMddhh24miss'),
+            #{reqUserId,jdbcType=VARCHAR}, #{reqDeptId,jdbcType=VARCHAR}, #{secuKey,jdbcType=VARCHAR}, #{jonmun,jdbcType=CLOB}, #{filePath1,jdbcType=VARCHAR}
+            <choose>
+                <when test='channelType == "P"'>
+                    ,#{appNo,jdbcType=INTEGER}, #{msgType}, NVL(#{pushTmpltTpcd,jdbcType=VARCHAR}, ' '), #{retryCnt,jdbcType=INTEGER}, #{pushDtlMsgDvcd}, #{cnts}
+                </when>
+                <when test='channelType == "C"'>
+                    ,#{kakaoImageNo}
+                </when>
+                <when test='channelType == "A"'>
+                    ,#{kakaoImageNo}
+                </when>
+            </choose>
+        )
+    </insert>
+    
+    <select id="getServiceNoForChannel" parameterType="String" resultType="String">
+        SELECT  ECARE_NO
+        FROM    NVECAREMSG
+        WHERE   CHANNEL_TYPE = #{value}
+        AND     ECARE_STS = 'R'
+        AND     ECMSCHEDULE_NO IS NOT NULL
+        AND     DEPTH_NO = 1
+    </select>
+    
+    <select id="getServiceNoForFromTo" parameterType="java.util.HashMap" resultType="String">
+        SELECT  ECARE_NO
+        FROM    NVECAREMSG
+        WHERE   1=1
+        <if test="channel != '' and channel != null">
+            AND CHANNEL_TYPE = #{channel}
+        </if>
+        <if test="serviceFrom != null and serviceFrom != '' and serviceTo != null and serviceTo != ''">
+            AND ECARE_NO BETWEEN #{serviceFrom,jdbcType=INTEGER} AND #{serviceTo,jdbcType=INTEGER}
+        </if>
+        AND     DEPTH_NO = 1
+    </select>
+    
+    <select id="getOmniChannelList" parameterType="String" resultType="String">
+        SELECT CHANNEL_TYPE 
+        FROM NVECAREMSG 
+        WHERE SCENARIO_NO = (
+                SELECT SCENARIO_NO FROM NVECAREMSG WHERE ECARE_NO = #{value}
+            ) 
+            ORDER BY ECARE_NO
+    </select>
+</mapper>

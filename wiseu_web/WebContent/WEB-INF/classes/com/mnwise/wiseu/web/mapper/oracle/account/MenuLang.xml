@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MenuLang">
+    <!--<resultMap id="resultMenuLang" type="MenuLang">
+        <result column="menu_cd"    property="menuCd"/>
+        <result column="lang"       property="lang"/>
+        <result column="menu_nm"    property="menuNm"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getLangList" resultType="string">
+        SELECT lang
+        FROM nvmenu_lang
+        GROUP BY lang
+    </select>
+
+    <select id="selectMenuNames" parameterType="string" resultType="CaseInsensitiveMap">
+        SELECT menu_cd, menu_nm
+        FROM nvmenu_lang
+        WHERE lang = #{lang}
+    </select>
+</mapper>

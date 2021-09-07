@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CdMst">
+    <resultMap id="resultCdMst" type="CdMst">
+        <result column="cd_cat"                 property="cdCat"/>
+        <result column="cd"                     property="cd"/>
+        <result column="lang"                   property="lang"/>
+        <result column="par_cd_cat"             property="parCdCat"/>
+        <result column="val"                    property="val"/>
+        <result column="cd_desc"                property="cdDesc"/>
+        <result column="use_col"                property="useCol"/>
+        <result column="use_yn"                 property="useYn"/>
+        <result column="reg_dtm"                property="regDtm"/>
+        <result column="mod_dtm"                property="modDtm"/>
+        <result column="cd_ord"                 property="cdOrd"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertCdMst" parameterType="CdMst">
+        INSERT INTO nv_cd_mst (cd_cat, cd, lang, par_cd_cat, val, cd_desc, use_col, use_yn, reg_dtm, mod_dtm, cd_ord)
+        VALUES (#{cdCat}, #{cd}, #{lang}, #{parCdCat}, #{val, jdbcType=VARCHAR}, #{cdDesc, jdbcType=VARCHAR}, #{useCol, jdbcType=VARCHAR}, #{useYn}, #{regDtm}, #{modDtm, jdbcType=VARCHAR}, #{cdOrd})
+    </insert>
+
+    <insert id="insertPushMsgType" parameterType="map">
+        INSERT INTO nv_cd_mst (cd_cat, cd, lang, par_cd_cat, val, cd_desc, use_yn, reg_dtm, cd_ord)
+        VALUES ('AP0101', #{cd}, #{lang}, 'AP0101', #{cd_desc, jdbcType=VARCHAR}, #{cd_desc, jdbcType=VARCHAR}, 'y', #{curr_date}, NULL)
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateCdMstByPk" parameterType="map">
+        UPDATE nv_cd_mst
+        SET
+            par_cd_cat = #{parCdCat}
+          , val = #{val, jdbcType=VARCHAR}
+          , cd_desc = #{cdDesc, jdbcType=VARCHAR}
+          , use_col = #{useCol, jdbcType=VARCHAR}
+          , use_yn = #{useYn}
+          , reg_dtm = #{regDtm}
+          , mod_dtm = #{modDtm, jdbcType=VARCHAR}
+          , cd_ord = #{cdOrd}
+        WHERE cd_cat = #{cdCat}
+        AND cd = #{cd}
+        AND lang = #{lang}
+    </update>
+
+    <update id="updatePushMsgType" parameterType="map">
+        UPDATE nv_cd_mst
+        SET
+            mod_dtm = #{curr_date, jdbcType=VARCHAR}
+            <if test="cd_desc != null and cd_desc != ''">
+          , val = #{cd_desc}
+          , cd_desc = #{cd_desc, jdbcType=VARCHAR}
+            </if>
+            <if test="use_yn != null and use_yn != ''">
+          , use_yn = #{use_yn}
+            </if>
+        WHERE par_cd_cat = 'AP0101'
+        AND cd = #{cd}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteCdMstByPk" parameterType="map">
+        DELETE FROM nv_cd_mst
+        WHERE cd_cat = #{cdCat}
+        AND cd = #{cd}
+        AND lang = #{lang}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectCdMstByPk" parameterType="map" resultMap="resultCdMst">
+        SELECT cd_cat, cd, lang, par_cd_cat, val, cd_desc, use_col, use_yn, reg_dtm, mod_dtm, cd_ord
+        FROM nv_cd_mst
+        WHERE cd_cat = #{cdCat}
+        AND cd = #{cd}
+        AND lang = #{lang}
+    </select>
+
+    <select id="getCdMstList" parameterType="map" resultMap="resultCdMst">
+        SELECT cd_cat, cd, lang, par_cd_cat, val, cd_desc, use_col, use_yn, reg_dtm, mod_dtm, cd_ord
+        FROM nv_cd_mst
+        WHERE cd_cat = #{cdCat}
+        AND lang = #{lang}
+    </select>
+
+    <select id="selectCodeList" parameterType="string" resultMap="resultCdMst">
+        SELECT cd_cat, cd, lang, par_cd_cat, val, cd_desc, use_col, use_yn, reg_dtm, mod_dtm, cd_ord
+        FROM nv_cd_mst
+        WHERE par_cd_cat = #{parCdCat}
+        ORDER BY cd
+    </select>
+
+    <select id="selectCodeGroup" parameterType="string" resultType="CaseInsensitiveMap">
+        SELECT
+            cd_cat, cd, par_cd_cat, val, cd_desc, use_yn
+          , (SELECT CASE count(*) WHEN 0 THEN 'false' ELSE 'true' END FROM nv_cd_mst WHERE cd_cat = a.cd_cat AND cd != '-') haschildren
+        FROM nv_cd_mst a
+        <if test="_parameter != null and _parameter != ''">
+        WHERE par_cd_cat = #{parCdCat}
+        </if>
+        <if test="_parameter == null or _parameter == ''">
+        WHERE cd_cat = 'AP00'
+        </if>
+        ORDER BY cd_cat, cd
+    </select>
+
+    <select id="selectPushMsgTypeList" parameterType="string" resultType="CaseInsensitiveMap">
+        SELECT cd_cat, cd, lang, par_cd_cat, val, cd_desc, use_col, use_yn, reg_dtm, mod_dtm, cd_ord
+        FROM nv_cd_mst
+        WHERE par_cd_cat = 'AP0101'
+        <if test="_parameter != null and _parameter != ''">
+        AND use_yn = #{useYn}
+        </if>
+        ORDER BY cd
+    </select>
+
+    <select id="selectSMSSendErrList" resultMap="mapper.SendErr.resultSendErr">
+        SELECT cd as error_cd, val as error_nm, cd_desc as error_desc, '' as category_cd
+        FROM nv_cd_mst
+        WHERE cd_cat IN ('AS0001' ,'AS0003')
+    </select>
+
+    <select id="selectMMSSendErrList" resultMap="mapper.SendErr.resultSendErr">
+        SELECT cd as error_cd, val as error_nm, cd_desc as error_desc, '' as category_cd
+        FROM nv_cd_mst
+        WHERE cd_cat IN ('AS0001','AS0003')
+    </select>
+
+    <select id="selectFAXSendErrList" resultMap="mapper.SendErr.resultSendErr">
+        SELECT cd as error_cd, val as error_nm, cd_desc as error_desc, '' as category_cd
+        FROM nv_cd_mst
+        WHERE par_cd_cat = 'AF00'
+    </select>
+
+    <select id="selectKakaoSendErrList" parameterType="string" resultMap="mapper.SendErr.resultSendErr">
+        SELECT cd as error_cd, val as error_nm, cd_desc as error_desc, '' as category_cd
+        FROM nv_cd_mst
+        <if test="channel == 'A'.toString()">
+        WHERE par_cd_cat = 'AA00'
+        </if>
+        <if test="channel == 'B'.toString()">
+        WHERE par_cd_cat = 'AB00'
+        </if>
+        <if test="channel == 'C'.toString()">
+        WHERE par_cd_cat = 'AC00'
+        </if>
+        ORDER BY cd_ord, cd
+    </select>
+
+    <select id="selectPushErrList" resultMap="mapper.SendErr.resultSendErr">
+        SELECT cd as error_cd, val as error_nm, cd_desc as error_desc, '' as category_cd
+        FROM nv_cd_mst
+        WHERE cd_cat LIKE 'AP00%'
+        AND cd != '-'
+        ORDER BY par_cd_cat, cd
+    </select>
+
+    <select id="selectAlimtalkTemplateInspStatusCode" resultType="CaseInsensitiveMap">
+        SELECT cd, val
+        FROM nv_cd_mst
+        WHERE cd_cat = 'KA011'
+    </select>
+
+    <select id="selectAlimtalkTemplateStatusCode" resultType="CaseInsensitiveMap">
+        SELECT cd, val
+        FROM nv_cd_mst
+        WHERE cd_cat = 'KA012'
+    </select>
+
+    <select id="selectAlimtalkTemplateCommentStatusCode" resultType="CaseInsensitiveMap">
+        SELECT cd, val
+        FROM nv_cd_mst
+        WHERE cd_cat = 'KA013'
+    </select>
+
+    <select id="selectAlimtalkTemplateCategoryGroupList" resultType="CaseInsensitiveMap">
+        SELECT cd, val
+        FROM nv_cd_mst
+        WHERE cd_cat = 'KAKAO_CATEGORY_CD' and par_cd_cat = '00'
+    </select>
+
+    <select id="selectAlimtalkTemplateCategoryCdList" parameterType="string" resultType="CaseInsensitiveMap">
+        SELECT cd, val
+        FROM nv_cd_mst
+        WHERE cd_cat = 'KAKAO_CATEGORY_CD' and par_cd_cat = #{cd}
+    </select>
+</mapper>

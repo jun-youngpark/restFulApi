@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareTraceInfo">
+    <!--<resultMap id="resultEcareTraceInfo" type="EcareTraceInfo">
+        <result column="ecare_no"       property="ecareNo"/>
+        <result column="trace_type"     property="traceType"/>
+        <result column="start_dt"       property="startDt"/>
+        <result column="start_tm"       property="startTm"/>
+        <result column="end_dt"         property="endDt"/>
+        <result column="end_tm"         property="endTm"/>
+        <result column="term_type"      property="termType"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertEcareTraceInfoByEcare" parameterType="Ecare">
+        INSERT INTO nvecaretraceinfo (trace_type, ecare_no, term_type)
+        VALUES ('TRACE', #{ecareNo}, #{termType, jdbcType=CHAR})
+    </insert>
+
+    <insert id="copyEcareTraceInfo" parameterType="Ecare">
+        INSERT INTO nvecaretraceinfo (ecare_no, trace_type, start_dt, start_tm, end_dt, end_tm, term_type)
+        SELECT #{newEcareNo}, trace_type, start_dt, start_tm, end_dt, end_tm, term_type
+        FROM nvecaretraceinfo
+        WHERE ecare_no = #{ecareNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEcareTraceInfo" parameterType="Ecare">
+        UPDATE nvecaretraceinfo
+        SET term_type = #{termType, jdbcType=CHAR}
+        WHERE ecare_no = #{ecareNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcareTraceInfo" parameterType="int">
+        DELETE FROM nvecaretraceinfo
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!-- 반응추적기간 -->
+    <select id="selectEcareTraceInfo" parameterType="int" resultType="string">
+        SELECT term_type
+        FROM nvecaretraceinfo
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+</mapper>

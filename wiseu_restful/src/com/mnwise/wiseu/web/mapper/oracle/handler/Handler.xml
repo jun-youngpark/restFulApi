@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Handler">
+
+  	<insert id="insertEmHandler" parameterType="campaign">
+        INSERT INTO nvapplication (campaign_no, type, appsource)
+        VALUES (#{campaignNo}, #{handlerType, jdbcType=CHAR}, #{handler, jdbcType=VARCHAR})
+    </insert>
+
+  	<insert id="insertOmniEmHandler" parameterType="campaign">
+        INSERT INTO nvapplication (campaign_no, type, appsource)
+        VALUES (#{newCampaignNo}, #{handlerType, jdbcType=CHAR}, #{handler, jdbcType=VARCHAR})
+    </insert>
+
+  	<insert id="insertEcHandler" parameterType="ecare">
+        INSERT INTO nvecmsghandler (ecare_no, type, appsource)
+        VALUES (#{ecareNo}, #{handlerType, jdbcType=CHAR}, #{handler, jdbcType=VARCHAR})
+    </insert>
+
+	<insert id="insertOmniEcHandler" parameterType="campaign">
+       INSERT INTO nvecmsghandler (ecare_no, type, appsource)
+        VALUES (#{newEcareNo}, #{handlerType, jdbcType=CHAR}, #{handler, jdbcType=VARCHAR})
+    </insert>
+
+</mapper>

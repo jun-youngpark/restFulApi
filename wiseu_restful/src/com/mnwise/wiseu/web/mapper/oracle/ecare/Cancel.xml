@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Cancel">
+<resultMap id="resultCancel" type="cancel">
+	<result column="can_req_dtm"       property="canReqDtm"/>
+	<result column="can_seq"           property="canSeq"/>
+	<result column="org_seq"           property="orgSeq"/>
+	<result column="org_req_dt"        property="orgReqDt"/>
+	<result column="ecare_no"          property="ecareNo"/>
+	<result column="can_fg"            property="canFg"/>
+	<result column="can_dtm"           property="canDtm"/>
+	<result column="accept_dtm"        property="acceptDtm"/>
+	<result column="rslt_cd"           property="rsltCd"/>
+	<result column="rslt_msg"          property="rsltMsg"/>
+</resultMap>
+    <select id="selectRealtimeReqDt" parameterType="String" resultType="String">
+        SELECT req_dt
+        FROM nvrealtimeaccept
+        WHERE
+            seq = #{seq}
+    </select>
+    <select id="selectBatchReqDt" parameterType="String" resultType="String">
+        SELECT req_dt
+        FROM nvbatch
+        WHERE
+            seq = #{seq}
+    </select>
+    <insert id="insertCancel" parameterType="cancel">
+        
+        INSERT INTO nvcancel (can_req_dtm, can_seq, org_seq, org_req_dt, ecare_no)
+        VALUES (#{canReqDtm, jdbcType=INTEGER}, #{canSeq, jdbcType=VARCHAR},#{seq, jdbcType=VARCHAR}, #{orgReqDt, jdbcType=VARCHAR}, #{ecareNo, jdbcType=INTEGER})
+    </insert>
+    <select id="selectSingleCancelLog" parameterType="Map" resultMap="resultCancel">
+        SELECT can_req_dtm, org_seq, ecare_no, can_fg, rslt_cd
+        FROM nvcancel
+        WHERE
+            org_seq = #{seq}
+          AND
+            ecare_no = #{ecareNo}
+    </select>
+    <select id="selectListCancelLog" parameterType="Map" resultMap="resultCancel">
+        SELECT * FROM (
+        SELECT rownum as rnum, can_req_dtm, org_seq, ecare_no, can_fg, rslt_cd
+        FROM nvcancel
+        WHERE
+            can_req_dtm &gt;= #{searchStartDt}
+          AND
+            can_req_dtm &lt;= #{searchEndDt}
+          AND
+            rownum &lt;= #{limit}*#{nowPage}
+            )
+            where rnum > #{limit}*(#{nowPage} - 1)
+            order by can_req_dtm 
+    </select>
+
+
+</mapper>

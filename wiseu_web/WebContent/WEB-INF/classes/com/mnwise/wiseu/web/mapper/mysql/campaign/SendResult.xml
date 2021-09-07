@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SendResult">
+    <resultMap id="resultSendResult" type="SendResult">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="result_desc"            property="resultDesc"/>
+        <result column="result_sts"             property="resultSts"/>
+        <result column="start_dt"               property="startDt"/>
+        <result column="start_tm"               property="startTm"/>
+        <result column="end_dt"                 property="endDt"/>
+        <result column="end_tm"                 property="endTm"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="fail_cnt"               property="failCnt"/>
+        <result column="unknown_user_cnt"       property="unknownUserCnt"/>
+        <result column="unknown_host_cnt"       property="unknownHostCnt"/>
+        <result column="smtp_except_cnt"        property="smtpExceptCnt"/>
+        <result column="no_route_cnt"           property="noRouteCnt"/>
+        <result column="refused_cnt"            property="refusedCnt"/>
+        <result column="etc_except_cnt"         property="etcExceptCnt"/>
+        <result column="invalid_address_cnt"    property="invalidAddressCnt"/>
+        <result column="log_sts"                property="logSts"/>
+        <result column="domain_sts"             property="domainSts"/>
+        <result column="returnmail_cnt"         property="returnMailCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="link_cnt"               property="linkCnt"/>
+        <result column="manualbatch_sts"        property="manualbatchSts"/>
+        <result column="resend_sts"             property="resendSts"/>
+        <result column="super_seq"              property="superSeq"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="report_dt"              property="reportDt"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignReactionResult2" type="CampaignReactionResult2">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="start_dt"               property="startDt"/>
+        <result column="start_tm"               property="startTm"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="click_cnt"              property="clickCnt"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignSendResult" type="CampaignSendResult">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="returnmail_cnt"         property="returnMailCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="link_cnt"               property="linkCnt"/>
+        <result column="soft_bounce"            property="softBounce"/>
+        <result column="hard_bounce"            property="hardBounce"/>
+        <result column="start_dt"               property="startDate"/>
+        <result column="start_dt"               property="sendStartDt"/>
+        <result column="start_tm"               property="sendStartTm"/>
+        <result column="end_dt"                 property="sendEndDt"/>
+        <result column="end_tm"                 property="sendEndTm"/>
+        <result column="result_sts"             property="resultState"/>
+        <result column="result_sts_nm"          property="sendResultStatusNm"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignPeriod" type="map">
+        <result column="user_id"                property="userId"/>
+        <result column="min_dt"                 property="minDt"/>
+        <result column="max_st"                 property="maxDt"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignReport" type="CampaignReport">
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="scenario_nm"            property="scenarioNm"/>
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="campaign_preface"       property="campaignPreface"/>
+        <result column="relation_type"          property="relationType"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="depth_no"               property="depthNo"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="fail_cnt"               property="failCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="duplication_cnt"        property="duplicationCnt"/>
+        <result column="soft_bounce_cnt"        property="softBounceCnt"/>
+        <result column="hard_bounce_cnt"        property="hardBounceCnt"/>
+        <result column="returnmail_cnt"         property="returnmailCnt"/>
+        <result column="send_cnt_per"           property="sendCntPer"/>
+        <result column="success_cnt_per"        property="successCntPer"/>
+        <result column="fail_cnt_per"           property="failCntPer"/>
+        <result column="open_cnt_per"           property="openCntPer"/>
+        <result column="duration_cnt_per"       property="durationCntPer"/>
+        <result column="soft_bounce_cnt_per"    property="softBounceCntPer"/>
+        <result column="hard_bounce_cnt_per"    property="hardBounceCntPer"/>
+        <result column="returnmail_cnt_per"     property="returnmailCntPer"/>
+        <result column="log_sts"                property="logSts"/>
+        <result column="sendstart_dt"           property="sendstartDt"/>
+        <result column="sendstart_tm"           property="sendstartTm"/>
+        <result column="mobile_cnt"             property="mobileCnt"/>
+        <result column="ab_test_type"           property="abTestType"/>
+        <result column="ab_test_cond"           property="abTestCond"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="resend_sts"             property="resendSts"/>
+        <result column="domain_nm"              property="domainNm"/>
+        <result column="error_cd"               property="errorCd"/>
+        <result column="error_msg"              property="errorMsg"/>
+        <result column="domain_send_cnt"        property="domainSendCnt"/>
+        <result column="gid"                    property="gid"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignReportBasic" type="CampaignReportBasic">
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="scenario_nm"            property="scenarioNm"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="depth_no"               property="depthNo"/>
+        <result column="user_id"                property="userId"/>
+        <result column="grp_cd"                 property="grpCd"/>
+        <result column="campaign_preface"       property="campaignPreface"/>
+        <result column="campaign_sts"           property="campaignSts"/>
+        <result column="campaign_sts_nm"        property="campaignStsNm"/>
+        <result column="relation_type"          property="relationType"/>
+        <result column="relation_type_nm"       property="relationTypeNm"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="send_start_dt"          property="sendstartDt"/>
+        <result column="send_start_tm"          property="sendstartTm"/>
+        <result column="report_sts"             property="reportSts"/>
+        <result column="start_dt"               property="startDt"/>
+        <result column="start_tm"               property="startTm"/>
+        <result column="end_dt"                 property="endDt"/>
+        <result column="end_tm"                 property="endTm"/>
+        <result column="name_kor"               property="nameKor"/>
+        <result column="grp_nm"                 property="grpNm"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="send_end_dt"            property="sendEndDt"/>
+        <result column="send_end_tm"            property="sendEndTm"/>
+        <result column="campaign_preface_ab"    property="campaignPrefaceAb"/>
+        <result column="ab_test_type"           property="abTestType"/>
+        <result column="ab_test_cond"           property="abTestCond"/>
+        <result column="ab_test_target"         property="abTestTarget"/>
+        <result column="reject_cnt"             property="rejectCnt"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignReportReceive" type="CampaignReportReceive">
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="scenario_nm"            property="scenarioNm"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="duplication_cnt"        property="duplicationCnt"/>
+        <result column="depth_no"               property="depthNo"/>
+        <result column="gid"                    property="gid"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSendResultByMessage" parameterType="Message">
+        INSERT INTO nvsendresult (
+            campaign_no, result_seq, result_sts, start_dt, start_tm, end_dt, end_tm, send_cnt, success_cnt, unknown_user_cnt
+          , unknown_host_cnt, smtp_except_cnt, no_route_cnt, refused_cnt, etc_except_cnt, invalid_address_cnt
+        ) VALUES (
+            #{serviceNo}, #{resultSeq}, 'XE', #{startDt, jdbcType=CHAR}, #{startTm, jdbcType=CHAR}, #{startDt, jdbcType=CHAR}, #{startTm, jdbcType=CHAR}, 0, 0, 0
+          , 0, 0, 0, 0, 0, 0
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateCampaignList" parameterType="int">
+        UPDATE nvsendresult
+        SET
+            returnmail_cnt = (
+                SELECT *
+                FROM (
+                    SELECT count(distinct customer_id)
+                    FROM nvreturnmail a, nvsendresult b
+                    WHERE a.campaign_no = #{campaignNo}
+                    AND a.result_seq = b.result_seq
+                    AND (b.resend_sts IS NULL OR b.resend_sts = 'F')
+                ) a
+            )
+          , open_cnt = (
+                SELECT *
+                FROM (
+                    SELECT count(distinct customer_id)
+                    FROM nvreceipt a, nvsendresult b
+                    WHERE a.campaign_no = #{campaignNo}
+                    AND a.result_seq = b.result_seq
+                    AND (b.resend_sts IS NULL OR b.resend_sts = 'F')
+                ) b
+            )
+         WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectSendResultCountByPk" parameterType="map" resultType="int">
+        SELECT count(*)
+        FROM nvsendresult
+        WHERE campaign_no = #{serviceNo}
+        AND result_seq = #{date}
+    </select>
+
+    <select id="getCampaignError" parameterType="map" resultType="string">
+        SELECT result_desc
+        FROM nvsendresult
+        WHERE campaign_no = #{campaignNo}
+        AND result_seq = #{resultSeq}
+        AND resend_sts IS NULL
+    </select>
+
+    <select id="selectResultSeq" parameterType="int" resultType="long">
+        SELECT result_seq
+        FROM nvsendresult
+        WHERE campaign_no = #{campaignNo}
+        AND resend_sts IS NULL
+    </select>
+
+    <select id="emSuspendResultSeq" parameterType="int" resultType="int">
+        SELECT max(result_seq)
+        FROM nvsendresult
+        WHERE campaign_no = #{campaignNo}
+        AND result_sts = 'XS'
+    </select>
+
+    <select id="getCampaignSummaryReturn" parameterType="int" resultType="int">
+        SELECT sum(c.returnmail_cnt)
+        FROM nvscenario a, nvcampaign b, nvsendresult c
+        WHERE a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND b.campaign_no = #{campaignNo}
+        AND c.result_sts = 'XE'
+        AND (c.resend_sts is null OR c.resend_sts = 'F')
+    </select>
+
+    <select id="selectCampaignSendResult" parameterType="ScenarioInfo" resultMap="resultCampaignSendResult">
+        SELECT
+            campaign_no, start_dt, start_tm, end_dt, end_tm, result_sts, coalesce(target_cnt,0) target_cnt
+          , coalesce(send_cnt,0) send_cnt, coalesce(success_cnt,0) success_cnt, coalesce(open_cnt,0) open_cnt
+          , coalesce(duration_cnt,0) duration_cnt, coalesce(link_cnt,0) link_cnt, coalesce(returnmail_cnt,0) returnmail_cnt
+          , unknown_user_cnt+unknown_host_cnt+invalid_address_cnt as hard_bounce
+          , smtp_except_cnt+no_route_cnt+refused_cnt+etc_except_cnt as soft_bounce
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100201' AND cd = a.result_sts AND lang = #{language}) as result_sts_nm
+        FROM nvsendresult a
+        WHERE campaign_no = #{campaignNo}
+        AND resend_sts IS NULL
+    </select>
+
+    <sql id="campaignStatListWhereQuery">
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND a.user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.grpCd  != null and userVo.grpCd  != ''">AND a.grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="searchChannel != null and searchChannel != ''">AND a.channel_type = #{searchChannel}</if>
+        <if test="searchDate    != null and searchDate    != ''">AND b.start_dt LIKE concat(#{searchDate},'%')</if>
+        <if test="searchStartDt != null and searchStartDt != ''">AND b.start_dt BETWEEN #{searchStartDt} AND #{searchEndDt}</if>
+    </sql>
+
+    <select id="selectCampaignNoByTagNo" parameterType="map" resultType="int">
+        SELECT a.campaign_no
+        FROM nvcampaign a, nvsendresult b
+        WHERE a.campaign_no = b.campaign_no
+        AND a.channel_type = #{searchChannel}
+        AND a.campaign_sts IN ('W', 'E')
+        AND a.scenario_no IN (SELECT scenario_no FROM nvscenario WHERE tag_no = #{searchTagNo})
+        AND (b.resend_sts IS NULL OR b.resend_sts = 'F')
+       <include refid="campaignStatListWhereQuery"/>
+    </select>
+
+    <select id="selectCampaignSendResultList" parameterType="map" resultMap="resultCampaignSendResult">
+        SELECT
+            a.campaign_no, b.start_dt, b.start_tm, b.end_dt, b.end_tm, b.result_sts, coalesce(b.target_cnt,0) target_cnt
+          , coalesce(b.send_cnt,0) send_cnt, coalesce(b.success_cnt,0) success_cnt, coalesce(b.open_cnt,0) open_cnt
+          , coalesce(b.duration_cnt,0) duration_cnt, coalesce(b.link_cnt,0) link_cnt, coalesce(b.returnmail_cnt,0) returnmail_cnt
+          , b.unknown_user_cnt+b.unknown_host_cnt+invalid_address_cnt as hard_bounce
+          , b.smtp_except_cnt+b.no_route_cnt+b.refused_cnt+b.etc_except_cnt as soft_bounce
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100201' AND cd = b.result_sts AND lang = #{language}) as result_sts_nm
+        FROM nvcampaign a, nvsendresult b
+        WHERE a.campaign_no = b.campaign_no
+        AND a.campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+        AND (b.resend_sts IS NULL OR b.resend_sts = 'F')
+        <include refid="campaignStatListWhereQuery"/>
+        ORDER BY a.campaign_no DESC
+    </select>
+
+    <select id="selectCampaignMonthlyStat" parameterType="map" resultMap="resultSendResult">
+        SELECT
+            report_dt, coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt, coalesce(sum(open_cnt),0) as open_cnt
+          , coalesce(sum(duration_cnt),0) as duration_cnt, coalesce(sum(link_cnt),0) as link_cnt, coalesce(sum(returnmail_cnt),0) as returnmail_cnt
+        FROM (
+            SELECT
+                substr(start_dt,0, 6) as report_dt, success_cnt, open_cnt, duration_cnt, link_cnt, returnmail_cnt
+              , (unknown_user_cnt + unknown_host_cnt + smtp_except_cnt + no_route_cnt + refused_cnt + etc_except_cnt + invalid_address_cnt + fail_cnt) as fail_cnt
+            FROM nvcampaign a, nvsendresult b
+            WHERE a.campaign_no = b.campaign_no
+            AND b.result_sts = 'XE'
+            <include refid="campaignStatListWhereQuery"/>
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+
+    <select id="getCampaignSendResultAll" parameterType="map" resultMap="resultCampaignSendResult">
+        SELECT
+            coalesce(max(b.target_cnt),0) target_cnt, coalesce(sum(b.send_cnt),0) send_cnt, coalesce(sum(b.success_cnt),0) success_cnt
+          , coalesce(min(b.smtp_except_cnt + b.no_route_cnt + b.refused_cnt + b.etc_except_cnt),0) soft_bounce
+          , coalesce(sum(b.unknown_user_cnt + b.unknown_host_cnt + b.invalid_address_cnt),0) hard_bounce
+        FROM nvcampaign a, nvsendresult b
+        WHERE a.campaign_no = b.campaign_no
+        AND a.scenario_no = #{scenarioNo}
+        <if test="mode == 'normal'">
+        AND a.relation_type IN ('N', 'R', 'L')
+        </if>
+        <if test="mode == 'omnichannel'">
+        AND a.campaign_no = #{campaignNo}
+        </if>
+        AND b.result_sts = 'XE'
+        AND (b.resend_sts IS NULL OR b.resend_sts = 'F')
+    </select>
+
+    <select id="selectSummaryReactionResult2List" parameterType="map" resultMap="resultCampaignReactionResult2">
+        SELECT a.send_cnt, a.start_dt, a.start_tm, b.*
+        FROM nvsendresult a, (
+            SELECT campaign_no, result_seq, sum(open_cnt) as open_cnt, sum(duration_cnt) as duration_cnt, sum(click_cnt) as click_cnt
+            FROM (
+                SELECT campaign_no, result_seq, sum(coalesce(open_ocnt,0)) as open_cnt, 0 as duration_cnt, 0 as click_cnt
+                FROM nvrptopen
+                WHERE campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+                GROUP BY campaign_no, result_seq
+
+                UNION ALL
+                SELECT campaign_no, result_seq, 0 as open_cnt, sum(coalesce(validopen_ocnt,0)) as duration_cnt, 0 as click_cnt
+                FROM nvrptduration
+                WHERE campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+                GROUP BY campaign_no, result_seq
+
+                UNION ALL
+                SELECT campaign_no, result_seq, 0 as open_cnt, 0 as duration_cnt, sum(coalesce(link_ocnt,0)) as click_cnt
+                FROM nvrptlinkdistinct
+                WHERE campaign_no IN (<foreach collection="campaignNoArray" item="campaignNo" separator=",">#{campaignNo}</foreach>)
+                GROUP BY campaign_no, result_seq
+            ) c
+            GROUP BY campaign_no, result_seq
+        ) b
+        WHERE a.campaign_no = b.campaign_no
+          AND a.result_seq = b.result_seq
+        ORDER BY b.campaign_no DESC
+    </select>
+
+    <sql id="maxCampaignWhereQuery">
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.grpCd != null and userVo.grpCd != ''">
+        AND grp_cd LIKE concat(#{userVo.grpCd},'%')
+        </if>
+    </sql>
+
+    <sql id="campaignStatListWhereQuery2">
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.grpCd  != null and userVo.grpCd  != ''">AND grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="searchChannel != null and searchChannel != ''">AND a.channel_type = #{searchChannel}</if>
+    </sql>
+
+    <select id="selectCampaignTOTMonthlyStat" parameterType="map" resultMap="resultSendResult">
+        SELECT
+            report_dt, coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt, coalesce(sum(open_cnt),0) as open_cnt
+          , coalesce(sum(duration_cnt),0) as duration_cnt, coalesce(sum(link_cnt),0) as link_cnt, coalesce(sum(returnmail_cnt),0) as returnmail_cnt
+        FROM (
+            SELECT
+                substr(start_dt,1, 6) as report_dt, success_cnt, open_cnt, duration_cnt, link_cnt, returnmail_cnt
+              , (unknown_user_cnt + unknown_host_cnt + smtp_except_cnt + no_route_cnt + refused_cnt + etc_except_cnt + invalid_address_cnt + coalesce(fail_cnt,0)) as fail_cnt
+            FROM nvcampaign a, nvsendresult b
+            WHERE a.campaign_no = b.campaign_no
+            <if test="useChannelList != null">
+            AND a.channel_type IN (<foreach collection="useChannelList" item="channelType" separator=",">#{channelType}</foreach>)
+            </if>
+            AND b.result_sts = 'XE'
+            AND b.start_dt LIKE concat(#{searchDate},'%')
+            <include refid="maxCampaignWhereQuery"/>
+
+            UNION ALL
+            SELECT
+                substr(report_dt,1, 6) as report_dt, success_cnt, 0 as open_cnt, 0 as duration_cnt, 0 as link_cnt, 0 as returnmail_cnt, fail_cnt
+            FROM nvcampaign a, nvsmsrptsendresult b
+            WHERE a.campaign_no = b.service_no
+            AND b.service_type = 'em'
+            AND b.report_dt LIKE concat(#{searchDate},'%')
+            <include refid="campaignStatListWhereQuery2"/>
+
+            UNION ALL
+            SELECT
+                substr(report_dt,1, 6) as report_dt, success_cnt, 0 as open_cnt, 0 as duration_cnt, 0 as link_cnt, 0 as returnmail_cnt, fail_cnt
+            FROM nvcampaign a, nvkakaorptsendresult b
+            WHERE a.campaign_no = b.service_no
+            AND b.service_type = 'em'
+            AND b.report_dt LIKE concat(#{searchDate},'%')
+            <include refid="campaignStatListWhereQuery2"/>
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+
+    <select id="selectCampaignDailyStat" parameterType="map" resultMap="resultSendResult">
+        SELECT
+            report_dt, coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt, coalesce(sum(open_cnt),0) as open_cnt
+          , coalesce(sum(duration_cnt),0) as duration_cnt, coalesce(sum(link_cnt),0) as link_cnt, coalesce(sum(returnmail_cnt),0) as returnmail_cnt
+        FROM (
+            SELECT
+                start_dt as report_dt, success_cnt, open_cnt, duration_cnt, link_cnt, returnmail_cnt
+              , (unknown_user_cnt + unknown_host_cnt + smtp_except_cnt + no_route_cnt + refused_cnt + etc_except_cnt + invalid_address_cnt + coalesce(fail_cnt,0)) as fail_cnt
+            FROM nvcampaign a, nvsendresult b
+            WHERE a.campaign_no = b.campaign_no
+            AND b.result_sts = 'XE'
+            <include refid="campaignStatListWhereQuery"/>
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+
+    <select id="selectCampaignTOTDailyStat" parameterType="map" resultMap="resultSendResult">
+        SELECT
+            report_dt, coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt, coalesce(sum(open_cnt),0) as open_cnt
+          , coalesce(sum(duration_cnt),0) as duration_cnt, coalesce(sum(link_cnt),0) as link_cnt, coalesce(sum(returnmail_cnt),0) as returnmail_cnt
+        FROM (
+            SELECT
+                start_dt as report_dt, success_cnt, open_cnt, duration_cnt, link_cnt, returnmail_cnt
+              , (unknown_user_cnt + unknown_host_cnt + smtp_except_cnt + no_route_cnt + refused_cnt + etc_except_cnt + invalid_address_cnt + coalesce(fail_cnt,0)) as fail_cnt
+            FROM nvcampaign a, nvsendresult b
+            WHERE a.campaign_no = b.campaign_no
+            <if test="useChannelList != null">
+            AND a.channel_type IN (<foreach collection="useChannelList" item="channelType" separator=",">#{channelType}</foreach>)
+            </if>
+            AND b.result_sts = 'XE'
+            AND b.start_dt LIKE concat(#{searchDate},'%')
+            <include refid="maxCampaignWhereQuery"/>
+
+            UNION ALL
+            SELECT report_dt, success_cnt, 0 as open_cnt, 0 as duration_cnt, 0 as link_cnt, 0 as returnmail_cnt, fail_cnt
+            FROM nvcampaign a, nvsmsrptsendresult b
+            WHERE a.campaign_no = b.service_no
+            AND b.service_type = 'em'
+            AND b.report_dt LIKE concat(#{searchDate},'%')
+            <include refid="campaignStatListWhereQuery2"/>
+
+            UNION ALL
+            SELECT report_dt, success_cnt, 0 as open_cnt, 0 as duration_cnt, 0 as link_cnt, 0 as returnmail_cnt, fail_cnt
+            FROM nvcampaign a, nvkakaorptsendresult b
+            WHERE a.campaign_no = b.service_no
+            AND b.service_type = 'em'
+            AND b.report_dt LIKE concat(#{searchDate},'%')
+            <include refid="campaignStatListWhereQuery2"/>
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+
+    <select id="getCampaignSummaryAllList" parameterType="map" resultMap="resultCampaignReport">
+        SELECT
+            a.scenario_no, a.scenario_nm, b.campaign_no, b.campaign_preface, b.channel_type
+          , b.relation_type, coalesce(b.depth_no,0) depth_no, c.log_sts log_sts, c.start_dt as sendstart_dt, c.start_tm as sendstart_tm
+          , coalesce(c.target_cnt,0) target_cnt, coalesce(c.send_cnt,0) send_cnt, coalesce(c.success_cnt,0) success_cnt
+          , coalesce(c.open_cnt,0) open_cnt, coalesce(c.duration_cnt,0) duration_cnt, coalesce(c.returnmail_cnt,0) returnmail_cnt
+          , coalesce(c.smtp_except_cnt + c.no_route_cnt + c.refused_cnt + c.etc_except_cnt,0) soft_bounce_cnt
+          , coalesce(c.unknown_user_cnt + c.unknown_host_cnt + c.invalid_address_cnt,0) hard_bounce_cnt, c.result_seq
+        FROM nvscenario a, nvcampaign b, nvsendresult c
+        WHERE result_sts = 'XE'
+        AND a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND a.scenario_no = #{scenarioNo}
+        <if test="mode == 'normal'">
+        AND b.relation_type IN ('N', 'R', 'L')
+        </if>
+        <if test="mode == 'omnichannel'">
+        AND b.campaign_no = #{campaignNo}
+        </if>
+        AND c.resend_sts is null
+        ORDER BY a.scenario_no, b.campaign_no
+    </select>
+
+    <select id="getCampaignSummaryReceiveList" parameterType="map" resultMap="resultCampaignReportReceive">
+        SELECT
+            e.no
+          , CASE e.no WHEN 1 THEN b.campaign_no END campaign_no
+          , CASE e.no WHEN 2 THEN 1 ELSE 0 END gid
+          , max(CASE e.no WHEN 2 THEN 'Total' ELSE a.scenario_nm END) scenario_nm
+          , max(a.scenario_no) scenario_no, max(b.depth_no) depth_no, max(b.channel_type) channel_type
+          , coalesce(c.send_cnt,0) send_cnt, coalesce(c.success_cnt,0) success_cnt, coalesce(sum(d.open_cnt),0) open_cnt
+          , coalesce(sum(d.duration_cnt),0) duration_cnt, coalesce(sum(d.duplication_cnt),0) duplication_cnt, coalesce(sum(d.mobile_cnt),0) mobile_cnt
+        FROM nvscenario a, nvcampaign b, nvsendresult c, (
+            SELECT campaign_no, list_seq, sum(open_fg) open_cnt, sum(duplication_fg) duplication_cnt, sum(mobile_fg) mobile_cnt, sum(duration_fg) duration_cnt
+            FROM (
+                SELECT
+                    campaign_no, customer_id, list_seq
+                  , CASE WHEN duplication_fg = 0 THEN 0 ELSE 1 END open_fg
+                  , CASE WHEN duplication_fg = 1 THEN 0 ELSE 1 END duplication_fg
+                  , CASE WHEN mobile_fg = 0 THEN 0 ELSE 1 END mobile_fg
+                  , CASE WHEN duration_fg = 0 THEN 0 ELSE 1 END duration_fg
+                FROM (
+                    SELECT
+                        campaign_no, customer_id, list_seq, count(customer_id) duplication_fg
+                      , count(CASE WHEN mobile_yn = 'Y' THEN 1 ELSE NULL END) mobile_fg
+                      , count(CASE WHEN reading_duration &gt;= 10 THEN 1 ELSE NULL END) duration_fg
+                    FROM nvreceipt
+                    WHERE campaign_no IN (
+                        SELECT campaign_no
+                        FROM nvcampaign
+                        WHERE scenario_no = #{scenarioNo}
+                    )
+                    GROUP BY campaign_no, customer_id, list_seq
+                ) x
+            ) y
+            GROUP BY campaign_no, list_seq
+        ) d, (
+            SELECT no
+            FROM copy_t
+            WHERE no &lt;= 2
+        ) e
+        WHERE a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND c.campaign_no = d.campaign_no
+        AND a.scenario_no = #{scenarioNo}
+        AND b.relation_type IN ('N', 'R', 'L')
+        AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+        GROUP BY e.no, CASE e.no WHEN 1 THEN b.campaign_no END, c.send_cnt, c.success_cnt
+        ORDER BY e.no
+    </select>
+
+    <sql id="campaignReportListWhere">
+        <if test="usertypeCd == 'U'.toString()"                   >AND b.user_id = #{userId}</if>
+        <if test="grpCd          != null and grpCd          != ''">AND a.grp_cd LIKE concat(#{grpCd},'%')</if>
+        <if test="searchWord     != null and searchWord     != ''">AND a.scenario_nm LIKE concat('%',#{searchWord},'%')</if>
+        <if test="searchQstartDt != null and searchQstartDt != ''">AND b.sendstart_dt &gt;= #{searchQstartDt}</if>
+        <if test="searchQendDt   != null and searchQendDt   != ''">AND b.sendstart_dt &lt;= #{searchQendDt}</if>
+        <if test="searchChannel  != null and searchChannel  != ''">AND b.channel_type = #{searchChannel}</if>
+    </sql>
+
+    <select id="getCampaignReportListCount" parameterType="CampaignReport" resultType="int">
+        SELECT sum(cnt)
+        FROM (
+            SELECT count(*) cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND b.user_id = d.user_id
+            AND b.grp_cd = d.grp_cd
+            AND a.tag_no = e.tag_no
+            <if test="useChannelList != null">
+            AND b.channel_type IN (<foreach collection="useChannelList" item="channelType" separator=",">#{channelType}</foreach>)
+            </if>
+            AND c.result_sts = 'XE'
+            AND c.resend_sts IS NULL
+            <include refid="campaignReportListWhere"/>
+
+            UNION ALL
+            SELECT count(*) cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e, nvsmsrptsendresult f
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND b.user_id = d.user_id
+            AND b.grp_cd = d.grp_cd
+            AND a.tag_no = e.tag_no
+            AND c.campaign_no = f.service_no
+            AND c.result_seq = f.result_seq
+            AND c.result_sts = 'XE'
+            AND c.resend_sts IS NULL
+            <include refid="campaignReportListWhere"/>
+
+            UNION ALL
+            SELECT count(*) cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e, nvkakaorptsendresult f
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND b.user_id = d.user_id
+            AND b.grp_cd = d.grp_cd
+            AND a.tag_no = e.tag_no
+            AND c.campaign_no = f.service_no
+            AND c.result_seq = f.result_seq
+            AND c.result_sts = 'XE'
+            AND c.resend_sts IS NULL
+            <include refid="campaignReportListWhere"/>
+        ) x
+    </select>
+
+    <select id="selectCampaignReportListForExcel" parameterType="CampaignReport" resultMap="resultCampaignReport">
+        SELECT
+            scenario_no, scenario_nm, channel_type, campaign_no, campaign_preface, sendstart_dt, log_sts
+          , coalesce(target_cnt,0) target_cnt
+          , coalesce(send_cnt,0) send_cnt
+          , coalesce(CASE WHEN (send_cnt = 0 OR target_cnt = 0) THEN 0 ELSE round(send_cnt / target_cnt * 100, 1) END,0) send_cnt_per
+          , coalesce(success_cnt,0) success_cnt
+          , coalesce(CASE WHEN (success_cnt = 0 OR send_cnt = 0) THEN 0 ELSE round(success_cnt / send_cnt * 100, 1) END,0) success_cnt_per
+          , coalesce(send_cnt - success_cnt,0) fail_cnt
+          , coalesce(CASE WHEN ((send_cnt - success_cnt = 0) OR send_cnt = 0) THEN 0 ELSE round((send_cnt - success_cnt) / send_cnt * 100, 1) END,0) fail_cnt_per
+          , coalesce(open_cnt,0) open_cnt
+          , coalesce(CASE WHEN (open_cnt = 0 OR success_cnt = 0) THEN 0 ELSE round(open_cnt / success_cnt * 100, 1) END,0) open_cnt_per
+          , coalesce(duration_cnt,0) duration_cnt
+          , coalesce(CASE WHEN (duration_cnt = 0 OR success_cnt = 0) THEN 0 ELSE round(duration_cnt / success_cnt * 100, 1) END,0) duration_cnt_per
+          , coalesce(returnmail_cnt,0) returnmail_cnt
+          , coalesce(CASE WHEN (returnmail_cnt = 0 OR success_cnt = 0) THEN 0 ELSE round(returnmail_cnt / success_cnt * 100, 1) END,0) returnmail_cnt_per
+          , coalesce(soft_bounce_cnt,0) soft_bounce_cnt
+          , coalesce(CASE WHEN (soft_bounce_cnt = 0 OR send_cnt = 0) THEN 0 ELSE round(soft_bounce_cnt / send_cnt * 100, 1) END,0) soft_bounce_cnt_per
+          , coalesce(hard_bounce_cnt,0) hard_bounce_cnt
+          , coalesce(CASE WHEN (hard_bounce_cnt = 0 OR send_cnt = 0) THEN 0 ELSE round(hard_bounce_cnt / send_cnt * 100, 1) END,0) hard_bounce_cnt_per
+        FROM (
+            SELECT
+                a.scenario_no, replace(concat(a.scenario_nm,'(',b.campaign_preface,')'),',',' ') as scenario_nm
+              , b.channel_type, b.campaign_no, b.campaign_preface, c.start_dt as sendstart_dt, c.log_sts
+              , c.target_cnt, c.send_cnt, c.success_cnt, c.open_cnt, c.duration_cnt, c.returnmail_cnt
+              , (c.smtp_except_cnt + c.no_route_cnt + c.refused_cnt + c.etc_except_cnt) as soft_bounce_cnt
+              , (c.unknown_user_cnt + c.unknown_host_cnt + c.invalid_address_cnt) as hard_bounce_cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND b.user_id = d.user_id
+            AND b.grp_cd = d.grp_cd
+            AND a.tag_no = e.tag_no
+            <if test="useChannelList != null">
+            AND b.channel_type IN (<foreach collection="useChannelList" item="channelType" separator=",">#{channelType}</foreach>)
+            </if>
+            AND c.result_sts = 'XE'
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+            <include refid="campaignReportListWhere"/>
+
+            UNION ALL
+            SELECT
+                a.scenario_no, replace(concat(a.scenario_nm,'(',b.campaign_preface,')'),',',' ') as scenario_nm
+              , b.channel_type, b.campaign_no, b.campaign_preface, f.report_dt as sendstart_dt, '' as log_sts
+              , b.target_cnt, f.send_cnt, f.success_cnt, 0 as open_cnt, 0 as duration_cnt, 0 as returnmail_cnt
+              , f.fail_cnt as soft_bounce_cnt, 0 as hard_bounce_cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e, nvsmsrptsendresult f
+            WHERE a.scenario_no = b.scenario_no
+            AND b.user_id = d.user_id
+            AND b.grp_cd = d.grp_cd
+            AND a.tag_no = e.tag_no
+            AND b.campaign_no = f.service_no
+            AND c.result_seq = f.result_seq
+            AND c.result_sts = 'XE'
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+            AND f.service_type = 'em'
+            <include refid="campaignReportListWhere"/>
+        ) x
+        ORDER BY scenario_no DESC
+    </select>
+
+    <select id="getCampaignReportList" parameterType="CampaignReport" resultMap="resultCampaignReport">
+        SELECT *
+        FROM (
+            SELECT
+                scenario_no
+              , concat(CASE WHEN relation_type = 'L' THEN ' &lt;span class=''target_send''&gt;Target Send&lt;/span&gt; ' WHEN relation_type = 'R' THEN '&lt;span class=''re_send''&gt;Resend&lt;/span&gt; ' ELSE '' END, scenario_nm) as scenario_nm
+              , campaign_no, channel_type, relation_type, depth_no, sendstart_dt, sendstart_tm, coalesce(ab_test_type,'N') ab_test_type, ab_test_cond
+              , coalesce(target_cnt,0) target_cnt, coalesce(send_cnt,0) send_cnt, coalesce(success_cnt,0) success_cnt
+              , coalesce(open_cnt,0) open_cnt, coalesce(duration_cnt,0) duration_cnt, coalesce(returnmail_cnt,0) returnmail_cnt
+              , coalesce(soft_bounce_cnt,0) soft_bounce_cnt, coalesce(hard_bounce_cnt,0) hard_bounce_cnt
+            FROM (
+                SELECT
+                    scenario_no, scenario_nm, campaign_no, campaign_preface, relation_type, channel_type, depth_no, log_sts, sendstart_dt, sendstart_tm, ab_test_type, ab_test_cond
+                  , sum(target_cnt) as target_cnt, sum(send_cnt) as send_cnt, sum(success_cnt) as success_cnt, sum(open_cnt) as open_cnt, sum(duration_cnt) as duration_cnt
+                  , sum(soft_bounce_cnt) as soft_bounce_cnt, sum(hard_bounce_cnt) as hard_bounce_cnt, sum(returnmail_cnt) as returnmail_cnt
+                FROM (
+                    SELECT
+                        a.scenario_no, a.scenario_nm, b.campaign_no, b.campaign_preface, b.relation_type, b.channel_type, b.depth_no
+                      , b.ab_test_type, b.ab_test_cond, c.log_sts, c.start_dt as sendstart_dt, c.start_tm as sendstart_tm
+                      , c.target_cnt, c.send_cnt, c.success_cnt, c.open_cnt, c.duration_cnt, c.returnmail_cnt
+                      , c.smtp_except_cnt + c.no_route_cnt + c.refused_cnt + c.etc_except_cnt + coalesce(fail_cnt,0) as soft_bounce_cnt
+                      , c.unknown_user_cnt + c.unknown_host_cnt + c.invalid_address_cnt as hard_bounce_cnt
+                    FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e
+                    WHERE a.scenario_no = b.scenario_no
+                    AND b.campaign_no = c.campaign_no
+                    AND b.user_id = d.user_id
+                    AND b.grp_cd = d.grp_cd
+                    AND a.tag_no = e.tag_no
+                    <if test="useChannelList != null">
+                    AND b.channel_type IN (<foreach collection="useChannelList" item="channelType" separator=",">#{channelType}</foreach>)
+                    </if>
+                    AND c.result_sts = 'XE'
+                    AND c.resend_sts IS NULL
+                    <include refid="campaignReportListWhere"/>
+
+                    UNION ALL
+                    SELECT
+                        a.scenario_no, a.scenario_nm, b.campaign_no, b.campaign_preface, b.relation_type, b.channel_type, b.depth_no
+                      , b.ab_test_type, b.ab_test_cond, '' as log_sts, f.report_dt as sendstart_dt, '' as sendstart_tm
+                      , c.target_cnt, f.send_cnt, f.success_cnt, 0 as open_cnt, 0 as duration_cnt, 0 as returnmail_cnt
+                      , f.fail_cnt as soft_bounce_cnt, 0 as hard_bounce_cnt
+                    FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e, nvsmsrptsendresult f
+                    WHERE a.scenario_no = b.scenario_no
+                    AND b.user_id = d.user_id
+                    AND b.grp_cd = d.grp_cd
+                    AND a.tag_no = e.tag_no
+                    AND b.campaign_no = f.service_no
+                    AND c.result_seq = f.result_seq
+                    AND c.result_sts = 'XE'
+                    AND c.resend_sts IS NULL
+                    AND f.service_type = 'em'
+                    <include refid="campaignReportListWhere"/>
+
+                    UNION ALL
+                    SELECT
+                        a.scenario_no, a.scenario_nm, b.campaign_no, b.campaign_preface, b.relation_type, b.channel_type, b.depth_no
+                      , b.ab_test_type, b.ab_test_cond, '' as log_sts, f.report_dt as sendstart_dt, '' as sendstart_tm
+                      , c.target_cnt, f.send_cnt, f.success_cnt, 0 as open_cnt, 0 as duration_cnt, 0 as returnmail_cnt
+                      , f.fail_cnt as soft_bounce_cnt, 0 as hard_bounce_cnt
+                    FROM nvscenario a, nvcampaign b, nvsendresult c, nvuser d, nvcamptag e, nvkakaorptsendresult f
+                    WHERE a.scenario_no = b.scenario_no
+                    AND b.user_id = d.user_id
+                    AND b.grp_cd = d.grp_cd
+                    AND a.tag_no = e.tag_no
+                    AND b.campaign_no = f.service_no
+                    AND c.result_seq = f.result_seq
+                    AND c.result_sts = 'XE'
+                    AND c.resend_sts IS NULL
+                    AND f.service_type = 'em'
+                    <include refid="campaignReportListWhere"/>
+                ) x
+                GROUP BY scenario_no, scenario_nm, campaign_no, campaign_preface, relation_type, channel_type, depth_no, log_sts, sendstart_dt, sendstart_tm, ab_test_type, ab_test_cond
+                ORDER BY scenario_no DESC, campaign_no
+                LIMIT ${endRow}
+            ) y
+            ORDER BY scenario_no, campaign_no DESC
+            LIMIT ${listCnt}
+        ) z
+        ORDER BY scenario_no DESC, campaign_no
+    </select>
+
+    <select id="getCampaignReportBasicInfo" parameterType="map" resultMap="resultCampaignReportBasic">
+        SELECT
+            a.scenario_no, a.scenario_nm, a.user_id, a.grp_cd, b.campaign_no, coalesce(b.depth_no,0) depth_no, b.campaign_preface, b.campaign_sts, b.relation_type, b.channel_type
+          , b.report_sts, b.campaign_preface_ab, coalesce(b.ab_test_type,'N') ab_test_type, b.ab_test_cond, c.result_seq
+          , c.start_dt send_start_dt, c.start_tm send_start_tm, coalesce(c.target_cnt,0) target_cnt, c.success_cnt, c.send_cnt
+          , c.end_dt send_end_dt, c.end_tm send_end_tm, d.start_dt, d.start_tm, d.end_dt, d.end_tm, e.name_kor, f.grp_nm
+          , CASE WHEN b.channel_type = 'M' THEN (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = b.campaign_sts AND lang = #{language})
+                 WHEN c.result_sts = 'XE' AND c.log_sts = 'LE' THEN (SELECT val FROM nv_cd_mst WHERE cd_cat = '100201' AND cd = 'XE' AND lang= #{language})
+                 ELSE (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = 'W' AND lang= #{language})
+            END campaign_sts_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = #{language}) relation_type_nm
+          , coalesce((SELECT target_cnt FROM nvdivideschedule WHERE service_no = #{campaignNo} AND divide_seq = 0),0) as ab_test_target
+        FROM nvscenario a, nvcampaign b, nvsendresult c, nvtraceinfo d, nvuser e, nvusergrp f
+        WHERE a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND b.campaign_no = d.campaign_no
+        AND a.user_id = e.user_id
+        AND e.grp_cd = f.grp_cd
+        AND b.campaign_no = #{campaignNo}
+        AND c.resend_sts IS NULL
+    </select>
+
+    <select id="getCampaignSMSReportBasicInfo" parameterType="map" resultMap="resultCampaignReportBasic">
+        SELECT
+            a.scenario_no, a.scenario_nm, a.user_id, a.grp_cd, b.campaign_no, coalesce(b.depth_no,0) depth_no, b.campaign_preface, b.campaign_sts, b.relation_type, b.channel_type
+          , b.report_sts, b.campaign_preface_ab, coalesce(b.ab_test_type,'N') ab_test_type, b.ab_test_cond, c.start_dt send_start_dt
+          , c.start_tm send_start_tm, coalesce(c.target_cnt,0) target_cnt, c.end_dt send_end_dt, c.end_tm send_end_tm, d.start_dt
+          , d.start_tm, d.end_dt, d.end_tm, e.name_kor, f.grp_nm, g.result_seq, g.success_cnt, g.send_cnt
+          , CASE WHEN c.result_sts = 'XE' AND c.log_sts = 'LE' THEN (SELECT val FROM nv_cd_mst WHERE cd_cat = '100201' AND cd = 'XE' AND lang= #{language})
+            ELSE (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = 'W' AND lang= #{language})
+            END campaign_sts_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = #{language}) relation_type_nm
+          , coalesce((SELECT target_cnt FROM nvdivideschedule WHERE service_no = #{campaignNo} AND divide_seq = 0),0) as ab_test_target
+        FROM nvscenario a, nvcampaign b, nvsendresult c, nvtraceinfo d, nvuser e, nvusergrp f, nvsmsrptsendresult g
+        WHERE a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND b.campaign_no = d.campaign_no
+        AND a.user_id = e.user_id
+        AND e.grp_cd = f.grp_cd
+        AND c.campaign_no = g.service_no
+        AND c.result_seq = g.result_seq
+        AND b.campaign_no = #{campaignNo}
+        AND c.resend_sts IS NULL
+    </select>
+
+    <select id="getCampaignKakaoReportBasicInfo" parameterType="map" resultMap="resultCampaignReportBasic">
+        SELECT
+            a.scenario_no, a.scenario_nm, a.user_id, a.grp_cd, b.campaign_no, coalesce(b.depth_no,0) depth_no, b.campaign_preface, b.campaign_sts, b.relation_type, b.channel_type
+          , b.report_sts, b.campaign_preface_ab, coalesce(b.ab_test_type,'N') ab_test_type, b.ab_test_cond, c.start_dt, c.start_tm, c.end_dt, c.end_tm, d.name_kor, e.grp_nm
+          , f.result_seq, f.start_dt send_start_dt, f.start_tm send_start_tm, coalesce(f.target_cnt,0) target_cnt, f.send_cnt
+          , f.end_dt send_end_dt, f.end_tm send_end_tm, coalesce(g.success_cnt, 0) success_cnt, coalesce(g.fail_cnt,0) fail_cnt
+          , CASE WHEN f.result_sts = 'XE' AND f.log_sts = 'LE' THEN (SELECT val FROM nv_cd_mst WHERE cd_cat = '100201' AND cd = 'XE' AND lang= #{language})
+            ELSE (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = 'W' AND lang= #{language})
+            END campaign_sts_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = #{language}) relation_type_nm
+          , coalesce((SELECT target_cnt FROM nvdivideschedule WHERE service_no = #{campaignNo} AND divide_seq = 0),0) as ab_test_target
+        FROM nvscenario a, nvcampaign b, nvtraceinfo c, nvuser d, nvusergrp e, nvsendresult f LEFT OUTER JOIN nvkakaorptsendresult g
+        ON  f.campaign_no = g.service_no
+        AND f.result_seq = g.result_seq
+        AND g.service_type = 'em'
+        WHERE a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND a.user_id = d.user_id
+        AND d.grp_cd = e.grp_cd
+        AND b.campaign_no = f.campaign_no
+        AND b.campaign_no = #{campaignNo}
+        AND f.resend_sts IS NULL
+    </select>
+
+    <select id="getCampaignSummaryDetail" parameterType="map" resultMap="resultCampaignReport">
+        SELECT
+            scenario_no, campaign_no, start_dt as sendstart_dt, start_tm as sendstart_tm, result_seq, resend_sts
+          , concat(CASE relation_type
+                   WHEN 'R' THEN '&lt;span class=''re_send''&gt;Resend&lt;/span&gt;'
+                   WHEN 'L' THEN '&lt;span class=''target_send''&gt;Target Send&lt;/span&gt; '
+                   ELSE '' END, scenario_nm) scenario_nm
+          , coalesce(target_cnt,0) target_cnt, coalesce(send_cnt,0) send_cnt, coalesce(success_cnt,0) success_cnt, coalesce(fail_cnt,0) fail_cnt
+          , coalesce(soft_bounce_cnt,0) soft_bounce_cnt, coalesce(hard_bounce_cnt,0) hard_bounce_cnt
+        FROM (
+            SELECT
+                a.scenario_no, a.scenario_nm, b.depth_no, b.campaign_no, b.relation_type, c.start_dt, c.start_tm, c.result_seq, c.resend_sts
+              , c.target_cnt, c.send_cnt, c.success_cnt, c.fail_cnt
+              , (c.smtp_except_cnt + c.no_route_cnt + c.refused_cnt + c.etc_except_cnt) soft_bounce_cnt
+              , (c.unknown_user_cnt + c.unknown_host_cnt + c.invalid_address_cnt) hard_bounce_cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND a.scenario_no = #{scenarioNo}
+            AND b.campaign_no = #{campaignNo}
+            AND c.result_sts = 'XE'
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+        ) x
+    </select>
+
+    <sql id="resultSeqDetailQuery">
+        <if test="resultSeq != null and resultSeq != ''">
+            <if test="resultSeq != 0">
+        AND c.result_seq = #{resultSeq}
+            </if>
+        </if>
+    </sql>
+
+    <select id="getCampaignFaxSummaryDetail" parameterType="map" resultMap="resultCampaignReport">
+        SELECT
+            scenario_no, campaign_no, start_dt as sendstart_dt, start_tm as sendstart_tm, result_seq, resend_sts
+          , concat(CASE relation_type
+                   WHEN 'R' THEN '&lt;span class=''re_send''&gt;Resend&lt;/span&gt;'
+                   WHEN 'L' THEN '&lt;span class=''target_send''&gt;Target Send&lt;/span&gt; '
+                   ELSE '' END, scenario_nm) scenario_nm
+          , coalesce(target_cnt,0) target_cnt, coalesce(send_cnt,0) send_cnt, coalesce(success_cnt,0) success_cnt, coalesce(fail_cnt,0) fail_cnt
+          , coalesce(soft_bounce_cnt,0) soft_bounce_cnt, coalesce(hard_bounce_cnt,0) hard_bounce_cnt
+        FROM (
+            SELECT
+                a.scenario_no, a.scenario_nm, b.campaign_no, b.relation_type, c.start_dt, c.start_tm, c.result_seq, c.resend_sts
+              , c.target_cnt, c.send_cnt, c.success_cnt, c.fail_cnt
+              , (c.smtp_except_cnt + c.no_route_cnt + c.refused_cnt + c.etc_except_cnt) soft_bounce_cnt
+              , (c.unknown_user_cnt + c.unknown_host_cnt + c.invalid_address_cnt) hard_bounce_cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND a.scenario_no = #{scenarioNo}
+            AND b.campaign_no = #{campaignNo}
+            <if test="mode == 'normal'">
+            AND b.relation_type IN ('N', 'R', 'L')
+            </if>
+            AND c.result_sts = 'XE'
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+            <include refid="resultSeqDetailQuery"/>
+        ) x
+    </select>
+
+    <select id="getCampaignSMSSummaryDetail" parameterType="map" resultMap="resultCampaignReport">
+        SELECT
+            scenario_no, campaign_no, start_dt as sendstart_dt, start_tm as sendstart_tm, result_seq, resend_sts
+          , concat(CASE relation_type
+                   WHEN 'R' THEN '&lt;span class=''re_send''&gt;Resend&lt;/span&gt;'
+                   WHEN 'L' THEN '&lt;span class=''target_send''&gt;Target Send&lt;/span&gt; '
+                   ELSE '' END, scenario_nm) scenario_nm
+          , coalesce(target_cnt,0) target_cnt, coalesce(send_cnt,0) send_cnt, coalesce(success_cnt,0) success_cnt, coalesce(fail_cnt,0) fail_cnt
+          , coalesce(fail_cnt,0) soft_bounce_cnt, 0 as hard_bounce_cnt
+        FROM (
+            SELECT
+                a.scenario_no, a.scenario_nm, b.depth_no, b.campaign_no, b.relation_type, c.start_dt, c.start_tm, c.result_seq, c.resend_sts
+              , d.target_cnt, d.send_cnt, d.success_cnt, d.fail_cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c LEFT OUTER JOIN nvsmsrptsendresult d
+            ON c.campaign_no = d.service_no
+            AND c.result_seq = d.result_seq
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND a.scenario_no = #{scenarioNo}
+            AND b.campaign_no = #{campaignNo}
+            <if test="mode == 'normal'">
+            AND b.relation_type IN ('N', 'R', 'L')
+            </if>
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+            <include refid="resultSeqDetailQuery"/>
+        ) x
+    </select>
+
+    <select id="getCampaignKakaoSummaryDetail" parameterType="map" resultMap="resultCampaignReport">
+        SELECT
+            scenario_no, campaign_no, start_dt as sendstart_dt, start_tm as sendstart_tm, result_seq, resend_sts
+          , concat(CASE relation_type
+                   WHEN 'R' THEN '&lt;span class=''re_send''&gt;Resend&lt;/span&gt;'
+                   WHEN 'L' THEN '&lt;span class=''target_send''&gt;Target Send&lt;/span&gt; '
+                   ELSE '' END, scenario_nm) scenario_nm
+          , coalesce(target_cnt,0) target_cnt, coalesce(send_cnt,0) send_cnt, coalesce(success_cnt,0) success_cnt, coalesce(fail_cnt,0) fail_cnt
+          , coalesce(fail_cnt,0) soft_bounce_cnt, 0 hard_bounce_cnt
+        FROM (
+            SELECT
+                a.scenario_no, a.scenario_nm, b.depth_no, b.campaign_no, b.relation_type, c.start_dt, c.start_tm, c.result_seq, c.resend_sts
+              , d.target_cnt, d.send_cnt, d.success_cnt, d.fail_cnt
+            FROM nvscenario a, nvcampaign b, nvsendresult c LEFT OUTER JOIN nvkakaorptsendresult d
+            ON  c.campaign_no = d.service_no
+            AND c.result_seq = d.result_seq
+            AND c.campaign_no = #{campaignNo}
+            AND d.service_type = 'em'
+            WHERE a.scenario_no = b.scenario_no
+            AND b.campaign_no = c.campaign_no
+            AND a.scenario_no = #{scenarioNo}
+            <if test="mode == 'normal'">
+            AND b.relation_type IN ('N', 'R', 'L')
+            </if>
+            <if test="mode == 'omnichannel'">
+            AND b.campaign_no = #{campaignNo}
+            </if>
+            AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+            <include refid="resultSeqDetailQuery"/>
+        ) x
+    </select>
+
+    <select id="getCampaignReportDomainList" parameterType="map" resultMap="resultCampaignReport">
+        SELECT
+            no, campaign_no, domain_nm, error_cd, error_msg, coalesce(gid,0) gid
+          , coalesce(send_cnt,0) send_cnt, coalesce(success_cnt,0) success_cnt
+          , coalesce(soft_bounce_cnt,0) soft_bounce_cnt, coalesce(hard_bounce_cnt,0) hard_bounce_cnt
+          , coalesce(case when error_cd is null then send_cnt else domain_send_cnt end,0) as domain_send_cnt
+        FROM (
+            SELECT
+                no, campaign_no, domain_nm, error_cd, error_msg, gid, send_cnt, success_cnt, soft_bounce_cnt, hard_bounce_cnt
+              , (SELECT sum(send_cnt) FROM nvdomainlog WHERE domain_nm = x.domain_nm AND campaign_no = #{campaignNo}) domain_send_cnt
+            FROM (
+                SELECT
+                    d.no, e.campaign_no
+                  , CASE d.no WHEN 2 THEN concat(e.domain_nm,' Subtotal') WHEN 3 THEN 'Total' ELSE e.domain_nm END domain_nm
+                  , CASE d.no WHEN 1 THEN e.error_cd END error_cd
+                  , CASE d.no WHEN 1 THEN f.val END error_msg
+                  , CASE d.no WHEN 2 THEN 1 WHEN 3 THEN 3 ELSE 0 END gid
+                  , coalesce(sum(e.send_cnt), 0) send_cnt
+                  , coalesce(sum(CASE f.cd_cat WHEN 'C00001' THEN e.send_cnt END), 0) success_cnt
+                  , coalesce(sum(CASE f.cd_cat WHEN 'C00011' THEN e.send_cnt END), 0) soft_bounce_cnt
+                  , coalesce(sum(CASE f.cd_cat WHEN 'C00021' THEN e.send_cnt END), 0) hard_bounce_cnt
+                FROM (
+                    SELECT no
+                    FROM copy_t
+                    WHERE no &lt;= 3
+                ) d, (
+                    SELECT b.campaign_no, b.domain_nm, b.error_cd, b.send_cnt
+                    FROM nvsendresult a, nvdomainlog b, nvtopdomain c
+                    WHERE a.result_seq = b.result_seq
+                    AND b.domain_nm = c.domain_nm
+                    AND (a.resend_sts IS NULL OR a.resend_sts = 'F')
+                    AND b.campaign_no = #{campaignNo}
+                ) e LEFT OUTER JOIN (
+                    SELECT cd, val, cd_cat
+                    FROM nv_cd_mst
+                    WHERE cd_cat IN ('C00001','C00011', 'C00021')
+                    AND lang = #{lang}
+                ) f
+                ON e.error_cd = f.cd
+                GROUP BY
+                    e.campaign_no, d.no
+                  , CASE d.no WHEN 2 THEN concat(e.domain_nm,' Subtotal') WHEN 3 THEN 'Total' ELSE e.domain_nm END
+                  , CASE d.no WHEN 1 THEN f.val END
+                  , CASE d.no WHEN 1 THEN e.error_cd END
+            ) x
+        ) y
+        ORDER BY CASE gid WHEN 3 THEN 'ZZZZZZ' ELSE domain_nm END, error_cd
+    </select>
+
+
+</mapper>

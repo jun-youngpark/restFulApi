@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.GrpMenuRole">
+    <resultMap id="resultGrpMenuRole" type="GrpMenuRole">
+        <result column="grp_cd"         property="grpCd"/>
+        <result column="menu_cd"        property="menuCd"/>
+        <result column="read_auth"      property="readAuth"/>
+        <result column="write_auth"     property="writeAuth"/>
+        <result column="execute_auth"   property="executeAuth"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertGrpMenuRole" parameterType="GrpMenuRole">
+        INSERT INTO nvgrpmenurole (grp_cd, menu_cd, read_auth, write_auth, execute_auth)
+        VALUES (#{grpCd}, #{menuCd}, #{readAuth, jdbcType=CHAR}, #{writeAuth, jdbcType=CHAR}, #{executeAuth, jdbcType=CHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteGrpPermission" parameterType="string">
+        DELETE FROM nvgrpmenurole
+        WHERE grp_cd = #{grpCd}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+
+</mapper>

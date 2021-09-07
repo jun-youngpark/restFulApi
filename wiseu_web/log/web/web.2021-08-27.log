@@ -1,0 +1,42 @@
+08-27 10:18:18.605 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/account.properties
+08-27 10:18:20.336 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/account_ko.properties
+08-27 10:18:20.397 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/button.properties
+08-27 10:18:20.472 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/button_ko.properties
+08-27 10:18:20.486 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/campaign.properties
+08-27 10:18:20.666 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/campaign_ko.properties
+08-27 10:18:20.680 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/common.properties
+08-27 10:18:20.710 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/common_ko.properties
+08-27 10:18:20.727 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/ecare.properties
+08-27 10:18:20.779 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/ecare_ko.properties
+08-27 10:18:20.803 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/editor.properties
+08-27 10:18:20.992 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/editor_ko.properties
+08-27 10:18:21.003 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/env.properties
+08-27 10:18:21.030 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/env_ko.properties
+08-27 10:18:21.043 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/report.properties
+08-27 10:18:21.239 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/report_ko.properties
+08-27 10:18:21.262 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/resend.properties
+08-27 10:18:21.307 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/resend_ko.properties
+08-27 10:18:21.317 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/segment.properties
+08-27 10:18:21.487 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/segment_ko.properties
+08-27 10:18:21.501 ttp-nio-18084-exec-5 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/template.properties
+08-27 10:18:21.533 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/template_ko.properties
+08-27 10:18:21.548 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/watch.properties
+08-27 10:18:21.769 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/watch_ko.properties
+08-27 10:18:22.011 ttp-nio-18084-exec-1 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/valid.properties
+08-27 10:18:22.060 ttp-nio-18084-exec-3 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [7A8388D12F01E49AF51694A0888A79ED] GET /i18n/valid_ko.properties
+08-27 10:18:31.762 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 604 MB
+08-27 10:18:31.763 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+08-27 10:18:31.763 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 448 MB
+08-27 10:18:31.763 ttp-nio-18084-exec-1 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+08-27 10:18:31.816 ttp-nio-18084-exec-1 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+08-27 10:18:32.810 ttp-nio-18084-exec-2 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [8C68C734D2ADC3F9253315FA2264ABA5] GET /campaign/campaignList.do
+08-27 10:18:38.110 ttp-nio-18084-exec-6 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [8C68C734D2ADC3F9253315FA2264ABA5] GET /campaign/campaign1Step.do
+08-27 10:21:36.966 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [8C68C734D2ADC3F9253315FA2264ABA5] GET /campaign/campaignList.do
+08-27 10:22:55.187 ttp-nio-18084-exec-8 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [8C68C734D2ADC3F9253315FA2264ABA5] GET /campaign/campaign1Step.do
+08-27 13:28:06.878 ttp-nio-18084-exec-7 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [C0951CD5FCD6CAE587A2EA683F5389AE] GET /segment/segmentList.do
+08-27 13:28:11.760 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController    98 Java 가상 머신 메모리의 총용량: 339 MB
+08-27 13:28:11.776 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController    99 Java 가상 머신이 사용을 시도하는 최대 메모리 용량: 3563 MB
+08-27 13:28:11.776 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController   100 Java 가상 머신 내의 빈메모리의 양: 145 MB
+08-27 13:28:11.777 ttp-nio-18084-exec-6 INFO  c.m.w.web.admin.web.AdminController   101 env product use : off
+08-27 13:28:11.809 ttp-nio-18084-exec-6 DEBUG c.m.w.w.admin.service.AdminService    43 envProductUse : off
+08-27 13:28:12.361 ttp-nio-18084-exec-4 INFO  c.m.w.w.a.web.AdminLoginInterceptor    88 REQ-URI [432893EF26949DE6923A24628ED8F31D] GET /campaign/campaignList.do

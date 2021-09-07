@@ -1,0 +1,72 @@
+09-03 16:31:03.924 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?             AND b.DEPTH_NO > 1         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:33:36.327 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:34:13.777 http-nio-8084-exec-1 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type, b.relation_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:35:57.775 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:36:43.823 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:36:51.685 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/ecare/Ecare.xml]
+### The error may involve mapper.Ecare.findOmniEcare-Inline
+### The error occurred while setting parameters
+### SQL: SELECT              b.ecare_nm, coalesce(b.ecare_no,0) ecare_no, b.depth_no, b.channel_type            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = 'ko') ecare_sts_nm            , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = b.relation_type AND lang = 'ko') relation_type_nm            , c.segment_size as target_cnt         FROM nvecarescenario a, nvecaremsg b LEFT OUTER JOIN nvsegment c         ON b.segment_no = c.segment_no         WHERE a.scenario_no = b.scenario_no         AND a.scenario_no = (             SELECT scenario_no             FROM nvecaremsg             WHERE ecare_no = ?         )         AND b.relation_type IN ('N','S','F','O')         ORDER BY rpad(             b.relation_tree           , (SELECT max(depth_no) FROM nvecaremsg WHERE scenario_no = (SELECT scenario_no FROM nvecaremsg WHERE ecare_no = ?))           , 0         ), b.ecare_no;
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00911: 문자가 부적합합니다
+ 데이터:{"ecareNo":1}
+09-03 16:39:16.106 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.dto.ReturnDto$EcareDto cannot be cast to com.mnwise.wiseu.web.rest.model.ecare.Ecare 데이터:{"ecareNo":"18","useYn":"Y"}
+09-03 16:39:21.830 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.ClassCastException: com.mnwise.wiseu.web.rest.dto.ReturnDto$EcareDto cannot be cast to com.mnwise.wiseu.web.rest.model.ecare.Ecare 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 22:55:28.946 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 22:57:17.099 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 22:57:31.718 http-nio-8084-exec-5 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: Could not set property 'ecmscheduleNo' of 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' with value '2' Cause: org.apache.ibatis.reflection.ReflectionException: There is no setter for property named 'ecmscheduleNo' in 'class com.mnwise.wiseu.web.rest.model.ecare.Ecare' 데이터:{"ecareNo":"2","relationType":"F","channelType":"S"}
+09-03 22:58:06.118 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:java.lang.Exception: Ecare status is already (P) 데이터:{"ecareNo":"3","ecareSts":"P"}

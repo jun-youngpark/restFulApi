@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareTemplate">
+    <!--  ==================== INSERT ====================  -->
+    <insert id="copyEcareTemplate" parameterType="map">
+        INSERT INTO nvecaretemplate (ecare_no, seg, template)
+        VALUES (#{newEcareNo}, #{templateVo.seg}, #{templateVo.template})
+    </insert>
+
+    <insert id="insertEditorEcareTemplate" parameterType="Template">
+        INSERT INTO nvecaretemplate (ecare_no, seg, template, kakao_buttons, conts_no)
+        VALUES (#{no}, #{seg}, #{template}, #{kakaoButtons, jdbcType=VARCHAR} ,#{contsNo})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEditorEcareTemplate" parameterType="Template">
+        UPDATE nvecaretemplate
+        SET template = #{template}, kakao_buttons = #{kakaoButtons, jdbcType=VARCHAR}
+        <if test="contsNo != 0">
+            , conts_no = #{contsNo}
+        </if>
+        WHERE ecare_no = #{no}
+        AND seg = #{seg}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcareTemplateByPk" parameterType="map">
+        DELETE FROM nvecaretemplate
+        WHERE ecare_no = #{ecareNo}
+        AND seg = #{seg}
+    </delete>
+
+    <delete id="deleteEcareTemplate" parameterType="int">
+        DELETE FROM nvecaretemplate
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEcareTemplate" parameterType="map" resultMap="mapper.Common.resultMailPreview">
+        SELECT seg, coalesce(template,'') template
+        FROM nvecaretemplate
+        WHERE ecare_no = #{serviceNo}
+        <if test="seg != ' '.toString()">
+        AND seg = #{seg}
+        </if>
+    </select>
+
+    <!--  결과보기용 템플릿 가져오기 -->
+    <select id="selectEcareTemplateHistory" parameterType="int" resultMap="mapper.Common.resultMailPreview">
+        SELECT seg, coalesce(template,'') template
+        FROM nvecaretemplate
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <select id="getEcareTemplate" parameterType="int" resultType="string">
+        SELECT template
+        FROM nvecaretemplate
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <!--템플릿 다운로드 -->
+    <select id="selectTemplateList" resultMap="mapper.Common.resultTemplate">
+        SELECT ecare_no, seg, template
+        FROM nvecaretemplate
+    </select>
+
+    <select id="selectEditorEcareTemplate" parameterType="int" resultMap="mapper.Common.resultTemplate">
+        SELECT
+            a.seg, a.template, a.kakao_buttons, CASE WHEN a.seg = ' ' THEN 0 ELSE 1 END as seg_no
+          , CASE WHEN b.kakao_image_no IS NULL THEN '' ELSE (SELECT file_preview_path FROM nvmobilecontents WHERE conts_no = b.kakao_image_no) END as image_url
+         , a.conts_no
+        FROM nvecaretemplate a, nvecaremsg b
+        WHERE a.ecare_no = b.ecare_no
+        AND b.ecare_no = #{ecareNo}
+        ORDER BY seg_no
+    </select>
+
+    <select id="selectEcareTemplateAndKakaoButtons" parameterType="int" resultMap="mapper.Common.resultTemplate">
+        SELECT a.template, a.kakao_buttons, b.kakao_quick_replies, b.conts_no, b.file_preview_path as image_url
+        FROM nvecaretemplate a left outer join nvmobilecontents b
+        ON a.conts_no=b.conts_no
+        WHERE a.ECARE_NO= #{ecareNo}
+    </select>
+
+    <select id="selectEcareKakaoButtons" parameterType="int" resultType="string">
+        SELECT kakao_buttons
+        FROM nvecaretemplate
+        WHERE ecare_no = #{ecareNo}
+        AND seg = ' '
+    </select>
+
+</mapper>

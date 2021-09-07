@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MzFtSendTran">
+    <!--<resultMap id="resultMzFtSendTran" type="MzFtSendTran">
+        <result column="sn"                 property="sn"/>
+        <result column="sender_key"         property="senderKey"/>
+        <result column="channel"            property="channel"/>
+        <result column="snd_type"           property="sndType"/>
+        <result column="phone_num"          property="phoneNum"/>
+        <result column="tmpl_cd"            property="tmplCd"/>
+        <result column="subject"            property="subject"/>
+        <result column="snd_msg"            property="sndMsg"/>
+        <result column="sms_snd_msg"        property="smsSndMsg"/>
+        <result column="sms_snd_num"        property="smsSndNum"/>
+        <result column="req_dept_cd"        property="reqDeptCd"/>
+        <result column="req_usr_id"         property="reqUsrId"/>
+        <result column="req_dtm"            property="reqDtm"/>
+        <result column="snd_dtm"            property="sndDtm"/>
+        <result column="rslt_cd"            property="rsltCd"/>
+        <result column="rcpt_msg"           property="rcptMsg"/>
+        <result column="rcpt_dtm"           property="rcptDtm"/>
+        <result column="sms_snd_dtm"        property="smsSndDtm"/>
+        <result column="sms_rslt_cd"        property="smsRsltCd"/>
+        <result column="sms_rcpt_msg"       property="smsRcptMsg"/>
+        <result column="sms_rcpt_dtm"       property="smsRcptDtm"/>
+        <result column="sms_gb"             property="smsGb"/>
+        <result column="sms_snd_yn"         property="smsSndYn"/>
+        <result column="tran_sn"            property="tranSn"/>
+        <result column="tran_sts"           property="tranSts"/>
+        <result column="agent_id"           property="agentId"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="tr_type_cd"         property="trTypeCd"/>
+        <result column="user_key"           property="userKey"/>
+        <result column="msg_grp_cd"         property="msgGrpCd"/>
+        <result column="ad_flag"            property="adFlag"/>
+        <result column="attachment"         property="attachment"/>
+        <result column="service_type"       property="serviceType"/>
+        <result column="service_no"         property="serviceNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="customer_key"       property="customerKey"/>
+        <result column="image_path"         property="imagePath"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertFriendtalk" parameterType="Message">
+        INSERT INTO mzftsendtran (
+            sn, sender_key, channel, snd_type, phone_num, tmpl_cd, subject, snd_msg, sms_snd_num, sms_snd_yn
+          , req_dept_cd, req_usr_id, req_dtm, tran_sts, attachment, tr_type_cd, service_type, ad_flag, service_no, result_seq
+          , image_path
+        ) VALUES (
+            #{sn}, #{senderKey}, 'C', 'P', #{phoneNum}, #{tmplCd, jdbcType=VARCHAR}, #{subject, jdbcType=VARCHAR}, #{sendMessage}, #{callBack, jdbcType=VARCHAR}, #{smsSndYn, jdbcType=VARCHAR}
+          , #{reqDeptCd, jdbcType=VARCHAR}, #{reqUsrId, jdbcType=VARCHAR}
+            <if test="reqDtm == null or reqDtm == ''">
+          , date_format(now(), '%Y%m%d%H%i%s')
+            </if>
+            <if test="reqDtm != null and reqDtm != ''">
+          , #{reqDtm}
+            </if>
+          , '1', #{attachment, jdbcType=VARCHAR}, 'B', #{serviceType, jdbcType=VARCHAR}, #{adFlag, jdbcType=VARCHAR}, #{serviceNo}, #{resultSeq}
+          , #{fileName1, jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+
+</mapper>

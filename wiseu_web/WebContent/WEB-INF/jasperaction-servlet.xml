@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="urlMappingJasper" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <value>
+                **/userlistreport.* = reportController
+            </value>
+        </property>
+    </bean>
+    
+    <bean id="reportController" class="com.mnwise.wiseu.web.report.web.campaign.output.ReportController">
+    </bean>
+
+    <bean id="reportView" class="org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView">
+    <property name="url" value="/WEB-INF/reports/report1.jasper"/>
+    <property name="jdbcDataSource" ref="dataSource"/>
+    <property name="exporterParameters">
+        <map>
+            <entry key="net.sf.jasperreports.engine.export.JRHtmlExporterParameter.IMAGES_URI" value="image?image="/>
+            <entry key="net.sf.jasperreports.engine.JRExporterParameter.CHARACTER_ENCODING" value="euc-kr"/>
+        </map>
+    </property>    
+    </bean>
+</beans>

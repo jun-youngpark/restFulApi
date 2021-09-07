@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SendBlockDateInfo">
+    <!--<resultMap id="resultSendBlockDateInfo" type="SendBlockDateInfo">
+        <result column="reg_year"           property="regYear"/>
+        <result column="reg_saturday_yn"    property="regSaturdayYn"/>
+        <result column="reg_sunday_yn"      property="regSundayYn"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <!--<insert id="insertSendBlockDateInfo" parameterType="SendBlockDateInfo">
+        INSERT INTO nvsendblockdateinfo (reg_year, reg_saturday_yn, reg_sunday_yn)
+        VALUES (#{regYear}, #{regSaturdayYn, jdbcType=CHAR}, #{regSundayYn, jdbcType=CHAR})
+    </insert>-->
+
+    <!--  ==================== UPDATE ====================  -->
+    <!--<update id="updateSendBlockDateInfoByPk" parameterType="SendBlockDateInfo">
+        UPDATE nvsendblockdateinfo
+        SET
+            reg_saturday_yn = #{regSaturdayYn, jdbcType=CHAR}
+          , reg_sunday_yn = #{regSundayYn, jdbcType=CHAR}
+        WHERE reg_year = #{regYear}
+    </update>-->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSendBlockDateInfoByPk" parameterType="map">
+        DELETE FROM nvsendblockdateinfo
+        WHERE reg_year = #{regYear}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!--<select id="selectSendBlockDateInfoByPk" parameterType="map" resultMap="resultSendBlockDateInfo">
+        SELECT reg_year, reg_saturday_yn, reg_sunday_yn
+        FROM nvsendblockdateinfo
+        WHERE reg_year = #{regYear}
+    </select>-->
+
+    <select id="selectRegistDays" resultType="string">
+        SELECT concat(coalesce(max(reg_saturday_yn), 'N'), '-', coalesce(max(reg_sunday_yn), 'N'))
+        FROM nvsendblockdateinfo
+        WHERE reg_year = #{regYear}
+    </select>
+
+</mapper>

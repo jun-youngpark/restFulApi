@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcmSchedule">
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertScheduleForFirst" parameterType="Ecare">
+    	<selectKey keyProperty="ecmScheduleNo" resultType="int" order="BEFORE">
+           	SELECT coalesce(max(ecmschedule_no),0) + 1
+	        FROM nvecmschedule
+        </selectKey>
+        INSERT INTO nvecmschedule (ecmschedule_no, ecmschedule_nm, cycle_cd, sendstart_dt, sendend_dt, invoke_tm, invoke_every_min, day, sche_weeknumber, weekday, start_tm, end_tm, term_min)
+        VALUES (#{ecmScheduleNo}, ' ', '', '', '', '', '', 0, 0, '', '', '', '')
+    </insert>
+
+    <insert id="insertEcmSchedule" parameterType="EcmSchedule">
+        INSERT INTO nvecmschedule (ecmschedule_no, ecmschedule_nm, cycle_cd, sendstart_dt, sendend_dt, invoke_tm, invoke_every_min, day, sche_weeknumber, weekday, start_tm, end_tm, term_min)
+        VALUES (#{ecmScheduleNo}, #{ecmScheduleNm, jdbcType=VARCHAR}, #{cycleCd, jdbcType=CHAR}, #{sendStartDt, jdbcType=CHAR}, #{sendEndDt, jdbcType=CHAR}, #{invokeTm, jdbcType=CHAR}, #{invokeEveryMin, jdbcType=CHAR}, #{day}, #{scheWeeknumber}, #{weekday, jdbcType=VARCHAR}, #{startTm, jdbcType=CHAR}, #{endTm, jdbcType=CHAR}, #{termMin, jdbcType=CHAR})
+    </insert>
+
+    <insert id="copyEcmSchedule" parameterType="EcmSchedule">
+        INSERT INTO nvecmschedule (ecmschedule_no, ecmschedule_nm, cycle_cd, sendstart_dt, sendend_dt, invoke_tm, invoke_every_min, day, sche_weeknumber, weekday, start_tm, end_tm, term_min)
+        SELECT #{newEcmScheduleNo}, ecmschedule_nm, '4', sendstart_dt, sendend_dt, invoke_tm, invoke_every_min, day, sche_weeknumber, weekday, start_tm, end_tm, term_min
+        FROM nvecmschedule
+        WHERE ecmschedule_no = #{ecmScheduleNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEcmSchedule1StepInfo" parameterType="EcmSchedule" >
+        UPDATE nvecmschedule
+        SET
+            cycle_cd = #{cycleCd, jdbcType=CHAR}
+          , sendstart_dt = #{sendStartDt, jdbcType=CHAR}
+          , sendend_dt = #{sendEndDt, jdbcType=CHAR}
+          , invoke_tm = #{invokeTm, jdbcType=CHAR}
+          , invoke_every_min = #{invokeEveryMin, jdbcType=CHAR}
+          , day = #{day}
+          , sche_weeknumber = #{scheWeeknumber}
+          , weekday = #{weekday, jdbcType=VARCHAR}
+          , start_tm = #{startTm, jdbcType=CHAR}
+          , end_tm = #{endTm, jdbcType=CHAR}
+          , term_min = #{termMin, jdbcType=CHAR}
+        WHERE ecmschedule_no = #{ecmScheduleNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcmScheduleByPk" parameterType="int">
+        DELETE FROM nvecmschedule
+        WHERE ecmschedule_no = #{ecmScheduleNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+
+     <resultMap id="resultEcareSchedule" type="EcmSchedule">
+        <result column="ecmschedule_no"     property="ecmScheduleNo"/>
+        <result column="ecmschedule_nm"     property="ecmScheduleNm"/>
+        <result column="cycle_cd"           property="cycleCd"/>
+        <result column="sendstart_dt"       property="sendStartDt"/>
+        <result column="sendend_dt"         property="sendEndDt"/>
+        <result column="invoke_tm"          property="invokeTm"/>
+        <result column="invoke_every_min"   property="invokeEveryMin"/>
+        <result column="day"                property="day"/>
+        <result column="sche_weeknumber"    property="scheWeeknumber"/>
+        <result column="weekday"            property="weekday"/>
+        <result column="start_tm"           property="startTm"/>
+        <result column="end_tm"             property="endTm"/>
+        <result column="term_min"           property="termMin"/>
+    </resultMap>
+
+    <select id="selectEcmScheduleByPk" parameterType="map" resultMap="resultEcareSchedule">
+        SELECT
+            coalesce(ecmschedule_no,0) ecmschedule_no, ecmschedule_nm, cycle_cd, sendstart_dt, sendend_dt, invoke_tm, invoke_every_min
+          , coalesce(day,0) as day, coalesce(sche_weeknumber,0) sche_weeknumber, weekday, start_tm, end_tm, term_min
+        FROM nvecmschedule
+        WHERE ecmschedule_no = #{ecmScheduleNo}
+    </select>
+
+   <select id="selectEcmScheduleByEcareNo" parameterType="int" resultMap="resultEcareSchedule">
+        SELECT coalesce(b.ecmschedule_no,0) ecmschedule_no, b.ecmschedule_nm, b.cycle_cd, b.sendstart_dt, b.sendend_dt, b.invoke_tm, b.invoke_every_min
+          , coalesce(b.day,0) as day, coalesce(b.sche_weeknumber,0) sche_weeknumber, b.weekday, b.start_tm, b.end_tm, b.term_min
+        FROM nvecaremsg a, nvecmschedule b
+        WHERE a.ecmschedule_no = b.ecmschedule_no
+        AND a.ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectNextEcmScheduleNo" resultType="int">
+        SELECT coalesce(max(ecmschedule_no),0)+1
+        FROM nvecmschedule
+    </select>
+
+</mapper>

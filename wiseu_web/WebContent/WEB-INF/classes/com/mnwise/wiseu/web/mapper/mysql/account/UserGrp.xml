@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserGrp">
+    <resultMap id="resultUserGrp" type="UserGrp">
+        <result column="grp_cd"         property="grpCd"/>
+        <result column="grp_nm"         property="grpNm"/>
+        <result column="supragrp_cd"    property="supraGrpCd"/>
+        <result column="grp_desc"       property="grpDesc"/>
+        <result column="grp_level"      property="grpLevel"/>
+        <result column="permission"     property="permission"/>
+        <result column="editor_id"      property="editorId"/>
+        <result column="lastupdate_dt"  property="lastUpdateDt"/>
+        <result column="manager_id"     property="managerId"/>
+        <result column="active_yn"      property="activeYn"/>
+        <result column="etc_info1"      property="etcInfo1"/>
+        <result column="manager_nm"     property="managerNm"/>
+        <result column="server_ip"      property="serverIp"/>
+        <result column="server_port"    property="serverPort"/>
+        <result column="func_code"      property="funcCode"/>
+        <result column="func_desc"      property="funcDesc"/>
+        <result column="work_doc"       property="workDoc"/>
+        <result column="accept_yn"      property="acceptYn"/>
+        <result column="permit_dt"      property="permitDt"/>
+        <result column="permit_sts"     property="permitSts"/>
+        <result column="req_dept_id"    property="reqDeptId"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="supragrp_nm"    property="supraGrpNm"/>
+        <result column="req_dept_cd"    property="reqDeptCd"/>
+    </resultMap>
+
+    <resultMap id="groupTreeMap" type="TreeEelement">
+        <result column="grp_cd"         property="id"/>
+        <result column="grp_desc"       property="grpDesc"/>
+        <result column="grp_nm"         property="text"/>
+        <result column="manager_id"     property="mainUser"/>
+        <result column="manager_nm"     property="mainUserNm"/>
+        <result column="haschildren"    property="hasChildren"/>
+        <result column="active_yn"      property="activeYn"/>
+        <result column="supragrp_cd"      property="superId"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertUserGrp" parameterType="UserGrp">
+        <selectKey keyProperty="grpCd" resultType="string" order="BEFORE">
+            SELECT lpad(cast(cast(coalesce(max(GRP_CD),concat(#{supraGrpCd},'00')) AS unsigned)+1 as CHAR),length(#{supraGrpCd})+2,'0') as supergrp
+            FROM NVUSERGRP
+            WHERE SUPRAGRP_CD = #{supraGrpCd}
+        </selectKey>
+        INSERT INTO nvusergrp (grp_cd, grp_nm, supragrp_cd, grp_desc, grp_level, permission, editor_id, lastupdate_dt, manager_id, active_yn, etc_info1, manager_nm, server_ip, server_port, func_code, func_desc, work_doc, accept_yn, permit_dt, permit_sts, req_dept_id)
+        SELECT
+            #{grpCd}, #{grpNm, jdbcType=VARCHAR}, #{supraGrpCd, jdbcType=VARCHAR}, #{grpDesc, jdbcType=VARCHAR}, grp_level + 1, 'Y', #{editorId, jdbcType=VARCHAR}, #{lastUpdateDt, jdbcType=CHAR}
+          , #{managerId, jdbcType=VARCHAR}, #{activeYn, jdbcType=CHAR}, #{etcInfo1, jdbcType=VARCHAR}, #{managerNm, jdbcType=VARCHAR}, #{serverIp, jdbcType=VARCHAR}, #{serverPort, jdbcType=VARCHAR}, #{funcCode, jdbcType=VARCHAR}
+          , #{funcDesc, jdbcType=VARCHAR}, #{workDoc, jdbcType=VARCHAR}, #{acceptYn, jdbcType=CHAR}, date_format(curdate(),'%Y%m%d'), #{permitSts, jdbcType=CHAR}, #{reqDeptId, jdbcType=VARCHAR}
+        FROM nvusergrp
+        WHERE grp_cd = #{supraGrpCd}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateAccountDept" parameterType="UserGrp">
+        UPDATE nvusergrp
+        SET
+            grp_nm = #{grpNm, jdbcType=VARCHAR}
+          , func_code = #{funcCode, jdbcType=VARCHAR}
+          , func_desc = #{funcDesc, jdbcType=VARCHAR}
+          , work_doc = #{workDoc, jdbcType=VARCHAR}
+          , req_dept_id = #{reqDeptCd, jdbcType=VARCHAR}
+        WHERE grp_cd = #{grpCd}
+    </update>
+
+    <update id="updateAccountDeptAcceptYn" parameterType="map">
+        UPDATE nvusergrp
+        SET
+            accept_yn = #{acceptYn, jdbcType=CHAR}
+            <if test="userRole == 'A'.toString()">
+          , active_yn = #{activeYn, jdbcType=CHAR}
+            </if>
+        WHERE grp_cd = #{grpCd}
+        AND 0 = (SELECT * FROM (SELECT count(*) FROM nvusergrp WHERE active_yn = 'Y' AND supragrp_cd = #{grpCd}) as temp1)
+        AND 0 = (SELECT * FROM (SELECT count(*) FROM nvuser WHERE active_yn = 'Y' AND grp_cd = #{grpCd}) as temp2)
+    </update>
+
+    <update id="updateGrpPermissionInfo" parameterType="map">
+        UPDATE nvusergrp
+        SET
+            permit_sts = #{permitSts, jdbcType=CHAR}
+            <if test="permitSts != 'H'.toString()">
+          , permit_dt = #{permitDt, jdbcType=VARCHAR}
+            </if>
+        WHERE grp_cd = #{grpCd}
+    </update>
+
+    <update id="updateAccountDeptWorkDoc" parameterType="UserGrp">
+        UPDATE nvusergrp
+        SET work_doc = #{workDoc, jdbcType=VARCHAR}
+        WHERE grp_cd = #{grpCd}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectGroupInfo" parameterType="string" resultMap="resultUserGrp">
+        SELECT
+            grp_cd, grp_nm, supragrp_cd, coalesce(grp_level, 0) grp_level, func_code, func_desc, work_doc, req_dept_id as req_dept_cd
+          , (SELECT b.grp_nm FROM nvusergrp b WHERE b.grp_cd = a.supragrp_cd) supragrp_nm
+        FROM nvusergrp a
+        <if test="_parameter != null and _parameter != ''">
+        WHERE grp_cd = #{grpCd}
+        </if>
+        <if test="_parameter == null or _parameter == ''">
+        WHERE grp_level = 0
+        </if>
+    </select>
+
+    <select id="getGrpList" resultMap="resultUserGrp">
+        SELECT grp_cd, grp_nm, grp_level, (CASE WHEN supragrp_cd = '' OR supragrp_cd IS NULL THEN '#' ELSE supragrp_cd END) supragrp_cd
+        FROM nvusergrp
+        WHERE active_yn = 'Y'
+        ORDER BY grp_cd
+    </select>
+
+    <select id="getSupraInfo" parameterType="string" resultMap="resultUserGrp">
+        SELECT grp_cd as supragrp_cd, grp_nm as supragrp_nm, grp_cd as req_dept_cd
+        FROM nvusergrp
+        WHERE grp_cd = #{grpCd}
+    </select>
+
+    <select id="getRequestPermitGrpList" resultMap="resultUserGrp">
+        SELECT grp_cd, grp_nm, func_code, func_desc, active_yn, permit_dt, permit_sts
+        FROM nvusergrp
+        WHERE active_yn = 'Y'
+        AND accept_yn = 'Y'
+        AND permit_sts is not null
+    </select>
+
+    <select id="selectNotRegList" resultMap="resultUserGrp">
+        SELECT grp_cd, grp_nm, func_code, func_desc, active_yn, permit_dt, permit_sts
+        FROM nvusergrp
+        WHERE active_yn IN ('N','R')
+        AND accept_yn = 'Y'
+    </select>
+
+    <select id="selectNotDelList" resultMap="resultUserGrp">
+        SELECT grp_cd, grp_nm, func_code, func_desc, active_yn, permit_dt, permit_sts
+        FROM nvusergrp
+        WHERE active_yn = 'Y'
+        AND accept_yn = 'N'
+    </select>
+
+    <select id="selectGroupTree" parameterType="TreeEelement" resultMap="groupTreeMap">
+        SELECT
+            grp_cd, grp_nm, grp_desc, (CASE WHEN supragrp_cd = '' OR supragrp_cd IS NULL THEN '#' ELSE supragrp_cd END) supragrp_cd
+            ,active_yn, coalesce(manager_id, '') manager_id, coalesce(manager_nm, '') manager_nm
+          , (SELECT CASE count(*) WHEN 0 THEN 'false' ELSE 'true' END FROM nvusergrp b WHERE b.supragrp_cd = a.grp_cd AND b.active_yn = 'Y') haschildren
+        FROM nvusergrp a
+        WHERE active_yn = 'Y'
+        <if test="id != null and id != ''">
+        AND supragrp_cd = #{id}
+        </if>
+        <if test="id == null or id == ''">
+        AND supragrp_cd IS NULL
+        </if>
+        ORDER BY grp_cd
+    </select>
+</mapper>

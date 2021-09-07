@@ -1,0 +1,289 @@
+05-31 11:16:31.765 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 11:16:31.770 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 11:16:31.770 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 11:21:25.116 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 11:21:25.119 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 11:21:25.119 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 11:34:07.773 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 11:34:07.776 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 11:34:07.776 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 11:34:31.685 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 11:34:31.688 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 11:34:31.688 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 11:34:32.407 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 11:34:32.912 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 14:02:56.999 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 14:02:57.012 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 14:02:57.013 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 14:02:58.143 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 14:02:58.907 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:13:41.952 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:13:41.972 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:13:41.973 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:13:44.341 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:13:45.173 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:14:29.832 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:14:29.835 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:14:29.835 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:14:30.697 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:14:31.230 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:14:51.881 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:14:51.885 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:14:51.885 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:14:52.642 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:14:53.162 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:18:11.096 Timer-1              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 15:18:11.097 Timer-1              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 15:18:14.100 Timer-1              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 15:18:14.101 Timer-1              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 15:18:52.098 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:18:52.101 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:18:52.102 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:18:52.890 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:18:53.495 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:20:56.312 http-nio-8080-exec-1 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.builder.IncompleteElementException: Could not find result map mapper.SendLog.CustomSendlLogVo 데이터:{"reqSeq":"tesT","seq":"efa90953-0eb6-47c6-93ad-93c6c0a3897d","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:22:24.875 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:22:24.879 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:22:24.879 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:22:25.637 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:22:26.245 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:22:32.690 http-nio-8080-exec-2 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.builder.IncompleteElementException: Could not find result map mapper.SendLog.CustomSendlLogVo 데이터:{"reqSeq":"tesT","seq":"9d6ed716-e312-45a7-bb7a-0556f24545d9","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:23:32.891 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/SendLog.xml]]
+05-31 15:23:32.891 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 15:23:34.894 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/SendLog.xml]]
+05-31 15:23:34.894 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 15:23:39.805 http-nio-8080-exec-5 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+)
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+) 데이터:{"reqSeq":"tesT","seq":"6db29b08-49ee-4ae6-916a-3ca7730e7bd9","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:23:57.683 http-nio-8080-exec-3 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+)
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+) 데이터:{"reqSeq":"tesT","seq":"1edcf590-db67-4359-a465-29bfe55980ef","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:25:13.616 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:25:13.620 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:25:13.620 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:25:14.387 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:25:14.955 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:25:30.308 http-nio-8080-exec-2 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+)
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+) 데이터:{"reqSeq":"tesT","seq":"3cb87b00-c43c-465b-8430-db726205b99d","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:25:56.086 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:25:56.091 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:25:56.091 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:25:56.853 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:25:57.402 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:26:06.685 http-nio-8080-exec-1 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error updating database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+)
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is java.sql.SQLException: Cannot create PoolableConnectionFactory (ORA-01017: invalid username/password; logon denied
+) 데이터:{"reqSeq":"tesT","seq":"a9c83d03-3cba-4774-9df6-dc610a92685e","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:27:04.647 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:27:04.652 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:27:04.653 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:27:05.475 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:27:06.011 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:27:17.820 http-nio-8080-exec-2 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+
+### The error may involve mapper.RealTimeAccept.insertRealTimeAccept-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvrealtimeaccept        (         seq         ,ecare_no          ,result_seq          ,channel          ,req_user_id          ,req_dt          ,req_tm          ,tmpl_type          ,receiver_id          ,receiver_nm          ,receiver          ,sender_nm          ,sender          ,subject          ,send_fg          ,secu_key          ,preview_type          ,data_cnt          ,file_path1          ,file_path2          ,file_path3         ,jonmun         ,slot1           ,slot2           ,slot3           ,slot4           ,slot5           ,slot6           ,slot7           ,slot8           ,slot9           ,slot10         ,req_seq          )   VALUES   (     ?    ,?    ,0    ,?     ,?     ,to_char(sysdate, 'yyyyMMdd')    ,to_char(sysdate, 'hh24mmss')    ,?     ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,'N'    ,?    ,?    ,?    ,?     ,?         ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,?     ,?    ,?    ,?   )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+
+; SQL []; ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+ 데이터:{"reqSeq":"tesT","seq":"381b3d3e-9dc5-467f-ba20-f5cfd16fbcce","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:28:10.307 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:28:10.310 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:28:10.311 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:28:11.186 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:28:11.760 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:28:21.147 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:28:21.151 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:28:21.151 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:28:21.961 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:28:22.539 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:28:28.174 http-nio-8080-exec-5 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+
+### The error may involve mapper.RealTimeAccept.insertRealTimeAccept-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvrealtimeaccept        (         seq         ,ecare_no          ,result_seq          ,channel          ,req_user_id          ,req_dt          ,req_tm          ,tmpl_type          ,receiver_id          ,receiver_nm          ,receiver          ,sender_nm          ,sender          ,subject          ,send_fg          ,secu_key          ,preview_type          ,data_cnt          ,file_path1          ,file_path2          ,file_path3         ,jonmun         ,slot1           ,slot2           ,slot3           ,slot4           ,slot5           ,slot6           ,slot7           ,slot8           ,slot9           ,slot10         ,req_seq          )   VALUES   (     ?    ,?    ,0    ,?     ,?     ,to_char(sysdate, 'yyyyMMdd')    ,to_char(sysdate, 'hh24mmss')    ,?     ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,'N'    ,?    ,?    ,?    ,?     ,?         ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,?     ,?    ,?    ,?   )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+
+; SQL []; ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+ 데이터:{"reqSeq":"tesT","seq":"ef40439a-0d75-4cfb-92fb-c71235fbf5a1","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:29:08.846 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:29:08.850 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:29:08.850 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:29:09.586 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:29:10.108 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:29:17.977 http-nio-8080-exec-2 ERROR c.m.w.w.r.web.v1.RestApiController    49 에러내용:org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+
+### The error may involve mapper.RealTimeAccept.insertRealTimeAccept-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvrealtimeaccept        (         seq         ,ecare_no          ,result_seq          ,channel          ,req_user_id          ,req_dt          ,req_tm          ,tmpl_type          ,receiver_id          ,receiver_nm          ,receiver          ,sender_nm          ,sender          ,subject          ,send_fg          ,secu_key          ,preview_type          ,data_cnt          ,file_path1          ,file_path2          ,file_path3         ,jonmun         ,slot1           ,slot2           ,slot3           ,slot4           ,slot5           ,slot6           ,slot7           ,slot8           ,slot9           ,slot10         ,req_seq          )   VALUES   (     ?    ,?    ,0    ,?     ,?     ,to_char(sysdate, 'yyyyMMdd')    ,to_char(sysdate, 'hh24mmss')    ,?     ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,'N'    ,?    ,?    ,?    ,?     ,?         ,?    ,?    ,?    ,?    ,?    ,?    ,?    ,?     ,?    ,?    ,?   )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+
+; SQL []; ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+; nested exception is java.sql.SQLIntegrityConstraintViolationException: ORA-01400: NULL을 ("MAILADMIN"."NVREALTIMEACCEPT"."RECEIVER_ID") 안에 삽입할 수 없습니다
+ 데이터:{"reqSeq":"tesT","seq":"754b3396-d2dd-4b30-91d8-1af940c49afe","ecareNo":"1","channel":"S","resultSeq":"1234","listSeq":null,"svcId":"SVCID","reqUserId":"REQUSERID","reqDeptId":"rEQDEPTID","reqDt":null,"reqTm":null,"tmplType":"J","receiverId":null,"receiverNm":null,"receiver":null,"senderNm":null,"sender":null,"subject":null,"sendFg":"R","secuKey":null,"securityPath":null,"errorMsg":null,"previewType":null,"reservedDate":null,"datCnt":0,"filePath1":null,"filePath2":null,"filePath3":null,"spfidd":null,"jonmun":"","slot1":null,"slot2":null,"slot3":null,"slot4":null,"slot5":null,"slot6":null,"slot7":null,"slot8":null,"slot9":null,"slot10":null}
+05-31 15:29:29.817 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:29:29.821 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:29:29.822 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:29:30.589 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:29:31.175 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:31:56.921 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:31:56.926 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:31:56.926 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:31:57.689 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:31:58.441 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:37:36.873 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:37:36.876 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:37:36.877 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:37:37.620 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:37:38.139 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:37:47.137 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:37:47.141 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:37:47.141 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:37:47.898 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:37:48.454 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:42:21.752 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:42:21.756 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:42:21.756 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:42:22.529 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:42:23.113 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 15:45:27.399 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 15:45:27.400 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 15:45:38.621 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 15:45:38.624 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 15:45:38.624 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 15:45:39.388 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 15:45:39.929 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:10:25.955 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:10:25.959 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:10:25.959 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:10:26.722 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:10:27.275 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:13:50.433 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:13:50.437 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:13:50.437 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:13:51.187 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:13:51.734 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:16:24.621 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:16:24.625 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:16:24.626 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:16:25.455 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:16:26.090 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:21:41.133 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:21:41.136 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:21:41.137 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:21:41.916 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:21:42.494 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:31:57.627 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:31:57.631 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:31:57.631 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:31:58.396 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:31:58.935 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:39:34.709 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:39:34.713 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:39:34.713 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:39:35.472 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:39:36.015 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:44:34.471 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:44:34.474 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:44:34.475 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:44:35.241 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:44:35.849 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:56:40.269 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 16:56:40.270 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 16:57:07.274 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 16:57:07.277 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 16:57:07.277 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 16:57:08.060 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 16:57:08.588 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 16:57:11.209 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 16:57:11.210 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 17:33:08.416 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 17:33:08.416 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 17:36:48.182 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 17:36:48.182 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 17:42:16.754 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 17:42:16.758 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 17:42:16.758 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 17:42:17.613 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 17:42:18.185 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 17:58:10.401 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 17:58:10.405 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 17:58:10.405 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 17:58:11.153 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 17:58:11.685 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 17:58:29.753 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 17:58:29.757 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 17:58:29.757 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 17:58:30.587 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 17:58:31.139 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:00:05.983 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:00:05.987 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:00:05.987 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:00:06.780 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:00:07.334 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:00:31.719 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:00:31.724 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:00:31.725 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:00:32.542 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:00:33.117 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:00:51.293 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:00:51.297 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:00:51.298 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:00:52.112 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:00:52.720 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:03:09.281 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:03:09.283 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:03:09.283 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:03:10.047 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:03:10.631 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:06:47.493 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:06:47.497 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:06:47.498 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:06:48.278 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:06:48.841 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:19:54.112 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:19:54.116 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:19:54.116 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:19:54.900 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:19:55.458 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:27:30.255 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:27:30.259 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:27:30.259 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:27:31.071 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:27:31.577 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:27:40.545 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:27:40.549 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:27:40.549 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:27:41.301 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:27:41.833 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:28:30.367 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:28:30.371 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:28:30.371 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:28:31.127 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:28:31.641 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:29:16.417 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:29:16.421 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:29:16.422 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:29:17.156 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:29:17.699 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+05-31 18:30:15.919 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/rest/RealTimeAccept.xml]]
+05-31 18:30:15.922 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+05-31 18:31:38.475 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+05-31 18:31:38.479 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+05-31 18:31:38.479 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///C:\dev\workspace\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+05-31 18:31:39.350 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    64  Data Security 적용하지 않음.
+05-31 18:31:39.925 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final

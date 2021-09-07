@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TestUserPool">
+    <resultMap id="resultTestUserPool" type="TestUserPool">
+        <result column="user_id"                property="userId"/>
+        <result column="seq_no"                 property="seqNo"/>
+        <result column="testreceiver_email"     property="testReceiverEmail"/>
+        <result column="testreceiver_tel"       property="testReceiverTel"/>
+        <result column="testreceiver_nm"        property="testReceiverNm"/>
+        <result column="testreceiver_fax"       property="testReceiverFax"/>
+        <result column="test_grp_cd"            property="testGrpCd"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="checked"                property="checked"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertTestUserPool" parameterType="TestUserPool">
+        INSERT INTO nvtestuserpool (user_id, seq_no, testreceiver_email, testreceiver_tel, testreceiver_nm, testreceiver_fax, test_grp_cd)
+        VALUES (#{userId}, #{seqNo}, #{testReceiverEmail}, #{testReceiverTel, jdbcType=VARCHAR}, #{testReceiverNm}, #{testReceiverFax, jdbcType=VARCHAR}, #{testGrpCd})
+    </insert>
+
+    <insert id="insertTester" parameterType="TestUserPool">
+        <selectKey keyProperty="seqNo" resultType="int" order="BEFORE">
+            SELECT coalesce(max(seq_no), 0) + 1 seq_no
+            FROM nvtestuserpool
+            WHERE user_id = #{userId}
+        </selectKey>
+        INSERT INTO nvtestuserpool (user_id, seq_no, testreceiver_email, testreceiver_tel, testreceiver_fax, testreceiver_nm, test_grp_cd)
+        VALUES (#{userId}, #{seqNo}, #{testReceiverEmail}, #{testReceiverTel, jdbcType=VARCHAR}, #{testReceiverFax, jdbcType=VARCHAR}, #{testReceiverNm}, #{testGrpCd})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateTestUserPoolByPk" parameterType="TestUserPool">
+        UPDATE nvtestuserpool
+        SET
+            testreceiver_email = #{testReceiverEmail}
+          , testreceiver_tel = #{testReceiverTel, jdbcType=VARCHAR}
+          , testreceiver_nm = #{testReceiverNm}
+          , testreceiver_fax = #{testReceiverFax, jdbcType=VARCHAR}
+          , test_grp_cd = #{testGrpCd}
+        WHERE user_id = #{userId}
+        AND seq_no = #{seqNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteTestUserPoolByPk" parameterType="map">
+        DELETE FROM nvtestuserpool
+        WHERE user_id = #{userId}
+        AND seq_no = #{seqNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getTestSendList" parameterType="list" resultMap="resultTestUserPool">
+        SELECT testreceiver_email, testreceiver_tel, testreceiver_nm
+        FROM nvtestuserpool
+        WHERE seq_no IN (
+        <foreach collection="seqNoList" item="seqNo" separator="," >
+            #{seqNo}
+        </foreach>
+        )
+    </select>
+
+    <select id="getTesterList" parameterType="TestUserPool" resultMap="resultTestUserPool">
+        SELECT
+            a.user_id, coalesce(a.seq_no,0) seq_no, a.testreceiver_email, a.testreceiver_tel, testreceiver_fax, a.testreceiver_nm, coalesce(a.test_grp_cd,0) test_grp_cd
+          , CASE WHEN b.campaign_type IS NULL THEN 'N' ELSE 'Y' END as checked
+        FROM nvtestuserpool a LEFT OUTER JOIN nvtestuser b
+        ON a.user_id = b.user_id
+        AND a.seq_no = b.seq_no
+        AND b.campaign_no = #{serviceNo}
+        AND b.campaign_Type = #{serviceType}
+        WHERE a.user_id = #{userId}
+        <if test="testGrpCd != 0">
+        AND a.test_grp_cd = #{testGrpCd}
+        </if>
+        <if test="testGrpCd == 0">
+        AND a.test_grp_cd = (
+            SELECT test_grp_cd
+            FROM nv_test_grp
+            WHERE user_id = #{userId}
+            AND active_yn = 'Y'
+            AND test_supragrp_cd IS NULL
+        )
+        </if>
+        ORDER BY a.seq_no
+    </select>
+
+    <select id="getTesterPoolMaxSeq" parameterType="string" resultType="int">
+        SELECT coalesce(max(seq_no), 0) + 1 seq_no
+        FROM nvtestuserpool
+        WHERE user_id = #{userId}
+    </select>
+
+</mapper>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.MzSendLog">
+    <!--<resultMap id="resultMzSendLog" type="MzSendLog">
+        <result column="sn"                 property="sn"/>
+        <result column="sender_key"         property="senderKey"/>
+        <result column="channel"            property="channel"/>
+        <result column="snd_type"           property="sndType"/>
+        <result column="phone_num"          property="phoneNum"/>
+        <result column="tmpl_cd"            property="tmplCd"/>
+        <result column="subject"            property="subject"/>
+        <result column="snd_msg"            property="sndMsg"/>
+        <result column="sms_snd_msg"        property="smsSndMsg"/>
+        <result column="sms_snd_num"        property="smsSndNum"/>
+        <result column="req_dept_cd"        property="reqDeptCd"/>
+        <result column="req_usr_id"         property="reqUsrId"/>
+        <result column="req_dtm"            property="reqDtm"/>
+        <result column="snd_dtm"            property="sndDtm"/>
+        <result column="rslt_cd"            property="rsltCd"/>
+        <result column="rcpt_msg"           property="rcptMsg"/>
+        <result column="rcpt_dtm"           property="rcptDtm"/>
+        <result column="sms_snd_dtm"        property="smsSndDtm"/>
+        <result column="sms_rslt_cd"        property="smsRsltCd"/>
+        <result column="sms_rcpt_msg"       property="smsRcptMsg"/>
+        <result column="sms_rcpt_dtm"       property="smsRcptDtm"/>
+        <result column="sms_gb"             property="smsGb"/>
+        <result column="sms_snd_yn"         property="smsSndYn"/>
+        <result column="tran_sn"            property="tranSn"/>
+        <result column="tran_sts"           property="tranSts"/>
+        <result column="agent_id"           property="agentId"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="tr_type_cd"         property="trTypeCd"/>
+        <result column="attachment"         property="attachment"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="customer_key"       property="customerKey"/>
+        <result column="service_no"         property="serviceNo"/>
+        <result column="service_type"       property="serviceType"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="sync_flag"          property="syncFlag"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectAltalkMsg" parameterType="LstResend" resultType="string">
+        SELECT snd_msg
+        FROM mzsendlog
+        WHERE service_no = #{serviceNo}
+        AND result_seq = #{resultSeq}
+        <if test="customerEmail != null and customerEmail != ''">
+        AND phone_num = #{customerEmail}
+        </if>
+        <if test="subType != 'N'.toString()">
+            <if test="customerKey != null and customerKey != ''">
+        AND customer_key = #{customerKey}
+            </if>
+        </if>
+        <if test="errorCd != null and errorCd != ''">
+            <if test="errorCd == 'FAIL'">
+        AND rslt_cd != '0000'
+            </if>
+            <if test="errorCd != 'FAIL'">
+        AND rslt_cd = #{errorCd}
+            </if>
+        </if>
+        <if test="subType == 'N'.toString()">
+           <if test="seq != null and seq != ''">
+        AND sn = #{seq}
+           </if>
+        </if>
+        <if test="listSeq != null and listSeq != ''">
+        AND list_seq = #{listSeq}
+        </if>
+        <if test="searchQstartDt != null and searchQstartDt != ''">
+            <if test="searchQendDt != null and searchQendDt != ''">
+        AND req_dtm BETWEEN concat(#{searchQstartDt},'000000') AND concat(#{searchQendDt},'235959')
+            </if>
+        </if>
+    </select>
+
+    <select id="selectAlimtalkSendResult" parameterType="map" resultMap="mapper.Common.resultRptSendResult">
+        SELECT
+            substr(b.req_dtm,1,8) as start_dt
+          , coalesce(sum(CASE WHEN rslt_cd IN (<foreach collection="altOkCdArray" item="rsltCd" separator=",">#{rsltCd}</foreach>) THEN 1 ELSE 0 END),0) as success_cnt
+          , coalesce(sum(CASE WHEN rslt_cd IN (<foreach collection="altOkCdArray" item="rsltCd" separator=",">#{rsltCd}</foreach>) THEN 0 ELSE 1 END),0) as soft_bounce_cnt
+          , coalesce(sum(CASE WHEN rslt_cd NOT IN (<foreach collection="altOkCdArray" item="rsltCd" separator=",">#{rsltCd}</foreach>) AND sms_gb ='S' AND sms_snd_yn='Y' AND sms_rslt_cd IN (<foreach collection="smsOkCdArray" item="smsRsltCd" separator=",">#{smsRsltCd}</foreach>) THEN 1 ELSE 0 END),0) as sms_success_cnt
+          , coalesce(sum(CASE WHEN rslt_cd NOT IN (<foreach collection="altOkCdArray" item="rsltCd" separator=",">#{rsltCd}</foreach>) AND sms_gb ='S' AND sms_snd_yn='Y' AND sms_rslt_cd NOT IN (<foreach collection="smsOkCdArray" item="smsRsltCd" separator=",">#{smsRsltCd}</foreach>) THEN 1 ELSE 0 END),0) as sms_fail_cnt
+          , coalesce(sum(CASE WHEN rslt_cd NOT IN (<foreach collection="altOkCdArray" item="rsltCd" separator=",">#{rsltCd}</foreach>) AND sms_gb ='L' AND sms_snd_yn='Y' AND sms_rslt_cd IN (<foreach collection="smsOkCdArray" item="smsRsltCd" separator=",">#{smsRsltCd}</foreach>) THEN 1 ELSE 0 END),0) as lms_success_cnt
+          , coalesce(sum(CASE WHEN rslt_cd NOT IN (<foreach collection="altOkCdArray" item="rsltCd" separator=",">#{rsltCd}</foreach>) AND sms_gb ='L' AND sms_snd_yn='Y' AND sms_rslt_cd NOT IN (<foreach collection="smsOkCdArray" item="smsRsltCd" separator=",">#{smsRsltCd}</foreach>) THEN 1 ELSE 0 END),0) as lms_fail_cnt
+        FROM nvecaremsg a, mzsendlog b
+        WHERE a.ecare_no = b.service_no
+        AND a.ecare_no = #{ecare_no}
+        AND b.service_type = 'ec'
+        AND b.req_dtm BETWEEN concat(#{report_dt},'000000') AND concat(#{report_dt},'235959')
+        <if test="isDaily == 'N'.toString()">
+        AND b.result_seq = #{result_seq}
+        </if>
+        GROUP BY substr(b.req_dtm,1,8)
+    </select>
+
+    <select id="selectAlimtalkLogList" parameterType="EcareScenarioInfo" resultMap="mapper.DomainLog.resultDomainLog">
+        SELECT
+            a.cd as error_cd, a.cd_desc as error_desc, '' as bounce
+          <if test="channelType == 'A'.toString()">, count(rslt_cd) as target_cnt</if>
+          <if test="channelType != 'A'.toString()">, count(sms_rslt_cd) as target_cnt</if>
+        FROM nv_cd_mst a, mzsendlog b
+        WHERE b.service_no = #{ecareInfoVo.ecareNo}
+        <if test="channelType == 'A'.toString()">
+        AND a.cd = b.rslt_cd
+        AND a.cd NOT IN (<foreach collection="alimtalkSearchCodes" item="rsltCd" separator=",">#{rsltCd}</foreach>)
+        AND a.cd_cat = 'AA0001'
+        </if>
+        <if test="channelType != 'A'.toString()">
+        AND a.cd = b.sms_rslt_cd
+        AND a.cd_cat IN ('AS0001','AS0002')
+        AND a.cd NOT IN (<foreach collection="alimtalkSearchCodes" item="smsRsltCd" separator=",">#{smsRsltCd}</foreach>)
+        AND b.sms_gb = #{channelType}
+        </if>
+        <if test="ecareInfoVo.resultSeq == 0">
+        AND b.req_dtm BETWEEN concat(#{ecareInfoVo.reportDt},'000000') AND concat(#{ecareInfoVo.reportDt},'235959')
+        </if>
+        <if test="ecareInfoVo.resultSeq != 0">
+        AND b.result_seq = #{ecareInfoVo.resultSeq}
+        </if>
+        GROUP BY a.cd, a.cd_desc
+        ORDER BY a.cd
+    </select>
+
+    <select id="selectAlimtalkCsvDataList" parameterType="map" resultType="CaseInsensitiveMap">
+        SELECT
+            phone_num, coalesce(b.cd_desc, '등록된 에러 메시지가 없습니다.') as error_desc
+            <if test="channel == 'A'.toString()">
+          , 'Alimtalk' as channel_type, snd_dtm, rslt_cd, rcpt_msg
+            </if>
+            <if test="channel != 'A'.toString()">
+          , CASE WHEN sms_gb='S' THEN 'SMS' WHEN sms_gb='L' THEN 'LMS' ELSE '' END as channel_type
+          , sms_snd_dtm as snd_dtm, sms_rslt_cd as rslt_cd, sms_rcpt_msg as rcpt_msg
+            </if>
+        FROM mzsendlog a LEFT OUTER JOIN nv_cd_mst b
+        <if test="channel == 'A'.toString()">
+        ON a.rslt_cd = b.cd
+        AND b.cd_cat = 'AA0001'
+        </if>
+        <if test="channel != 'A'.toString()">
+        ON a.sms_rslt_cd = b.cd
+        AND b.cd_cat IN ('AS0001','AS0002')
+        </if>
+        WHERE a.req_dtm BETWEEN concat(#{report_dt},'000000') AND concat(#{report_dt},'235959')
+        AND a.service_no = #{ecare_no}
+        <if test="channel == 'A'.toString()">
+            <if test="successGbn == 'Y'.toString()">
+        AND a.rslt_cd IN (<foreach collection="alimtalk_success_code" item="rsltCd" separator=",">#{rsltCd}</foreach>)
+            </if>
+            <if test="successGbn != 'Y'.toString()">
+        AND a.rslt_cd NOT IN (<foreach collection="alimtalk_success_code" item="rsltCd" separator=",">#{rsltCd}</foreach>)
+            </if>
+        </if>
+        <if test="channel != 'A'.toString()">
+        AND a.sms_gb = #{channel}
+            <if test="successGbn == 'Y'.toString()">
+        AND a.sms_rslt_cd IN (<foreach collection="alimtalk_other_success_code" item="smsRsltCd" separator=",">#{smsRsltCd}</foreach>)
+            </if>
+            <if test="successGbn != 'Y'.toString()">
+        AND a.sms_rslt_cd NOT IN (<foreach collection="alimtalk_other_success_code" item="smsRsltCd" separator=",">#{smsRsltCd}</foreach>)
+            </if>
+        </if>
+    </select>
+</mapper>

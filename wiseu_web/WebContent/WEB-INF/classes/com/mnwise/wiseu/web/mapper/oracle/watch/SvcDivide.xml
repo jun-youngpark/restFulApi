@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SvcDivide">
+    <!--<resultMap id="resultSvcDivide" type="SvcDivide">
+        <result column="task_id"    property="taskId"/>
+        <result column="server_id"  property="serverId"/>
+        <result column="divide_seq" property="divideSeq"/>
+        <result column="client"     property="client"/>
+        <result column="service_no" property="serviceNo"/>
+        <result column="target_cnt" property="targetCnt"/>
+        <result column="send_cnt"   property="sendCnt"/>
+        <result column="start_dt"   property="startDt"/>
+        <result column="end_dt"     property="endDt"/>
+        <result column="status"     property="status"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <!--<insert id="insertSvcDivide" parameterType="SvcDivide">
+        INSERT INTO nv_svc_divide (task_id, server_id, divide_seq, client, service_no, target_cnt, send_cnt, start_dt, end_dt, status)
+        VALUES (#{taskId}, #{serverId}, #{divideSeq}, #{client, jdbcType=VARCHAR}, #{serviceNo}, #{targetCnt}, #{sendCnt}, #{startDt, jdbcType=VARCHAR}, #{endDt, jdbcType=VARCHAR}, #{status, jdbcType=CHAR})
+    </insert>-->
+
+    <!--  ==================== UPDATE ====================  -->
+    <!--<update id="updateSvcDivideByPk" parameterType="SvcDivide">
+        UPDATE nv_svc_divide
+        SET
+            client = #{client, jdbcType=VARCHAR}
+          , service_no = #{serviceNo}
+          , target_cnt = #{targetCnt}
+          , send_cnt = #{sendCnt}
+          , start_dt = #{startDt, jdbcType=VARCHAR}
+          , end_dt = #{endDt, jdbcType=VARCHAR}
+          , status = #{status, jdbcType=CHAR}
+        WHERE task_id = #{taskId}
+        AND server_id = #{serverId}
+        AND divide_seq = #{divideSeq}
+    </update>-->
+
+    <update id="updateDivideStatusStop" parameterType="string">
+        UPDATE nv_svc_divide
+        SET status = 'O'
+        WHERE task_id = #{taskId}
+        AND status != 'E'
+    </update>
+
+    <update id="updateDivideStatusSuspend" parameterType="string">
+        UPDATE nv_svc_divide
+        SET status = 'S'
+        WHERE task_id = #{taskId}
+        AND status IN ('W', 'V')
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSvcDivideByPk" parameterType="map">
+        DELETE FROM nv_svc_divide
+        WHERE task_id = #{taskId}
+        AND server_id = #{serverId}
+        AND divide_seq = #{divideSeq}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!--<select id="selectSvcDivideByPk" parameterType="map" resultMap="resultSvcDivide">
+        SELECT task_id, server_id, divide_seq, client, service_no, target_cnt, send_cnt, start_dt, end_dt, status
+        FROM nv_svc_divide
+        WHERE task_id = #{taskId}
+        AND server_id = #{serverId}
+        AND divide_seq = #{divideSeq}
+    </select>-->
+
+    <select id="selectDivideStatusStop" parameterType="string" resultType="int">
+        SELECT count(*)
+        FROM nv_svc_divide
+        WHERE task_id = #{taskId}
+        AND status != 'E'
+    </select>
+
+    <select id="selectDivideStatusSuspend" parameterType="string" resultType="int">
+        SELECT count(*)
+        FROM nv_svc_divide
+        WHERE task_id = #{taskId}
+        AND status IN ('W', 'V')
+    </select>
+
+
+</mapper>

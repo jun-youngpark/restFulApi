@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - Application context definition for JPetStore's business layer.
+  - Contains bean references to the transaction manager and to the DAOs in
+  - dataAccessContext-local/jta.xml (see web.xml's "contextConfigLocation").
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+    <!-- ========================= GENERAL DEFINITIONS =========================-->
+    <!-- Configurer that replaces ${...} placeholders with values from properties files-->
+    <!-- org.springframework.beans.factory.config.PropertyPlaceholderConfigurer -->
+    <!-- (in this case, mail and JDBC related properties) -->
+    <bean id="propertyConfigurer" class="com.mnwise.wiseu.web.base.EncryptPropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:///${wiseu.home}/conf/tms/global.conf</value>
+                <value>file:///${wiseu.home}/conf/web/application.conf</value>
+            </list>
+        </property>
+        <!--
+        <property name="decryptKeys">
+            <list>
+                <value>jdbc.password</value>
+              </list>
+          </property>
+          -->
+    </bean>
+
+    <!-- MailSender used by EmailAdvice -->
+    <!--
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}"/>
+    </bean>
+    -->
+
+
+    <!-- ========================= BUSINESS OBJECT DEFINITIONS ========================-->
+
+    <!-- ========================= PropertyUtil ========================= -->
+    <bean id="propertyUtil" class="com.mnwise.wiseu.web.common.util.PropertyUtil">
+        <property name="propertyConfigurer" ref="propertyConfigurer" />
+    </bean>
+
+    <!-- ========================= ASPECT CONFIGURATION ========================-->
+
+    <aop:config>
+        <aop:advisor pointcut="execution(* *..*Service.*(..))" advice-ref="txAdvice"/>
+    </aop:config>
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="setRegist*" propagation="REQUIRED"/>
+            <tx:method name="setUpdate*" propagation="REQUIRED"/>
+            <tx:method name="setDelete*" propagation="REQUIRED"/>
+            <tx:method name="update*" propagation="REQUIRED"/>
+            <tx:method name="delete*" propagation="REQUIRED"/>
+            <tx:method name="insert*" propagation="REQUIRED"/>
+            <tx:method name="merge*" propagation="REQUIRED"/>
+            <tx:method name="*" read-only="true" propagation="SUPPORTS"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- ========================= MESSAGESOURCE DEFINITIONS ========================-->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+    <bean id="localeChangeInterceptor" class="com.mnwise.wiseu.web.base.WiseuLocaleChangeInterceptor">
+        <property name="paramName" value="language"/>
+    </bean>
+
+    <bean id="formatUtil" class="com.mnwise.wiseu.web.base.util.FormatUtil">
+        <constructor-arg ref="localeChangeInterceptor" />
+    </bean>
+
+    <!-- for real
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+     -->
+     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>/WEB-INF/messages/campaign</value>
+                <value>/WEB-INF/messages/button</value>
+                <value>/WEB-INF/messages/ecare</value>
+                <value>/WEB-INF/messages/editor</value>
+                <value>/WEB-INF/messages/segment</value>
+                <value>/WEB-INF/messages/common</value>
+                <value>/WEB-INF/messages/template</value>
+                <value>/WEB-INF/messages/account</value>
+                <value>/WEB-INF/messages/env</value>
+                <value>/WEB-INF/messages/report</value>
+                <value>/WEB-INF/messages/watch</value>
+                <value>/WEB-INF/messages/survey</value>
+                <value>/WEB-INF/messages/resend</value>
+                <value>/WEB-INF/messages/message</value>
+            </list>
+        </property>
+        <property name="cacheSeconds" value="-1"/>
+    </bean>
+
+    <bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+        <constructor-arg ref="messageSource" />
+    </bean>
+
+    <!-- ========================= RESOURCE DEFINITIONS =========================-->
+    <!-- id는 log4jdbc 사용시에는 dataSourceSpied, 미사용시에는 dataSource로 변경 -->
+    <bean id="dataSource" class="com.mnwise.wiseu.web.common.util.SecureBasicDataSource" destroy-method="close"
+        p:driverClassName="${jdbc.driver}"
+        p:url="${jdbc.url}"
+        p:username="${jdbc.user}"
+        p:password="${jdbc.password}"
+        p:initialSize="${jdbc.conn.maxWait}"
+        p:maxTotal="${jdbc.conn.maxActive}"
+        p:maxIdle="${jdbc.conn.maxIdle}"
+        p:maxWaitMillis="60000"
+        p:testWhileIdle="true"
+        p:testOnBorrow="true"
+        p:validationQuery="SELECT 1 FROM NVSERVERINFO WHERE HOST_NM = 1"
+    />
+
+    <!-- log4jdbc 사용시에는 주석해제, 미사용시에는 주석 처리 -->
+    <!--
+    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSourceSpied" />
+        <property name="logFormatter">
+            <bean class="com.mnwise.wiseu.web.base.Log4JdbcCustomFormatter">
+                <property name="loggingType" value="MULTI_LINE" />
+            </bean>
+        </property>
+    </bean>
+    -->
+
+    <!-- JNDI 사용시 아래 JndiObjectFactoryBean dataSource 사용, 위 dataSource는 주석 -->
+    <!--
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="${jdbc.jndiName}" />
+        <property name="resourceRef" value="true"/>
+    </bean>
+     -->
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+        <property name="nestedTransactionAllowed" value="true" />
+        <property name="validateExistingTransaction" value="true" />
+    </bean>
+
+    <!-- ========================= SQLMAP DEFINITIONS ========================-->
+    <!-- SqlMap setup for iBATIS Database Layer -->
+    <!--
+    <bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
+        p:configLocation="WEB-INF/conf/${db.server}-sql-map-config.xml"
+        p:dataSource-ref="dataSource"
+        >
+        <property name="sqlMapClientProperties">
+            <props>
+                <prop key="V_SMS_LOG">${sms.log.table}</prop>
+                <prop key="V_MMS_BODY">${mms.body.table}</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="sqlMapClientTemplate"
+        class="org.springframework.orm.ibatis.SqlMapClientTemplate"
+        p:sqlMapClient-ref="sqlMapClient"/>
+    -->
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+        p:dataSource-ref="dataSource"/>
+
+    <!--bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"-->
+    <bean id="sqlSessionFactory" class="com.mnwise.wiseu.web.base.RefreshableSqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="WEB-INF/conf/mybatis-config.xml" />
+        <property name="mapperLocations" value="WEB-INF/classes/com/mnwise/wiseu/web/mapper/${db.server}/**/*.xml" />
+    </bean>
+
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+        <constructor-arg index="1" value="BATCH" />
+    </bean>
+</beans>

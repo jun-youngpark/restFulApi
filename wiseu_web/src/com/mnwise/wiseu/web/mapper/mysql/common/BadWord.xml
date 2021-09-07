@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BadWord">
+    <resultMap id="resultBadWord" type="BadWord">
+        <result column="channel_type"           property="channelType"/>
+        <result column="bad_words"              property="badWords"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertBadWord" parameterType="BadWord">
+        INSERT INTO nvbadword (channel_type, bad_words)
+        VALUES (#{channelType}, #{badWords})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateBadWordByPk" parameterType="BadWord">
+        UPDATE nvbadword
+        SET bad_words = #{badWords}
+        WHERE channel_type = #{channelType}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteBadWordByPk" parameterType="map">
+        DELETE FROM nvbadword
+        WHERE channel_type = #{channelType}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectBadWordByPk" parameterType="map" resultMap="resultBadWord">
+        SELECT channel_type, bad_words
+        FROM nvbadword
+        WHERE channel_type = #{channelType}
+    </select>
+
+    <select id="selectAllBadWordList" resultMap="resultBadWord">
+        SELECT channel_type, bad_words
+        FROM nvbadword
+    </select>
+
+    <select id="selectBadWordInfo" parameterType="string" resultType="string">
+        SELECT bad_words
+        FROM nvbadword
+        WHERE channel_type LIKE concat('%', #{channelType}, '%')
+    </select>
+</mapper>

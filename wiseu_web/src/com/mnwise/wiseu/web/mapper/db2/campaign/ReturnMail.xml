@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ReturnMail">
+    <!--<resultMap id="resultReturnMail" type="ReturnMail">
+        <result column="campaign_no"        property="campaignNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="customer_id"        property="customerId"/>
+        <result column="record_seq"         property="recordSeq"/>
+        <result column="customer_nm"        property="customerNm"/>
+        <result column="customer_email"     property="customerEmail"/>
+        <result column="receive_dt"         property="receiveDt"/>
+        <result column="receive_tm"         property="receiveTm"/>
+        <result column="smtpcode"           property="smtpcode"/>
+        <result column="update_yn"          property="updateYn"/>
+        <result column="return_msg"         property="returnMsg"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <resultMap id="resultCampaignReportReturnMail" type="CampaignReportReturnMail">
+        <result column="error_gubun"        property="errorGubun"/>
+        <result column="smtpcode"           property="smtpCode"/>
+        <result column="error_msg"          property="errorMsg"/>
+        <result column="send_cnt"           property="sendCnt"/>
+        <result column="gid"                property="gid"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectReturnMailList" parameterType="map" resultMap="resultCampaignReportReturnMail">
+        SELECT
+            error_gubun, smtpcode, coalesce(send_cnt,0) send_cnt, coalesce(gid,0) gid
+          , CASE gid WHEN 1 THEN 'SubTotal' WHEN 3 THEN 'Total' ELSE error_msg END error_msg
+        FROM (
+            SELECT
+                CASE d.no WHEN 2 THEN 1 WHEN 3 THEN 3 ELSE 0 END gid
+              , CASE f.cd_cat WHEN 'C00011' THEN 'Soft Bounce' WHEN 'C00021' THEN 'Hard Bounce' END error_gubun
+              , e.smtpcode, sum(e.send_cnt) send_cnt, max(f.val) error_msg
+            FROM (
+                SELECT *
+                FROM copy_t
+                WHERE no &lt;= 3
+            ) d, (
+                SELECT smtpcode, count(*) send_cnt
+                FROM nvreturnmail a, nvsendresult b
+                WHERE a.campaign_no = #{campaignNo}
+                and a.result_seq = b.result_seq
+                and (b.resend_sts IS NULL OR b.resend_sts = 'F')
+                GROUP BY smtpcode
+            ) e LEFT OUTER JOIN (
+                SELECT cd, val, cd_cat
+                FROM nv_cd_mst
+                WHERE cd_cat IN ('C00011', 'C00021')
+                AND lang = #{lang}
+            ) f
+            ON e.smtpcode = f.cd
+            GROUP BY d.no, CASE f.cd_cat WHEN 'C00011' THEN 'Soft Bounce' WHEN 'C00021' THEN 'Hard Bounce' END, e.smtpcode
+        ) x
+        ORDER BY gid
+  </select>
+
+
+</mapper>

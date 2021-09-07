@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SendLog">
+    <resultMap id="resultSendLog" type="SendLog">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="list_seq"               property="listSeq"/>
+        <result column="customer_key"           property="customerKey"/>
+        <result column="record_seq"             property="recordSeq"/>
+        <result column="customer_nm"            property="customerNm"/>
+        <result column="customer_email"         property="customerEmail"/>
+        <result column="sid"                    property="sid"/>
+        <result column="send_dt"                property="sendDt"/>
+        <result column="send_tm"                property="sendTm"/>
+        <result column="end_dt"                 property="endDt"/>
+        <result column="end_tm"                 property="endTm"/>
+        <result column="error_cd"               property="errorCd"/>
+        <result column="send_domain"            property="sendDomain"/>
+        <result column="err_msg"                property="errMsg"/>
+        <result column="slot1"                  property="slot1"/>
+        <result column="slot2"                  property="slot2"/>
+        <result column="resend_yn"              property="resendYn"/>
+        <result column="req_dept_id"            property="reqDeptId"/>
+        <result column="req_user_id"            property="reqUserId"/>
+        <result column="message_key"            property="messageKey"/>
+        <result column="seq"                    property="seq"/>
+        <result column="srfidd"                 property="srfidd"/>
+        <result column="open_dt"                property="openDt"/>
+        <result column="eai_send_fg"            property="eaiSendFg"/>
+        <result column="part_message"           property="partMessage"/>
+        <result column="fail_back_channel"      property="failBackChannel"/>
+        <result column="fail_back_result_cd"    property="failBackResultCd"/>
+        <result column="fail_back_senddtm"      property="failBackSenddtm"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="send_dtm"               property="sendDtm"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignPerHistory" type="CampaignPerHistory">
+        <result column="customer_nm"            property="customerNm"/>
+        <result column="customer_email"         property="customerEmail"/>
+        <result column="send_dt"                property="sendDt"/>
+        <result column="send_tm"                property="sendTm"/>
+        <result column="error_cd"               property="errorCd"/>
+        <result column="err_msg"                property="errMsg"/>
+        <result column="err_msg_kor"            property="errMsgKor"/>
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="list_seq"               property="listSeq"/>
+        <result column="record_seq"             property="recordSeq"/>
+        <result column="campaign_nm"            property="campaignNm"/>
+        <result column="customer_key"           property="customerKey"/>
+        <result column="send_seq"               property="sendSeq"/>
+        <result column="slot1"                  property="slot1"/>
+        <result column="slot2"                  property="slot2"/>
+        <result column="resend_sts"             property="resendSts"/>
+        <result column="open_dt"                property="receiptDate"/>
+        <result column="flag"                   property="logSendFg"/>
+        <result column="msg_type"               property="msgType"/>
+        <result column="snd_msg"                property="sndMsg"/>
+        <result column="req_user_id"            property="reqUserId"/>
+        <result column="req_dept_id"            property="reqDeptId"/>
+        <result column="sender"                 property="sender"/>
+        <result column="sms_rslt_msg"           property="smsRsltMsg"/>
+        <result column="sms_rslt_cd"            property="smsRsltCd"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignAbTest" type="CampaignAbTest">
+        <result column="ab_type"                property="abType"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="tot_rate"               property="totRate"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectFaxSrfidd" parameterType="map" resultType="string">
+        SELECT srfidd
+        FROM nvsendlog
+        WHERE campaign_no = #{serviceNo}
+        AND seq = #{seq}
+    </select>
+
+    <select id="selectPushSendlogCount" parameterType="int" resultType="CaseInsensitiveMap">
+        SELECT
+            coalesce(and_send_cnt,0) as and_send_cnt, coalesce(and_succ_cnt,0) as and_succ_cnt, coalesce(and_fail_cnt,0) as and_fail_cnt
+          , coalesce(ios_send_cnt,0) as ios_send_cnt, coalesce(ios_succ_cnt,0) as ios_succ_cnt, coalesce(ios_fail_cnt,0) as ios_fail_cnt
+          , coalesce(etc_send_cnt,0) as etc_send_cnt, coalesce(etc_succ_cnt,0) as etc_succ_cnt
+          , coalesce(etc_req_cnt,0) as etc_req_cnt, coalesce(etc_fail_cnt,0) as etc_fail_cnt
+          , coalesce(and_send_cnt + ios_send_cnt + etc_send_cnt,0) as send_cnt
+          , coalesce(and_succ_cnt + ios_succ_cnt + etc_req_cnt,0) as succ_cnt
+        FROM (
+            SELECT
+                sum(CASE WHEN send_domain = 'AND' THEN 1 ELSE 0 END) as and_send_cnt
+              , sum(CASE WHEN send_domain = 'IOS' THEN 1 ELSE 0 END) as ios_send_cnt
+              , sum(CASE WHEN send_domain = 'AND' AND error_cd = '000' THEN 1 ELSE 0 END) as and_succ_cnt
+              , sum(CASE WHEN send_domain = 'IOS' AND error_cd = '000' THEN 1 ELSE 0 END) as ios_succ_cnt
+              , sum(CASE WHEN send_domain = 'AND' THEN (CASE WHEN error_cd = '000' THEN 0 ELSE 1 END) ELSE 0 END) as and_fail_cnt
+              , sum(CASE WHEN send_domain = 'IOS' THEN (CASE WHEN error_cd = '000' THEN 0 ELSE 1 END) ELSE 0 END) as ios_fail_cnt
+              , sum(CASE WHEN send_domain = 'IOS' OR send_domain = 'AND' THEN 0 ELSE 1 END) as etc_send_cnt
+              , sum(CASE WHEN send_domain = 'IOS' OR send_domain = 'AND' THEN 0 ELSE (CASE WHEN error_cd = '000' THEN 1 ELSE 0 END) END) as etc_succ_cnt
+              , sum(CASE WHEN send_domain = 'IOS' OR send_domain = 'AND' THEN 0 ELSE (CASE WHEN error_cd = '000' THEN 0 WHEN error_cd = '250' THEN 1 ELSE 0 END) END) as etc_req_cnt
+              , sum(CASE WHEN send_domain = 'IOS' OR send_domain = 'AND' THEN 0 ELSE (CASE WHEN error_cd = '000' OR error_cd = '250' THEN 0 ELSE 1 END) END) as etc_fail_cnt
+            FROM nvsendlog
+            WHERE campaign_no = #{campaignNo}
+        ) a
+    </select>
+
+    <select id="getCampaignReportPushErrorList" parameterType="map" resultMap="mapper.Common.resultCampaignReportError">
+        SELECT
+            x.error_cd, coalesce(x.send_cnt,0) send_cnt, coalesce(x.rnum,0) rnum, coalesce(x.gid,0) gid
+          , (CASE x.rnum WHEN 0 THEN y.val END) error_gubun
+          , (CASE x.gid WHEN 1 THEN 'Sub Total' WHEN 3 THEN 'Total' ELSE x.val END) error_msg
+        FROM (
+            SELECT
+                e.error_cd, e.send_cnt, e.val, e.error_gubun
+              , CASE WHEN e.error_gubun IS NULL AND e.error_cd IS NULL THEN 3 WHEN e.error_gubun IS NOT NULL AND e.error_cd IS NULL THEN 1 ELSE 0 END gid
+              , @rownum := @rownum + 1 AS rnum
+            FROM (
+                SELECT
+                    c.cd_cat error_gubun, a.error_cd, count(a.error_cd) send_cnt, max(c.val) error_msg
+                  <if test="lang == 'ko'">, max(coalesce(c.val, '알수없는 에러코드')) val</if>
+                  <if test="lang == 'en'">, max(coalesce(c.val, 'unknown error code')) val</if>
+                FROM nvsendlog a, nvcampaign b, nv_cd_mst c, (SELECT @rownum := 0) d
+                WHERE a.campaign_no = b.campaign_no
+                AND a.error_cd = c.cd
+                AND a.campaign_no = #{campaignNo}
+                <if test="successCodeArray != null">
+                AND a.error_cd NOT IN (<foreach collection="successCodeArray" item="successCode" separator=",">#{successCode}</foreach>)
+                </if>
+                AND b.channel_type = 'P'
+                AND c.par_cd_cat LIKE 'AP00%'
+                AND c.lang = #{lang}
+                GROUP BY error_gubun, error_cd WITH ROLLUP
+            ) e
+        ) x LEFT OUTER JOIN nv_cd_mst y
+        ON x.error_gubun = y.cd_cat
+        AND y.par_cd_cat = 'AP00'
+        AND y.lang = #{lang}
+        ORDER BY CASE x.gid WHEN 3 THEN 2 ELSE 1 END, x.error_gubun, x.rnum
+    </select>
+
+    <sql id="campaignWhereQuery">
+        <if test="campaignNm   != null and campaignNm   != ''">AND a.campaign_nm LIKE concat('%',#{campaignNm},'%')</if>
+        <if test="campaignNo   != null and campaignNo   != ''">AND a.campaign_no = #{campaignNo}</if>
+        <if test="channel      != null and channel      != ''">AND a.channel_type = #{channel}</if>
+        <if test="userVo.grpCd != null and userVo.grpCd != ''">AND a.grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="userVo.userTypeCd == 'U'.toString()"        >AND a.user_id = #{userVo.userId}</if>
+    </sql>
+
+    <sql id="commonWhereQuery">
+        <if test="searchQstartDt != null and searchQstartDt != ''">
+            <if test="searchQendDt != null and searchQendDt != ''">
+        AND b.send_dt BETWEEN #{searchQstartDt} AND #{searchQendDt}
+            </if>
+        </if>
+        <if test="errorCd != null and errorCd != ''">
+            <if test="errorCd == 'FAIL'">
+        AND b.error_cd NOT IN ('250', '0', '0000')
+            </if>
+            <if test="errorCd != 'FAIL'">
+        AND b.error_cd = #{errorCd}
+            </if>
+        </if>
+        <if test="customerKey   != null and customerKey   != ''">AND b.customer_key = #{customerKey}</if>
+        <if test="customerNm    != null and customerNm    != ''">AND b.customer_nm = #{customerNm}</if>
+        <if test="customerEmail != null and customerEmail != ''">AND b.customer_email = #{customerEmail}</if>
+        <if test="seq           != null and seq           != ''">AND b.seq = #{seq}</if>
+        <if test="listSeq       != null and listSeq       != ''">AND b.list_seq = #{listSeq}</if>
+        <if test="resultSeq     != null and resultSeq     != ''">AND b.result_seq = #{resultSeq}</if>
+        <if test="slot1         != null and slot1         != ''">AND b.slot1 = #{slot1}</if>
+        <if test="slot2         != null and slot2         != ''">AND b.slot2 = #{slot2}</if>
+        <if test="superSeq      != null and superSeq      != ''">AND c.super_seq = #{superSeq}</if>
+        <if test="resendSts     != null and resendSts  == 'Ori'">AND c.resend_sts IS NULL</if>
+        <if test="resendSts     != null and resendSts  == 'Re'" >AND c.resend_sts IS NOT NULL</if>
+    </sql>
+
+    <select id="selectCamTotalCount" parameterType="CampaignPerHistory" resultType="int">
+        SELECT count(*)
+        FROM nvcampaign a, nvsendlog b, nvsendresult c
+        WHERE a.campaign_no = b.campaign_no
+        AND b.campaign_no = c.campaign_no
+        AND b.result_seq = c.result_seq
+        <include refid="campaignWhereQuery"/>
+        <include refid="commonWhereQuery"/>
+    </select>
+
+    <sql id="errorMsgKor">
+        <if test="channel == 'M'.toString()">, (SELECT error_desc FROM nvsenderr WHERE error_cd = b.error_cd) as err_msg_kor</if>
+        <if test="channel == 'A'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AA0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'C'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AC0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'B'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AB0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'S'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat IN ('AS0001','AS0002','AS0003') AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'T'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat IN ('AS0001','AS0002','AS0003') AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'F'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AF0001' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+        <if test="channel == 'P'.toString()">, (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat = 'AP0101' AND cd = b.error_cd AND lang = #{userVo.language}) as err_msg_kor</if>
+    </sql>
+
+    <select id="selectCamPerHistoryList" parameterType="CampaignPerHistory" resultMap="resultCampaignPerHistory">
+        SELECT *
+        FROM (
+            SELECT *
+            FROM (
+                SELECT
+                    a.campaign_nm, coalesce(b.fail_back_channel, a.channel_type) as msg_type
+                  <if test="channel == 'M'.toString()">, a.sender_email as sender</if>
+                  <if test="channel != 'M'.toString()">, a.sender_tel as sender</if>
+                  , b.customer_nm, b.customer_email, b.send_dt, b.send_tm, b.error_cd, b.err_msg, b.campaign_no, b.result_seq, b.list_seq, b.record_seq, b.customer_key
+                  , b.slot1, b.slot2, b.req_user_id, b.req_dept_id, coalesce(b.open_dt,'') open_dt
+                  , b.customer_key as send_seq, b.part_message as snd_msg, b.fail_back_result_cd sms_rslt_cd, coalesce(c.resend_sts,' ') resend_sts
+                  , CASE WHEN b.open_dt IS NULL THEN 'N' ELSE 'Y' END as flag
+                  , (SELECT cd_desc FROM nv_cd_mst WHERE cd_cat IN ('AS0001','AS0002','AS0003') AND cd = b.fail_back_result_cd AND lang = #{userVo.language}) as sms_rslt_msg
+                  <include refid="errorMsgKor"/>
+                FROM nvcampaign a, nvsendlog b, nvsendresult c
+                WHERE a.campaign_no = b.campaign_no
+                AND b.campaign_no = c.campaign_no
+                AND b.result_seq = c.result_seq
+                <include refid="campaignWhereQuery"/>
+                <include refid="commonWhereQuery"/>
+                ORDER BY a.campaign_no DESC
+                LIMIT ${endRow}
+            ) d
+            ORDER BY campaign_no
+            LIMIT ${listCnt}
+        ) e
+        ORDER BY campaign_no DESC
+    </select>
+
+    <select id="selectCamResendTargetCount" parameterType="map" resultType="int">
+         SELECT count(*)
+         FROM nvcampaign a, nvsendlog b, nvsendresult c
+         WHERE a.campaign_no = b.campaign_no
+         AND b.campaign_no = c.campaign_no
+         AND b.result_seq = c.result_seq
+         AND a.channel_type = #{channel}
+         <include refid="campaignWhereQuery"/>
+         <include refid="commonWhereQuery"/>
+         <if test="resendErrorCdArray != null">
+         AND b.error_cd NOT IN (<foreach collection="resendErrorCdArray" item="errorCd" separator=",">#{errorCd}</foreach>)
+         </if>
+    </select>
+
+    <select id="selectCamPrevious" parameterType="LstResend" resultMap="mapper.Common.resultLstResend">
+        SELECT
+            a.campaign_nm as service_nm, a.channel_type, a.ab_test_type
+          , b.campaign_no as service_no, b.customer_email, b.customer_nm, b.customer_key, b.error_cd, b.err_msg, b.send_dt, b.send_tm, b.result_seq, b.list_seq
+          , b.record_seq, b.seq as seq, b.slot1, b.slot2, b.tmpl_cd, coalesce(c.resend_sts,' ') resend_sts, c.super_seq, ' ' as service_type, 's' as sub_type, ' ' resend_reason
+          , coalesce((SELECT file_preview_path FROM nvmobilecontents WHERE conts_no = a.kakao_image_no),' ') as file_preview_path
+          <include refid="errorMsgKor"/>
+        FROM nvcampaign a, nvsendlog b, nvsendresult c
+        WHERE a.campaign_no = b.campaign_no
+        AND b.campaign_no = c.campaign_no
+        AND b.result_seq = c.result_seq
+        AND a.campaign_no = #{serviceNo}
+        AND a.channel_type = #{channel}
+        AND b.result_seq = #{resultSeq}
+        AND b.list_seq = #{listSeq}
+    </select>
+
+    <select id="getCampaignReportFaxErrorList" parameterType="map" resultMap="mapper.Common.resultCampaignReportError">
+        SELECT
+            error_gubun, error_cd, CASE WHEN error_cd = '' THEN 'TOTAL' ELSE error_msg END error_msg
+          , coalesce(send_cnt,0) send_cnt, rnum, CASE WHEN error_cd = '' THEN '3' ELSE 0 END gid
+        FROM (
+            SELECT '' as error_gubun, coalesce(a.cd,'') as error_cd, max(a.val) as error_msg, sum(b.send_cnt) as send_cnt, 0 as rnum, 0 as gid
+            FROM (
+                SELECT cd, val, cd_cat
+                FROM nv_cd_mst
+                WHERE cd_cat = 'AF0001'
+            ) a, (
+                SELECT error_cd, count(error_cd) as send_cnt
+                FROM nvsendlog
+                WHERE campaign_no = #{campaignNo}
+                AND error_cd != '0'
+                AND result_seq = #{resultSeq}
+                GROUP BY error_cd
+            ) b
+            WHERE a.cd = b.error_cd
+            GROUP BY a.cd WITH ROLLUP
+        ) x
+        ORDER BY error_cd
+    </select>
+
+    <select id="getCampaignReportBRTErrorList" parameterType="map" resultMap="mapper.Common.resultCampaignReportError">
+        SELECT '' as error_gubun, a.cd as error_cd, a.cd_desc as error_msg, coalesce(count(b.error_cd),0) as send_cnt, 0 as rnum, 0 as gid
+        FROM nv_cd_mst a, nvsendlog b
+        WHERE a.cd = b.error_cd
+        AND a.cd_cat = 'AB0001'
+        AND a.cd NOT IN (#{successCode})
+        AND b.campaign_no = #{campaignNo}
+        AND b.result_seq = #{resultSeq}
+        GROUP BY a.cd, a.cd_desc
+        ORDER BY a.cd
+    </select>
+
+    <select id="getCampaignReportAbTestOpenList" parameterType="int" resultMap="resultCampaignAbTest">
+        SELECT
+            d.slot1 as ab_type, d.send_cnt as send_cnt, coalesce(e.open_cnt,0) as open_cnt
+          , coalesce(round((e.open_cnt / CASE d.send_cnt WHEN 0 THEN 1 ELSE d.send_cnt END)*100,1),0) as tot_rate
+        FROM (
+            SELECT substr(slot1,2) as slot1, count(slot1) as send_cnt
+            FROM nvsendlog
+            WHERE campaign_no = #{campaignNo}
+            AND slot1 IN ('DA', 'DB')
+            AND error_cd = '250'
+            GROUP BY slot1
+        ) d LEFT OUTER JOIN (
+            SELECT substr(ab_type,2) as ab_type, count(ab_type) as open_cnt
+            FROM (
+                SELECT a.customer_id, a.ab_type
+                FROM nvreceipt a, nvdivideschedule b
+                WHERE a.campaign_no = b.service_no
+                AND a.ab_type IN ('DA','DB')
+                AND concat(a.open_dt,a.open_tm) &lt; b.start_dt
+                AND b.service_no = #{campaignNo}
+                AND b.client = 'EM'
+                AND b.divide_seq = 1
+                GROUP BY a.customer_id, a.ab_type
+            ) c
+            GROUP BY ab_type
+        ) e
+        ON d.slot1 = e.ab_type
+        ORDER BY e.ab_type
+    </select>
+
+    <select id="getCampaignReportAbTestLinkClickList" parameterType="int" resultMap="resultCampaignAbTest">
+        SELECT
+            d.slot1 as ab_type, d.send_cnt as send_cnt, coalesce(e.open_cnt,0) as open_cnt
+          , coalesce(round((e.open_cnt / CASE d.send_cnt WHEN 0 THEN 1 ELSE d.send_cnt END)*100,1),0) as tot_rate
+        FROM (
+            SELECT substr(slot1,2) as slot1, count(slot1) as send_cnt
+            FROM nvsendlog
+            WHERE campaign_no = #{campaignNo}
+            AND slot1 IN ('DA', 'DB')
+            AND error_cd = '250'
+            GROUP BY slot1
+        ) d LEFT OUTER JOIN (
+            SELECT substr(ab_type,2) as ab_type, count(ab_type) as open_cnt
+            FROM (
+                SELECT a.customer_id, a.ab_type
+                FROM nvlinkresult a, nvdivideschedule b
+                WHERE a.campaign_no = b.service_no
+                AND a.ab_type IN ('DA','DB')
+                AND concat(a.link_dt,a.link_tm) &lt; b.start_dt
+                AND b.service_no = #{campaignNo}
+                AND b.client = 'EM'
+                AND b.divide_seq = 1
+                GROUP BY a.customer_id, a.ab_type
+            ) c
+            GROUP BY ab_type
+        ) e
+        ON d.slot1 = e.ab_type
+        ORDER BY e.ab_type
+    </select>
+
+    <select id="makeCsvEmErrorCodeDetailList" parameterType="map" resultMap="resultSendLog">
+        SELECT customer_email, customer_nm, customer_key, concat(send_dt, send_tm) send_dtm
+        FROM nvsendlog
+        WHERE campaign_no = #{campaignNo}
+        AND result_seq = #{resultSeq}
+        AND error_cd = #{errorCd}
+    </select>
+
+</mapper>

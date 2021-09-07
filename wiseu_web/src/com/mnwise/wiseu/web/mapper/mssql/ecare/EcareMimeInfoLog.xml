@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareMimeInfoLog">
+    <!--<resultMap id="resultEcareMimeInfoLog" type="EcareMimeInfoLog">
+        <result column="ecare_no"           property="ecareNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="record_seq"         property="recordSeq"/>
+        <result column="sid"                property="sid"/>
+        <result column="customer_key"       property="customerKey"/>
+        <result column="customer_nm"        property="customerNm"/>
+        <result column="customer_email"     property="customerEmail"/>
+        <result column="send_dt"            property="sendDt"/>
+        <result column="send_tm"            property="sendTm"/>
+        <result column="handler_index"      property="handlerIndex"/>
+        <result column="file_index"         property="fileIndex"/>
+        <result column="start_offset"       property="startOffset"/>
+        <result column="end_offset"         property="endOffset"/>
+        <result column="slot1"              property="slot1"/>
+        <result column="slot2"              property="slot2"/>
+        <result column="mime_full_path"     property="mimeFullPath"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="ecareMimeInfoLog" parameterType="MimeView" resultMap="mapper.MimeInfoLog.resultMimeView">
+        SELECT start_offset, end_offset, mime_full_path
+        FROM nvecaremimeinfolog
+        WHERE ecare_no = #{serviceNo}
+        AND result_seq = #{resultSeq}
+        AND customer_key = #{customerKey}
+        AND customer_nm = #{customerNm}
+        AND customer_email = #{customerEmail}
+    </select>
+
+</mapper>

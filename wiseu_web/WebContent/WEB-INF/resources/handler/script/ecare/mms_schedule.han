@@ -1,0 +1,32 @@
+<%
+mmsagent = com.mnwise.ASE.agent.mmsagent.MmsAgent.new(context)
+mmsagent.setRetry(context.get("_RETRY_CNT"))
+mmsagent.open()
+mmsagent.setDongbo("FALSE")
+target = com.mnwise.ASE.agent.util.TextReader.new(context)
+message = com.mnwise.ASE.pscript.Message.new(context)
+message.prepareTemplate()
+dt = java.util.Date.new()
+term = com.mnwise.common.util.DateUtil.new()
+time = java.text.SimpleDateFormat.new("yyyyMMddHHmmss")
+addterm = term.addTime(dt,"7","00","00","00")
+context.put("_START_DATE", time.format(dt))
+context.put("_END_DATE", time.format(addterm))
+mmsagent.setCpDepartId("mnwise")
+mmsagent.setCpExtendId("mnwise")
+mmsagent.setSubject("")
+
+_KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+_NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+_MMS_FIELD_SEQ = context.getInt("_MMS_FIELD_SEQ")
+
+while (target.next())
+  mmsagent.setCallbackNo(context.get("_SENDER_TEL"))
+  context.put("record", target.getRecord())
+  mmsagent.setRcpt(target.getString(_MMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0")
+  msg = message.execTemplate()
+  mmsagent.send(msg)
+end while
+target.close()
+mmsagent.close()
+%>

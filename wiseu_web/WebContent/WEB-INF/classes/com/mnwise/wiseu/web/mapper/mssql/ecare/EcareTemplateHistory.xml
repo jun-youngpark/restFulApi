@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareTemplateHistory">
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertEcareTemplateHistory" parameterType="History">
+        INSERT INTO nvecaretemplatehistory (ecare_no, user_id, lastupdate_dt, lastupdate_tm, seg, template, history_msg, tmpl_ver, kakao_buttons, conts_no)
+        VALUES (#{ecareNo}, #{userId}, #{lastupdateDt, jdbcType=CHAR}, #{lastupdateTm, jdbcType=VARCHAR}, #{seg}, #{template}, #{historyMsg, jdbcType=VARCHAR}, #{tmplVer}, #{kakaoButtons, jdbcType=VARCHAR}, #{contsNo})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcareTemplateHistoryAll" parameterType="int">
+        DELETE FROM nvecaretemplatehistory
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEcarePreviousTemplate" parameterType="MailPreview" resultMap="mapper.Common.resultMailPreview">
+        SELECT seg, coalesce(template,'') template
+        FROM nvecaretemplatehistory
+        WHERE ecare_no = #{serviceNo}
+        AND seg = ' '
+        AND tmpl_ver = #{templateVer}
+    </select>
+
+    <select id="selectEcarePreviousCoverTemplate" parameterType="MailPreview" resultMap="mapper.Common.resultMailPreview">
+        SELECT seg, coalesce(template,'') template
+        FROM nvecaretemplatehistory
+        WHERE ecare_no = #{serviceNo}
+        AND seg = 'COVER'
+        AND tmpl_ver = #{coverVer}
+    </select>
+
+    <select id="selectEcarePreviousPrefaceTemplate" parameterType="MailPreview" resultMap="mapper.Common.resultMailPreview">
+        SELECT seg, coalesce(template,'') template
+        FROM nvecaretemplatehistory
+        WHERE ecare_no = #{serviceNo}
+        AND seg = 'PREFACE'
+        AND tmpl_ver = #{prefaceVer}
+    </select>
+
+    <sql id="contsHistoryInfoListWhereQuery">
+        <if test="ecareNo != 0">AND a.ecare_no = #{ecareNo}</if>
+        <if test="ecareNm != null and ecareNm != ''">AND b.ecare_nm LIKE '%'+#{ecareNm}+'%'</if>
+    </sql>
+
+    <select id="selectContsTemplateTotalCount" parameterType="EcareContsHistory" resultType="int">
+        SELECT count(*)
+        FROM nvecaretemplatehistory a, nvecaremsg b, nvuser c
+        WHERE a.ecare_no = b.ecare_no
+        AND a.user_id = c.user_id
+        <include refid="contsHistoryInfoListWhereQuery"/>
+    </select>
+
+    <select id="selectContsTemplateHistoryList" parameterType="EcareContsHistory" resultMap="mapper.Common.resultEcareContsHistory">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER(ORDER BY a.lastupdate_dt, a.lastupdate_tm, a.seg) l_rank
+              , row_number() OVER(ORDER BY a.lastupdate_dt DESC, a.lastupdate_tm DESC, a.seg DESC) rnum
+              , coalesce(a.ecare_no,0) ecare_no, a.seg, a.template, coalesce(a.tmpl_ver,0) tmpl_ver, a.lastupdate_dt, a.lastupdate_tm, a.history_msg
+              , b.ecare_nm, b.channel_type, c.name_kor, 0 as handler_ver, '' as appsource
+            FROM nvecaretemplatehistory a, nvecaremsg b, nvuser c
+            WHERE a.ecare_no = b.ecare_no
+            AND a.user_id = c.user_id
+            <include refid="contsHistoryInfoListWhereQuery"/>
+        ) x
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+        ORDER BY lastupdate_dt DESC, lastupdate_tm DESC
+    </select>
+
+    <select id="selectContsTemplateHistoryInfo" parameterType="EcareContsHistory" resultMap="mapper.Common.resultEcareContsHistory">
+        SELECT
+            0 AS l_rank, coalesce(a.ecare_no,0) ecare_no, a.seg, a.template, coalesce(a.tmpl_ver,0) tmpl_ver, a.lastupdate_dt, a.lastupdate_tm
+          , b.ecare_nm, b.channel_type, c.name_kor, a.history_msg, 0 as handler_ver, '' as appsource
+        FROM nvecaretemplatehistory a, nvecaremsg b, nvuser c
+        WHERE a.ecare_no = b.ecare_no
+        AND a.user_id = c.user_id
+        AND a.ecare_no = #{ecareNo}
+        AND a.seg = #{seg}
+        AND a.tmpl_ver = #{tmplVer}
+    </select>
+
+    <select id="selectNextTemplateVersion" parameterType="map" resultType="int">
+        SELECT coalesce(max(tmpl_ver), 0) + 1
+        FROM nvecaretemplatehistory
+        WHERE ecare_no = #{ecareNo}
+        AND seg = #{seg}
+    </select>
+</mapper>

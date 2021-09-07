@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Menu">
+    <resultMap id="resultMenu" type="Menu">
+        <result column="menu_cd"        property="menuCd"/>
+        <result column="pmenu_cd"       property="pmenuCd"/>
+        <result column="level_no"       property="levelNo"/>
+        <result column="menu_nm"        property="menuNm"/>
+        <result column="menu_link_url"  property="menuLinkUrl"/>
+        <result column="menu_icon_img"  property="menuIconImg"/>
+        <result column="active_yn"      property="activeYn"/>
+        <result column="module_nm"      property="moduleNm"/>
+        <result column="sort_no"        property="sortNo"/>
+        <result column="m_type"         property="mType"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="user_id"        property="userId"/>
+        <result column="grp_cd"         property="grpCd"/>
+        <result column="read_auth"      property="readAuth"/>
+        <result column="write_auth"     property="writeAuth"/>
+        <result column="execute_auth"   property="executeAuth"/>
+    </resultMap>
+
+    <resultMap id="resultRoleMap" type="map">
+        <result column="menu_cd"        property="menuCd"/>
+        <result column="read_auth"      property="read"/>
+        <result column="write_auth"     property="write"/>
+        <result column="execute_auth"   property="execute"/>
+        <result column="menu_link_url"  property="menuLinkUrl"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getTopMenuList" resultMap="resultMenu">
+        SELECT menu_cd, pmenu_cd, coalesce(level_no,0) level_no, menu_nm, menu_link_url, menu_icon_img, active_yn, module_nm, coalesce(sort_no,0) sort_no, m_type
+        FROM nvmenu
+        WHERE pmenu_cd IS NULL
+        AND active_yn = 'Y'
+        ORDER BY sort_no
+    </select>
+
+    <select id="getSubMenuList" parameterType="string" resultMap="resultMenu">
+        SELECT a.menu_cd, a.pmenu_cd, coalesce(a.level_no,0) level_no, b.menu_nm, a.menu_link_url, a.menu_icon_img, a.active_yn, a.module_nm, coalesce(a.sort_no,0) sort_no, a.m_type
+        FROM nvmenu a, nvmenu_lang b
+        WHERE a.menu_cd = b.menu_cd
+        AND a.pmenu_cd IS NOT NULL
+        AND a.active_yn = 'Y'
+        AND b.lang = #{lang}
+        ORDER BY a.pmenu_cd, a.sort_no, a.menu_cd
+    </select>
+
+    <select id="getGrpMenuList" parameterType="string" resultMap="resultMenu">
+        SELECT a.grp_cd, a.menu_cd, a.read_auth, a.write_auth, a.execute_auth, b.menu_link_url
+        FROM nvgrpmenurole a, nvmenu b
+        WHERE a.menu_cd = b.menu_cd
+        AND a.grp_cd = #{grpCd}
+        AND b.active_yn = 'Y'
+        AND b.pmenu_cd IS NOT NULL
+        ORDER BY substr(pmenu_cd, 1, 2), sort_no
+    </select>
+
+    <select id="selectPermission" parameterType="map" resultMap="resultMenu">
+        SELECT c.pmenu_cd, c.menu_cd, c.menu_nm, d.user_id, d.read_auth, d.write_auth, d.execute_auth
+        FROM  (
+            SELECT a.pmenu_cd, a.menu_cd, b.menu_nm
+            FROM nvmenu a, nvmenu_lang b
+            WHERE a.menu_cd = b.menu_cd
+            AND a.active_yn = 'Y'
+            AND b.lang = #{language}
+        ) c LEFT OUTER JOIN nvmenurole d
+        ON c.menu_cd = d.menu_cd
+        AND d.user_id = #{userId}
+        ORDER by c.menu_cd
+    </select>
+
+    <select id="getGrpRoleList" parameterType="map" resultMap="resultMenu">
+        SELECT c.pmenu_cd, c.menu_cd, c.menu_nm, d.read_auth, d.write_auth, d.execute_auth
+        FROM (
+            SELECT a.pmenu_cd, a.menu_cd, b.menu_nm
+            FROM nvmenu a, nvmenu_lang b
+            WHERE a.menu_cd = b.menu_cd
+            AND a.active_yn = 'Y'
+            AND b.lang = #{language}
+        ) c LEFT OUTER JOIN nvgrpmenurole d
+        ON c.menu_cd = d.menu_cd
+        AND d.grp_cd = #{grpCd}
+        ORDER BY c.menu_cd
+    </select>
+
+    <select id="selectRoleMap" parameterType="string" resultMap="resultRoleMap">
+        SELECT a.menu_link_url, a.menu_cd, b.read_auth, b.write_auth, b.execute_auth
+        FROM nvmenu a, nvmenurole b
+        WHERE a.menu_cd = b.menu_cd
+        AND a.menu_link_url IS NOT NULL
+        AND b.user_id = #{userId}
+    </select>
+
+    <select id="getGrpMenuRoleMap" parameterType="string" resultMap="resultRoleMap">
+        SELECT a.menu_link_url, a.menu_cd, b.read_auth, b.write_auth, b.execute_auth
+        FROM nvmenu a, nvgrpmenurole b
+        WHERE a.menu_cd = b.menu_cd
+        AND a.menu_link_url IS NOT NULL
+        AND b.grp_cd = #{grpCd}
+    </select>
+</mapper>

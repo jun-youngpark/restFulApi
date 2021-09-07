@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.DbInfo">
+    <resultMap id="resultDbInfo" type="DbInfo">
+        <result column="dbinfo_seq"         property="dbInfoSeq"/>
+        <result column="driver_nm"          property="driverNm"/>
+        <result column="server_nm"          property="serverNm"/>
+        <result column="driver_dsn"         property="driverDsn"/>
+        <result column="dbuser_id"          property="dbUserId"/>
+        <result column="dbpassword"         property="dbPassword"/>
+        <result column="encoding"           property="encoding"/>
+        <result column="decoding"           property="decoding"/>
+        <result column="dbkind"             property="dbKind"/>
+        <result column="testquery"          property="testQuery"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <resultMap id="resultDataBaseClient" type="DataBaseClient">
+        <result column="driver_nm"          property="jdbcDriver"/>
+        <result column="server_nm"          property="serverName"/>
+        <result column="driver_dsn"         property="jdbcUrl"/>
+        <result column="dbuser_id"          property="jdbcUserName"/>
+        <result column="dbpassword"         property="jdbcPassWord"/>
+        <result column="dbkind"             property="dbms"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertDbInfo" parameterType="DbInfo">
+        INSERT INTO nvdbinfo (dbinfo_seq, driver_nm, server_nm, driver_dsn, dbuser_id, dbpassword, encoding, decoding, dbkind, testquery)
+        VALUES (#{dbInfoSeq}, #{driverNm, jdbcType=VARCHAR}, #{serverNm, jdbcType=VARCHAR}, #{driverDsn, jdbcType=VARCHAR}, #{dbUserId, jdbcType=VARCHAR}, #{dbPassword, jdbcType=VARCHAR}, #{encoding, jdbcType=VARCHAR}, #{decoding, jdbcType=VARCHAR}, #{dbKind, jdbcType=VARCHAR}, #{testQuery, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateDbInfoByPk" parameterType="DbInfo">
+        UPDATE nvdbinfo
+        SET
+            driver_nm = #{driverNm, jdbcType=VARCHAR}
+          , server_nm = #{serverNm, jdbcType=VARCHAR}
+          , driver_dsn = #{driverDsn, jdbcType=VARCHAR}
+          , dbuser_id = #{dbUserId, jdbcType=VARCHAR}
+          , dbpassword = #{dbPassword, jdbcType=VARCHAR}
+          , encoding = #{encoding, jdbcType=VARCHAR}
+          , decoding = #{decoding, jdbcType=VARCHAR}
+          , dbkind = #{dbKind, jdbcType=VARCHAR}
+          , testquery = #{testQuery, jdbcType=VARCHAR}
+        WHERE dbinfo_seq = #{dbInfoSeq}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteDbInfoByPk" parameterType="int">
+        DELETE FROM nvdbinfo
+        WHERE dbinfo_seq = #{dbInfoSeq}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectDbInfoByPk" parameterType="int" resultMap="resultDbInfo">
+        SELECT dbinfo_seq, driver_nm, server_nm, driver_dsn, dbuser_id, dbpassword, encoding, decoding, dbkind, testquery
+        FROM nvdbinfo
+        WHERE dbinfo_seq = #{dbInfoSeq}
+    </select>
+
+    <select id="selectNextDbInfoSeq" resultType="int">
+        SELECT coalesce(max(dbinfo_seq), 0) + 1
+        FROM nvdbinfo
+    </select>
+
+    <select id="selectDbinfoSeq" parameterType="map" resultType="int">
+        SELECT dbinfo_seq
+        FROM nvdbinfo
+        WHERE driver_dsn LIKE concat(#{driverDsn},'%')
+        AND dbuser_id = #{dbUserId}
+    </select>
+
+    <select id="selectDbInfoList" resultMap="resultDbInfo">
+        SELECT dbinfo_seq, driver_nm, server_nm, driver_dsn, dbuser_id, dbpassword, encoding, decoding, dbkind, testquery
+        FROM nvdbinfo
+    </select>
+
+    <select id="getDbInfo" resultMap="resultDataBaseClient">
+        SELECT driver_nm, server_nm, driver_dsn, dbuser_id, dbpassword, dbkind
+        FROM nvdbinfo
+    </select>
+</mapper>

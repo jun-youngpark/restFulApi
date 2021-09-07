@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CycleItem">
+    <resultMap id="resultCycleItem" type="CycleItem">
+        <result column="ecmschedule_no"         property="ecmScheduleNo"/>
+        <result column="cycleitem"              property="cycleItem"/>
+        <result column="check_yn"               property="checkYn"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertCycleItem" parameterType="CycleItem">
+        INSERT INTO nvcycleitem (ecmschedule_no, cycleitem, check_yn)
+        VALUES (#{ecmScheduleNo}, #{cycleItem}, #{checkYn, jdbcType=CHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcareCycleItemInfo" parameterType="int">
+        DELETE FROM nvcycleitem
+        WHERE ecmschedule_no = #{ecmScheduleNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectCycleItemInfo" parameterType="int" resultMap="resultCycleItem">
+        SELECT cycleitem, check_yn
+        FROM nvcycleitem
+        WHERE ecmschedule_no = #{scheduleNo}
+    </select>
+</mapper>

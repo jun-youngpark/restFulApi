@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ResendRequest">
+    <!--<resultMap id="resultResendRequest" type="ResendRequest">
+        <result column="req_dt"         property="reqDt"/>
+        <result column="req_user_id"    property="reqUserId"/>
+        <result column="send_fg"        property="sendFg"/>
+        <result column="service_no"     property="serviceNo"/>
+        <result column="super_seq"      property="superSeq"/>
+        <result column="result_seq"     property="resultSeq"/>
+        <result column="list_seq"       property="listSeq"/>
+        <result column="target_key"     property="targetKey"/>
+        <result column="target_contact" property="targetContact"/>
+        <result column="client"         property="client"/>
+        <result column="sub_type"       property="subType"/>
+        <result column="channel"        property="channel"/>
+        <result column="resend_type"    property="resendType"/>
+        <result column="resend_reason"  property="resendReason"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <!--<insert id="insertResendRequest" parameterType="ResendRequest">
+        INSERT INTO nvresendrequest (req_dt, req_user_id, send_fg, service_no, super_seq, result_seq, list_seq, target_key, target_contact, client, sub_type, channel, resend_type, resend_reason)
+        VALUES (#{reqDt}, #{reqUserId}, #{sendFg}, #{serviceNo}, #{superSeq}, #{resultSeq}, #{listSeq, jdbcType=VARCHAR}, #{targetKey, jdbcType=VARCHAR}, #{targetContact, jdbcType=VARCHAR}, #{client}, #{subType}, #{channel}, #{resendType}, #{resendReason, jdbcType=VARCHAR})
+    </insert>-->
+
+    <insert id="insertLstResendRequest" parameterType="map">
+        INSERT INTO nvresendrequest (
+            req_dt, req_user_id, service_no, super_seq, list_seq, target_key, target_contact, client, sub_type, channel
+          , resend_type, resend_reason, send_fg
+        ) VALUES (
+           convert(varchar(8), getdate(), 112) + replace(convert(varchar(8), getdate(), 108), ':', '')
+         , #{reqUserId}, #{serviceNo}, #{superSeq}, #{listSeq, jdbcType=VARCHAR}, #{targetKey, jdbcType=VARCHAR}, #{targetContact, jdbcType=VARCHAR}, #{client}, #{subType}, #{channel}
+         , #{resendType}, #{resendReason, jdbcType=VARCHAR}, 'R'
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <!--<update id="updateResendRequestByPk" parameterType="ResendRequest">
+        UPDATE nvresendrequest
+        SET
+            send_fg = #{sendFg}
+          , service_no = #{serviceNo}
+          , super_seq = #{superSeq}
+          , result_seq = #{resultSeq}
+          , list_seq = #{listSeq, jdbcType=VARCHAR}
+          , target_key = #{targetKey, jdbcType=VARCHAR}
+          , target_contact = #{targetContact, jdbcType=VARCHAR}
+          , client = #{client}
+          , sub_type = #{subType}
+          , channel = #{channel}
+          , resend_type = #{resendType}
+          , resend_reason = #{resendReason, jdbcType=VARCHAR}
+        WHERE req_dt = #{reqDt}
+        AND req_user_id = #{reqUserId}
+    </update>-->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteResendRequestByPk" parameterType="map">
+        DELETE FROM nvresendrequest
+        WHERE req_dt = #{reqDt}
+        AND req_user_id = #{reqUserId}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!--<select id="selectResendRequestByPk" parameterType="map" resultMap="resultResendRequest">
+        SELECT *
+        FROM nvresendrequest
+        WHERE req_dt = #{reqDt}
+        AND req_user_id = #{reqUserId}
+    </select>-->
+</mapper>

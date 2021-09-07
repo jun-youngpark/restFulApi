@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.LinkResult">
+    <!--<resultMap id="resultLinkResult" type="LinkResult">
+        <result column="result_seq"     property="resultSeq"/>
+        <result column="list_seq"       property="listSeq"/>
+        <result column="link_dt"        property="linkDt"/>
+        <result column="campaign_no"    property="campaignNo"/>
+        <result column="link_tm"        property="linkTm"/>
+        <result column="record_seq"     property="recordSeq"/>
+        <result column="link_seq"       property="linkSeq"/>
+        <result column="customer_id"    property="customerId"/>
+        <result column="customer_nm"    property="customerNm"/>
+        <result column="customer_email" property="customerEmail"/>
+        <result column="click_cnt"      property="clickCnt"/>
+        <result column="ab_type"        property="abType"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <!--<insert id="insertLinkResult" parameterType="LinkResult">
+        INSERT INTO nvlinkresult (campaign_no, result_seq, list_seq, link_dt, link_tm, record_seq, link_seq, customer_id, customer_nm, customer_email, click_cnt, ab_type)
+        VALUES (#{campaignNo}, #{resultSeq}, #{listSeq}, #{linkDt}, #{linkTm}, #{recordSeq, jdbcType=VARCHAR}, #{linkSeq}, #{customerId}, #{customerNm}, #{customerEmail}, #{clickCnt}, #{abType, jdbcType=VARCHAR})
+    </insert>-->
+
+    <!--  ==================== UPDATE ====================  -->
+    <!--<update id="updateLinkResultByPk" parameterType="LinkResult">
+        UPDATE nvlinkresult
+        SET
+            record_seq = #{recordSeq, jdbcType=VARCHAR}
+          , link_seq = #{linkSeq}
+          , customer_id = #{customerId}
+          , customer_nm = #{customerNm}
+          , customer_email = #{customerEmail}
+          , click_cnt = #{clickCnt}
+          , ab_type = #{abType, jdbcType=VARCHAR}
+        WHERE campaign_no = #{campaignNo}
+        AND result_seq = #{resultSeq}
+        AND list_seq = #{listSeq}
+        AND link_dt = #{linkDt}
+        AND link_tm = #{linkTm}
+    </update>-->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteLinkResultByPk" parameterType="map">
+        DELETE FROM nvlinkresult
+        WHERE campaign_no = #{campaignNo}
+        AND result_seq = #{resultSeq}
+        AND list_seq = #{listSeq}
+        AND link_dt = #{linkDt}
+        AND link_tm = #{linkTm}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!--<select id="selectLinkResultByPk" parameterType="map" resultMap="resultLinkResult">
+        SELECT *
+        FROM nvlinkresult
+        WHERE campaign_no = #{campaignNo}
+        AND result_seq = #{resultSeq}
+        AND list_seq = #{listSeq}
+        AND link_dt = #{linkDt}
+        AND link_tm = #{linkTm}
+    </select>-->
+
+    <select id="selectCampaignTargetCount" parameterType="Linkclick" resultType="int">
+        SELECT count(DISTINCT customer_id)
+        FROM nvlinkresult
+        WHERE campaign_no = #{serviceNo}
+        <if test="linkSeqArray != null">
+        AND link_seq IN  (<foreach collection="linkSeqArray" item="linkSeq" separator=",">#{linkSeq}</foreach>)
+        </if>
+        <if test="linkSeq != 0">
+        AND link_seq = #{linkSeq}
+        </if>
+    </select>
+
+    <select id="getCampaignReportAbRealLinkCnt" parameterType="int" resultType="int">
+        SELECT count(ab_type) as tcnt
+        FROM (
+            SELECT customer_id, ab_type
+            FROM nvlinkresult
+            WHERE campaign_no = #{campaignNo}
+            AND ab_type IN ('RA','RB')
+            GROUP BY customer_id, ab_type
+        ) a
+        GROUP BY ab_type
+    </select>
+</mapper>

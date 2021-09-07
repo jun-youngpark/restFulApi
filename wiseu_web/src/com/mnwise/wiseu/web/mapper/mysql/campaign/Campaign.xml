@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Campaign">
+    <resultMap id="resultCampaign" type="Campaign">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="grp_cd"                 property="grpCd"/>
+        <result column="user_id"                property="userId"/>
+        <result column="segment_no"             property="segmentNo"/>
+        <result column="campaign_nm"            property="campaignNm"/>
+        <result column="campaign_desc"          property="campaignDesc"/>
+        <result column="campaign_preface"       property="campaignPreface"/>
+        <result column="campaign_sts"           property="campaignSts"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="lastupdate_dt"          property="lastUpdateDt"/>
+        <result column="lastupdate_tm"          property="lastUpdateTm"/>
+        <result column="campaign_type"          property="campaignType"/>
+        <result column="template_type"          property="templateType"/>
+        <result column="sending_sts"            property="sendingSts"/>
+        <result column="sending_cycle"          property="sendingCycle"/>
+        <result column="sendstart_dt"           property="sendStartDt"/>
+        <result column="sendstart_tm"           property="sendStartTm"/>
+        <result column="sendfinish_dt"          property="sendFinishDt"/>
+        <result column="sendfinish_tm"          property="sendFinishTm"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="survey_end_yn"          property="surveyEndYn"/>
+        <result column="sending_mode"           property="sendingMode"/>
+        <result column="survey_response_cnt"    property="surveyResponseCnt"/>
+        <result column="survey_no"              property="surveyNo"/>
+        <result column="log_yn"                 property="logYn"/>
+        <result column="keepday"                property="keepDay"/>
+        <result column="share_yn"               property="shareYn"/>
+        <result column="survey_start_dt"        property="surveyStartDt"/>
+        <result column="survey_start_tm"        property="surveyStartTm"/>
+        <result column="survey_end_dt"          property="surveyEndDt"/>
+        <result column="survey_end_tm"          property="surveyEndTm"/>
+        <result column="retry_cnt"              property="retryCnt"/>
+        <result column="rptcreate_dt"           property="rptCreateDt"/>
+        <result column="sender_nm"              property="senderNm"/>
+        <result column="sender_email"           property="senderEmail"/>
+        <result column="receiver_nm"            property="receiverNm"/>
+        <result column="sender_tel"             property="senderTel"/>
+        <result column="retmail_receiver"       property="retmailReceiver"/>
+        <result column="htmlupdate_yn"          property="htmlUpdateYn"/>
+        <result column="report_sts"             property="reportSts"/>
+        <result column="campaign_class"         property="campaignClass"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="relation_type"          property="relationType"/>
+        <result column="relation_tree"          property="relationTree"/>
+        <result column="retmail_send_yn"        property="retMailSendYn"/>
+        <result column="etc_info1"              property="etcInfo1"/>
+        <result column="etc_info2"              property="etcInfo2"/>
+        <result column="promotion_type"         property="promotionType"/>
+        <result column="campaign_level"         property="campaignLevel"/>
+        <result column="category_cd"            property="categoryCd"/>
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="depth_no"               property="depthNo"/>
+        <result column="editor_id"              property="editorId"/>
+        <result column="send_server"            property="sendServer"/>
+        <result column="approval_sts"           property="approvalSts"/>
+        <result column="req_dept_id"            property="reqDeptId"/>
+        <result column="req_user_id"            property="reqUserId"/>
+        <result column="divide_yn"              property="divideYn"/>
+        <result column="divide_interval"        property="divideInterval"/>
+        <result column="divide_cnt"             property="divideCnt"/>
+        <result column="ab_test_type"           property="abTestType"/>
+        <result column="ab_test_cond"           property="abTestCond"/>
+        <result column="ab_test_rate"           property="abTestRate"/>
+        <result column="campaign_preface_ab"    property="campaignPrefaceAb"/>
+        <result column="multi_cont_info"        property="multiContInfo"/>
+        <result column="handler_seq"            property="handlerSeq"/>
+        <result column="kakao_sender_key"       property="kakaoSenderKey"/>
+        <result column="kakao_tmpl_cd"          property="kakaoTmplCd"/>
+        <result column="kakao_image_no"         property="kakaoImageNo"/>
+        <result column="failback_send_yn"       property="failbackSendYn"/>
+        <result column="failback_subject"       property="failbackSubject"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <resultMap id="resultCampaignEditor" type="CampaignEditor">
+        <result column="campaign_preface"       property="campaignPreface"/>
+        <result column="template_type"          property="templateType"/>
+        <result column="survey_no"              property="surveyNo"/>
+        <result column="campaign_preface_ab"    property="campaignPrefaceAb"/>
+        <result column="handler_seq"            property="handlerSeq"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================
+    <insert id="insertCampaign" parameterType="Campaign">
+        INSERT INTO nvcampaign (campaign_no, grp_cd, user_id, segment_no, campaign_nm, campaign_desc, campaign_preface, campaign_sts, create_dt, create_tm, lastupdate_dt, lastupdate_tm, campaign_type
+        , template_type, sending_sts, sending_cycle, sendstart_dt, sendstart_tm, sendfinish_dt, sendfinish_tm, target_cnt, survey_end_yn, sending_mode
+        , survey_response_cnt, survey_no, log_yn, keepday, share_yn, survey_start_dt, survey_start_tm, survey_end_dt, survey_end_tm, retry_cnt
+        , rptcreate_dt, sender_nm, sender_email, receiver_nm, sender_tel, retmail_receiver, htmlupdate_yn, report_sts, campaign_class
+        , channel_type, relation_type, relation_tree, retmail_send_yn, etc_info1, etc_info2, promotion_type, campaign_level, category_cd, scenario_no, depth_no, editor_id, send_server, approval_sts, req_dept_id, req_user_id, divide_yn, divide_interval, divide_cnt, ab_test_type, ab_test_cond, ab_test_rate, campaign_preface_ab, multi_cont_info, handler_seq, kakao_sender_key, kakao_tmpl_cd, kakao_image_no, failback_send_yn, failback_subject)
+        VALUES (#{campaignNo}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{segmentNo}, #{campaignNm, jdbcType=VARCHAR}, #{campaignDesc, jdbcType=VARCHAR}, #{campaignPreface, jdbcType=VARCHAR}, #{campaignSts, jdbcType=CHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{lastUpdateTm, jdbcType=CHAR}, #{campaignType, jdbcType=CHAR}, #{templateType}, #{sendingSts, jdbcType=CHAR}, #{sendingCycle, jdbcType=CHAR}, #{sendStartDt, jdbcType=CHAR}, #{sendStartTm, jdbcType=CHAR}, #{sendFinishDt, jdbcType=CHAR}, #{sendFinishTm, jdbcType=CHAR}, #{targetCnt}, #{surveyEndYn, jdbcType=CHAR}, #{sendingMode, jdbcType=CHAR}, #{surveyResponseCnt}, #{surveyNo}, #{logYn, jdbcType=CHAR}, #{keepDay}, #{shareYn, jdbcType=CHAR}, #{surveyStartDt, jdbcType=CHAR}, #{surveyStartTm, jdbcType=CHAR}, #{surveyEndDt, jdbcType=CHAR}, #{surveyEndTm, jdbcType=CHAR}, #{retryCnt}, #{rptCreateDt, jdbcType=CHAR}, #{senderNm, jdbcType=VARCHAR}, #{senderEmail, jdbcType=VARCHAR}, #{receiverNm, jdbcType=VARCHAR}, #{senderTel, jdbcType=VARCHAR}, #{retmailReceiver, jdbcType=VARCHAR}, #{htmlUpdateYn, jdbcType=CHAR}, #{reportSts, jdbcType=CHAR}, #{campaignClass, jdbcType=VARCHAR}, #{channelType, jdbcType=CHAR}, #{relationType, jdbcType=CHAR}, #{relationTree, jdbcType=VARCHAR}, #{retMailSendYn, jdbcType=CHAR}, #{etcInfo1, jdbcType=VARCHAR}, #{etcInfo2, jdbcType=VARCHAR}, #{promotionType, jdbcType=CHAR}, #{campaignLevel, jdbcType=CHAR}, #{categoryCd, jdbcType=VARCHAR}, #{scenarioNo}, #{depthNo}, #{editorId, jdbcType=VARCHAR}, #{sendServer}, #{approvalSts, jdbcType=CHAR}, #{reqDeptId, jdbcType=VARCHAR}, #{reqUserId, jdbcType=VARCHAR}, #{divideYn, jdbcType=CHAR}, #{divideInterval}, #{divideCnt}, #{abTestType, jdbcType=CHAR}, #{abTestCond, jdbcType=CHAR}, #{abTestRate}, #{campaignPrefaceAb, jdbcType=VARCHAR}, #{multiContInfo, jdbcType=CHAR}, #{handlerSeq}, #{kakaoSenderKey, jdbcType=VARCHAR}, #{kakaoTmplCd, jdbcType=VARCHAR}, #{kakaoImageNo}, #{failbackSendYn, jdbcType=CHAR}, #{failbackSubject, jdbcType=VARCHAR})
+    </insert>-->
+    <insert id="insertCampaign1StepInfo" parameterType="Scenario">
+        INSERT INTO nvcampaign (
+            campaign_no, grp_cd, user_id, segment_no, campaign_nm, campaign_sts, create_dt, create_tm, lastupdate_dt, campaign_type
+          , sending_mode, retry_cnt, campaign_class, channel_type, relation_type, campaign_level, scenario_no, req_dept_id, req_user_id, ab_test_type
+        ) VALUES (
+            #{campaignVo.campaignNo}, #{userVo.grpCd, jdbcType=VARCHAR}, #{userVo.userId, jdbcType=VARCHAR}, <if test="segmentNo == 0">NULL</if><if test="segmentNo != 0">#{segmentNo}</if>, #{scenarioNm, jdbcType=VARCHAR}, 'I', #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, 'Y'
+          , 'P', #{campaignVo.retryCnt}, 'A', #{campaignVo.channelType, jdbcType=CHAR}, coalesce(#{campaignVo.relationType, jdbcType=CHAR}, 'N'), '1', #{scenarioNo}, #{reqDept, jdbcType=VARCHAR}, #{reqUser, jdbcType=VARCHAR}, #{abTestType, jdbcType=CHAR}
+        )
+    </insert>
+
+    <insert id="copyCampaign" parameterType="Scenario">
+        INSERT INTO nvcampaign (
+            scenario_no, campaign_no, grp_cd, user_id, segment_no, campaign_nm, campaign_desc, campaign_preface, campaign_sts, create_dt
+          , create_tm, campaign_type, template_type, target_cnt, sending_mode, log_yn, keepday, share_yn, retry_cnt, sender_nm
+          , sender_email, receiver_nm, sender_tel, retmail_receiver, htmlupdate_yn, etc_info1, campaign_class, channel_type, etc_info2, retmail_send_yn
+          , category_cd, promotion_type, campaign_level, relation_type, survey_end_yn, survey_no, survey_start_dt, survey_start_tm, survey_end_dt, survey_end_tm
+          , req_dept_id, req_user_id, ab_test_type, campaign_preface_ab, ab_test_cond, ab_test_rate, divide_yn, divide_interval, divide_cnt, kakao_image_no
+        )
+        SELECT
+            #{newScenarioNo}, #{campaignVo.newCampaignNo}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, segment_no, campaign_nm, campaign_desc, campaign_preface,'I', #{createDt, jdbcType=CHAR}
+          , #{createTm, jdbcType=CHAR}, campaign_type, template_type, target_cnt, 'N', log_yn, keepday, share_yn, retry_cnt, sender_nm
+          , sender_email, receiver_nm, sender_tel, retmail_receiver, htmlupdate_yn, etc_info1, 'A', channel_type, etc_info2, retmail_send_yn
+          , category_cd, promotion_type, CASE WHEN campaign_level = '3' THEN '2' ELSE campaign_level END campaign_level, 'N', survey_end_yn
+          , survey_no, survey_start_dt, survey_start_tm, survey_end_dt, survey_end_tm
+          , req_dept_id, req_user_id, ab_test_type, campaign_preface_ab, ab_test_cond, ab_test_rate, divide_yn, divide_interval, divide_cnt, kakao_image_no
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignVo.campaignNo}
+    </insert>
+
+    <!-- 캠페인 재발송  -->
+    <insert id="copyCampaignForResend" parameterType="Scenario">
+        INSERT INTO nvcampaign (
+            scenario_no, campaign_no, grp_cd, user_id, segment_no, target_cnt, campaign_nm, campaign_desc, campaign_preface, campaign_sts
+          , create_dt, create_tm, campaign_type, template_type, sending_mode, log_yn, keepday, share_yn, retry_cnt, sender_nm
+          , sender_email, receiver_nm, sender_tel, retmail_receiver, htmlupdate_yn, etc_info1, campaign_class, channel_type, etc_info2, retmail_send_yn
+          , category_cd, promotion_type, campaign_level, relation_type, relation_tree, depth_no, survey_end_yn, survey_no, survey_start_dt, survey_start_tm
+          , survey_end_dt, survey_end_tm, req_dept_id, req_user_id, divide_yn, ab_test_type)
+        SELECT
+            #{newScenarioNo}, #{campaignVo.newCampaignNo}, #{userVo.grpCd, jdbcType=VARCHAR}, #{userVo.userId, jdbcType=VARCHAR}, #{segmentNo}, #{segmentSize}, campaign_nm, campaign_desc, #{campaignVo.campaignPreface, jdbcType=VARCHAR}, 'I'
+          , #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, campaign_type, template_type, 'N', log_yn, keepday, share_yn, retry_cnt, sender_nm
+          , #{campaignVo.senderEmail, jdbcType=VARCHAR}, receiver_nm, sender_tel, #{campaignVo.retmailReceiver, jdbcType=VARCHAR}, htmlupdate_yn, etc_info1, 'A', coalesce(#{campaignVo.channelType, jdbcType=CHAR}, channel_type), etc_info2, retmail_send_yn
+          , category_cd, promotion_type, CASE WHEN campaign_level = '3' THEN '2' ELSE campaign_level END campaign_level, #{campaignVo.relationType, jdbcType=CHAR}, #{campaignVo.relationTree, jdbcType=VARCHAR}
+          , coalesce(depth_no,1) + 1, survey_end_yn, survey_no, survey_start_dt, survey_start_tm
+          , survey_end_dt, survey_end_tm, req_dept_id, req_user_id, 'N', 'N'
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignVo.campaignNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateCampaignByPk" parameterType="map">
+        UPDATE nvcampaign
+        SET
+            grp_cd = #{grpCd, jdbcType=VARCHAR}
+          , user_id = #{userId, jdbcType=VARCHAR}
+          , segment_no = #{segmentNo}
+          , campaign_nm = #{campaignNm, jdbcType=VARCHAR}
+          , campaign_desc = #{campaignDesc, jdbcType=VARCHAR}
+          , campaign_preface = #{campaignPreface, jdbcType=VARCHAR}
+          , campaign_sts = #{campaignSts, jdbcType=CHAR}
+          , create_dt = #{createDt, jdbcType=CHAR}
+          , create_tm = #{createTm, jdbcType=CHAR}
+          , lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}
+          , campaign_type = #{campaignType, jdbcType=CHAR}
+          , template_type = #{templateType}
+          , sending_sts = #{sendingSts, jdbcType=CHAR}
+          , sending_cycle = #{sendingCycle, jdbcType=CHAR}
+          , sendstart_dt = #{sendStartDt, jdbcType=CHAR}
+          , sendstart_tm = #{sendStartTm, jdbcType=CHAR}
+          , sendfinish_dt = #{sendFinishDt, jdbcType=CHAR}
+          , sendfinish_tm = #{sendFinishTm, jdbcType=CHAR}
+          , target_cnt = #{targetCnt}
+          , survey_end_yn = #{surveyEndYn, jdbcType=CHAR}
+          , sending_mode = #{sendingMode, jdbcType=CHAR}
+          , survey_response_cnt = #{surveyResponseCnt}
+          , survey_no = #{surveyNo}
+          , log_yn = #{logYn, jdbcType=CHAR}
+          , keepday = #{keepDay}
+          , share_yn = #{shareYn, jdbcType=CHAR}
+          , survey_start_dt = #{surveyStartDt, jdbcType=CHAR}
+          , survey_start_tm = #{surveyStartTm, jdbcType=CHAR}
+          , survey_end_dt = #{surveyEndDt, jdbcType=CHAR}
+          , survey_end_tm = #{surveyEndTm, jdbcType=CHAR}
+          , retry_cnt = #{retryCnt}
+          , rptcreate_dt = #{rptCreateDt, jdbcType=CHAR}
+          , sender_nm = #{senderNm, jdbcType=VARCHAR}
+          , sender_email = #{senderEmail, jdbcType=VARCHAR}
+          , receiver_nm = #{receiverNm, jdbcType=VARCHAR}
+          , sender_tel = #{senderTel, jdbcType=VARCHAR}
+          , retmail_receiver = #{retmailReceiver, jdbcType=VARCHAR}
+          , htmlupdate_yn = #{htmlUpdateYn, jdbcType=CHAR}
+          , report_sts = #{reportSts, jdbcType=CHAR}
+          , campaign_class = #{campaignClass, jdbcType=VARCHAR}
+          , channel_type = #{channelType, jdbcType=CHAR}
+          , relation_type = #{relationType, jdbcType=CHAR}
+          , relation_tree = #{relationTree, jdbcType=VARCHAR}
+          , retmail_send_yn = #{retMailSendYn, jdbcType=CHAR}
+          , etc_info1 = #{etcInfo1, jdbcType=VARCHAR}
+          , etc_info2 = #{etcInfo2, jdbcType=VARCHAR}
+          , promotion_type = #{promotionType, jdbcType=CHAR}
+          , campaign_level = #{campaignLevel, jdbcType=CHAR}
+          , category_cd = #{categoryCd, jdbcType=VARCHAR}
+          , scenario_no = #{scenarioNo}
+          , depth_no = #{depthNo}
+          , editor_id = #{editorId, jdbcType=VARCHAR}
+          , send_server = #{sendServer}
+          , approval_sts = #{approvalSts, jdbcType=CHAR}
+          , req_dept_id = #{reqDeptId, jdbcType=VARCHAR}
+          , req_user_id = #{reqUserId, jdbcType=VARCHAR}
+          , divide_yn = #{divideYn, jdbcType=CHAR}
+          , divide_interval = #{divideInterval}
+          , divide_cnt = #{divideCnt}
+          , ab_test_type = #{abTestType, jdbcType=CHAR}
+          , ab_test_cond = #{abTestCond, jdbcType=CHAR}
+          , ab_test_rate = #{abTestRate}
+          , campaign_preface_ab = #{campaignPrefaceAb, jdbcType=VARCHAR}
+          , multi_cont_info = #{multiContInfo, jdbcType=CHAR}
+          , handler_seq = #{handlerSeq}
+          , kakao_sender_key = #{kakaoSenderKey, jdbcType=VARCHAR}
+          , kakao_tmpl_cd = #{kakaoTmplCd, jdbcType=VARCHAR}
+          , kakao_image_no = #{kakaoImageNo}
+          , failback_send_yn = #{failbackSendYn, jdbcType=CHAR}
+          , failback_subject = #{failbackSubject, jdbcType=VARCHAR}
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <!-- 시나리오 작성(채널 선택) 시 -->
+    <update id="updateCampaign1StepInfo" parameterType="Scenario">
+        UPDATE nvcampaign
+        SET
+            campaign_nm = #{scenarioNm, jdbcType=VARCHAR}
+          , lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , req_dept_id = #{reqDept, jdbcType=VARCHAR}
+          , req_user_id = #{reqUser, jdbcType=VARCHAR}
+          , ab_test_type = #{abTestType, jdbcType=CHAR}
+        WHERE campaign_no = #{campaignVo.campaignNo}
+    </update>
+
+    <update id="updateCampaign2StepInfo" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET
+            grp_cd = #{grpCd, jdbcType=VARCHAR}
+          , user_id = #{userId, jdbcType=VARCHAR}
+          , segment_no = #{segmentNo}
+          , campaign_nm = #{campaignNm, jdbcType=VARCHAR}
+          , campaign_desc = #{campaignDesc, jdbcType=VARCHAR}
+          , lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}
+          , campaign_type = #{campaignType, jdbcType=CHAR}
+          , sending_sts = #{sendingSts, jdbcType=CHAR}
+          , sending_cycle = #{sendingCycle, jdbcType=CHAR}
+          , target_cnt = #{targetCnt}
+          , survey_end_yn = #{surveyEndYn, jdbcType=CHAR}
+          , survey_response_cnt = #{surveyResponseCnt}
+          , survey_start_dt = #{surveyStartDt, jdbcType=CHAR}
+          , survey_start_tm = #{surveyStartTm, jdbcType=CHAR}
+          , survey_end_dt = #{surveyEndDt, jdbcType=CHAR}
+          , survey_end_tm = #{surveyEndTm, jdbcType=CHAR}
+          , retry_cnt = #{retryCnt}
+          , sender_nm = #{senderNm, jdbcType=VARCHAR}
+          , sender_email = #{senderEmail, jdbcType=VARCHAR}
+          , receiver_nm = #{receiverNm, jdbcType=VARCHAR}
+          , sender_tel = #{senderTel, jdbcType=VARCHAR}
+          , retmail_receiver = #{retmailReceiver, jdbcType=VARCHAR}
+          , campaign_class = #{campaignClass, jdbcType=VARCHAR}
+          , relation_type = #{relationType, jdbcType=CHAR}
+          , campaign_level = #{campaignLevel, jdbcType=CHAR}
+          , editor_id = #{editorId, jdbcType=VARCHAR}
+          , approval_sts = #{approvalSts, jdbcType=CHAR}
+            <if test="kakaoSenderKey != null and kakaoSenderKey != ''">
+          , kakao_sender_key = #{kakaoSenderKey, jdbcType=VARCHAR}
+            </if>
+            <if test="kakaoTmplCd != null and kakaoTmplCd != ''">
+          , kakao_tmpl_cd = #{kakaoTmplCd, jdbcType=VARCHAR}
+            </if>
+            <if test="kakaoImageNo != null and kakaoImageNo != '0'">
+          , kakao_image_no = #{kakaoImageNo}
+            </if>
+            <if test="failbackSendYn != null and failbackSendYn != ''">
+          , failback_send_yn = #{failbackSendYn, jdbcType=CHAR}
+            </if>
+            <if test="failbackSendYn == 'Y'.toString()">
+          , failback_subject = #{failbackSubject, jdbcType=VARCHAR}
+            </if>
+            <if test="failbackSendYn == 'N'.toString()">
+          , failback_subject = ''
+            </if>
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <!--  캠페인 상태 변경  -->
+    <update id="updateCampaignStsInfo" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET campaign_sts = #{campaignSts, jdbcType=CHAR}
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <!-- 캠페인 승인 상태 변경 updateApprovalStsInfo-->
+    <update id="updateApprovalStsInfo" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET approval_sts = #{approvalSts, jdbcType=CHAR}
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <update id="updateCampaignSegmentNoInfo" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET segment_no = #{segmentNo}
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <update id="updateTestModeCampaign" parameterType="int">
+        UPDATE nvcampaign
+        SET sending_mode = 'T'
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <update id="updateCampaignScheduleInfo" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET
+            sendstart_dt = #{sendStartDt, jdbcType=CHAR}, sendstart_tm = #{sendStartTm, jdbcType=CHAR}, campaign_sts = #{campaignSts, jdbcType=CHAR}
+            <if test="divideYn != null and divideYn != ''">
+          , divide_yn = #{divideYn, jdbcType=CHAR}, divide_interval = #{divideInterval}, divide_cnt = #{divideCnt}
+            </if>
+            <if test="abTestCond != null and abTestCond != ''">
+          , ab_test_cond = #{abTestCond, jdbcType=CHAR}, ab_test_rate = #{abTestRate}
+            </if>
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <update id="changeStatus" parameterType="Scenario">
+        UPDATE nvcampaign
+        SET
+        <if test="campaignVo.approvalSts != null and campaignVo.approvalSts != ''">
+            approval_sts = #{campaignVo.approvalSts, jdbcType=CHAR}
+        </if>
+        <if test="campaignVo.approvalSts == null or campaignVo.approvalSts == ''">
+            campaign_sts = (CASE WHEN campaign_sts = 'P' THEN 'R' ELSE 'P' END)
+        </if>
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        AND campaign_sts IN ('P','R')
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND user_id = #{userVo.userId, jdbcType=VARCHAR}
+            </if>
+        </if>
+        <if test="userVo.grpCd != null and userVo.grpCd != ''">
+        AND grp_cd LIKE concat(#{userVo.grpCd, jdbcType=VARCHAR}, '%')
+        </if>
+    </update>
+
+    <update id="updateEditorCampaign" parameterType="CampaignEditor">
+        UPDATE nvcampaign
+        SET
+            template_type = #{templateType}
+          , campaign_preface = #{campaignPreface, jdbcType=VARCHAR}
+            <if test="campaignPrefaceAb != null and campaignPrefaceAb != ''">
+          , campaign_preface_ab = #{campaignPrefaceAb, jdbcType=VARCHAR}
+            </if>
+            <if test="handlerSeq != null and handlerSeq != ''">
+          , handler_seq = #{handlerSeq}
+            </if>
+        WHERE campaign_no = #{no}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteCampaignByPk" parameterType="map">
+        DELETE FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </delete>
+
+    <delete id="deleteCampaignAll" parameterType="Scenario">
+        DELETE FROM nvcampaign
+        <if test="scenarioNoArray != null">
+        WHERE CAMPAIGN_NO IN  (
+            <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+                #{campaignNo}
+            </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE CAMPAIGN_NO = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================
+    <select id="selectCampaignByPk" parameterType="map" resultMap="resultCampaign">
+        SELECT *
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </select>-->
+
+    <select id="selectMaxSegmentNo" resultType="int">
+        SELECT coalesce(max(segment_no),0)
+        FROM nvcampaign
+        WHERE scenario_no = #{scenarioNo}
+        AND depth_no = 1
+    </select>
+
+    <sql id="maxCampaignWhereQuery">
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.grpCd != null and userVo.grpCd != ''">
+        AND grp_cd LIKE concat(#{userVo.grpCd}, '%')
+        </if>
+    </sql>
+
+    <select id="getMaxCampaignNo" parameterType="ScenarioInfo" resultType="int">
+        SELECT coalesce(max(campaign_no),0)
+        FROM nvcampaign
+        WHERE campaign_sts IN ('E', 'W')
+        <include refid="maxCampaignWhereQuery"/>
+    </select>
+
+    <select id="selectNextCampaignNo" resultType="int">
+        SELECT coalesce(max(campaign_no),0)+1
+        FROM nvcampaign
+    </select>
+
+    <select id="getScenarioChannelInfo" parameterType="int" resultMap="resultCampaign">
+        SELECT
+            campaign_no, campaign_preface, channel_type, relation_type, depth_no
+          , (CASE channel_type WHEN 'M' THEN 4 WHEN 'S' THEN 3 WHEN 'T' THEN 2 WHEN 'F' THEN 1 END) as seq
+        FROM nvcampaign
+        WHERE scenario_no = #{scenarioNo}
+        ORDER BY seq DESC, depth_no
+    </select>
+
+    <select id="selectCampaignInfo" parameterType="int" resultMap="resultCampaign">
+        SELECT campaign_no, campaign_sts, approval_sts, sendstart_dt, sendstart_tm, coalesce(segment_no,0) segment_no
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectSubCampaignList" parameterType="Campaign" resultMap="resultCampaign">
+        SELECT campaign_no, scenario_no, campaign_nm, channel_type, depth_no, relation_type
+        FROM nvcampaign
+        WHERE scenario_no = #{scenarioNo}
+        AND depth_no = #{depthNo}
+        AND relation_tree LIKE concat((SELECT relation_tree FROM nvcampaign WHERE campaign_no = #{campaignNo}), '%')
+    </select>
+
+    <select id="selectRelationAndDepth" parameterType="int" resultMap="resultCampaign">
+        SELECT scenario_no, relation_type, depth_no
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectParentCampaignInfo" parameterType="int" resultMap="resultCampaign">
+        SELECT campaign_no, segment_no
+        FROM nvcampaign
+        WHERE scenario_no = #{scenarioNo}
+        AND depth_no = 1
+    </select>
+
+    <!-- 반송 이메일  -->
+    <select id="selectCampaignRetmailReceiver" parameterType="map" resultType="string">
+        SELECT retmail_receiver
+        FROM nvcampaign
+        WHERE campaign_no IN (
+            SELECT max(campaign_no)
+            FROM nvcampaign
+            WHERE scenario_no = #{scenarioNo}
+            AND channel_type = #{channelType}
+        )
+    </select>
+
+    <!--  발신자명  -->
+     <select id="selectCampaignSenderNm" parameterType="map" resultType="string">
+        SELECT sender_nm
+        FROM nvcampaign
+        WHERE campaign_no IN (
+            SELECT max(campaign_no)
+            FROM nvcampaign
+            WHERE scenario_no IN (
+                SELECT scenario_no
+                FROM nvscenario
+                WHERE user_id = #{userId}
+                AND grp_cd = #{grpCd}
+                AND tag_no = #{tagNo}
+            )
+            AND channel_type = #{channelType}
+            AND sender_nm IS NOT NULL
+        )
+    </select>
+
+    <!--  발신자 이메일  -->
+    <select id="selectCampaignSenderEmail" parameterType="map" resultType="string">
+        SELECT sender_email
+        FROM nvcampaign
+        WHERE campaign_no IN (
+            SELECT max(campaign_no)
+            FROM nvcampaign
+            WHERE scenario_no = #{scenarioNo}
+            AND channel_type = #{channelType}
+        )
+    </select>
+
+    <!--  발신자  전화번호  -->
+    <select id="selectCampaignSenderTel" parameterType="map" resultType="string">
+        SELECT sender_tel
+        FROM nvcampaign
+        WHERE campaign_no IN (
+            SELECT max(campaign_no)
+            FROM nvcampaign
+            WHERE scenario_no IN (
+                SELECT scenario_no
+                FROM nvscenario
+                WHERE user_id = #{userId}
+                AND grp_cd = #{grpCd}
+                AND tag_no = #{tagNo}
+            )
+            AND channel_type = #{channelType}
+            AND sender_tel IS NOT NULL
+        )
+    </select>
+
+    <select id="selectCampaignType" parameterType="int" resultType="string">
+        SELECT campaign_type
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="getCampaignNo" parameterType="map" resultType="int">
+        SELECT campaign_no
+        FROM nvcampaign
+        WHERE scenario_no = #{scenarioNo}
+        AND depth_no = #{depthNo}
+    </select>
+
+    <select id="getCampaignReportMaxDepth" parameterType="map" resultType="int">
+        SELECT coalesce(max(depth_no),0)
+        FROM (
+            SELECT CASE relation_type WHEN 'R' THEN 'N' ELSE relation_type END relation_type, depth_no
+            FROM nvcampaign
+            WHERE scenario_no = #{scenarioNo}
+        ) a
+        WHERE relation_type = #{relationType}
+    </select>
+
+    <!-- 미리보기 -->
+    <select id="selectCampaignPreview" parameterType="int" resultMap="mapper.Common.resultMailPreview">
+        SELECT
+            a.segment_no, a.campaign_nm as service_nm, a.user_id, a.campaign_class as service_class, a.channel_type, a.retmail_receiver, a.sender_nm
+          , coalesce(a.sender_email,' ') sender_email, coalesce(a.sender_tel,' ') sender_tel, coalesce(a.receiver_nm,' ') receiver_nm
+          , a.retry_cnt, a.campaign_type, a.sending_mode, a.sendstart_dt, a.sendstart_tm, '' as service_type, '' as sub_type
+          , coalesce(a.survey_no,-1) survey_no, -1 as resend_ecare_no, a.campaign_preface, a.campaign_preface_ab, a.relation_type, a.depth_no, a.scenario_no
+          , b.type as handler_type, b.appsource
+        FROM nvcampaign a, nvapplication b
+        WHERE a.campaign_no = b.campaign_no
+        AND a.campaign_no = #{serviceNo}
+    </select>
+
+    <select id="getCampaignDetail" parameterType="int" resultMap="mapper.Common.resultMessage">
+        SELECT campaign_preface, sender_tel, kakao_sender_key, kakao_tmpl_cd, failback_send_yn, failback_subject, kakao_image_no, campaign_class, channel_type
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectEditorCampaign" parameterType="int" resultMap="resultCampaignEditor">
+        SELECT campaign_preface, coalesce(template_type,0) template_type, survey_no, campaign_preface_ab, coalesce(handler_seq,0) handler_seq
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </select>
+</mapper>

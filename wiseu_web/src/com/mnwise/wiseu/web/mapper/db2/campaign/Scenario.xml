@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Scenario">
+    <resultMap id="resultScenario" type="Scenario">
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="user_id"                property="userId"/>
+        <result column="grp_cd"                 property="grpCd"/>
+        <result column="scenario_nm"            property="scenarioNm"/>
+        <result column="scenario_desc"          property="scenarioDesc"/>
+        <result column="scenario_type"          property="scenarioType"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="lastupdate_dt"          property="lastUpdateDt"/>
+        <result column="lastupdate_tm"          property="lastUpdateTm"/>
+        <result column="finish_yn"              property="finishYn"/>
+        <result column="finish_dt"              property="finishDt"/>
+        <result column="tag_no"                 property="tagNo"/>
+        <result column="handler_type"           property="handlerType"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="segment_no"             property="segmentNo"/>
+        <result column="segment_nm"             property="segmentNm"/>
+        <result column="segment_size"           property="segmentSize"/>
+        <result column="seg_type"               property="segType"/>
+        <result column="tag_nm"                 property="tagNm"/>
+        <result column="grp_nm"                 property="grpNm"/>
+        <result column="ab_test_type"           property="abTestType"/>
+        <result column="req_grp_nm"             property="reqGrpNm"/>
+        <result column="req_dept"               property="reqDept"/>
+        <result column="req_user"               property="reqUser"/>
+        <!-- campaignVo -->
+        <result column="campaign_no"            property="campaignVo.campaignNo"/>
+        <result column="grp_cd"                 property="campaignVo.grpCd"/>
+        <result column="user_id"                property="campaignVo.userId"/>
+        <result column="segment_no"             property="campaignVo.segmentNo"/>
+        <result column="campaign_nm"            property="campaignVo.campaignNm"/>
+        <result column="campaign_preface"       property="campaignVo.campaignPreface"/>
+        <result column="campaign_sts"           property="campaignVo.campaignSts"/>
+        <result column="campaign_type"          property="campaignVo.campaignType"/>
+        <result column="template_type"          property="campaignVo.templateType"/>
+        <result column="sendstart_dt"           property="campaignVo.sendStartDt"/>
+        <result column="sendstart_tm"           property="campaignVo.sendStartTm"/>
+        <result column="sendfinish_dt"          property="campaignVo.sendFinishDt"/>
+        <result column="sendfinish_tm"          property="campaignVo.sendFinishTm"/>
+        <result column="target_cnt"             property="campaignVo.targetCnt"/>
+        <result column="sending_mode"           property="campaignVo.sendingMode"/>
+        <result column="retry_cnt"              property="campaignVo.retryCnt"/>
+        <result column="create_dt"              property="campaignVo.createDt"/>
+        <result column="sender_nm"              property="campaignVo.senderNm"/>
+        <result column="sender_email"           property="campaignVo.senderEmail"/>
+        <result column="receiver_nm"            property="campaignVo.receiverNm"/>
+        <result column="sender_tel"             property="campaignVo.senderTel"/>
+        <result column="retmail_receiver"       property="campaignVo.retmailReceiver"/>
+        <result column="campaign_class"         property="campaignVo.campaignClass"/>
+        <result column="channel_type"           property="campaignVo.channelType"/>
+        <result column="relation_type"          property="campaignVo.relationType"/>
+        <result column="relation_tree"          property="campaignVo.relationTree"/>
+        <result column="campaign_level"         property="campaignVo.campaignLevel"/>
+        <result column="depth_no"               property="campaignVo.depthNo"/>
+        <result column="divide_yn"              property="campaignVo.divideYn"/>
+        <result column="divide_interval"        property="campaignVo.divideInterval"/>
+        <result column="ab_test_cond"           property="campaignVo.abTestCond"/>
+        <result column="ab_test_rate"           property="campaignVo.abTestRate"/>
+        <result column="campaign_preface_ab"    property="campaignVo.campaignPrefaceAb"/>
+        <result column="handler_seq"            property="campaignVo.handlerSeq"/>
+        <result column="kakao_sender_key"       property="campaignVo.kakaoSenderKey"/>
+        <result column="kakao_tmpl_cd"          property="campaignVo.kakaoTmplCd"/>
+        <result column="kakao_image_no"         property="campaignVo.kakaoImageNo"/>
+        <result column="failback_send_yn"       property="campaignVo.failbackSendYn"/>
+        <result column="failback_subject"       property="campaignVo.failbackSubject"/>
+        <result column="campaign_sts_nm"        property="campaignVo.campaignStsNm"/>
+        <result column="relation_type_nm"       property="campaignVo.relationTypeNm"/>
+        <result column="result_seq"             property="campaignVo.resultSeq"/>
+        <result column="sendstart_dtm"          property="campaignVo.sendstartDtm"/>
+        <result column="env_sender_nm"          property="campaignVo.envSenderNm"/>
+        <result column="env_sender_email"       property="campaignVo.envSenderEmail"/>
+        <result column="env_sender_tel"         property="campaignVo.envSenderTel"/>
+        <result column="env_sender_fax"         property="campaignVo.envSenderFax"/>
+        <result column="env_receiver_nm"        property="campaignVo.envReceiverNm"/>
+        <result column="env_receiver_fax"       property="campaignVo.envReceiverFax"/>
+        <result column="env_retmail_receiver"   property="campaignVo.envRetmailReceiver"/>
+        <!-- userVo -->
+        <result column="name_kor"               property="userVo.nameKor"/>
+    </resultMap>
+
+    <resultMap id="resultCampaignList" type="Scenario" extends="mapper.Scenario.resultScenario">
+        <collection property="campaignList" ofType="com.mnwise.wiseu.web.campaign.model.CampaignVo">
+            <result column="campaign_no"            property="campaignNo"/>
+            <result column="campaign_nm"            property="campaignNm"/>
+            <result column="campaign_desc"          property="campaignDesc"/>
+            <result column="campaign_preface"       property="campaignPreface"/>
+            <result column="grp_cd"                 property="grpCd"/>
+            <result column="user_id"                property="userId"/>
+            <result column="retry_cnt"              property="retryCnt"/>
+            <result column="create_dt"              property="createDt"/>
+            <result column="create_tm"              property="createTm"/>
+            <result column="lastupdate_dt"          property="lastUpdateDt"/>
+            <result column="lastupdate_tm"          property="lastUpdateTm"/>
+            <result column="sendstart_dt"           property="sendStartDt"/>
+            <result column="sendstart_tm"           property="sendStartTm"/>
+            <result column="campaign_sts"           property="campaignSts"/>
+            <result column="campaign_sts_nm"        property="campaignStsNm"/>
+            <result column="approval_sts"           property="approvalSts"/>
+            <result column="approval_sts_nm"        property="approvalStsNm"/>
+            <result column="target_cnt"             property="targetCnt"/>
+            <result column="promotion_type"         property="promotionType"/>
+            <result column="campaign_level"         property="campaignLevel"/>
+            <result column="sender_nm"              property="senderNm"/>
+            <result column="sender_email"           property="senderEmail"/>
+            <result column="receiver_nm"            property="receiverNm"/>
+            <result column="sender_tel"             property="senderTel"/>
+            <result column="retmail_receiver"       property="retmailReceiver"/>
+            <result column="campaign_type"          property="campaignType"/>
+            <result column="segment_no"             property="segmentNo"/>
+            <result column="survey_no"              property="surveyNo"/>
+            <result column="channel_type"           property="channelType"/>
+            <result column="depth_no"               property="depthNo"/>
+            <result column="divide_yn"              property="divideYn"/>
+            <result column="divide_interval"        property="divideInterval"/>
+            <result column="divide_cnt"             property="divideCnt"/>
+            <!-- scheduleVo -->
+            <result column="scenario_no"            property="scheduleVo.scenarioNo"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="resultScenarioInfo" type="ScenarioInfo">
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="scenario_nm"            property="scenarioNm"/>
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="tag_no"                 property="tagNo"/>
+        <!-- campaignInfoVo -->
+        <result column="campaign_nm"            property="campaignInfoVo.campaignNm"/>
+        <result column="campaign_no"            property="campaignInfoVo.campaignNo"/>
+        <result column="campaign_preface"       property="campaignInfoVo.campaignPreface"/>
+        <result column="campaign_sts"           property="campaignInfoVo.campaignState"/>
+        <result column="relation_type"          property="campaignInfoVo.relationType"/>
+        <result column="channel_type"           property="campaignInfoVo.channelType"/>
+        <result column="sendstart_dt"           property="campaignInfoVo.sendStartDt"/>
+        <result column="sendstart_tm"           property="campaignInfoVo.sendStartTm"/>
+        <result column="start_dt"               property="campaignInfoVo.traceStartDt"/>
+        <result column="start_tm"               property="campaignInfoVo.traceStartTm"/>
+        <result column="end_dt"                 property="campaignInfoVo.traceEndDt"/>
+        <result column="end_tm"                 property="campaignInfoVo.traceEndTm"/>
+        <result column="create_dt"              property="campaignInfoVo.createDt"/>
+        <result column="report_sts"             property="campaignInfoVo.reportSts"/>
+        <result column="depth_no"               property="campaignInfoVo.depthNo"/>
+        <result column="segment_no"             property="campaignInfoVo.segmentNo"/>
+        <!-- userVo -->
+        <result column="user_id"                property="userVo.userId"/>
+        <result column="grp_cd"                 property="userVo.grpCd"/>
+        <result column="name_kor"               property="userVo.nameKor"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertScenario" parameterType="Scenario">
+        INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, finish_yn, finish_dt, tag_no, handler_type)
+        VALUES (#{scenarioNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{scenarioNm, jdbcType=VARCHAR}, #{scenarioDesc, jdbcType=VARCHAR}, #{scenarioType, jdbcType=CHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{lastUpdateTm, jdbcType=CHAR}, #{finishYn, jdbcType=CHAR}, #{finishDt, jdbcType=CHAR}, #{tagNo}, #{handlerType, jdbcType=CHAR})
+    </insert>
+
+    <insert id="insertScenario1StepInfo" parameterType="Scenario">
+        INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)
+        VALUES (#{scenarioNo}, #{userVo.userId, jdbcType=VARCHAR}, #{userVo.grpCd, jdbcType=VARCHAR}, #{scenarioNm, jdbcType=VARCHAR}, #{scenarioDesc, jdbcType=VARCHAR}, 'M', #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{lastUpdateTm, jdbcType=CHAR}, #{tagNo}, 'N', #{handlerType, jdbcType=CHAR})
+    </insert>
+
+    <insert id="copyScenario" parameterType="Scenario">
+        INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, finish_yn, tag_no, handler_type)
+        SELECT
+            #{newScenarioNo}, #{userId}, #{grpCd}, concat('[COPY]', #{scenarioNm}) as scenario_nm, scenario_desc, scenario_type
+          , #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, 'N', tag_no, handler_type
+        FROM nvscenario
+        WHERE scenario_no = #{scenarioNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateScenarioByPk" parameterType="map">
+        UPDATE nvscenario
+        SET
+            user_id = #{userId, jdbcType=VARCHAR}
+          , grp_cd = #{grpCd, jdbcType=VARCHAR}
+          , scenario_nm = #{scenarioNm, jdbcType=VARCHAR}
+          , scenario_desc = #{scenarioDesc, jdbcType=VARCHAR}
+          , scenario_type = #{scenarioType, jdbcType=CHAR}
+          , create_dt = #{createDt, jdbcType=CHAR}
+          , create_tm = #{createTm, jdbcType=CHAR}
+          , lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}
+          , finish_yn = #{finishYn, jdbcType=CHAR}
+          , finish_dt = #{finishDt, jdbcType=CHAR}
+          , tag_no = #{tagNo}
+          , handler_type = #{handlerType, jdbcType=CHAR}
+        WHERE scenario_no = #{scenarioNo}
+    </update>
+
+    <!-- 시나리오 작성(채널 선택) 시  -->
+    <update id="updateScenario1StepInfo" parameterType="Scenario">
+        UPDATE nvscenario
+        SET
+            user_id = #{userId, jdbcType=VARCHAR}
+          , grp_cd = #{grpCd, jdbcType=VARCHAR}
+          , scenario_nm = #{scenarioNm, jdbcType=VARCHAR}
+          , scenario_desc = #{scenarioDesc, jdbcType=VARCHAR}
+          , lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}
+          , tag_no = #{tagNo}
+          , handler_type = #{handlerType, jdbcType=CHAR}
+        WHERE scenario_no = #{scenarioNo}
+    </update>
+
+    <!-- 메시지 작성 시 -->
+    <update id="updateScenario2StepInfo" parameterType="Scenario">
+        UPDATE nvscenario
+        SET
+            lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}
+          , finish_yn = #{finishYn, jdbcType=CHAR}
+          , finish_dt = #{finishDt, jdbcType=CHAR}
+        WHERE scenario_no = #{scenarioNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteScenarioByPk" parameterType="map">
+        DELETE FROM nvscenario
+        WHERE scenario_no = #{scenarioNo}
+    </delete>
+
+    <delete id="deleteScenario" parameterType="Scenario">
+        DELETE FROM nvscenario
+        <if test="scenarioNoArray != null">
+        WHERE scenario_no IN (
+        <foreach collection="scenarioNoArray" item="scenarioNo" separator=",">
+            #{scenarioNo}
+        </foreach>
+        )
+        </if>
+        <if test="scenarioNo != 0">
+        WHERE scenario_no = #{scenarioNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectScenarioByPk" parameterType="map" resultMap="resultScenario">
+        SELECT scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, finish_yn, finish_dt, tag_no, handler_type
+        FROM nvscenario
+        WHERE scenario_no = #{scenarioNo}
+    </select>
+
+    <select id="selectScenarioDetailInfo" parameterType="map" resultMap="resultScenario">
+        SELECT
+            e.scenario_no, e.user_id, e.grp_cd, e.scenario_nm, e.scenario_desc, e.scenario_type, e.create_dt, e.create_tm, e.lastupdate_dt, e.lastupdate_tm
+          , e.finish_yn, e.finish_dt, coalesce(e.tag_no,0) tag_no, e.handler_type, e.campaign_no, e.segment_no, e.campaign_nm, e.campaign_preface, e.campaign_sts, e.campaign_type
+          , e.template_type, e.sendstart_dt, e.sendstart_tm, e.sendfinish_dt, e.sendfinish_tm, e.sending_mode, coalesce(e.retry_cnt,1) retry_cnt, e.sender_nm, e.sender_email, e.receiver_nm
+          , e.sender_tel, e.retmail_receiver, e.campaign_class, e.channel_type, e.relation_type, e.relation_tree, e.campaign_level, e.depth_no, e.ab_test_type, e.campaign_preface_ab
+          , coalesce(e.handler_seq,0) handler_seq, e.kakao_sender_key, e.kakao_tmpl_cd, coalesce(e.kakao_image_no,0) kakao_image_no, e.failback_send_yn, e.failback_subject, e.segment_nm, e.segment_size, e.seg_type
+          , f.sender_nm env_sender_nm, f.sender_email env_sender_email, f.sender_tel env_sender_tel, f.receiver_nm env_receiver_nm, f.sender_fax env_sender_fax, f.receiver_fax env_receiver_fax, f.retmail_receiver env_retmail_receiver
+          , (SELECT name_kor FROM nvuser WHERE user_id = e.user_id) name_kor
+          , (SELECT tag_nm FROM nvcamptag WHERE tag_no = e.tag_no) tag_nm
+        FROM (
+            SELECT c.*, d.segment_nm, d.segment_size, d.seg_type
+            FROM (
+                SELECT
+                    a.scenario_no, a.user_id, a.grp_cd, a.scenario_nm, a.scenario_desc, a.scenario_type, a.create_dt, a.create_tm, a.lastupdate_dt, a.lastupdate_tm
+                  , a.finish_yn, a.finish_dt, a.tag_no, a.handler_type, b.campaign_no, b.segment_no, b.campaign_nm, b.campaign_preface, b.campaign_sts, b.campaign_type
+                  , b.template_type, b.sendstart_dt, b.sendstart_tm, b.sendfinish_dt, b.sendfinish_tm, b.sending_mode, b.retry_cnt, b.sender_nm, b.sender_email, b.receiver_nm
+                  , b.sender_tel, b.retmail_receiver, b.campaign_class, b.channel_type, b.relation_type, b.relation_tree, b.campaign_level, b.depth_no, b.ab_test_type, b.campaign_preface_ab
+                  , b.handler_seq, b.kakao_sender_key, b.kakao_tmpl_cd, b.kakao_image_no, b.failback_send_yn, b.failback_subject
+                FROM nvscenario a, nvcampaign b
+                WHERE a.scenario_no = b.scenario_no
+                AND a.scenario_no = #{scenarioNo}
+                AND b.campaign_no = #{campaignNo}
+            ) c LEFT OUTER JOIN nvsegment d
+            ON c.segment_no = d.segment_no
+        ) e LEFT OUTER JOIN nvusermailinfo f
+        ON e.user_id = f.user_id
+    </select>
+
+    <select id="selectOmniChannelCampaigns" parameterType="Scenario" resultMap="resultScenario">
+        SELECT
+            c.scenario_no, c.scenario_nm, c.campaign_no, c.depth_no, c.channel_type, c.relation_type
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = c.campaign_sts AND lang = #{userVo.language}) campaign_sts_nm
+          , concat(c.sendstart_dt, c.sendstart_tm) as sendstart_dtm, d.segment_size as target_cnt
+        FROM (
+            SELECT a.scenario_no, a.scenario_nm, b.campaign_no, b.segment_no, b.depth_no, b.channel_type, b.relation_type, b.campaign_sts, b.sendstart_dt, b.sendstart_tm, b.relation_tree
+            FROM nvscenario a, nvcampaign b
+            WHERE a.scenario_no = b.scenario_no
+            AND a.scenario_no = (SELECT scenario_no FROM nvcampaign WHERE campaign_no = #{campaignVo.campaignNo})
+            AND b.relation_type IN ('N', 'S', 'F', 'O')
+        ) c LEFT OUTER JOIN nvsegment d
+        ON c.segment_no = d.segment_no
+        ORDER BY rpad(
+            c.relation_tree
+          , (SELECT max(depth_no) FROM nvcampaign WHERE scenario_no = (SELECT scenario_no FROM nvcampaign WHERE campaign_no = #{campaignVo.campaignNo}))
+          , 0
+        ), c.campaign_no
+    </select>
+
+    <select id="selectScenarioBasicInfo" parameterType="Scenario" resultMap="resultCampaignList">
+        SELECT
+            a.scenario_no, a.user_id, a.grp_cd, a.scenario_nm, a.scenario_desc, a.scenario_type, a.create_dt, a.create_tm, a.lastupdate_dt, a.lastupdate_tm
+          , a.finish_yn, a.finish_dt, a.tag_no, a.handler_type, b.campaign_no, b.segment_no, b.campaign_nm, b.campaign_desc, b.campaign_preface, b.campaign_sts
+          , b.campaign_type, b.sendstart_dt, b.sendstart_tm, b.target_cnt, b.survey_no, coalesce(b.retry_cnt,1) retry_cnt, b.sender_nm, b.sender_email, b.receiver_nm, b.sender_tel
+          , b.retmail_receiver, b.channel_type, b.promotion_type, b.campaign_level, b.depth_no, b.approval_sts, b.req_dept_id req_dept, b.req_user_id req_user, b.divide_yn, b.divide_interval
+          , coalesce(b.divide_cnt,0) divide_cnt, b.ab_test_type, b.ab_test_cond, coalesce(b.ab_test_rate,0) ab_test_rate, b.campaign_preface_ab
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = b.campaign_sts AND lang = #{userVo.language}) campaign_sts_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100121' AND cd = b.approval_sts AND lang = #{userVo.language}) approval_sts_nm
+          , (CASE WHEN b.channel_type = 'm' THEN 4 WHEN b.channel_type = 's' THEN 3 WHEN b.channel_type = 't' THEN 2 ELSE 1 END) seq
+          , c.tag_nm, d.grp_nm, e.name_kor, f.supracampaign_no, '' req_grp_nm
+        FROM nvscenario a, nvcampaign b, nvcamptag c, nvusergrp d, nvuser e, nvschedule f
+        WHERE a.scenario_no = b.scenario_no
+        AND a.tag_no = c.tag_no
+        AND a.grp_cd = d.grp_cd
+        AND a.user_id = e.user_id
+        AND b.campaign_no = f.campaign_no
+        <!-- 시큐어 코딩 추가- 파라미터 조작으로 다른 계정의 정보 조회 권한 제한 -->
+        <if test="scenarioNo != null and scenarioNo != ''">
+        AND a.scenario_no = #{scenarioNo}
+        </if>
+        <if test="campaignVo.campaignNo != null and campaignVo.campaignNo != ''">
+            <if test="campaignVo.campaignNo != 0">
+        AND b.campaign_no = #{campaignVo.campaignNo}
+            </if>
+        </if>
+        <if test="campaignVo.depthNo != null and campaignVo.depthNo != ''">
+            <if test="campaignVo.depthNo != 0">
+        AND b.depth_no = #{campaignVo.depthNo}
+            </if>
+        </if>
+        ORDER BY seq DESC
+    </select>
+
+    <sql id="campaignScenarioWhere">
+   	    AND c.use_yn = 'Y'
+        <if test="searchWord != null and searchWord != ''">
+            <if test="searchColumn == 'scenarioNm'">
+        AND a.scenario_nm LIKE '%'||#{searchWord}||'%'
+            </if>
+            <if test="searchColumn == 'campaignNo'">
+        AND c.campaign_no = #{searchWord}
+            </if>
+        </if>
+        <if test="userVo.userTypeCd      == 'U'.toString()"                       >AND a.user_id = #{userVo.userId}</if>
+        <if test="userVo.userTypeCd      == 'M'.toString()"                       >AND a.grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="searchQstartDt         != null and searchQstartDt         != ''">AND a.create_dt &gt;= #{searchQstartDt}</if>
+        <if test="searchQendDt           != null and searchQendDt           != ''">AND a.create_dt &lt;= #{searchQendDt}</if>
+        <if test="tagNo                  != -1"                                   >AND b.tag_no = #{tagNo}</if>
+        <if test="campaignVo.campaignSts != null and campaignVo.campaignSts != ''">AND c.campaign_sts = #{campaignVo.campaignSts}</if>
+        <if test="campaignVo.approvalSts != null and campaignVo.approvalSts != ''">AND c.approval_sts = #{campaignVo.approvalSts}</if>
+    </sql>
+
+    <select id="getScenarioTotalCount" parameterType="Scenario" resultType="int">
+        SELECT count(*)
+        FROM nvscenario a, nvcamptag b, nvcampaign c LEFT OUTER JOIN nvsendresult d
+        ON c.campaign_no = d.campaign_no
+        WHERE a.tag_no = b.tag_no
+        AND a.scenario_no = c.scenario_no
+        AND d.resend_sts is null
+        <include refid="campaignScenarioWhere"/>
+    </select>
+
+    <select id="getCampaignScenarioList" parameterType="Scenario" resultMap="resultScenario">
+        SELECT
+            rnum
+          , coalesce(scenario_no,0) scenario_no, user_id, grp_cd, scenario_nm, finish_yn
+          , (SELECT grp_nm FROM nvusergrp WHERE grp_cd = x.grp_cd) grp_nm
+          , (SELECT name_kor FROM nvuser WHERE user_id = x.user_id) name_kor
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = x.campaign_sts AND lang = #{userVo.language}) campaign_sts_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = x.relation_type AND lang = #{userVo.language}) relation_type_nm
+          , to_char(to_date(create_dt, 'yyyymmdd'), 'yy-mm-dd') create_dt
+          , coalesce(campaign_no,0) campaign_no, coalesce(campaign_preface,'') campaign_preface
+          , CASE WHEN sendstart_dtm = '' THEN ''
+                 ELSE to_char(to_date(sendstart_dtm, 'yyyymmddhh24miss'), 'yy-mm-dd hh24:mi')
+            END sendstart_dtm
+          , CASE WHEN campaign_sts = 'P'
+                 THEN CASE WHEN approval_sts IS NULL THEN campaign_sts ELSE approval_sts END
+                 ELSE campaign_sts
+            END campaign_sts
+          , relation_type, coalesce(depth_no,0) depth_no, channel_type, campaign_level
+          , divide_yn, ab_test_type, campaign_preface_ab, coalesce(segment_no,-1) segment_no, relation_tree
+          , tag_nm, coalesce(result_seq,0) result_seq, coalesce(segment_size,0) target_cnt
+        FROM (
+            SELECT
+                row_number() OVER(ORDER BY a.scenario_no DESC, c.relation_tree, c.campaign_no) rnum
+              , a.scenario_no, a.user_id, a.grp_cd, a.scenario_nm, a.scenario_type, a.finish_yn, a.create_dt, b.tag_nm
+              , c.campaign_no, c.campaign_preface, concat(coalesce(c.sendstart_dt,''), coalesce(c.sendstart_tm,'')) sendstart_dtm
+              , c.campaign_sts, c.approval_sts, c.relation_type, c.depth_no, c.channel_type, c.campaign_level
+              , c.divide_yn, c.ab_test_type, c.campaign_preface_ab, c.segment_no, c.relation_tree
+              , d.result_seq, e.segment_size
+            FROM nvscenario a, nvcamptag b, nvcampaign c
+            LEFT OUTER JOIN nvsendresult d
+            ON c.campaign_no = d.campaign_no
+            LEFT OUTER JOIN nvsegment e
+            ON c.segment_no = e.segment_no
+            WHERE a.tag_no = b.tag_no
+            AND a.scenario_no = c.scenario_no
+            AND d.resend_sts is null
+            <include refid="campaignScenarioWhere"/>
+            ORDER BY a.scenario_no DESC, relation_tree, c.campaign_no DESC
+        ) x
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+        ORDER BY scenario_no DESC, relation_tree, campaign_no DESC
+    </select>
+
+    <select id="selectMaxScenarioNo" resultType="int">
+        SELECT coalesce(max(scenario_no),0) + 1
+        FROM nvscenario
+    </select>
+
+    <select id="selectScenarioInfo" parameterType="int" resultMap="resultScenarioInfo">
+        SELECT
+            a.scenario_no, a.scenario_nm, a.tag_no, a.user_id, a.grp_cd, b.campaign_no, b.campaign_nm, b.campaign_preface, b.campaign_sts, b.relation_type
+          , b.channel_type, b.sendstart_dt, b.sendstart_tm, b.create_dt, b.report_sts, b.depth_no, b.segment_no, c.start_dt, c.start_tm, c.end_dt
+          , c.end_tm, d.name_kor, e.grp_nm
+        FROM nvscenario a, nvcampaign b, nvtraceinfo c, nvuser d, nvusergrp e
+        WHERE a.scenario_no = b.scenario_no
+        AND a.user_id = d.user_id
+        AND b.campaign_no = c.campaign_no
+        AND d.grp_cd = e.grp_cd
+        AND b.campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectLinkCampaignListTotalCount" parameterType="Scenario" resultType="int">
+        SELECT count(*)
+        FROM nvscenario a, nvcampaign b
+        WHERE a.scenario_no = b.scenario_no
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND a.user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.grpCd != null and userVo.grpCd != ''">
+        AND a.grp_cd LIKE #{userVo.grpCd} || '%'
+        </if>
+        <if test="scenarioNm != null and scenarioNm != ''">
+        AND a.scenario_nm LIKE '%' || #{scenarioNm} || '%'
+        </if>
+        AND b.campaign_sts = 'E'
+        AND b.channel_type = 'M'
+    </select>
+
+    <select id="selectLinkCampaignList" parameterType="Scenario" resultMap="mapper.LinkTrace.resultLinkclick">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY a.scenario_no DESC) as rnum
+              , a.scenario_no, a.user_id, a.grp_cd, a.scenario_nm, a.scenario_desc, a.create_dt, a.create_tm
+              , b.campaign_no, c.tag_nm, d.grp_nm, e.name_kor
+            FROM nvscenario a, nvcampaign b, nvcamptag c, nvusergrp d, nvuser e
+            WHERE a.scenario_no = b.scenario_no
+            AND a.tag_no = c.tag_no
+            AND a.grp_cd = d.grp_cd
+            AND a.user_id = e.user_id
+            AND a.scenario_type = 'M'
+            <if test="userVo.grpCd != null and userVo.grpCd != ''">
+            AND a.grp_cd LIKE '%' || #{userVo.grpCd} || '%'
+            </if>
+            <if test="scenarioNm != null and scenarioNm != ''">
+            AND a.scenario_nm LIKE '%' || #{scenarioNm} || '%'
+            </if>
+            AND b.campaign_sts = 'E'
+            AND b.channel_type = 'M'
+        ) f
+        WHERE rnum BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="selectCreateUserInfo" parameterType="int" resultType="CaseInsensitiveMap">
+        SELECT user_id, grp_cd
+        FROM nvscenario
+        WHERE scenario_no = #{scenarioNo}
+    </select>
+
+</mapper>

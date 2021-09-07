@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Common">
+
+    <select id="selectCount" parameterType="string" resultType="int">
+        ${value}
+    </select>
+    
+  	<insert id="insertApiLog" parameterType="apiLog">
+	INSERT INTO NV_API_LOG (
+		REGDATE,
+		SEQ,
+		REGTYPE,
+		INTERFACE_ID,
+		MSG,
+		IN_VAL,
+		DTL_MSG
+	) VALUES (
+		to_char(systimestamp, 'yyyyMMddHH24MISSFF3')
+		,#{seq,jdbcType=VARCHAR}
+		,#{regType,jdbcType=VARCHAR}
+		,#{interfaceId,jdbcType=VARCHAR}
+		,#{msg,jdbcType=VARCHAR}
+		,#{inVal,jdbcType=VARCHAR}
+		,#{dtlMsg,jdbcType=VARCHAR}
+	) 
+    </insert>
+</mapper>

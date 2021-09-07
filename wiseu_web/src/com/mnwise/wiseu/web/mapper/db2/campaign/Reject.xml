@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Reject">
+    <!--<resultMap id="resultReject" type="Reject">
+        <result column="campaign_no"        property="campaignNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="list_seq"           property="listSeq"/>
+        <result column="customer_id"        property="customerId"/>
+        <result column="record_seq"         property="recordSeq"/>
+        <result column="customer_nm"        property="customerNm"/>
+        <result column="customer_email"     property="customerEmail"/>
+        <result column="reject_dt"          property="rejectDt"/>
+        <result column="reject_tm"          property="rejectTm"/>
+        <result column="reject_reason"      property="rejectReason"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getCampaignSummaryReject" parameterType="int" resultType="int">
+        SELECT count(*) reject_cnt
+        FROM nvscenario a, nvcampaign b, nvsendresult c, nvreject d
+        WHERE result_sts = 'XE'
+        AND a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND b.campaign_no = d.campaign_no
+        AND b.campaign_no = #{campaignNo}
+        AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+    </select>
+
+    <select id="getCampaignReportRejectList" parameterType="map" resultMap="mapper.SendResult.resultCampaignReportBasic">
+        SELECT
+            b.campaign_no, max(a.scenario_nm) scenario_nm, coalesce(max(c.send_cnt),0) send_cnt, coalesce(count(*),0) reject_cnt
+        FROM nvscenario a, nvcampaign b, nvsendresult c, nvreject d
+        WHERE result_sts = 'XE'
+        AND a.scenario_no = b.scenario_no
+        AND b.campaign_no = c.campaign_no
+        AND b.campaign_no = d.campaign_no
+        AND a.scenario_no = #{scenarioNo}
+        AND b.campaign_no = #{campaignNo}
+        AND (c.resend_sts IS NULL OR c.resend_sts = 'F')
+        GROUP BY b.campaign_no
+    </select>
+
+</mapper>

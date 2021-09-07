@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.RealtimeAcceptData">
+    <resultMap id="resultRealtimeAcceptData" type="RealtimeAcceptData">
+        <result column="seq"            property="seq"/>
+        <result column="data_seq"       property="dataSeq"/>
+        <result column="attach_yn"      property="attachYn"/>
+        <result column="attach_name"    property="attachName"/>
+        <result column="secu_key"       property="secuKey"/>
+        <result column="data"           property="data"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertRealtimeAcceptData" parameterType="RealtimeAcceptData">
+        INSERT INTO nvrealtimeacceptdata (seq, data_seq, attach_yn, attach_name, secu_key, data)
+        VALUES (#{seq}, #{dataSeq}, #{attachYn, jdbcType=CHAR}, #{attachName, jdbcType=VARCHAR}, #{secuKey, jdbcType=VARCHAR}, #{data})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectRealtimeAcceptDataList" parameterType="map" resultMap="resultRealtimeAcceptData">
+        SELECT seq, data_seq, attach_yn, attach_name, secu_key, data
+        FROM nvrealtimeacceptdata
+        WHERE seq = #{seq}
+    </select>
+</mapper>

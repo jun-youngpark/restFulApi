@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.sendLog">
+
+    <!-- <resultMap id="CustomSendlLogResult" type="ResponseSendlog">
+        <result column="seq"           property="seq"/>
+        <result column="channel"           property="channel"/>
+        <result column="error_cd"         property="errorCd"/>
+        <result column="err_msg"          property="errMsg"/>
+        <result column="customer_key"    property="customerKey"/>
+        <result column="customer_nm"       property="cutomerNm"/>
+        <result column="customer_email"       property="customerEmail"/>
+        <result column="send_dt"       property="sendDt"/>
+        <result column="send_tm"       property="sendTm"/>
+        <result column="open_dt"       property="openDt"/>
+        <result column="slot1"       property="slot1"/>
+        <result column="slot2"       property="slot2"/>
+    </resultMap> -->
+	<resultMap id="resultTableSrch" type="TableSrchRtn">
+        <result column="seq"                 property="seq"/>
+        <result column="send_fg"             property="sendFg"/>
+        <result column="req_dt"              property="reqDt"/>
+        <result column="req_tm"              property="reqTm"/>
+        <result column="ERROR_CD"            property="errorCd"/>
+        <result column="ERR_MSG"             property="errMsg"/>
+    </resultMap>
+    <resultMap id="resultCampaignLog" type="CampaignLogRtn">
+        <result column="send_dt"                 property="sendDt"/>
+        <result column="send_tm"                 property="sendTm"/>
+        <result column="customer_key"            property="receiverId"/>
+        <result column="customer_nm"             property="receriverNm"/>
+        <result column="customer_email"          property="receiver"/>
+        <result column="error_cd"                property="errorCd"/>
+        <result column="err_msg"                 property="errMsg"/>
+        <result column="campaign_no"             property="campaignNo"/>
+        <result column="result_seq"              property="resultSeq"/>
+        <result column="list_seq"                property="listSeq"/>
+        <result column="customer_key"            property="custmerKey"/>
+        <result column="record_seq"              property="recordSeq"/>
+    </resultMap>  
+    <resultMap id="resultCampaignSingleLog" type="CampaignSingleLog">
+        <result column="campaign_no"                 property="campaignNo"/>
+        <result column="channel_type"                property="channel"/>
+        <result column="send_dt"                     property="sendDt"/>
+        <result column="send_tm"                     property="sendTm"/>
+        <result column="req_user_id"                 property="reqUserId"/>
+        <result column="req_dept_id"                 property="reqDeptId"/>
+        <result column="customer_key"                property="receiverId"/>
+        <result column="customer_nm"                 property="receriverNm"/>
+        <result column="customer_email"              property="receiver"/>
+        <result column="seq"                         property="seq"/>
+        <result column="error_cd"                    property="resultCd"/>
+        <result column="err_msg"                     property="resultMsg"/>
+        <result column="open_dt"                     property="openDate"/>
+    </resultMap>   
+    <resultMap id="resultEcareLog" type="EcareLogRtn">
+        <result column="seq"                 property="seq"/>
+        <result column="send_dt"             property="sendDt"/>
+        <result column="send_tm"             property="sendTm"/>
+        <result column="receiver_id"         property="receiverId"/>
+        <result column="receiver_nm"         property="receriverNm"/>
+        <result column="receiver"            property="receiver"/>
+        <result column="error_cd"            property="errorCd"/>
+        <result column="err_msg"             property="errMsg"/>
+        <result column="open_dt"             property="openDate"/>
+    </resultMap>         
+    <resultMap id="resultEcareSingleLog" type="EcareSingleLogRtn">
+        <result column="ecare_no"            property="ecareNo"/>
+        <result column="channel"             property="channel"/>
+        <result column="send_dt"             property="sendDt"/>
+        <result column="send_tm"             property="sendTm"/>
+        <result column="req_user_id"         property="reqUserId"/>
+        <result column="req_dept_id"         property="reqDeptId"/>
+        <result column="receiver_id"         property="receiverId"/>
+        <result column="receiver_nm"         property="receriverNm"/>
+        <result column="receiver"            property="receiver"/>
+        <result column="seq"                 property="seq"/>
+        <result column="error_cd"            property="resultCode"/>
+        <result column="err_msg"             property="resultMsg"/>
+        <result column="open_dt"             property="openDate"/>
+    </resultMap>            
+    <select id="selectSendlog" parameterType="CustomSendlLog" resultType="CustomSendlLog" >
+    	SELECT 	seq
+    		 	,'M' channel
+    		 	,error_cd
+    		 	,err_msg
+    		 	,customer_key
+    		 	,customer_nm
+    		 	,customer_email
+    		 	,send_dt
+    		 	,send_tm
+    		 	,open_dt
+    		 	,slot1
+    		 	,slot2
+		FROM 	nvecaresendlog
+		WHERE	send_dtm between #{startDate} and #{endDate}
+		<if test="ecareNo  != null and ecareNo  != 0 ">
+			AND ecare_no = #{ecareNo}
+		</if>
+		<if test="errorCd != null and errorCd != ''">
+			AND error_cd = #{errorCd, jdbcType=VARCHAR}
+		</if>
+    </select>
+	<select id="selectTblSrch" parameterType="TableSrch" resultMap="resultTableSrch">
+		SELECT 
+		*
+		FROM(
+		    select 
+		    row_number() OVER(ORDER BY ecare_no DESC) rnum
+		    ,seq
+		    ,send_fg
+		    ,req_dt
+		    ,req_tm
+		    ,error_cd
+		    ,err_msg
+		    FROM
+		    (select 
+		        A.ecare_no
+		        ,A.seq
+		        ,A.send_fg
+		        ,A.req_dt
+		        ,A.req_tm
+		        ,B.ERROR_CD
+		        ,B.ERR_MSG
+		    from NVREALTIMEACCEPT A
+		    LEFT OUTER JOIN NVECARESENDLOG B
+		    ON A.seq = B.seq
+		    where 1=1
+		    and A.ecare_no = #{ecareNo}
+		    and A.channel = #{channel, jdbcType=VARCHAR}
+		    and A.req_Dt = #{reqDt, jdbcType=VARCHAR}
+		    and A.req_Tm = #{reqTm, jdbcType=VARCHAR}
+		    <if test="reqUserId != null and reqUserId != ''">
+		    and A.req_user_id = #{reqUserId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="reqUserId != null and reqUserId != ''">
+		    and A.req_user_id = #{reqUserId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="reqDeptId != null and reqDeptId != ''">
+		    and A.req_dept_id = #{reqDeptId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="receiverId != null and receiverId != ''">
+		    and A.receiver_id = #{receiverId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="receiverNm != null and receiverNm != ''">
+		    and A.receiver_nm = #{receiverNm, jdbcType=VARCHAR}
+		    </if>
+		    <if test="receiver != null and receiver != ''">
+		    and A.receiver = #{receiver, jdbcType=VARCHAR}
+		    </if>
+		    <if test="seq != null and seq != ''">
+		    and A.seq = #{seq, jdbcType=VARCHAR}
+		    </if>		    
+		    UNION ALL 
+		    select
+		        A.ecare_no
+		        ,A.seq
+		        ,A.send_fg
+		        ,A.req_dt
+		        ,A.req_tm
+		        ,B.ERROR_CD
+		        ,B.ERR_MSG
+		    from NVBATCH A
+		    LEFT OUTER JOIN NVECARESENDLOG B
+		    ON A.seq = B.seq
+		    where 1=1
+		    and A.ecare_no = #{ecareNo}
+		    and A.channel = #{channel, jdbcType=VARCHAR}
+		    and A.req_Dt = #{reqDt, jdbcType=VARCHAR}
+		    and A.req_Tm = #{reqTm, jdbcType=VARCHAR}
+		    <if test="reqUserId != null and reqUserId != ''">
+		    and A.req_user_id = #{reqUserId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="reqUserId != null and reqUserId != ''">
+		    and A.req_user_id = #{reqUserId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="reqDeptId != null and reqDeptId != ''">
+		    and A.req_dept_id = #{reqDeptId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="receiverId != null and receiverId != ''">
+		    and A.receiver_id = #{receiverId, jdbcType=VARCHAR}
+		    </if>
+		    <if test="receiverNm != null and receiverNm != ''">
+		    and A.receiver_nm = #{receiverNm, jdbcType=VARCHAR}
+		    </if>
+		    <if test="receiver != null and receiver != ''">
+		    and A.receiver = #{receiver, jdbcType=VARCHAR}
+		    </if>
+		    <if test="seq != null and seq != ''">
+		    and A.seq = #{seq, jdbcType=VARCHAR}
+		    </if>
+		    ) 
+		)
+		WHERE rnum &gt;= ((#{nowPage} - 1) * #{limit} + 1)
+		AND rnum &lt;= #{nowPage} * #{limit}
+	</select>
+	<select id="selectCampaignLog" parameterType="CampaignLog" resultMap="resultCampaignLog">
+	select *
+	    from (
+	        SELECT 
+	            row_number() OVER(ORDER BY b.send_dt DESC) rnum,
+	            b.send_dt,
+	            b.send_tm,
+	            b.customer_key,
+	            b.customer_nm,
+	            b.customer_email,
+	            b.error_cd,
+	            b.err_msg,
+	            a.campaign_no,
+	            c.result_seq,
+	            b.list_seq,
+	            b.record_seq
+	        FROM nvcampaign a, nvsendlog b, nvsendresult c
+	        WHERE a.campaign_no = b.campaign_no
+	        AND b.campaign_no = c.campaign_no
+	        AND b.result_seq = c.result_seq
+	        AND b.send_dt BETWEEN #{searchStartDt, jdbcType=VARCHAR} AND #{searchEndDt, jdbcType=VARCHAR}
+	        AND a.channel_type = #{channelType, jdbcType=VARCHAR}
+	        <if test="receiverId != null and receiverId !=''">
+	        and b.customer_key = #{receiverId, jdbcType=VARCHAR}
+	        </if>
+	        <if test="receiverNm != null and receiverNm !=''">
+	        and b.customer_nm = #{receiverNm, jdbcType=VARCHAR}
+	        </if>        
+	        <if test="receiver != null and receiver !=''">
+	        and b.customer_email = #{receiver, jdbcType=VARCHAR}
+	        </if>          
+	)
+	WHERE rnum &gt;= ((#{nowPage} - 1) * #{limit} + 1)
+	AND rnum &lt;= #{nowPage} * #{limit}	
+	</select>
+    <select id="selectCampaignSingleLog" parameterType="CampaignSingleLog" resultMap="resultCampaignSingleLog">
+        SELECT 
+            a.campaign_no,
+            a.channel_type,
+            b.send_dt,
+            b.send_tm,
+            b.req_user_id,
+            b.req_dept_id,
+            b.customer_key,
+            b.customer_nm,
+            b.customer_email,
+            b.seq,
+            b.error_cd,
+            b.err_msg,            
+            b.open_dt
+        FROM nvcampaign a, nvsendlog b, nvsendresult c
+        WHERE a.campaign_no = b.campaign_no
+        AND b.campaign_no = c.campaign_no
+        AND b.result_seq = c.result_seq
+        AND a.campaign_No = #{campaignNo}
+        AND c.result_seq = #{resultSeq, jdbcType=VARCHAR}
+        AND b.list_seq = #{listSeq, jdbcType=VARCHAR}
+        AND b.customer_key = #{custmerKey, jdbcType=VARCHAR}
+        AND b.record_seq= #{recordSeq, jdbcType=VARCHAR}
+    </select>
+    <select id="selectEcareLog" parameterType="EcareLog" resultMap="resultEcareLog">
+        SELECT 
+        *
+        FROM(
+            select 
+            row_number() OVER(ORDER BY send_dt DESC) rnum
+            ,seq
+            ,send_dt
+            ,send_tm
+            ,receiver_id
+            ,receiver_nm
+            ,receiver
+            ,error_cd
+            ,err_msg
+            ,open_dt
+            FROM
+            (select 
+                A.seq,
+                b.send_dt,
+                b.send_tm,
+                a.receiver_id,
+                a.receiver_nm,
+                a.receiver,
+                b.error_cd,
+                b.err_msg,
+                b.open_dt
+            from NVREALTIMEACCEPT A
+            LEFT OUTER JOIN NVECARESENDLOG B
+            ON A.seq = B.seq
+            where 1=1
+            AND b.send_dt BETWEEN #{searchStartDt, jdbcType=VARCHAR} AND #{searchEndDt, jdbcType=VARCHAR}
+            <if test="ecareNo != null and ecareNo != 0">
+            and A.ecare_no = #{ecareNo}
+            </if>
+            and A.channel = #{channel, jdbcType=VARCHAR}
+            <if test="receiverId != null and receiverId != ''">
+            and A.receiver_id = #{receiverId, jdbcType=VARCHAR}
+            </if>
+            <if test="receriverNm != null and receriverNm != ''">
+            and A.receiver_nm = #{receriverNm, jdbcType=VARCHAR}
+            </if>
+            <if test="receiver != null and receiver != ''">
+            and A.receiver = #{receiver, jdbcType=VARCHAR}
+            </if>
+            UNION ALL 
+            select
+                A.seq,
+                b.send_dt,
+                b.send_tm,
+                a.receiver_id,
+                a.receiver_nm,
+                a.receiver,
+                b.error_cd,
+                b.err_msg,
+                b.open_dt
+            from NVBATCH A
+            LEFT OUTER JOIN NVECARESENDLOG B
+            ON A.seq = B.seq
+            where 1=1
+            AND b.send_dt BETWEEN #{searchStartDt, jdbcType=VARCHAR} AND #{searchEndDt, jdbcType=VARCHAR}
+            <if test="ecareNo != null and ecareNo != 0">
+            and A.ecare_no = #{ecareNo}
+            </if>
+            and A.channel = #{channel, jdbcType=VARCHAR}
+            <if test="receiverId != null and receiverId != ''">
+            and A.receiver_id = #{receiverId, jdbcType=VARCHAR}
+            </if>
+            <if test="receriverNm != null and receriverNm != ''">
+            and A.receiver_nm = #{receriverNm, jdbcType=VARCHAR}
+            </if>
+            <if test="receiver != null and receiver != ''">
+            and A.receiver = #{receiver, jdbcType=VARCHAR}
+            </if>
+            ) 
+        )
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{limit} + 1)
+        AND rnum &lt;= #{nowPage} * #{limit}    
+    </select>
+    <select id="selectEcareSingleLog" parameterType="EcareLog" resultMap="resultEcareSingleLog">
+    select * from
+	(
+	select 
+	    a.ecare_no,
+	    a.channel,
+	    b.send_dt,
+	    b.send_tm,
+	    a.req_user_id,
+	    a.req_dept_id,
+	    a.receiver_id,
+	    a.receiver_nm,
+	    a.receiver,
+	    A.seq,
+	    b.error_cd,
+	    b.err_msg,
+	    b.open_dt
+	from NVREALTIMEACCEPT A
+	INNER JOIN NVECAREMSG C
+	ON c.ecare_no = A.ecare_no
+	LEFT OUTER JOIN NVECARESENDLOG B
+	ON A.seq = B.seq
+	where 1=1
+	and A.seq = #{seq, jdbcType=VARCHAR}
+	and C.sub_type = #{subType, jdbcType=VARCHAR}
+	union all
+	select 
+	    a.ecare_no,
+	    a.channel,
+	    b.send_dt,
+	    b.send_tm,
+	    a.req_user_id,
+	    a.req_dept_id,
+	    a.receiver_id,
+	    a.receiver_nm,
+	    a.receiver,
+	    A.seq,
+	    b.error_cd,
+	    b.err_msg,
+	    b.open_dt
+	from NVBATCH A
+	INNER JOIN NVECAREMSG C
+	ON c.ecare_no = A.ecare_no
+	LEFT OUTER JOIN NVECARESENDLOG B
+	ON A.seq = B.seq
+	where 1=1
+    and A.seq = #{seq, jdbcType=VARCHAR}
+    and C.sub_type = #{subType, jdbcType=VARCHAR}
+	)
+    </select> 
+</mapper>

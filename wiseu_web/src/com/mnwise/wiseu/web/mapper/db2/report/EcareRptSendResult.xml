@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareRptSendResult">
+    <!--<resultMap id="resultEcareRptSendResult" type="EcareRptSendResult">
+        <result column="ecare_no"               property="ecareNo"/>
+        <result column="result_seq"             property="resultSeq"/>
+        <result column="report_dt"              property="reportDt"/>
+        <result column="result_desc"            property="resultDesc"/>
+        <result column="result_sts"             property="resultSts"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="fail_cnt"               property="failCnt"/>
+        <result column="unknown_user_cnt"       property="unknownUserCnt"/>
+        <result column="unknown_host_cnt"       property="unknownHostCnt"/>
+        <result column="smtp_except_cnt"        property="smtpExceptCnt"/>
+        <result column="no_route_cnt"           property="noRouteCnt"/>
+        <result column="refused_cnt"            property="refusedCnt"/>
+        <result column="etc_except_cnt"         property="etcExceptCnt"/>
+        <result column="invalid_address_cnt"    property="invalidAddressCnt"/>
+        <result column="log_sts"                property="logSts"/>
+        <result column="returnmail_cnt"         property="returnmailCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="link_cnt"               property="linkCnt"/>
+        <result column="start_dt"               property="startDt"/>
+        <result column="start_tm"               property="startTm"/>
+        <result column="end_dt"                 property="endDt"/>
+        <result column="end_tm"                 property="endTm"/>
+        <result column="resend_sts"             property="resendSts"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertEcareDailyScheduleReceiptList" parameterType="map">
+        INSERT INTO nvecarerptsendresult (
+            ecare_no, result_seq, report_dt, send_cnt, success_cnt, unknown_user_cnt, unknown_host_cnt, smtp_except_cnt, no_route_cnt, refused_cnt, etc_except_cnt, invalid_address_cnt, start_dt
+        )
+        SELECT
+            ecare_no, result_seq, start_dt, sum(send_cnt) as send_cnt, sum(success_cnt) as success_cnt
+          , sum(unknown_user_cnt) as unknown_user_cnt, sum(unknown_host_cnt) as unknown_host_cnt, sum(smtp_except_cnt) as smtp_except_cnt, sum(no_route_cnt) as no_route_cnt
+          , sum(refused_cnt) as refused_cnt, sum(etc_except_cnt) as etc_except_cnt, sum(invalid_address_cnt) as invalid_address_cnt, start_dt
+        FROM nvecaresendresult
+        WHERE ecare_no = #{ecareNo}
+        AND result_seq = #{resultSeq}
+        AND start_dt = #{sendStartDt}
+        AND result_sts = 'XE'
+        GROUP BY ecare_no, result_seq, start_dt
+    </insert>
+
+    <insert id="insertEcareDailyRealtimeReceiptList" parameterType="map">
+        INSERT INTO nvecarerptsendresult (
+            ecare_no, result_seq, report_dt, send_cnt, success_cnt, unknown_user_cnt, unknown_host_cnt, smtp_except_cnt, no_route_cnt, refused_cnt, etc_except_cnt, invalid_address_cnt, start_dt
+        )
+        SELECT
+            ecare_no, 0 as result_seq, start_dt, sum(send_cnt) as send_cnt, sum(success_cnt) as success_cnt
+          , sum(unknown_user_cnt) as unknown_user_cnt, sum(unknown_host_cnt) as unknown_host_cnt, sum(smtp_except_cnt) as smtp_except_cnt, sum(no_route_cnt) as no_route_cnt
+          , sum(refused_cnt) as refused_cnt, sum(etc_except_cnt) as etc_except_cnt, sum(invalid_address_cnt) as invalid_address_cnt, start_dt
+        FROM nvecaresendresult
+        WHERE ecare_no = #{ecareNo}
+        AND start_dt = #{sendStartDt}
+        AND result_sts = 'XE'
+        GROUP BY ecare_no, start_dt
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEcareDailyScheduleReceiptList" parameterType="map">
+        UPDATE nvecarerptsendresult
+        SET (open_cnt, duration_cnt) = (
+            SELECT coalesce(sum(open_fg),0) as open_cnt, coalesce(sum(duration_fg),0) as duration_cnt
+            FROM (
+                SELECT
+                    ecare_no, customer_id, result_seq
+                  , CASE WHEN duplication_fg = 0 THEN 0 ELSE 1 END as open_fg
+                  , CASE WHEN duplication_fg = 1 THEN 0 ELSE 1 END as duplication_fg
+                  , CASE WHEN duration_fg = 0 THEN 0 ELSE 1 END as duration_fg
+                FROM (
+                    SELECT
+                        a.ecare_no, a.customer_id, a.result_seq, count(a.customer_id) as duplication_fg
+                      , count(CASE WHEN a.reading_duration &gt;= 10 THEN 1 ELSE NULL END) as duration_fg
+                    FROM nvecarereceipt a, nvecaresendresult b
+                    WHERE a.ecare_no = b.ecare_no
+                    AND a.result_seq = b.result_seq
+                    AND b.ecare_no = #{ecareNo}
+                    AND b.result_seq = #{resultSeq}
+                    AND b.start_dt = #{sendStartDt}
+                    GROUP BY a.ecare_no, a.customer_id, a.result_seq
+                ) c
+            ) d
+        )
+        WHERE ecare_no = #{ecareNo}
+        AND result_seq = #{resultSeq}
+        AND start_dt = #{sendStartDt}
+    </update>
+
+    <update id="updateEcareDailyRealtimeReceiptList" parameterType="map">
+        UPDATE nvecarerptsendresult
+        SET (open_cnt, duration_cnt) = (
+            SELECT coalesce(sum(open_fg),0) as open_cnt, coalesce(sum(duration_fg),0) as duration_cnt
+            FROM (
+                SELECT
+                    ecare_no, customer_id, result_seq
+                  , CASE WHEN duplication_fg = 0 THEN 0 ELSE 1 END as open_fg
+                  , CASE WHEN duplication_fg = 1 THEN 0 ELSE 1 END as duplication_fg
+                  , CASE WHEN duration_fg = 0 THEN 0 ELSE 1 END as duration_fg
+                FROM (
+                    SELECT
+                        a.ecare_no, a.customer_id, a.result_seq, count(a.customer_id) as duplication_fg
+                      , count(CASE WHEN a.reading_duration &gt;= 10 THEN 1 ELSE NULL END) as duration_fg
+                    FROM nvecarereceipt a, nvecaresendresult b
+                    WHERE a.ecare_no = b.ecare_no
+                    AND a.result_seq = b.result_seq
+                    AND b.ecare_no = #{ecareNo}
+                    AND b.start_dt = #{sendStartDt}
+                    GROUP BY a.ecare_no, a.customer_id, a.result_seq
+                ) c
+            ) d
+        )
+        WHERE ecare_no = #{ecareNo}
+        AND start_dt = #{sendStartDt}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEcareDailyScheduleReceiptList" parameterType="map" resultType="string">
+        SELECT start_dt
+        FROM nvecarerptsendresult
+        WHERE ecare_no = #{ecareNo}
+        AND result_seq = #{resultSeq}
+        AND start_dt = #{sendStartDt}
+    </select>
+
+    <select id="selectEcareDailyRealtimeReceiptList" parameterType="map" resultType="string">
+        SELECT start_dt
+        FROM nvecarerptsendresult
+        WHERE ecare_no = #{ecareNo}
+        AND start_dt = #{sendStartDt}
+    </select>
+
+    <sql id="ecareStatListWhereQuery">
+        <if test="searchServiceType != null and searchServiceType != ''">AND a.service_type = #{searchServiceType}</if>
+        <if test="searchSubType     != null and searchSubType     != ''">AND a.sub_type = #{searchSubType}</if>
+        <if test="ecareNo           != 0"                               >AND a.ecare_no = #{ecareNo}</if>
+        <if test="userVo.grpCd      != null and userVo.grpCd      != ''">AND a.grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND a.user_id LIKE concat(#{userVo.userId},'%')
+            </if>
+        </if>
+        <if test="searchChannel != null and searchChannel != ''">
+        AND a.channel_type = #{searchChannel}
+            <if test="searchDate != null and searchDate != ''">
+        AND b.report_dt LIKE concat(#{searchDate},'%')
+            </if>
+            <if test="searchStartDate != null and searchStartDate != ''">
+        AND b.start_dt LIKE concat(#{searchStartDate},'%')
+            </if>
+        </if>
+    </sql>
+
+    <select id="selectEcareMonthlyStat" parameterType="map" resultMap="mapper.Common.resultRptSendResult">
+        SELECT
+            report_dt, coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt, coalesce(sum(open_cnt),0) as open_cnt
+          , coalesce(sum(duration_cnt),0) as duration_cnt, coalesce(sum(link_cnt),0) as link_cnt, coalesce(sum(returnmail_cnt),0) as returnmail_cnt
+        FROM (
+            SELECT
+                substr(b.report_dt,1,6) as report_dt, success_cnt, open_cnt, duration_cnt, link_cnt, returnmail_cnt
+              , (smtp_except_cnt + no_route_cnt + refused_cnt + etc_except_cnt + unknown_user_cnt + unknown_host_cnt + invalid_address_cnt) as fail_cnt
+            FROM nvecaremsg a, nvecarerptsendresult b
+            WHERE a.ecare_no = b.ecare_no
+            <include refid="ecareStatListWhereQuery"/>
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+
+    <select id="selectEcareDailyStat" parameterType="map" resultMap="mapper.Common.resultRptSendResult">
+        SELECT
+            report_dt, coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt, coalesce(sum(open_cnt),0) as open_cnt
+          , coalesce(sum(duration_cnt),0) as duration_cnt, coalesce(sum(link_cnt),0) as link_cnt, coalesce(sum(returnmail_cnt),0) as returnmail_cnt
+        FROM (
+            SELECT
+                report_dt, success_cnt, open_cnt, duration_cnt, link_cnt, returnmail_cnt
+              , (smtp_except_cnt + no_route_cnt + refused_cnt + etc_except_cnt +unknown_user_cnt + unknown_host_cnt + invalid_address_cnt) as fail_cnt
+            FROM nvecaremsg a, nvecarerptsendresult b
+            WHERE a.ecare_no = b.ecare_no
+            <include refid="ecareStatListWhereQuery"/>
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+</mapper>

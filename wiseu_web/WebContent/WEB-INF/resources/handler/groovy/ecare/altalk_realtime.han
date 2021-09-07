@@ -1,0 +1,152 @@
+//***************************************************/
+// 알림톡 실시간 핸들러
+//***************************************************/
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.mnwise.ASE.agent.dbagent.DBAgent
+import com.mnwise.ASE.agent.dbagent.DBConnection
+import com.mnwise.ASE.agent.dbagent.DBPreparedStatement
+import com.mnwise.ASE.agent.dbagent.DBRecordSet
+import com.mnwise.ASE.agent.kakaoagent.TalkAgent;
+import com.mnwise.ASE.agent.kakaoagent.TalkData;
+import com.mnwise.ASE.agent.util.ExceptionLogger;
+import com.mnwise.ASE.pscript.Message;
+import com.mnwise.common.jeonmun.Jeonmun;
+import com.mnwise.common.util.DateUtil;
+import com.mnwise.common.util.LoggerAid;
+
+TalkAgent alimtalkAgent = new TalkAgent(context)
+ExceptionLogger exlogger = new ExceptionLogger(context);
+
+// 전문 강제 추가..
+context.put("_TEMPLATE", "<% com.mnwise.common.jeonmun.Jeonmun jm = context.get(\"jeonmun\") %>"+context.get("_TEMPLATE"))
+
+Message message = new Message(context)
+message.prepareGroovyTemplateWithCustomVariable("#{", "}", "<%=(context.get(\"", "\"))%>")
+
+// 챗버블 개인화
+message.prepareGroovyTemplateWithCustomVariable("#{", "}", "<%=(record.getString(\"", "\"))%>", true , "KAKAO_BUTTONS" , context.get("_KAKAO_BUTTONS"))
+
+
+Date dt = new Date()
+DateUtil term = new DateUtil()
+SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmmss")
+addterm = term.addTime(dt,"7","00","00","00")
+context.put("_START_DATE", time.format(dt))
+context.put("_END_DATE", time.format(addterm))
+context.put("record", "TCP")
+
+DBAgent dbagent = new DBAgent(context.get("_jdbc.driver"))
+DBConnection conn = dbagent.getConnection(context.get("_jdbc.url"),context.get("_jdbc.user"),context.get("_jdbc.password"))
+
+// 핸들러 오류 로그테이블 적재 추가
+DBPreparedStatement mzSendLogPstmt = null;
+
+// 핸들러 오류 로그테이블 인서트쿼리
+StringBuffer sb = new StringBuffer();
+sb.append(" INSERT INTO MZSENDLOG ")
+sb.append(" ( SN, SENDER_KEY, CHANNEL, PHONE_NUM, SMS_SND_NUM, ")
+sb.append(" TMPL_CD, SND_MSG, REQ_DEPT_CD, REQ_USR_ID, REQ_DTM, ")
+sb.append(" TRAN_STS, SLOT1, SLOT2, SND_DTM, RSLT_CD, RCPT_MSG, RCPT_DTM) ")
+sb.append(" VALUES (?,?,?,?,?, ")
+sb.append(" ?,?,?,?,?, ")
+sb.append(" '4',?,?,?,?,?,? )")
+String mzSendLogInsert =  sb.toString();
+sb.setLength(0);
+
+mzSendLogPstmt = conn.prepareStatement(mzSendLogInsert);
+
+TalkData ad = null
+
+int nEcareNo = Integer.parseInt(context.get("_CAMPAIGN_NO"))
+String sResultSeq = context.get("_RESULT_SEQ")
+
+String jonmun = null
+String msg = null
+
+
+ad = new TalkData();
+
+String kakaoSenderKey = context.get("_KAKAO_SENDER_KEY")
+String kakaoTmplCd = context.get("_KAKAO_TMPL_CD")
+String sSenderTel = context.get("_SENDER_TEL")
+String smsSendYn = context.get("_FAILBACK_SEND_YN")
+String lmsSubject = context.get("_FAILBACK_SUBJECT")
+
+try {
+    message.setBindingProperty("record", context.get("record"));
+
+    // set jeonmun
+    jonmun = context.get("jonmun")
+    Jeonmun jeonmun = new Jeonmun()
+    if(null != jonmun){
+        if(!"".equals(jonmun.trim())) { jeonmun.parsing(jonmun,'|'); }
+    }
+    context.put("jeonmun", jeonmun)
+
+    msg = message.execGroovyTemplate()
+
+    // 1000 이 넘으면 강제 에러
+    if(null!=msg){
+        if(1000 < msg.getBytes().length){
+            msg = msg.substring(0,1000);
+            throw new Exception(seq +"메세지 최대길이 초과(1,000 byte)");
+        }
+    }
+
+    // MZSENDTRAN
+    ad.setSenderKey(kakaoSenderKey)
+    ad.setPhoneNo(context.get("IPHONE"))
+    ad.setTmplCd(kakaoTmplCd)
+    ad.setSndMsg(msg)
+    ad.setSmsSndNum(context.get("_SENDER_TEL"))
+    ad.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    ad.setReqUserId(context.get("_REQ_USER_ID"))
+    ad.setReqDtm(context.get("RESERVED_DATE"))
+    ad.setServiceType(context.get("_CLIENT"));
+    ad.setServiceNo(nEcareNo);
+    ad.setResultSeq(Long.parseLong(sResultSeq));
+    ad.setSmsSndYn(smsSendYn);
+    ad.setSubject(lmsSubject);
+    ad.setUserId(context.get("IUSERID"))
+    ad.setKakaoButton(message.execGroovyTemplate("KAKAO_BUTTONS"))
+
+    alimtalkAgent.send(ad)
+} catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(ad.toString(), e)
+    errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+    try {
+        mzSendLogPstmt.setString(1, context.get("SEQ"));
+        mzSendLogPstmt.setString(2, kakaoSenderKey);
+        mzSendLogPstmt.setString(3, "A");
+        mzSendLogPstmt.setString(4, context.get("IPHONE"));
+        mzSendLogPstmt.setString(5, context.get("_SENDER_TEL"));
+        mzSendLogPstmt.setString(6, kakaoTmplCd);
+        mzSendLogPstmt.setString(7, msg);
+        mzSendLogPstmt.setString(8, context.get("_REQ_DEPT_ID"));
+        mzSendLogPstmt.setString(9, context.get("_REQ_USER_ID"));
+        mzSendLogPstmt.setString(10, context.get("RESERVED_DATE"));
+        mzSendLogPstmt.setString(11, ""+nEcareNo);
+        mzSendLogPstmt.setString(12, sResultSeq);
+        mzSendLogPstmt.setString(13, time.format(new Date()));
+        mzSendLogPstmt.setString(14, "9999");
+        mzSendLogPstmt.setString(15, errMsg);
+        mzSendLogPstmt.setString(16, time.format(new Date()));
+        mzSendLogPstmt.executeUpdate()
+    } catch(Exception sub_e){
+        exlogger.write(ad.toString(), sub_e)
+    }
+} finally {
+    try {
+        mzSendLogPstmt.clearParameters()
+    } catch(Exception e) {}
+}
+mzSendLogPstmt.close();
+mzSendLogPstmt = null;
+
+
+conn.free()
+exlogger.close()
+alimtalkAgent.close()

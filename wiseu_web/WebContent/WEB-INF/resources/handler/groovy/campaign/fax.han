@@ -1,0 +1,51 @@
+import com.mnwise.ASE.agent.faxagent.FaxAgent
+import com.mnwise.ASE.agent.faxagent.FaxData
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+FaxAgent faxagent = new FaxAgent(context)
+faxagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _FAX_FIELD_SEQ = context.getInt("_FAX_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+String reqUserId = "sysadmin"
+String errMsg ="";
+while (target.next()) {
+  try{
+    context.put("record", target.getRecord())
+
+    String msg = message.execGroovyTemplate()
+
+    //FAX 데이터 클래스
+    FaxData faxdata = new FaxData()
+    faxdata.setSubject("")
+    faxdata.setFrom(context.get("_SENDER_NM"), context.get("_SENDER_EMAIL"))
+    faxdata.setReceiverId(target.getString(_KEY_FIELD_SEQ))
+    faxdata.setTo(target.getString(_NAME_FIELD_SEQ), target.getString(_FAX_FIELD_SEQ))
+    faxdata.setContent(msg)
+    faxdata.setUid(reqUserId)
+
+    faxagent.send(faxdata)
+
+  }catch(Exception e){
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_FAX_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  }
+}
+
+exlogger.close()
+target.close()
+faxagent.close()

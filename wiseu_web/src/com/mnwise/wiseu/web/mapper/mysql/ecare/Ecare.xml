@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Ecare">
+    <resultMap id="resultEcare" type="Ecare">
+        <result column="ecare_no"               property="ecareNo"/>
+        <result column="user_id"                property="userId"/>
+        <result column="grp_cd"                 property="grpCd"/>
+        <result column="segment_no"             property="segmentNo"/>
+        <result column="ecare_nm"               property="ecareNm"/>
+        <result column="ecare_desc"             property="ecareDesc"/>
+        <result column="ecare_preface"          property="ecarePreface"/>
+        <result column="ecare_sts"              property="ecareSts"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="lastupdate_dt"          property="lastUpdateDt"/>
+        <result column="lastupdate_tm"          property="lastUpdateTm"/>
+        <result column="campaign_type"          property="campaignType"/>
+        <result column="template_type"          property="templateType"/>
+        <result column="sending_sts"            property="sendingSts"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="share_yn"               property="shareYn"/>
+        <result column="msgassort_cd"           property="msgassortCd"/>
+        <result column="log_yn"                 property="logYn"/>
+        <result column="keepday"                property="keepday"/>
+        <result column="ecmschedule_no"         property="ecmScheduleNo"/>
+        <result column="sender_nm"              property="senderNm"/>
+        <result column="sender_email"           property="senderEmail"/>
+        <result column="sending_mode"           property="sendingMode"/>
+        <result column="retry_cnt"              property="retryCnt"/>
+        <result column="receiver_nm"            property="receiverNm"/>
+        <result column="sender_tel"             property="senderTel"/>
+        <result column="retmail_receiver"       property="retmailReceiver"/>
+        <result column="ecare_class"            property="ecareClass"/>
+        <result column="relation_type"          property="relationType"/>
+        <result column="relation_tree"          property="relationTree"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="htmlmaker_type"         property="htmlmakerType"/>
+        <result column="service_type"           property="serviceType"/>
+        <result column="account_dt"             property="accountDt"/>
+        <result column="ecare_level"            property="ecareLevel"/>
+        <result column="category_cd"            property="categoryCd"/>
+        <result column="resend_yn"              property="resendYn"/>
+        <result column="resend_cnt"             property="resendCnt"/>
+        <result column="resend_tm"              property="resendTm"/>
+        <result column="svc_id"                 property="svcId"/>
+        <result column="sub_type"               property="subType"/>
+        <result column="survey_end_yn"          property="surveyEndYn"/>
+        <result column="survey_response_cnt"    property="surveyResponseCnt"/>
+        <result column="survey_no"              property="surveyNo"/>
+        <result column="survey_start_dt"        property="surveyStartDt"/>
+        <result column="survey_start_tm"        property="surveyStartTm"/>
+        <result column="survey_end_dt"          property="surveyEndDt"/>
+        <result column="survey_end_tm"          property="surveyEndTm"/>
+        <result column="depth_no"               property="depthNo"/>
+        <result column="editor_id"              property="editorId"/>
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="verify_yn"              property="verifyYn"/>
+        <result column="verify_grp_cd"          property="verifyGrpCd"/>
+        <result column="send_server"            property="sendServer"/>
+        <result column="block_yn"               property="blockYn"/>
+        <result column="verify_b4_send"         property="verifyB4Send"/>
+        <result column="delete_yn"              property="deleteYn"/>
+        <result column="mail_type"              property="mailType"/>
+        <result column="req_dept_id"            property="reqDeptId"/>
+        <result column="req_user_id"            property="reqUserId"/>
+        <result column="resend_ecare_no"        property="resendEcareNo"/>
+        <result column="template_sender_key"    property="templateSenderKey"/>
+        <result column="kakao_sender_key"       property="kakaoSenderKey"/>
+        <result column="kakao_tmpl_cd"          property="kakaoTmplCd"/>
+        <result column="kakao_image_no"         property="kakaoImageNo"/>
+        <result column="failback_send_yn"       property="failbackSendYn"/>
+        <result column="failback_subject"       property="failbackSubject"/>
+        <result column="tmpl_ver"               property="tmplVer"/>
+        <result column="cover_ver"              property="coverVer"/>
+        <result column="handler_ver"            property="handlerVer"/>
+        <result column="preface_ver"            property="prefaceVer"/>
+        <result column="handler_seq"            property="handlerSeq"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <resultMap id="resultEcareEditor" type="EcareEditor">
+        <result column="ecare_preface"          property="ecarePreface"/>
+        <result column="template_type"          property="templateType"/>
+        <result column="sender_nm"              property="senderNm"/>
+        <result column="sender_email"           property="senderEmail"/>
+        <result column="receiver_nm"            property="receiverNm"/>
+        <result column="retmail_receiver"       property="retmailReceiver"/>
+        <result column="sender_tel"             property="senderTel"/>
+        <result column="retry_cnt"              property="retryCnt"/>
+        <result column="mail_type"              property="mailType"/>
+        <result column="tmpl_ver"               property="tmplVer"/>
+        <result column="preface_ver"            property="prefaceVer"/>
+        <result column="cover_ver"              property="coverVer"/>
+        <result column="handler_ver"            property="handlerVer"/>
+        <result column="handler_seq"            property="handlerSeq"/>
+    </resultMap>
+
+    <resultMap id="resultEcareMonitor" type="EcareMonitor">
+        <result column="ecare_no"               property="ecareNo"/>
+        <result column="svc_id"                 property="svcId"/>
+        <result column="ecare_nm"               property="ecareNm"/>
+        <result column="service_type"           property="serviceType"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="sendstart_dt"           property="sendstartDt"/>
+        <result column="sendend_dt"             property="sendendDt"/>
+        <result column="day_send_cnt"           property="daySendCnt"/>
+        <result column="day_send_success_cnt"   property="daySendSuccessCnt"/>
+        <result column="day_send_fail_cnt"      property="daySendFailCnt"/>
+        <result column="hour_send_cnt"          property="hourSendCnt"/>
+    </resultMap>
+
+    <resultMap id="resultEcareScenarioInfo" type="EcareScenarioInfo">
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="scenario_nm"            property="scenarioNm"/>
+        <result column="rnum"                   property="rnum"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="ecare_no"               property="ecareNo"/>
+        <result column="ecare_preface"          property="ecarePreface"/>
+        <result column="ecare_sts"              property="ecareSts"/>
+        <result column="accu_cnt"               property="accuCnt"/>
+        <result column="total_send_cnt"         property="totalSendCnt"/>
+        <result column="send_cnt"               property="sendCnt"/>
+        <result column="success_cnt"            property="successCnt"/>
+        <result column="fail_cnt"               property="failCnt"/>
+        <result column="open_cnt"               property="openCnt"/>
+        <result column="duration_cnt"           property="durationCnt"/>
+        <result column="soft_bounce_cnt"        property="softBounceCnt"/>
+        <result column="hard_bounce_cnt"        property="hardBounceCnt"/>
+        <result column="returnmail_cnt"         property="returnmailCnt"/>
+        <result column="duplication_cnt"        property="duplicationCnt"/>
+        <result column="send_cnt_per"           property="sendCntPer"/>
+        <result column="success_cnt_per"        property="successCntPer"/>
+        <result column="fail_cnt_per"           property="failCntPer"/>
+        <result column="open_cnt_per"           property="openCntPer"/>
+        <result column="duration_cnt_per"       property="durationCntPer"/>
+        <result column="soft_bounce_cnt_per"    property="softBounceCntPer"/>
+        <result column="hard_bounce_cnt_per"    property="hardBounceCntPer"/>
+        <result column="returnmail_cnt_per"     property="returnmailCntPer"/>
+        <result column="segment_no"             property="segmentNo"/>
+        <result column="segment_nm"             property="segmentNm"/>
+        <!-- ecareInfoVo -->
+        <result column="channel_type"           property="ecareInfoVo.channelType"/>
+        <result column="ecare_no"               property="ecareInfoVo.ecareNo"/>
+        <result column="ecare_nm"               property="ecareInfoVo.ecareNm"/>
+        <result column="ecare_preface"          property="ecareInfoVo.ecarePreface"/>
+        <result column="ecare_sts"              property="ecareInfoVo.ecareSts"/>
+        <result column="ecare_sts_nm"           property="ecareInfoVo.ecareStsNm"/>
+        <result column="depth_no"               property="ecareInfoVo.depthNo"/>
+        <result column="service_type"           property="ecareInfoVo.serviceType"/>
+        <result column="sub_type"               property="ecareInfoVo.subType"/>
+        <result column="term_type"              property="ecareInfoVo.termType"/>
+        <result column="cycle_cd"               property="ecareInfoVo.cycleCd"/>
+        <!-- ecareInfoVo.sendResultVo -->
+        <result column="start_tm"               property="ecareInfoVo.sendResultVo.sendStartTm"/>
+        <result column="user_id"                property="ecareInfoVo.sendResultVo.userId"/>
+        <result column="name_kor"               property="ecareInfoVo.sendResultVo.userNm"/>
+        <result column="grp_cd"                 property="ecareInfoVo.sendResultVo.grpCd"/>
+        <result column="grp_nm"                 property="ecareInfoVo.sendResultVo.gprNm"/>
+        <result column="target_cnt"             property="ecareInfoVo.sendResultVo.target_cnt"/>
+        <!-- userVo -->
+        <result column="user_id"                property="userVo.userId"/>
+        <result column="name_kor"               property="userVo.nameKor"/>
+        <result column="grp_cd"                 property="userVo.grpCd"/>
+        <result column="grp_nm"                 property="userVo.grpNm"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertEcare1StepInfo" parameterType="Ecare">
+        INSERT INTO nvecaremsg (
+            ecare_no, user_id, grp_cd, ecare_nm, ecare_sts, create_dt, create_tm, lastupdate_dt, campaign_type, ecmschedule_no
+          , sending_mode, retry_cnt, ecare_class, channel_type, service_type, ecare_level, svc_id, sub_type, scenario_no, mail_type
+          , req_dept_id, req_user_id, resend_ecare_no
+          <if test="segmentNo  != null and segmentNo  != 0 "> , segment_no</if>
+        ) VALUES (
+            #{ecareNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{ecareNm, jdbcType=VARCHAR}, 'I', #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, 'Y', #{ecmScheduleNo}
+          , #{sendingMode, jdbcType=CHAR}, #{retryCnt}, 'A', #{channelType, jdbcType=CHAR}, #{serviceType, jdbcType=CHAR}, '1', #{svcId, jdbcType=VARCHAR}, #{subType, jdbcType=CHAR}, #{scenarioNo}, #{mailType, jdbcType=CHAR}
+          , #{reqDept, jdbcType=VARCHAR}, #{reqUser, jdbcType=VARCHAR}, #{resendEcareNo}
+          <if test="segmentNo  != null and segmentNo  != 0 ">, #{segmentNo, jdbcType=INTEGER}</if>
+        )
+    </insert>
+
+    <insert id="copyEcareForResend" parameterType="EcareScenario">
+        INSERT INTO nvecaremsg (
+            ecare_no, user_id, grp_cd, segment_no, ecare_nm, ecare_desc, ecare_preface, ecare_sts, create_dt, create_tm
+          , lastupdate_dt, lastupdate_tm, campaign_type, template_type, sending_sts, target_cnt, share_yn, msgassort_cd, log_yn, keepday
+          , ecmschedule_no, sender_nm, sender_email, sending_mode, retry_cnt, receiver_nm, sender_tel, retmail_receiver, ecare_class, channel_type
+          , htmlmaker_type, service_type, account_dt, ecare_level, category_cd, resend_yn, resend_cnt, resend_tm, scenario_no, svc_id
+          , sub_type, editor_id, relation_type, depth_no
+        )
+        SELECT
+            #{ecareVo.newEcareNo}, #{userVo.userId, jdbcType=VARCHAR}, #{userVo.grpCd, jdbcType=VARCHAR}, #{segmentNo}, concat('[재발송]', ecare_nm) as ecare_nm, ecare_desc, ecare_preface, 'I', create_dt, create_tm
+          , lastupdate_dt, lastupdate_tm, campaign_type, template_type, sending_sts, #{segmentSize}, share_yn, msgassort_cd, log_yn, keepday
+          , #{ecareVo.ecareScheduleVo.newEcmScheduleNo}, sender_nm, sender_email, sending_mode, retry_cnt, receiver_nm, sender_tel, retmail_receiver, ecare_class, channel_type
+          , htmlmaker_type, service_type, account_dt, ecare_level, category_cd, resend_yn, resend_cnt, resend_tm, scenario_no, svc_id
+          , sub_type, editor_id, relation_type, coalesce(depth_no,1)+1
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareVo.ecareNo}
+    </insert>
+
+    <insert id="copyEcareForOmni" parameterType="EcareScenario">
+        INSERT INTO nvecaremsg (
+            ecare_no, user_id, grp_cd, segment_no, ecare_nm, ecare_desc, ecare_preface, ecare_sts, create_dt, create_tm
+          , lastupdate_dt, lastupdate_tm, campaign_type, template_type, sending_sts, target_cnt, share_yn, msgassort_cd, log_yn, keepday
+          , ecmschedule_no, sender_nm, sender_email, sending_mode, retry_cnt, receiver_nm, sender_tel, retmail_receiver, ecare_class, channel_type
+          , htmlmaker_type, service_type, account_dt, ecare_level, category_cd, resend_yn, resend_cnt, resend_tm, scenario_no, svc_id
+          , sub_type, editor_id, relation_type, depth_no, relation_tree, resend_ecare_no
+        )
+        SELECT
+            #{ecareVo.newEcareNo}, user_id, grp_cd, #{segmentNo}, concat('[Omni] ', ecare_nm) as ecare_nm,ecare_desc, #{ecareVo.ecarePreface, jdbcType=VARCHAR}, 'I', #{createDt, jdbcType=CHAR} ,#{createTm, jdbcType=CHAR}
+          , lastupdate_dt, lastupdate_tm, campaign_type, template_type, sending_sts, #{segmentSize}, share_yn, msgassort_cd, log_yn, keepday
+          , #{ecareVo.ecareScheduleVo.ecmScheduleNo}, sender_nm, #{ecareVo.senderEmail, jdbcType=VARCHAR}, sending_mode, retry_cnt, receiver_nm, sender_tel, #{ecareVo.retmailReceiver, jdbcType=VARCHAR}, ecare_class, #{ecareVo.channelType, jdbcType=CHAR}
+          , htmlmaker_type, 'S', account_dt, '1', category_cd, resend_yn, resend_cnt, resend_tm, scenario_no, svc_id
+          , 'R', editor_id, #{ecareVo.relationType, jdbcType=CHAR}, coalesce(depth_no,1)+1, #{ecareVo.relationTree, jdbcType=VARCHAR}, resend_ecare_no
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareVo.ecareNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEcare2StepInfo" parameterType="Ecare">
+        UPDATE nvecaremsg
+        SET
+           lastupdate_dt = date_format(curdate(),'%Y%m%d')
+          <if test="ecareNm    != null and ecareNm    != ''">, ecare_nm = #{ecareNm, jdbcType=VARCHAR}</if>
+          <if test="ecareDesc    != null and ecareDesc    != ''">, ecare_desc = #{ecareDesc, jdbcType=VARCHAR}</if>
+          <if test="lastUpdateDt    != null and lastUpdateDt    != ''">, lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}</if>
+          <if test="lastUpdateTm    != null and lastUpdateTm    != ''">, lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}</if>
+          <if test="targetCnt    != null and targetCnt    != ''">, target_cnt = #{targetCnt}</if>
+          <if test="senderNm    != null and senderNm    != ''">, sender_nm = #{senderNm, jdbcType=VARCHAR}</if>
+          <if test="senderEmail    != null and senderEmail    != ''">, sender_email = #{senderEmail, jdbcType=VARCHAR}</if>
+          <if test="sendingMode    != null and sendingMode    != ''">, sending_mode = #{sendingMode, jdbcType=CHAR}</if>
+          <if test="retryCnt    != null and retryCnt    != ''">, retry_cnt = #{retryCnt, jdbcType=NUMERIC}</if>
+          <if test="senderTel    != null and senderTel    != ''">, sender_tel = #{senderTel, jdbcType=VARCHAR}</if>
+          <if test="emailOpenType    != null and emailOpenType    != ''">, open_type = #{emailOpenType, jdbcType=VARCHAR}</if>
+          <if test="deployType    != null and deployType    != ''">, deploy_type = #{deployType, jdbcType=VARCHAR}</if>
+          <if test="retmailReceiver    != null and retmailReceiver    != ''">, retmail_receiver = #{retmailReceiver, jdbcType=VARCHAR}</if>
+          <if test="slot1Field    != null and slot1Field    != ''">, slot1_field = #{slot1Field, jdbcType=CHAR}</if>
+          <if test="slot2Field    != null and slot2Field    != ''">, slot2_field = #{slot2Field, jdbcType=CHAR}</if>
+          <if test="slot3Field    != null and slot3Field    != ''">, slot3_field = #{slot3Field, jdbcType=CHAR}</if>
+          <if test="slot4Field    != null and slot4Field    != ''">, slot4_field = #{slot4Field, jdbcType=CHAR}</if>
+          <if test="slot5Field    != null and slot5Field    != ''">, slot5_field = #{slot5Field, jdbcType=CHAR}</if>
+          <if test="slot6Field    != null and slot6Field    != ''">, slot6_field = #{slot6Field, jdbcType=CHAR}</if>
+          <if test="slot7Field    != null and slot7Field    != ''">, slot7_field = #{slot7Field, jdbcType=CHAR}</if>
+          <if test="slot8Field    != null and slot8Field    != ''">, slot8_field = #{slot8Field, jdbcType=CHAR}</if>
+          <if test="slot9Field    != null and slot9Field    != ''">, slot9_field = #{slot9Field, jdbcType=CHAR}</if>
+          <if test="slot10Field    != null and slot10Field    != ''">, slot10_field = #{slot10Field, jdbcType=CHAR}</if>
+          <if test="kakaoSenderKey    != null and kakaoSenderKey    != ''">, kakao_sender_key = #{kakaoSenderKey, jdbcType=VARCHAR}</if>
+          <if test="kakaoTmplCd       != null and kakaoTmplCd       != ''">, kakao_tmpl_cd = #{kakaoTmplCd, jdbcType=VARCHAR}</if>
+          <if test="kakaoImageNo      != null and kakaoImageNo      != ''">, kakao_image_no = #{kakaoImageNo}</if>
+          <if test="templateSenderKey != null and templateSenderKey != ''">, template_sender_key = #{templateSenderKey, jdbcType=VARCHAR}</if>
+          <if test="failbackSendYn    != null and failbackSendYn    != ''">, failback_send_yn = #{failbackSendYn, jdbcType=CHAR}</if>
+          <if test="ecarePreface     != null and ecarePreface     != ''">, ecare_preface = #{ecarePreface, jdbcType=VARCHAR}</if>
+          <if test="reqDept      != null and reqDept      != ''">, req_dept_id = #{reqDept, jdbcType=VARCHAR}</if>
+          <if test="failbackSendYn    == 'Y'.toString()"                  >, failback_subject = #{failbackSubject, jdbcType=VARCHAR}</if>
+          <if test="failbackSendYn    == 'N'.toString()"                  >, failback_subject = ''</if>
+          <if test="ecareClass      != null and ecareClass      != ''">, ecare_class = #{ecareClass, jdbcType=VARCHAR}</if>
+        WHERE ecare_no = #{ecareNo}
+    </update>
+
+    <update id="updateTestModeEcare" parameterType="int">
+        UPDATE nvecaremsg
+        SET sending_mode = 'T'
+        WHERE ecare_no = #{ecareNo}
+    </update>
+
+    <!-- 이케어 검증여부 변경  -->
+    <update id="updateEcareVerifyInfo" parameterType="Ecare">
+        UPDATE nvecaremsg
+        SET verify_yn = #{verifyYn, jdbcType=CHAR}, verify_grp_cd = #{verifyGrpCd, jdbcType=VARCHAR}
+        WHERE ecare_no = #{ecareNo}
+    </update>
+
+    <update id="updateEcareStsInfo" parameterType="Ecare">
+        UPDATE nvecaremsg
+        SET ecare_sts = #{ecareSts, jdbcType=CHAR}
+        WHERE ecare_no = #{ecareNo}
+    </update>
+
+    <update id="updateAllEcareSts" parameterType="Ecare">
+        UPDATE nvecaremsg
+        SET ecare_sts = #{ecareSts, jdbcType=CHAR}
+        WHERE ecare_sts = #{prevEcareSts}
+    </update>
+
+    <update id="updateEcareStsChange" parameterType="int">
+        UPDATE nvecaremsg
+        SET ecare_sts = (CASE WHEN ecare_sts IN ('P', 'T') THEN 'R' ELSE 'P' END)
+        WHERE ecare_no = #{ecareNo}
+        AND ecare_sts IN ('P', 'R', 'T')
+    </update>
+
+    <update id="updateEcare2StepCommonInfo" parameterType="Ecare">
+        UPDATE nvecaremsg
+        SET
+            <if test="segmentNo == 0">segment_no = NULL</if>
+            <if test="segmentNo != 0">segment_no = #{segmentNo}</if>
+        WHERE ecare_no = #{ecareNo}
+        AND segment_no IS NULL
+    </update>
+
+    <update id="updateEcareMsgForResend" parameterType="EcareScenario">
+        UPDATE nvecaremsg
+        SET segment_no = #{segmentNo}, target_cnt = #{segmentSize}, relation_type = #{ecareVo.relationType, jdbcType=CHAR}
+        WHERE ecare_no = #{ecareVo.newEcareNo}
+    </update>
+
+    <update id="updateEditorEcare" parameterType="EcareEditor">
+        UPDATE nvecaremsg
+        SET
+            template_type = #{templateType}
+          , ecare_preface = #{ecarePreface, jdbcType=VARCHAR}
+          <if test="kakaoSenderkey  != null and kakaoSenderkey  != ''">, kakao_sender_key = #{kakaoSenderkey, jdbcType=VARCHAR}</if>
+          <if test="kakaoTemplateCd  != null and kakaoTemplateCd  != ''">, kakao_tmpl_cd = #{kakaoTemplateCd, jdbcType=VARCHAR}</if>
+          <if test="kakaoImageNo      != null and kakaoImageNo      != ''">, kakao_image_no = #{kakaoImageNo}</if>
+          <if test="tmplVer != 0">, tmpl_ver = #{tmplVer}</if>
+          <if test="coverVer != 0">, cover_ver = #{coverVer}</if>
+          <if test="handlerVer != 0">, handler_ver = #{handlerVer}</if>
+          <if test="handlerSeq != 0">, handler_seq = #{handlerSeq}</if>
+        WHERE ecare_no = #{no}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcareMsgByPk" parameterType="int">
+        DELETE FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEcarePreview" parameterType="int" resultMap="mapper.Common.resultMailPreview">
+        SELECT
+            a.ecare_no, coalesce(a.segment_no,0) as segment_no, a.ecare_nm as service_nm, a.user_id, a.ecare_class as service_class, a.channel_type, a.retmail_receiver, a.sender_nm
+          , coalesce(a.sender_email,' ') sender_email, coalesce(a.sender_tel,' ') sender_tel, coalesce(a.receiver_nm,' ') receiver_nm, coalesce(a.retry_cnt,1) retry_cnt
+          , a.campaign_type, a.sending_mode, '' as sendstart_dt, '' as sendstart_tm, a.service_type, a.sub_type, coalesce(a.survey_no,-1) survey_no
+          , coalesce(a.resend_ecare_no,-1) resend_ecare_no, ecare_preface as campaign_preface, b.type as handler_type, b.appsource, a.mail_type
+        FROM nvecaremsg a, nvecmsghandler b
+        WHERE a.ecare_no = b.ecare_no
+        AND a.ecare_no = #{serviceNo}
+    </select>
+
+    <select id="selectEcarePreviousView" parameterType="map" resultMap="mapper.Common.resultMailPreview">
+        SELECT
+            a.ecare_no, coalesce(a.segment_no,0) as segment_no, a.ecare_nm as service_nm, a.user_id, a.ecare_class as service_class, a.channel_type, a.retmail_receiver, a.sender_nm
+          , coalesce(a.sender_email,' ') sender_email, coalesce(a.sender_tel,' ') sender_tel, coalesce(a.receiver_nm,' ') receiver_nm, coalesce(a.retry_cnt,1) retry_cnt
+          , a.campaign_type, a.sending_mode, '' as sendstart_dt, '' as sendstart_tm, a.service_type, a.sub_type, coalesce(a.survey_no,-1) survey_no
+          , coalesce(a.resend_ecare_no,-1) resend_ecare_no, '' as campaign_preface, b.type as handler_type, b.appsource, a.mail_type
+          , coalesce(c.handler_ver,0) handler_ver, coalesce(c.tmpl_ver,0) tmpl_ver, coalesce(c.preface_ver,0) preface_ver, coalesce(c.cover_ver,0) cover_ver
+        FROM nvecaremsg a, nvecmsghandler b, nvecaresendresult c
+        WHERE a.ecare_no = b.ecare_no
+        AND a.ecare_no = c.ecare_no
+        AND a.ecare_no = #{serviceNo}
+        AND c.result_seq = #{resultSeq}
+    </select>
+
+    <select id="getEcareDetail" parameterType="int" resultMap="mapper.Common.resultMessage">
+        SELECT ecare_preface, sender_tel, kakao_sender_key, kakao_tmpl_cd, failback_send_yn, failback_subject, kakao_image_no, ecare_class, channel_type
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectEcareForDelete" parameterType="int" resultMap="resultEcare">
+        SELECT coalesce(ecmschedule_no,0) ecmschedule_no, user_id, service_type
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <select id="getEcareChannelInfo" parameterType="int" resultMap="resultEcare">
+        SELECT (CASE channel_type WHEN 'M' THEN 4 WHEN 'S' THEN 3 WHEN 'T' THEN 2 WHEN 'F' THEN 1 END) as seq, ecare_no, channel_type, depth_no
+        FROM nvecaremsg
+        WHERE scenario_no = #{scenarioNo}
+        ORDER BY seq DESC, depth_no
+    </select>
+
+    <select id="selectEcareInfo" parameterType="int" resultMap="resultEcare">
+        SELECT ecare_no, coalesce(ecmschedule_no,0) ecmschedule_no, service_type, sub_type, coalesce(segment_no,0) segment_no, ecare_sts
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectSubEcareList" parameterType="EcareScenario" resultMap="resultEcare">
+        SELECT ecare_no, scenario_no, ecare_nm, channel_type, depth_no, relation_type
+        FROM nvecaremsg
+        WHERE scenario_no = #{scenarioNo}
+        AND depth_no = #{ecareVo.depthNo}
+        AND relation_tree LIKE concat((SELECT relation_tree FROM nvecaremsg WHERE ecare_no = #{ecareVo.ecareNo}), '%')
+    </select>
+
+    <select id="selectNextEcareNo" resultType="int">
+        SELECT coalesce(max(ecare_no),0)+1
+        FROM nvecaremsg
+    </select>
+
+    <select id="selectEcareNmByPk" parameterType="int" resultType="string">
+        SELECT ecare_nm
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <!-- 반송 이메일  -->
+    <select id="selectEcareRetmailReceiver" parameterType="EcareScenario" resultType="string">
+        SELECT retmail_receiver
+        FROM nvecaremsg
+        WHERE ecare_no IN (
+            SELECT max(ecare_no)
+            FROM nvecaremsg
+            WHERE scenario_no = #{scenarioNo}
+            AND channel_type = #{ecareVo.channelType}
+        )
+    </select>
+
+    <!--  발신자 이메일  -->
+    <select id="selectEcareSenderEmail" parameterType="EcareScenario" resultType="string">
+        SELECT sender_email
+        FROM nvecaremsg
+        WHERE ecare_no IN (
+            SELECT max(ecare_no)
+            FROM nvecaremsg
+            WHERE scenario_no = #{scenarioNo}
+            AND channel_type = #{ecareVo.channelType}
+        )
+    </select>
+
+    <!--  발신자  전화번호  -->
+    <select id="selectEcareSenderTel" parameterType="EcareScenario" resultType="string">
+        SELECT sender_tel
+        FROM nvecaremsg
+        WHERE ecare_no IN (
+            SELECT max(ecare_no)
+            FROM nvecaremsg
+            WHERE scenario_no IN (
+                SELECT scenario_no
+                FROM nvecarescenario
+                WHERE user_id = #{userId}
+                AND grp_cd = #{grpCd}
+                AND tag_no = #{tagNo}
+            )
+            AND channel_type = #{ecareVo.channelType}
+            AND sender_tel IS NOT NULL
+        )
+    </select>
+
+    <!--  발신자  이름  -->
+    <select id="selectEcareSenderNm" parameterType="EcareScenario" resultType="string">
+        SELECT sender_nm
+        FROM nvecaremsg
+        WHERE ecare_no IN (
+            SELECT max(ecare_no)
+            FROM nvecaremsg
+            WHERE scenario_no IN (
+                SELECT scenario_no
+                FROM nvecarescenario
+                WHERE user_id = #{userId}
+                AND grp_cd = #{grpCd}
+                AND tag_no = #{tagNo}
+            )
+            AND channel_type = #{ecareVo.channelType}
+            AND sender_nm IS NOT NULL
+        )
+    </select>
+
+    <select id="selectResendEcareNo" parameterType="int" resultType="int">
+        SELECT coalesce(resend_ecare_no,0)
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectEcareCycleCdInfo" parameterType="int" resultType="string">
+        SELECT b.cycle_cd
+        FROM nvecaremsg a, nvecmschedule b
+        WHERE a.ecmschedule_no = b.ecmschedule_no
+        AND a.ecare_no = #{ecareNo}
+    </select>
+
+    <select id="checkServiceID" parameterType="string" resultType="int">
+        SELECT count(*)
+        FROM nvecaremsg
+        WHERE svc_id = #{svcId}
+    </select>
+
+    <select id="selectEditorEcare" parameterType="int" resultMap="resultEcareEditor">
+        SELECT
+            ecare_preface, coalesce(template_type,0) template_type, sender_nm, sender_email, receiver_nm
+          , retmail_receiver, sender_tel, coalesce(retry_cnt,0) retry_cnt, mail_type, tmpl_ver
+          , coalesce(preface_ver,0) preface_ver, coalesce(cover_ver,0) cover_ver, coalesce(handler_ver,0) handler_ver, coalesce(handler_seq,0) handler_seq
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <select id="getEcareMsgByEcareNo" parameterType="map" resultType="int">
+        SELECT ecare_no
+        FROM nvecaremsg
+        WHERE svc_id = #{svcId}
+        AND user_id = #{userId}
+        AND service_type = 'R'
+    </select>
+
+    <sql id="getEcareMonitorStatusList2WhereQuery">
+        <if test="userTypeCd == 'U'.toString()">
+            <if test="userId != null and userId != ''">
+               AND (a.user_id = #{userId})
+            </if>
+        </if>
+    </sql>
+
+    <select id="getEcareMonitorStatusList2" parameterType="string" resultMap="resultEcareMonitor">
+        SELECT
+            a.svc_id, a.ecare_no, a.ecare_nm, a.service_type, a.channel_type, b.sendstart_dt, b.sendend_dt
+          , coalesce(c.day_send_cnt, 0) day_send_cnt, coalesce(c.day_send_success_cnt, 0) day_send_success_cnt
+          , coalesce(c.day_send_fail_cnt, 0) day_send_fail_cnt, coalesce(c.hour_send_cnt, 0) hour_send_cnt
+        FROM nvecaremsg a, nvecmschedule b, (
+            SELECT
+                a.user_id, a.ecare_no, count(*) day_send_cnt
+              , count(CASE WHEN b.error_cd = '250' THEN 1 ELSE 0 END) day_send_success_cnt
+              , count(CASE WHEN b.error_cd = '250' THEN 0 ELSE 1 END) day_send_fail_cnt
+              , count(CASE WHEN substr(b.send_tm,1,2) = date_format(now(),'%H') THEN 0 ELSE 1 END) hour_send_cnt
+            FROM nvecaremsg a, nvecaresendlog b
+            WHERE a.ecare_no = b.ecare_no
+            <include refid="getEcareMonitorStatusList2WhereQuery"/>
+            AND b.send_dt = date_format(now(),'%Y%m%d')
+            AND (
+                (a.service_type = 'R' AND a.sub_type is NULL)
+                OR (a.service_type = 'S' AND a.sub_type IN ('R','N'))
+            )
+            GROUP BY a.user_id, a.ecare_no
+        ) c
+        WHERE a.ecmschedule_no = b.ecmschedule_no
+        AND a.ecare_no = c.ecare_no
+        <include refid="getEcareMonitorStatusList2WhereQuery"/>
+    </select>
+
+    <select id="getScenarioChannelList" parameterType="EcareScenarioInfo" resultMap="resultEcare">
+        SELECT DISTINCT a.ecare_no, a.channel_type, a.scenario_no, a.depth_no
+        FROM nvecaremsg a, nvecaresendresult b
+        WHERE a.ecare_no = b.ecare_no
+        AND a.scenario_no = #{scenarioNo}
+        ORDER BY a.ecare_no
+    </select>
+
+    <select id="getChannel" parameterType="int" resultType="string">
+        SELECT channel_type
+        FROM nvecaremsg
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <sql id="ecareReportListWhereQuery">
+        <if test="serviceType  != null and serviceType  != ''">AND a.service_type = #{serviceType}</if>
+        <if test="subType      != null and subType      != ''">AND a.sub_type = #{subType}</if>
+        <if test="searchWord   != null and searchWord   != ''">AND a.scenario_nm LIKE concat('%',#{searchWord},'%')</if>
+        <if test="channelType  != null and channelType  != ''">AND b.channel_type = #{channelType}</if>
+        <if test="userVo.grpCd != null and userVo.grpCd != ''">AND a.grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND a.user_id LIKE concat(#{userVo.userId},'%')
+            </if>
+        </if>
+    </sql>
+
+    <select id="selectEcareReportListCount" parameterType="EcareScenarioInfo" resultType="int">
+        SELECT count(*)
+        FROM nvecarescenario a, nvecaremsg b, nvuser c, (
+            SELECT ecare_no
+            FROM nvecaresendresult
+            WHERE result_sts = 'XE'
+            <if test="searchQstartDt != null and searchQstartDt != ''">
+            AND start_dt &gt;= #{searchQstartDt}
+            </if>
+            <if test="searchQendDt != null and searchQendDt != ''">
+            AND start_dt &lt;= #{searchQendDt}
+            </if>
+            GROUP BY ecare_no
+        ) d
+        WHERE a.scenario_no = b.scenario_no
+        AND b.user_id = c.user_id
+        AND b.grp_cd = c.grp_cd
+        AND b.ecare_no = d.ecare_no
+        <include refid="ecareReportListWhereQuery"/>
+    </select>
+
+    <select id="selectEcareReportList" parameterType="EcareScenarioInfo" resultMap="resultEcareScenarioInfo">
+        SELECT *
+        FROM (
+            SELECT *
+            FROM (
+                SELECT
+                    scenario_no, scenario_nm, user_id, grp_cd, channel_type, ecare_no, ecare_preface, ecare_sts, coalesce(target_cnt,0) target_cnt, coalesce(depth_no,0) depth_no
+                  , ecare_sts_nm, start_tm, name_kor, grp_nm
+                FROM (
+                    SELECT
+                        a.scenario_no, a.scenario_nm, a.user_id, a.grp_cd, b.channel_type, b.ecare_no, b.ecare_preface, b.ecare_sts, b.target_cnt, b.depth_no
+                      , (SELECT val FROM nv_cd_mst WHERE cd_cat = '200111' AND cd = b.ecare_sts AND lang = #{language}) as ecare_sts_nm
+                      , coalesce((SELECT invoke_tm FROM nvecmschedule WHERE ecmschedule_no = b.ecmschedule_no), '') as start_tm
+                      , (SELECT name_kor FROM nvuser WHERE user_id = a.user_id) as name_kor
+                      , (SELECT grp_nm FROM nvusergrp WHERE grp_cd = a.grp_cd) as grp_nm
+                    FROM nvecarescenario a, nvecaremsg b
+                    WHERE a.scenario_no = b.scenario_no
+                    AND 1 = (
+                        SELECT 1
+                        FROM nvecaresendresult c
+                        WHERE ecare_no = b.ecare_no
+                        AND result_sts = 'XE'
+                        <if test="searchQstartDt != null and searchQstartDt != ''">
+                        AND start_dt &gt;= #{searchQstartDt}
+                        </if>
+                        <if test="searchQendDt != null and searchQendDt != ''">
+                        AND start_dt &lt;= #{searchQendDt}
+                        </if>
+                        LIMIT 1
+                    )
+                    <include refid="ecareReportListWhereQuery"/>
+                ) d
+                ORDER BY scenario_no DESC, ecare_no
+                LIMIT ${endRow}
+            ) e
+            ORDER BY scenario_no, ecare_no
+            LIMIT ${listCnt}
+        ) f
+        ORDER BY scenario_no DESC, ecare_no
+    </select>
+
+    <select id="selectScenarioRealtimeInfo" parameterType="int" resultMap="resultEcareScenarioInfo">
+        SELECT
+            a.scenario_no, a.scenario_nm, a.user_id, a.grp_cd, a.service_type, b.ecare_no, b.ecare_nm, b.ecare_preface, b.ecare_sts, b.channel_type
+          , b.create_dt, b.segment_no, b.sub_type, b.sending_mode, b.ecmschedule_no, b.campaign_type, b.depth_no, c.name_kor, d.grp_nm
+          , (SELECT term_type FROM nvecaretraceinfo e WHERE e.ecare_no = b.ecare_no) term_type
+          , '' as segment_nm, '' as cycle_cd
+        FROM nvecarescenario a, nvecaremsg b, nvuser c, nvusergrp d
+        WHERE a.scenario_no = b.scenario_no
+        AND a.grp_cd = c.grp_cd
+        AND a.user_id = c.user_id
+        AND c.grp_cd = d.grp_cd
+        AND b.ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectScenarioScheduleInfo" parameterType="int" resultMap="resultEcareScenarioInfo">
+        SELECT
+            a.scenario_no, a.scenario_nm, a.user_id, a.grp_cd, a.service_type, b.ecare_no, b.ecare_nm, b.ecare_preface, b.ecare_sts, b.channel_type
+          , b.create_dt, b.segment_no, b.sub_type, b.sending_mode, b.ecmschedule_no, b.campaign_type, b.depth_no, c.name_kor, d.grp_nm
+          , (SELECT term_type FROM nvecaretraceinfo e WHERE e.ecare_no = b.ecare_no) term_type
+          , f.segment_nm, (SELECT cycle_cd FROM nvecmschedule WHERE ecmschedule_no = b.ecmschedule_no) as cycle_cd
+        FROM nvecarescenario a, nvecaremsg b, nvuser c, nvusergrp d,  nvsegment f
+        WHERE a.scenario_no = b.scenario_no
+        AND a.grp_cd = c.grp_cd
+        AND a.user_id = c.user_id
+        AND c.grp_cd = d.grp_cd
+        AND b.segment_no = f.segment_no
+        AND b.ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectEcareType" parameterType="map" resultMap="resultEcare">
+        SELECT ecare_no, concat(cast(ecare_no as char),' - ', ecare_nm) as ecare_nm
+        FROM nvecaremsg
+        WHERE ecare_no IN (
+            SELECT DISTINCT ecare_no
+            FROM nvecaresendresult
+            WHERE start_dt LIKE concat(#{startDt},'%')
+            AND result_sts = 'XE'
+        )
+        <if test="serviceType == null or  serviceType == ''">AND service_type != 'B'</if>
+        <if test="serviceType != null and serviceType != ''">AND service_type = #{serviceType}</if>
+        <if test="subType     != null and subType     != ''">AND sub_type = #{subType}</if>
+    </select>
+
+
+</mapper>

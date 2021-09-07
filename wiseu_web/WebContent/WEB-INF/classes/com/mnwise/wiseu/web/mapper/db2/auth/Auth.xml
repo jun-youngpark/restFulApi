@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Auth">
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertAuthToken" parameterType="map">
+       INSERT INTO NVAUTHCHECK (
+            USER_ID, REQ_DTM, TOKEN
+        ) VALUES (
+            #{userId}, #{reqDtm}, #{token}
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="authCheckToken" parameterType="map">
+           UPDATE NVAUTHCHECK
+        SET FLAG = 'USED'
+        WHERE ${validTime} &lt; REQ_DTM
+        AND USER_ID = #{adminId}
+        AND FLAG = 'READY'
+        AND TOKEN = #{token}
+    </update>
+
+     <!--  ==================== UPDATE ====================  -->
+    <update id="updateVaildToken" parameterType="map">
+        UPDATE NVAUTHCHECK
+        SET FLAG = 'INVALID'
+        WHERE ${validTime} &lt; REQ_DTM
+        AND USER_ID = #{userId}
+        AND FLAG = 'READY'
+    </update>
+
+     <select id="checkTimeout" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM NVAUTHCHECK
+        WHERE ${validTime} &gt; REQ_DTM
+        AND USER_ID = #{adminId}
+        AND FLAG = 'READY'
+        AND TOKEN = #{token}
+    </select>
+
+    <select id="checkUsedToken" parameterType="java.util.HashMap" resultType="int">
+        SELECT COUNT(*)
+        FROM NVAUTHCHECK
+        WHERE ${validTime} &lt; REQ_DTM
+        AND USER_ID = #{adminId}
+        AND FLAG = 'USED'
+        AND TOKEN = #{token}
+    </select>
+
+</mapper>

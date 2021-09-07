@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareLinkTrace">
+    <resultMap id="resultLinkTraceResult" type="LinkTraceResult">
+        <result column="link_seq"           property="linkSeq"/>
+        <result column="link_url"           property="linkUrl"/>
+        <result column="link_title"         property="linkTitle"/>
+        <result column="link_desc"          property="linkDesc"/>
+        <result column="unique_link_cnt"    property="uniqueLinkCnt"/>
+        <result column="all_link_cnt"       property="allLinkCnt"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertEcareLinkTrace" parameterType="LinkTrace">
+        INSERT INTO nvecarelinktrace (ecare_no, link_seq, link_desc, link_url, link_title)
+        VALUES (#{no}, #{linkSeq}, #{linkDesc, jdbcType=VARCHAR}, #{linkUrl, jdbcType=VARCHAR}, #{linkTitle, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="copyEcareLinkTrace" parameterType="Ecare">
+        INSERT INTO nvecarelinktrace (ecare_no, link_seq, link_url, link_desc, link_title)
+        SELECT #{newEcareNo}, link_seq, link_url, link_desc, link_title
+        FROM nvecarelinktrace
+        WHERE ecare_no = #{ecareNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcareLinkTrace" parameterType="int">
+        DELETE FROM nvecarelinktrace
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEditorEcareLinkseqMax" parameterType="int" resultType="int">
+        SELECT coalesce(max(link_seq), 0)
+        FROM nvecarelinktrace
+        WHERE ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectEditorEcareLinktraceExist" parameterType="Linktrace" resultType="int">
+        SELECT count(*)
+        FROM nvecarelinktrace
+        WHERE ecare_no = #{no}
+        AND link_seq = #{linkSeq}
+    </select>
+
+    <select id="selectSummaryLinkTraceResultList" parameterType="EcareScenarioInfo" resultMap="resultLinkTraceResult">
+        SELECT a.link_seq, a.link_url, a.link_title, a.link_desc, b.unique_link_cnt, b.all_link_cnt
+        FROM nvecarelinktrace a, (
+            SELECT ecare_no, link_seq, sum(link_cnt) as unique_link_cnt, sum(link_ocnt) as all_link_cnt
+            FROM nvecarerptlink
+            WHERE result_seq = #{ecareInfoVo.resultSeq}
+            GROUP BY ecare_no, link_seq
+        ) b
+        WHERE a.ecare_no = b.ecare_no
+        AND a.link_seq = b.link_seq
+        AND a.ecare_no = #{ecareInfoVo.ecareNo}
+        ORDER BY unique_link_cnt DESC
+    </select>
+
+</mapper>

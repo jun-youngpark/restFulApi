@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd"> -->
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                             http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>wiseu</short-name>
+<!--     <description> Tag Library</description> -->
+
+    <function>
+        <name>mailMask</name>
+        <function-class>com.mnwise.wiseu.web.common.util.MaskingUtil</function-class>
+        <function-signature>
+            java.lang.String mailMask(java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>nameMask</name>
+        <function-class>com.mnwise.wiseu.web.common.util.MaskingUtil</function-class>
+        <function-signature>
+            java.lang.String nameMask(java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>telMask</name>
+        <function-class>com.mnwise.wiseu.web.common.util.MaskingUtil</function-class>
+        <function-signature>
+            java.lang.String telMask(java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>getProperty</name>
+        <function-class>com.mnwise.wiseu.web.common.util.PropertyUtil</function-class>
+        <function-signature>
+            java.lang.String getProperty(java.lang.String, java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>numberMask</name>
+        <function-class>com.mnwise.wiseu.web.common.util.MaskingUtil</function-class>
+        <function-signature>
+            java.lang.String numberMask(java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>convertJsonToHtmlTrElement</name>
+        <function-class>com.mnwise.wiseu.web.template.util.KakaoButtonUtils</function-class>
+        <function-signature>
+            java.lang.String convertJsonToHtmlTrElement(java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>convertJsonToKakaoButtonList</name>
+        <function-class>com.mnwise.wiseu.web.template.util.KakaoButtonUtils</function-class>
+        <function-signature>
+            java.util.List convertJsonToKakaoButtonList(java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>getColspan</name>
+        <function-class>com.mnwise.wiseu.web.template.util.KakaoButtonUtils</function-class>
+        <function-signature>
+            java.lang.String getColspan(java.lang.String)
+        </function-signature>
+    </function>
+
+    <function>
+        <name>isKakao</name>
+        <function-class>com.mnwise.common.util.ChannelUtil</function-class>
+        <function-signature>
+            java.lang.Boolean isKakao(java.lang.String)
+        </function-signature>
+    </function>
+
+</taglib>

@@ -1,0 +1,288 @@
+import com.mnwise.ASE.agent.dbagent.DBAgent
+import com.mnwise.ASE.agent.mailagent.MailAgent5
+import com.mnwise.ASE.agent.mailagent.MailBody
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+DBAgent dbagent = new DBAgent(context.get("_jdbc.driver"));
+
+MailAgent5 mailagent = new MailAgent5(context)
+mailagent.setRetry(context.get("_RETRY_CNT"))
+mailagent.open()
+
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+
+abType = context.get("_AB_TEST_TYPE")
+
+// ---- 본문 prepare ----
+message.prepareGroovyTemplate();
+if("T".equals(abType)) {
+    message.prepareGroovyTemplate("AB", context.get("_TEMPLATE_AB"));
+}
+// ---- 본문 prepare ----
+
+// 원래는 "" 으로 초기화
+choiceAB = ""
+
+// 캠페인에서 사용 기능 파악 필요 ,전역변수로 사용하기 위해 형 선언 X
+_KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+_NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+_EMAIL_FIELD_SEQ = context.getInt("_EMAIL_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+MailBody body;
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+String errMsg ="";
+while (target.next()) {
+    try {
+        context.put("record", target.getRecord())
+        mailagent.setMailFrom(context.get("_RETMAIL_RECEIVER"))
+        body = new MailBody(context)
+        body.setEncodingType("base64")
+        body.setCharset("euc-kr")
+        body.setFrom(context.get("_SENDER_NM"), context.get("_SENDER_EMAIL"))
+        body.setTo(target.getString(_NAME_FIELD_SEQ), target.getString(_EMAIL_FIELD_SEQ))
+
+        listSeq = context.getInt("_LIST_SEQ")
+
+        // A/B 구분 발송 : 0
+        // A/B 결과 발송 : 1
+        // A/B 미리보기,테스트발송,재발송 : -1
+        divideNo = mailagent.getDivideSuspendNo();
+
+        // ----- A/B ----
+        if(divideNo == 0) { // AB 구분 발송
+            if(listSeq % 2 == 0) { // B발송
+                if("T".equals(abType)) {
+                    templateB(body, message, target, mailagent, divideNo)
+                } else {
+                    subjectB(body, message, target, mailagent, divideNo)
+                }
+            } else { // A발송
+                if("T".equals(abType)) {
+                    templateA(body, message, target, mailagent, divideNo)
+                } else {
+                    subjectA(body, message, target, mailagent, divideNo)
+                }
+            }
+        } else if(divideNo == 1) { // AB 결과로 발송
+            if(choiceAB == "") {
+                choiceAB = choiceTemplate(dbagent)
+            }
+
+            if("A".equals(choiceAB)) {
+                if("T".equals(abType)) {
+                    templateA(body, message, target, mailagent, divideNo)
+                } else {
+                    subjectA(body, message, target, mailagent, divideNo)
+                }
+            } else {
+                if("T".equals(abType)) {
+                    templateB(body, message, target, mailagent, divideNo)
+                } else {
+                    subjectB(body, message, target, mailagent, divideNo)
+                }
+            }
+        } else { // 미리보기, 테스트 발송, 단건재발송
+            if("T".equals(context.get("_SEND_MODE"))) {
+                if("T".equals(abType)){
+                    templateA(body, message, target, mailagent, divideNo)
+                    templateB(body, message, target, mailagent, divideNo)
+                } else {
+                    subjectA(body, message, target, mailagent, divideNo)
+                    // body 중복으로 인한 신규 생성
+                    MailBody body2 = new MailBody(context)
+                    body2.setEncodingType("base64")
+                    body2.setCharset("euc-kr")
+                    body2.setFrom(context.get("_SENDER_NM"), context.get("_SENDER_EMAIL"))
+                    body2.setTo(target.getString(_NAME_FIELD_SEQ), target.getString(_EMAIL_FIELD_SEQ))
+
+                    subjectB(body2, message, target, mailagent, divideNo)
+                }
+            } else {
+                if("Y".equals(context.get("_RESEND_YN"))) {
+                   getAbType(dbagent, target.getString(_KEY_FIELD_SEQ))
+                }
+
+                if("T".equals(abType)) {
+                    if("A".equals(context.get("_AB_TYPE"))) {
+                        templateA(body, message, target, mailagent, divideNo)
+                    } else {
+                        templateB(body, message, target, mailagent, divideNo)
+                    }
+                } else {
+                    if("A".equals(context.get("_AB_TYPE"))) {
+                        subjectA(body, message, target, mailagent, divideNo)
+                    } else {
+                        subjectB(body, message, target, mailagent, divideNo)
+                    }
+                }
+            }
+        }
+        // ----- A/B -----
+    } catch(Exception e) {
+        context.put("_EXCEPTION", e);
+        exlogger.write(target.toString(), e)
+        if(isSendMode) {
+            errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+            exlogger.insertSendLog(target, target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+        }
+    }
+}
+
+// ---- DBAgent 1----
+private String choiceTemplate(dbagent) {
+    String AB_TYPE = "A"
+    int tcnt = 0;
+
+    StringBuilder condQuery = new StringBuilder();
+    if("O".equals(context.get("_AB_TEST_COND"))) {
+        // 오픈율 선택
+        condQuery.append(" SELECT AB_TYPE, COUNT(AB_TYPE) AS TCNT ")
+        condQuery.append(" FROM ( SELECT CUSTOMER_ID, AB_TYPE  ")
+        condQuery.append(" FROM  NVRECEIPT WHERE CAMPAIGN_NO = ? AND AB_TYPE IN ('DA','DB') GROUP BY CUSTOMER_ID, AB_TYPE ) A ")
+        condQuery.append(" GROUP BY AB_TYPE ORDER BY AB_TYPE   ")
+    } else {
+        // 클릭율 선택
+        condQuery.append(" SELECT AB_TYPE, COUNT(AB_TYPE) AS TCNT ")
+        condQuery.append(" FROM ( SELECT CUSTOMER_ID, AB_TYPE  ")
+        condQuery.append(" FROM  NVLINKRESULT WHERE CAMPAIGN_NO = ? AND AB_TYPE IN ('DA','DB') GROUP BY CUSTOMER_ID, AB_TYPE ) A ")
+        condQuery.append(" GROUP BY AB_TYPE ORDER BY AB_TYPE   ")
+    }
+
+    try {
+        connEms = dbagent.getConnection(context.get("_jdbc.url"),context.get("_jdbc.user"),context.get("_jdbc.password"));
+        pstmtEms = connEms.prepareStatement(condQuery.toString());
+        pstmtEms.setInt(1, Integer.parseInt(context.get("_CAMPAIGN_NO")));
+        rsEms = pstmtEms.execute();
+
+        while(rsEms.next()) {
+            temCnt = rsEms.getInt("TCNT");
+            if( temCnt > tcnt ) {
+                tcnt = temCnt
+                AB_TYPE = rsEms.getString("AB_TYPE").substring(1,2)
+            }
+        }
+        return AB_TYPE
+    } finally {
+        if(rsEms != null) {
+            rsEms.close();
+        }
+        if(pstmtEms != null) {
+            pstmtEms.close();
+        }
+        if(connEms != null) {
+            connEms.close();
+        }
+    }// ---- DBAgent ----
+}
+
+// ---- DBAgent 2----
+private getAbType(dbagent, cutomerId) {
+    AB_TYPE = "RA";
+    StringBuilder condQuery = new StringBuilder();
+    condQuery.append(" SELECT SLOT1 ")
+    condQuery.append(" FROM NVSENDLOG  ")
+    condQuery.append(" WHERE CAMPAIGN_NO = ? AND CUSTOMER_KEY = ? ")
+
+    try {
+        connEms = dbagent.getConnection(context.get("_jdbc.url"),context.get("_jdbc.user"),context.get("_jdbc.password"));
+        pstmtEms = connEms.prepareStatement(condQuery.toString());
+        pstmtEms.setInt(1, Integer.parseInt(context.get("_CAMPAIGN_NO")));
+        pstmtEms.setString(2, cutomerId);
+        rsEms = pstmtEms.execute();
+
+        if(rsEms.next()) {
+            AB_TYPE = rsEms.getString("SLOT1");
+            context.put("_AB_TYPE", AB_TYPE.substring(1,2));
+        }
+    } finally {
+        if(rsEms != null) {
+            rsEms.close();
+        }
+        if(pstmtEms != null) {
+            pstmtEms.close();
+        }
+        if(connEms != null) {
+            connEms.close();
+        }
+    }// ---- DBAgent 2----
+}
+
+private void subjectA(body, message, target, mailagent, divideNo) {
+    if(divideNo == 0) {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "DA")
+        context.put("AB_TYPE","DA")
+    } else {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "RA")
+        context.put("AB_TYPE","RA")
+    }
+
+    body.setSubject(context.get("_SERVICE_PREFACE", target))
+
+    msg = message.execGroovyTemplate()
+    body.setContent("text/html", msg)
+    body.makeHeader()
+    body.makeBody()
+    mailagent.send(body)
+}
+
+private void subjectB(body, message, target, mailagent, divideNo) {
+    if(divideNo == 0) {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "DB")
+        context.put("AB_TYPE","DB")
+    } else {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "RB")
+        context.put("AB_TYPE","RB")
+    }
+
+    body.setSubject(context.get("_SERVICE_PREFACE_AB", target))
+
+    msg = message.execGroovyTemplate()
+    body.setContent("text/html", msg)
+    body.makeHeader()
+    body.makeBody()
+    mailagent.send(body)
+}
+
+private void templateA(body, message, target, mailagent, divideNo) {
+    if(divideNo == 0) {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "DA")
+        context.put("AB_TYPE","DA")
+    } else {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "RA")
+        context.put("AB_TYPE","RA")
+    }
+    body.setSubject(context.get("_SERVICE_PREFACE", target))
+
+    msg = message.execGroovyTemplate()
+    body.setContent("text/html", msg)
+    body.makeHeader()
+    body.makeBody()
+    mailagent.send(body)
+}
+
+private void templateB(body, message, target, mailagent, divideNo) {
+    if(divideNo == 0) {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "DB")
+        context.put("AB_TYPE","DB")
+    } else {
+        mailagent.setRcpt(target.getString(_EMAIL_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), "0", "RB")
+        context.put("AB_TYPE","RB")
+    }
+
+    body.setSubject(context.get("_SERVICE_PREFACE", target))
+
+    msg = message.execGroovyTemplate("AB")
+    body.setContent("text/html", msg)
+    body.makeHeader()
+    body.makeBody()
+    mailagent.send(body)
+}
+
+exlogger.close()
+target.close()
+mailagent.close()

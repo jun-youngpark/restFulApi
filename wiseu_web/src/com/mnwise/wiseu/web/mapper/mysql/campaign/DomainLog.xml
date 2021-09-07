@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.DomainLog">
+    <resultMap id="resultDomainLog" type="DomainLog">
+        <result column="campaign_no"    property="campaignNo"/>
+        <result column="result_seq"     property="resultSeq"/>
+        <result column="domain_nm"      property="domainNm"/>
+        <result column="error_cd"       property="errorCd"/>
+        <result column="send_cnt"       property="sendCnt"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="target_cnt"     property="targetCnt"/>
+        <result column="send_cnt"       property="sendCnt"/>
+        <result column="success_cnt"    property="successCnt"/>
+        <result column="soft_cnt"       property="softCnt"/>
+        <result column="hard_cnt"       property="hardCnt"/>
+        <result column="bounce"         property="bounce"/>
+        <result column="error_desc"     property="errorDesc"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectErrCdResultMsgList" parameterType="ScenarioInfo" resultMap="resultDomainLog">
+        SELECT domain_nm, send_cnt
+        FROM nvdomainlog
+        WHERE campaign_no = #{campaignInfoVo.campaignNo}
+        AND error_cd = #{campaignInfoVo.searchErrCd}
+        ORDER BY send_cnt DESC
+    </select>
+
+    <select id="getCampaignReportErrorList" parameterType="map" resultMap="mapper.Common.resultCampaignReportError">
+        SELECT
+            CASE no WHEN 2 THEN concat(d.error_gubun,' 계') WHEN 3 THEN 'Total' ELSE error_gubun END error_gubun
+          , CASE no WHEN 1 THEN d.error_cd END error_cd
+          , max(CASE no WHEN 1 THEN d.error_msg WHEN 2 THEN concat(d.error_gubun,' 계') END) error_msg
+          , coalesce(sum(send_cnt),0) send_cnt
+          , CASE no WHEN 2 THEN 1 WHEN 3 THEN 3 ELSE 0 END gid
+        FROM (
+            SELECT
+                CASE c.cd_cat WHEN 'C00011' THEN 'Soft Bounce' WHEN 'C00021' THEN 'Hard Bounce' END error_gubun
+              , b.error_cd, sum(b.send_cnt) send_cnt, max(coalesce(c.val, 'Unknown Error')) error_msg
+            FROM nvsendresult a, nvdomainlog b LEFT OUTER JOIN (
+                SELECT cd, val, cd_cat
+                FROM nv_cd_mst
+                WHERE cd_cat IN ('C00011', 'C00021')
+                AND lang = #{lang}
+            ) c
+            ON b.error_cd = c.cd
+            WHERE a.result_seq = b.result_seq
+            AND (a.RESEND_STS IS NULL OR a.RESEND_STS = 'F')
+            AND b.campaign_no = #{campaignNo}
+            AND b.error_cd != 250
+            GROUP BY c.cd_cat, b.error_cd
+        ) d, (
+            SELECT no
+            FROM copy_t
+            WHERE no &lt;= 3
+        ) e
+        GROUP BY CASE no WHEN 2 THEN concat(error_gubun,' 계') WHEN 3 THEN 'Total' ELSE error_gubun END, no, CASE no WHEN 1 THEN error_cd END
+        ORDER BY error_gubun, error_cd, gid
+    </select>
+
+    <select id="getCampaignSummarySpam" parameterType="map" resultType="int">
+        SELECT coalesce(sum(a.send_cnt),0)
+        FROM nvdomainlog a, (
+            SELECT cd, val, cd_cat
+            FROM nv_cd_mst
+            WHERE cd_cat IN ('C00011', 'C00021')
+            AND lang = #{lang}
+        ) b
+        WHERE a.error_cd = b.cd
+        AND a.campaign_no = #{campaignNo}
+    </select>
+
+</mapper>

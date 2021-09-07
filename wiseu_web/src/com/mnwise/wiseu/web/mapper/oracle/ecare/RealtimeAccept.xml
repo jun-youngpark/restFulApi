@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.RealtimeAccept">
+    <!--<resultMap id="resultRealtimeAccept" type="RealtimeAccept">
+        <result column="seq"            property="seq"/>
+        <result column="ecare_no"       property="ecareNo"/>
+        <result column="result_seq"     property="resultSeq"/>
+        <result column="list_seq"       property="listSeq"/>
+        <result column="channel"        property="channel"/>
+        <result column="svc_id"         property="svcId"/>
+        <result column="req_user_id"    property="reqUserId"/>
+        <result column="req_dept_id"    property="reqDeptId"/>
+        <result column="req_dt"         property="reqDt"/>
+        <result column="req_tm"         property="reqTm"/>
+        <result column="tmpl_type"      property="tmplType"/>
+        <result column="receiver_id"    property="receiverId"/>
+        <result column="receiver_nm"    property="receiverNm"/>
+        <result column="receiver"       property="receiver"/>
+        <result column="sender_nm"      property="senderNm"/>
+        <result column="sender"         property="sender"/>
+        <result column="subject"        property="subject"/>
+        <result column="send_fg"        property="sendFg"/>
+        <result column="slot1"          property="slot1"/>
+        <result column="slot2"          property="slot2"/>
+        <result column="secu_key"       property="secuKey"/>
+        <result column="security_path"  property="securityPath"/>
+        <result column="error_msg"      property="errorMsg"/>
+        <result column="reserved_date"  property="reservedDate"/>
+        <result column="preview_type"   property="previewType"/>
+        <result column="data_cnt"       property="dataCnt"/>
+        <result column="file_path1"     property="filePath1"/>
+        <result column="file_path2"     property="filePath2"/>
+        <result column="file_path3"     property="filePath3"/>
+        <result column="srfidd"         property="srfidd"/>
+        <result column="jonmun"         property="jonmun"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="defferedTargetReSend" parameterType="map">
+        INSERT INTO nvrealtimeaccept (
+            seq, ecare_no, channel, svc_id, req_user_id, req_dt, req_tm, tmpl_type, receiver_id, receiver_nm
+          , receiver, sender_nm, sender, subject, send_fg, slot1, slot2, secu_key, security_path, reserved_date
+          , preview_type, data_cnt, file_path1, file_path2, file_path3, srfidd, jonmun
+        )
+        SELECT
+            #{newSeq}, ecare_no, channel, svc_id, req_user_id, to_char(SYSDATE, 'yyyyMMdd'), to_char(SYSDATE, 'hh24mmss'), tmpl_type, receiver_id, receiver_nm
+          <if test="receiver == null or receiver == ''">, receiver</if>
+          <if test="receiver != null and receiver != ''">, #{receiver}</if>
+          , sender_nm, sender, subject, 'R', slot1, slot2, secu_key, security_path, reserved_date
+          , 'N' preview_type, data_cnt, file_path1, file_path2, file_path3, #{srfidd, jdbcType=VARCHAR}, jonmun
+        FROM nvrealtimeaccept
+        WHERE seq = #{seq}
+    </insert>
+
+    <insert id="insertResendDataForDefferedTime" parameterType="MimeView">
+        INSERT INTO nvrealtimeaccept (
+            seq, ecare_no, channel, req_user_id, req_dt, req_tm, tmpl_type, receiver_id, receiver_nm, receiver
+          , sender_nm, sender, subject, send_fg, secu_key, security_path, preview_type
+        )
+        SELECT
+            #{seq}, ecare_no, channel, 'defferedTime', #{reqDt}, #{reqTm}, 'J', receiver_id, receiver_nm, #{customerEmail}
+          , sender_nm, sender, subject, 'R', secu_key, security_path, preview_type
+        FROM nvrealtimeaccept
+        WHERE ecare_no = #{serviceNo}
+        AND seq = #{condition}
+    </insert>
+
+    <insert id="insertResendDataForJeonmun" parameterType="MimeView">
+        INSERT INTO nvrealtimeaccept (
+            seq, ecare_no, channel, req_user_id, req_dt, req_tm, tmpl_type, receiver_id, receiver_nm, receiver
+          , sender_nm, sender, subject, send_fg, secu_key, security_path, preview_type
+        )
+        SELECT
+            #{seq}, #{resendEcareNo}, channel, 'schedule', #{reqDt}, #{reqTm}, 'J', receiver_id, receiver_nm, #{customerEmail}
+          , sender_nm, sender, subject, 'R', secu_key, security_path, preview_type
+        FROM nvscheduleaccept
+        WHERE ecare_no = #{serviceNo} and SEQ = #{condition}
+    </insert>
+
+    <insert id="insertResendDataForSchedule" parameterType="MimeView">
+        INSERT INTO nvrealtimeaccept (
+            seq, ecare_no, channel, req_user_id, req_dt, req_tm, tmpl_type, receiver_id, receiver_nm, receiver
+          , sender_nm, sender, subject, send_fg, preview_type
+        ) VALUES (
+            #{seq}, #{resendEcareNo}, 'M', 'schedule', #{reqDt}, #{reqTm}, 'J', #{customerKey}, #{customerNm}, #{customerEmail}
+          , 'normal', 'S', #{subject, jdbcType=VARCHAR}, 'R', 'N'
+        )
+    </insert>
+
+    <insert id="create" parameterType="NrealtimeRequest">
+        INSERT INTO nvrealtimeaccept (
+            seq, ecare_no, channel, req_user_id, req_dept_id, tmpl_type, receiver_id, receiver_nm, receiver, sender_nm
+          , sender, subject, send_fg, slot1, slot2, secu_key, security_path, reserved_date, preview_type, file_path1
+          , file_path2, file_path3, jonmun, req_dt, req_tm
+        ) VALUES (
+            #{seq}, #{ecareNo}, #{channel}, #{reqUserId, jdbcType=VARCHAR}, #{reqDeptId, jdbcType=VARCHAR}, #{tmplType}, #{receiverId}, #{receiverNm}, #{receiver}, #{sendNm}
+          , #{sender}, #{subject, jdbcType=VARCHAR}, 'R', #{slot1, jdbcType=VARCHAR}, #{slot2, jdbcType=VARCHAR}, #{secuKey, jdbcType=VARCHAR}, #{securityPath, jdbcType=VARCHAR}, #{reservedDate, jdbcType=VARCHAR}, #{previewType}, #{filePath1, jdbcType=VARCHAR}
+          , #{filePath2, jdbcType=VARCHAR}, #{filePath3, jdbcType=VARCHAR}, #{jonmun}, to_char(SYSDATE, 'yyyyMMdd'), to_char(SYSDATE, 'hhMMss')
+        )
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="defferedTargetSend" parameterType="string">
+        UPDATE nvrealtimeaccept
+        SET preview_type = 'N'
+        WHERE seq = #{seq}
+    </update>
+
+    <update id="updateJeonmun" parameterType="MimeView">
+        UPDATE nvrealtimeaccept
+        SET jonmun = #{jeonmun}
+        WHERE seq = #{seq}
+    </update>
+
+    <update id="update" parameterType="NrealtimeRequest">
+        UPDATE nvrealtimeaccept
+        SET send_fg = 'R', preview_type = 'N'<if test="receiver != null and receiver != ''">, receiver = #{receiver}</if>
+        WHERE seq = #{seq}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="delete" parameterType="NrealtimeRequest">
+        DELETE FROM nvrealtimeaccept
+        WHERE seq = #{seq}
+        AND send_fg = 'R'
+        AND result_seq IS NULL
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectDefferedTimeJeonmun" parameterType="MimeView" resultType="string">
+        SELECT jonmun
+        FROM nvrealtimeaccept
+        WHERE seq = #{condition}
+        AND ecare_no = #{serviceNo}
+    </select>
+
+    <select id="read" parameterType="NrealtimeRequest" resultType="string">
+        SELECT '{"STATE_FG":"' || a.send_fg || '", "SEND_CD":"' || coalesce(b.error_cd, 'NONE') || '", "SEND_MSG":"' || (CASE WHEN b.error_cd = '250' THEN 'Success' ELSE coalesce(b.err_msg, 'NONE') END) ||'"}'
+        FROM (
+            SELECT ecare_no, result_seq, list_seq, seq, send_fg
+            FROM nvrealtimeaccept
+            WHERE seq = #{seq}
+        ) a LEFT OUTER JOIN nvecaresendlog b
+        ON a.seq = b.seq
+        AND a.ecare_no = b.ecare_no
+        AND a.result_seq = b.result_seq
+        AND a.list_seq = b.list_seq
+    </select>
+</mapper>

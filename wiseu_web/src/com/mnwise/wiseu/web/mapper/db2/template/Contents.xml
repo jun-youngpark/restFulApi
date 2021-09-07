@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Contents">
+    <resultMap id="resultContents" type="Contents">
+        <result column="conts_no"       property="contsNo"/>
+        <result column="grp_cd"         property="grpCd"/>
+        <result column="category_cd"    property="categoryCd"/>
+        <result column="user_id"        property="userId"/>
+        <result column="conts_nm"       property="contsNm"/>
+        <result column="conts_desc"     property="contsDesc"/>
+        <result column="file_url_name"  property="fileUrlName"/>
+        <result column="file_type"      property="fileType"/>
+        <result column="file_name"      property="fileName"/>
+        <result column="create_dt"      property="createDt"/>
+        <result column="create_tm"      property="createTm"/>
+        <result column="auth_type"      property="authType"/>
+        <result column="tag_no"         property="tagNo"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="tag_nm"         property="tagNm"/>
+        <result column="user_nm"        property="userNm"/>
+        <result column="file_url_name"  property="fileUrlNm"/>
+        <result column="file_name"      property="fileNm"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertContents" parameterType="Contents">
+        INSERT INTO nvcontents (conts_no, grp_cd, category_cd, user_id, conts_nm, conts_desc, file_url_name, file_type, file_name, create_dt, create_tm, auth_type, tag_no)
+        VALUES (#{contsNo}, #{grpCd, jdbcType=VARCHAR}, #{categoryCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{contsNm, jdbcType=VARCHAR}, #{contsDesc, jdbcType=VARCHAR}, #{fileUrlName, jdbcType=VARCHAR}, #{fileType, jdbcType=CHAR}, #{fileName, jdbcType=VARCHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{authType, jdbcType=CHAR}, #{tagNo})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateContentsByPk" parameterType="map">
+        UPDATE nvcontents
+        SET
+            grp_cd = #{grpCd, jdbcType=VARCHAR}
+          , category_cd = #{categoryCd, jdbcType=VARCHAR}
+          , user_id = #{userId, jdbcType=VARCHAR}
+          , conts_nm = #{contsNm, jdbcType=VARCHAR}
+          , conts_desc = #{contsDesc, jdbcType=VARCHAR}
+          , file_url_name = #{fileUrlName, jdbcType=VARCHAR}
+          , file_type = #{fileType, jdbcType=CHAR}
+          , file_name = #{fileName, jdbcType=VARCHAR}
+          , create_dt = #{createDt, jdbcType=CHAR}
+          , create_tm = #{createTm, jdbcType=CHAR}
+          , auth_type = #{authType, jdbcType=CHAR}
+          , tag_no = #{tagNo}
+        WHERE conts_no = #{contsNo}
+    </update>
+
+    <update id="updateTemplate" parameterType="Contents">
+        UPDATE nvcontents
+        SET
+            conts_nm = #{contsNm, jdbcType=VARCHAR}
+          , conts_desc = #{contsDesc, jdbcType=VARCHAR}
+            <if test="fileType != null and fileType != ''">
+          , file_type = #{fileType, jdbcType=CHAR}
+            </if>
+            <if test="fileName != null and fileName != ''">
+          , file_url_name = #{fileUrlName, jdbcType=VARCHAR}
+          , file_name = #{fileName, jdbcType=VARCHAR}
+            </if>
+            <if test="createDt != null and createDt != ''">
+          , create_dt = #{createDt, jdbcType=CHAR}
+          , create_tm = #{createTm, jdbcType=CHAR}
+            </if>
+          , auth_type = #{authType, jdbcType=CHAR}
+          , tag_no = #{tagNo}
+        WHERE conts_no = #{contsNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteContentsByPk" parameterType="map">
+        DELETE FROM nvcontents
+        WHERE conts_no = #{contsNo}
+    </delete>
+
+    <delete id="deleteTemplate" parameterType="Contents">
+        DELETE FROM nvcontents
+        <if test="templateNoArray != null">
+        WHERE conts_no IN (<foreach collection="templateNoArray" item="templateNo" separator=",">#{templateNo}</foreach>)
+        </if>
+        <if test="contsNo != 0">
+        WHERE conts_no = #{contsNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectContentsByPk" parameterType="map" resultMap="resultContents">
+        SELECT conts_no, grp_cd, category_cd, user_id, conts_nm, conts_desc, file_url_name, file_type, file_name, create_dt, create_tm, auth_type, tag_no
+        FROM nvcontents
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <select id="selectTemplateInfo" parameterType="int" resultMap="resultContents">
+        SELECT
+            conts_no, grp_cd, category_cd, user_id, conts_nm, conts_desc, file_url_name, file_type, file_name, auth_type
+          , coalesce(tag_no,0) tag_no
+          , to_char(to_date(create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt
+          , to_char(to_date(create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+          , (SELECT tag_nm FROM nvcontentstag WHERE tag_no = a.tag_no) as tag_nm
+          , (SELECT name_kor FROM nvuser WHERE user_id = a.user_id) user_nm
+        FROM nvcontents a
+        WHERE conts_no = #{contsNo}
+    </select>
+
+    <select id="selectNextContsNo" resultType="int">
+        SELECT coalesce(max(conts_no),0)+1
+        FROM nvcontents
+    </select>
+
+    <sql id="templateListWhereQuery">
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+            AND (
+                b.user_id = #{userVo.userId}
+                OR (auth_type = 'G' AND b.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId}))
+                OR auth_type = 'A'
+            )
+            </if>
+        </if>
+        <if test="userVo.userTypeCd == 'M'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+            AND (
+                b.grp_cd = (SELECT grp_cd FROM nvuser WHERE user_id = #{userVo.userId})
+                OR auth_type = 'A'
+            )
+            </if>
+        </if>
+        <if test="contsNm        != null and contsNm        != ''">AND conts_nm LIKE '%' || #{contsNm} || '%'</if>
+        <if test="searchQstartDt != null and searchQstartDt != ''">AND create_dt &gt;= #{searchQstartDt}</if>
+        <if test="searchQendDt   != null and searchQendDt   != ''">AND create_dt &lt;= #{searchQendDt}</if>
+        <if test="tagNo          != -1"                           >AND tag_no = #{tagNo}</if>
+    </sql>
+
+    <select id="selectTotalCount" parameterType="Contents" resultType="int">
+        SELECT count(*)
+        FROM nvcontents a, nvuser b
+        WHERE a.user_id = b.user_id
+        <include refid="templateListWhereQuery"/>
+    </select>
+
+    <select id="selectTemplateList" parameterType="Contents" resultMap="resultContents">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY a.conts_no DESC) as rnum
+              , a.conts_no, a.grp_cd, a.category_cd, a.user_id, a.conts_nm, a.conts_desc, a.file_url_name, a.file_type, a.file_name, a.auth_type
+              , coalesce(a.tag_no,0) tag_no, b.name_kor as user_nm, c.grp_nm
+              , to_char(to_date(a.create_dt,'YYYYMMDD'),'YYYY-MM-DD') as create_dt
+              , to_char(to_date(a.create_tm,'HH24MISS'),'HH:MI:SS') as create_tm
+              , (SELECT tag_nm FROM nvcontentstag WHERE tag_no = a.tag_no) as tag_nm
+            FROM nvcontents a, nvuser b, nvusergrp c
+            WHERE a.user_id = b.user_id
+            AND b.grp_cd = c.grp_cd
+            <include refid="templateListWhereQuery"/>
+            ORDER BY a.conts_no DESC
+        )
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+    </select>
+
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Semantic">
+    <resultMap id="resultSemantic" type="Semantic">
+        <result column="segment_no"     property="segmentNo"/>
+        <result column="field_seq"      property="fieldSeq"/>
+        <result column="field_nm"       property="fieldNm"/>
+        <result column="field_desc"     property="fieldDesc"/>
+        <result column="field_type"     property="fieldType"/>
+        <result column="field_length"   property="fieldLength"/>
+        <result column="initvalue"      property="initvalue"/>
+        <result column="minvalue"       property="minvalue"/>
+        <result column="maxvalue"       property="maxvalue"/>
+        <result column="null_yn"        property="nullYn"/>
+        <result column="field_key"      property="fieldKey"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSemantic" parameterType="Semantic">
+        INSERT INTO nvsemantic (segment_no, field_seq, field_nm, field_desc, field_type, field_length, initvalue, minvalue, maxvalue, null_yn, field_key)
+        VALUES (#{segmentNo}, #{fieldSeq}, #{fieldNm}, #{fieldDesc, jdbcType=VARCHAR}, #{fieldType, jdbcType=VARCHAR}, #{fieldLength}, #{initvalue, jdbcType=VARCHAR}, #{minvalue, jdbcType=VARCHAR}, #{maxvalue, jdbcType=VARCHAR}, #{nullYn, jdbcType=CHAR}, #{fieldKey, jdbcType=CHAR})
+    </insert>
+
+    <insert id="copySemantic" parameterType="map">
+        INSERT INTO nvsemantic (segment_no, field_seq, field_nm, field_desc, field_type, field_length, initvalue, minvalue, maxvalue, null_yn, field_key)
+        SELECT #{toSegmentNo}, field_seq, field_nm, field_desc, field_type, field_length, initvalue, minvalue, maxvalue, null_yn, field_key
+        FROM nvsemantic
+        WHERE segment_no = #{fromSegmentNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSemanticByPk" parameterType="map">
+        UPDATE nvsemantic
+        SET
+            field_nm = #{fieldNm}
+          , field_desc = #{fieldDesc, jdbcType=VARCHAR}
+          , field_type = #{fieldType, jdbcType=VARCHAR}
+          , field_length = #{fieldLength}
+          , initvalue = #{initvalue, jdbcType=VARCHAR}
+          , minvalue = #{minvalue, jdbcType=VARCHAR}
+          , maxvalue = #{maxvalue, jdbcType=VARCHAR}
+          , null_yn = #{nullYn, jdbcType=CHAR}
+          , field_key = #{fieldKey, jdbcType=CHAR}
+        WHERE segment_no = #{segmentNo}
+        AND field_seq = #{fieldSeq}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSemanticByPk" parameterType="map">
+        DELETE FROM nvsemantic
+        WHERE segment_no = #{segmentNo}
+        AND field_seq = #{fieldSeq}
+    </delete>
+
+    <select id="selectCampaignSemanticKey" parameterType="int" resultType="string">
+        SELECT field_key
+        FROM nvsemantic
+        WHERE segment_no = (SELECT segment_no FROM nvcampaign WHERE campaign_no = #{campaignNo} )
+        AND field_key IS NOT NULL
+    </select>
+
+</mapper>

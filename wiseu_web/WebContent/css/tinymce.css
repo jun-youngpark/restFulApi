@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+body {
+	background-color: #FFFFFF;
+	font-family:'Roboto', 'Nanum Gothic', 'Noto Sans KR', sans-serif;
+	font-size: 13px;
+}
+span{
+	font-size: 13px!important;
+}
+
+.tablerow1 {
+	background-color: #BBBBBB;
+}
+
+thead {
+	background-color: #FFBBBB;
+}
+
+tfoot {
+	background-color: #BBBBFF;
+}
+
+th {
+	font-family:'Roboto', 'Nanum Gothic', 'Noto Sans KR', sans-serif;
+	font-size: 13px;
+}
+
+p {margin: 0; padding: 0;}

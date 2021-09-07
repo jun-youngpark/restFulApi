@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SvrInfo">
+    <resultMap id="resultSvrInfo" type="SvrInfo">
+        <result column="server_id"                      property="serverId"/>
+        <result column="last_update_tm"                 property="lastUpdateTm"/>
+        <result column="start_tm"                       property="startTm"/>
+        <result column="job_cnt"                        property="jobCnt"/>
+        <result column="process_thread_cnt"             property="processThreadCnt"/>
+        <result column="work_thread_cnt"                property="workThreadCnt"/>
+        <result column="openfile_desc_cnt"              property="openfileDescCnt"/>
+        <result column="max_memory"                     property="maxMemory"/>
+        <result column="used_memory"                    property="usedMemory"/>
+        <result column="cpu_rate"                       property="cpuRate"/>
+        <result column="max_queue_size"                 property="maxQueueSize"/>
+        <result column="used_queue_size"                property="usedQueueSize"/>
+        <result column="status"                         property="status"/>
+        <result column="polling_act_status"             property="pollingActStatus"/>
+        <result column="polling_act_status_update_tm"   property="pollingActStatusUpdateTm"/>
+        <result column="disp_no"                        property="dispNo"/>
+        <result column="exec_info"                      property="execInfo"/>
+        <result column="config_cont"                    property="configCont"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="cur_tm"                         property="curTm"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSvrInfo" parameterType="SvrInfo">
+        INSERT INTO nv_svr_info (server_id, last_update_tm, start_tm, job_cnt, process_thread_cnt, work_thread_cnt, openfile_desc_cnt, max_memory, used_memory, cpu_rate, max_queue_size, used_queue_size, status, polling_act_status, polling_act_status_update_tm, disp_no, exec_info, config_cont)
+        VALUES (#{serverId}, #{lastUpdateTm, jdbcType=VARCHAR}, #{startTm, jdbcType=VARCHAR}, #{jobCnt}, #{processThreadCnt}, #{workThreadCnt}, #{openfileDescCnt}, #{maxMemory}, #{usedMemory}, #{cpuRate}, #{maxQueueSize}, #{usedQueueSize}, #{status}, #{pollingActStatus, jdbcType=CHAR}, #{pollingActStatusUpdateTm, jdbcType=VARCHAR}, #{dispNo}, #{execInfo, jdbcType=VARCHAR}, #{configCont})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSvrInfoByPk" parameterType="map">
+        UPDATE nv_svr_info
+        SET
+            last_update_tm = #{lastUpdateTm, jdbcType=VARCHAR}
+          , start_tm = #{startTm, jdbcType=VARCHAR}
+          , job_cnt = #{jobCnt}
+          , process_thread_cnt = #{processThreadCnt}
+          , work_thread_cnt = #{workThreadCnt}
+          , openfile_desc_cnt = #{openfileDescCnt}
+          , max_memory = #{maxMemory}
+          , used_memory = #{usedMemory}
+          , cpu_rate = #{cpuRate}
+          , max_queue_size = #{maxQueueSize}
+          , used_queue_size = #{usedQueueSize}
+          , status = #{status}
+          , polling_act_status = #{pollingActStatus, jdbcType=CHAR}
+          , polling_act_status_update_tm = #{pollingActStatusUpdateTm, jdbcType=VARCHAR}
+          , disp_no = #{dispNo}
+          , exec_info = #{execInfo, jdbcType=VARCHAR}
+          , config_cont = #{configCont}
+        WHERE server_id = #{serverId}
+    </update>
+
+    <update id="updateConfigContByPk" parameterType="map">
+        UPDATE nv_svr_info
+        SET config_cont = #{configCont}
+        WHERE server_id = #{serverId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSvrInfoByPk" parameterType="map">
+        DELETE FROM nv_svr_info
+        WHERE server_id = #{serverId}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectSvrInfoByPk" parameterType="string" resultMap="resultSvrInfo">
+        SELECT
+            server_id, last_update_tm, start_tm, job_cnt, process_thread_cnt, work_thread_cnt, openfile_desc_cnt, max_memory, used_memory, cpu_rate
+          , max_queue_size, used_queue_size, status, polling_act_status, polling_act_status_update_tm, disp_no, exec_info, config_cont
+          , convert(varchar(8), getdate(), 112) + replace(convert(varchar(8), getdate(), 108), ':', '')  as cur_tm
+        FROM nv_svr_info
+        WHERE server_id = #{serverId}
+    </select>
+
+    <select id="selectServerIdList" resultType="string">
+        SELECT server_id
+        FROM nv_svr_info
+        ORDER BY disp_no, server_id
+    </select>
+</mapper>

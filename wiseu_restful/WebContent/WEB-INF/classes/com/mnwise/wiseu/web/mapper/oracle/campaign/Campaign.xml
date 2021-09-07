@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Campaign">
+
+	<resultMap id="resultCampaign" type="com.mnwise.wiseu.web.rest.dto.ReturnDto$CampaignDto">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="segment_no"             property="segmentNo"/>
+        <result column="campaign_nm"            property="campaignNm"/>
+        <result column="campaign_preface"       property="campaignPreface"/>
+        <result column="campaign_sts"           property="campaignSts"/>
+        <result column="create_dt"              property="createDt"/>
+        <result column="create_tm"              property="createTm"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="sender_nm"              property="senderNm"/>
+        <result column="sender_email"           property="senderEmail"/>
+        <result column="sender_tel"             property="senderTel"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="divide_yn"              property="divideYn"/>
+        <result column="divide_interval"        property="divideInterval"/>
+        <result column="divide_cnt"             property="divideCnt"/>
+        <result column="kakao_sender_key"       property="kakaoSenderKey"/>
+        <result column="failback_send_yn"       property="failbackSendYn"/>
+        <result column="failback_subject"       property="failbackSubject"/>
+        <result column="use_yn"       			property="useYn"/>
+        <result column="grp_nm"       			property="grpNm"/>
+        <result column="name_kor"       		property="userNm"/>
+        <result column="campaign_sts_nm"       	property="campaignStsNm"/>
+        <result column="relation_type_nm"       property="relationTypeNm"/>
+        <result column="relation_type"       	property="relationType"/>
+        <result column="depth_no"      			property="depthNo"/>
+        <result column="template"      			property="template"/>
+        <result column="kakao_buttons"      	property="kakaoButtons"/>
+        <result column="kakao_image_no"         property="kakaoImageNo"/>
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="relation_tree"       	property="relationTree"/>
+    </resultMap>
+
+	<resultMap id="findOmni" type="map">
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="campaign_nm"            property="campaignNm"/>
+        <result column="target_cnt"             property="targetCnt"/>
+        <result column="channel_type"           property="channelType"/>
+        <result column="campaign_sts_nm"       	property="campaignStsNm"/>
+        <result column="relation_type_nm"       property="relationTypeNm"/>
+        <result column="depth_no"      			property="depthNo"/>
+        <result column="sendstart_dtm"           property="sendStartDtm"/>
+    </resultMap>
+
+    <sql id="campaignListWhere">
+    	WHERE a.use_yn = 'Y'
+        <if test="userId != null and userId != ''">AND a.user_id = #{userId}</if>
+        <if test="grpCd != null and grpCd != ''">AND a.grp_cd = #{grp_cd}</if>
+        <if test="searchStartDt != null and searchStartDt  != ''">AND a.create_dt &gt;= #{searchStartDt}</if>
+        <if test="searchEndDt != null and searchEndDt    != ''">AND a.create_dt &lt;= #{searchEndDt}</if>
+        <if test="campaignSts != null and campaignSts != ''">AND a.campaign_sts = #{campaignSts}</if>
+        <if test="approvalSts != null and approvalSts != ''">AND a.approval_sts = #{approvalSts}</if>
+    </sql>
+
+  	<insert id="insertCampaignForFirst" parameterType="campaign">
+  		<selectKey keyProperty="campaignNo" resultType="int" order="BEFORE">
+			SELECT coalesce(max(campaign_no),0)+1
+        	FROM nvcampaign
+        </selectKey>
+        INSERT INTO nvcampaign (
+            campaign_no, grp_cd, user_id, campaign_preface, segment_no,  campaign_nm, campaign_sts, create_dt, create_tm, lastupdate_dt, campaign_type
+          , sending_mode, retry_cnt, campaign_class, channel_type, relation_type, campaign_level, scenario_no, req_dept_id, req_user_id, ab_test_type
+          , campaign_preface_ab, handler_seq, kakao_sender_key, kakao_image_no, failback_send_yn, failback_subject, template_type , use_yn
+        ) VALUES (
+            #{campaignNo}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{campaignPreface,jdbcType=VARCHAR}, #{segmentNo, jdbcType=INTEGER} , #{campaignNm, jdbcType=VARCHAR}, 'I', #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, 'Y'
+          , 'P', #{retryCnt, jdbcType=INTEGER}, 'A', #{channelType, jdbcType=CHAR}, coalesce(#{relationType, jdbcType=CHAR}, 'N'), '1', #{scenarioNo}, #{reqDept, jdbcType=VARCHAR}, #{reqUser, jdbcType=VARCHAR}, #{abTestType, jdbcType=CHAR}
+          , #{campaignPrefaceAb, jdbcType=VARCHAR}, #{handlerSeq, jdbcType=INTEGER}, #{kakaoSenderKey, jdbcType=VARCHAR}, #{kakaoTmplCd, jdbcType=VARCHAR}, #{kakaoImageNo, jdbcType=INTEGER}, #{failbackSendYn, jdbcType=CHAR}, #{failbackSubject, jdbcType=VARCHAR} , 1 , 'Y'
+        )
+    </insert>
+
+  	<insert id="insertCampaign" parameterType="campaign">
+       INSERT INTO nvcampaign (
+            campaign_no, grp_cd, user_id, campaign_preface, segment_no,  campaign_nm, campaign_sts, create_dt, create_tm, lastupdate_dt, campaign_type
+          , sending_mode, retry_cnt, campaign_class, channel_type, relation_type, campaign_level, scenario_no, req_dept_id, req_user_id, ab_test_type
+          , campaign_preface_ab, handler_seq, kakao_sender_key, kakao_tmpl_cd, kakao_image_no, failback_send_yn, failback_subject, template_type , use_yn
+        ) VALUES (
+            #{campaignNo}, #{grpCd, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{campaignPreface,jdbcType=VARCHAR}, #{segmentNo, jdbcType=INTEGER} , #{campaignNm, jdbcType=VARCHAR}, 'I', #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{lastUpdateDt, jdbcType=CHAR}, 'Y'
+          , 'P', #{retryCnt, jdbcType=INTEGER}, 'A', #{channelType, jdbcType=CHAR}, coalesce(#{relationType, jdbcType=CHAR}, 'N'), '1', #{scenarioNo}, #{reqDept, jdbcType=VARCHAR}, #{reqUser, jdbcType=VARCHAR}, #{abTestType, jdbcType=CHAR}
+          , #{campaignPrefaceAb, jdbcType=VARCHAR}, #{handlerSeq, jdbcType=INTEGER}, #{kakaoSenderKey, jdbcType=VARCHAR}, #{kakaoTmplCd, jdbcType=VARCHAR}, #{kakaoImageNo, jdbcType=INTEGER}, #{failbackSendYn, jdbcType=CHAR}, #{failbackSubject, jdbcType=VARCHAR} , 1 , 'Y'
+        )
+    </insert>
+
+  	<insert id="copyCampaignForResend" parameterType="Campaign">
+        INSERT INTO nvcampaign (
+            scenario_no, campaign_no, grp_cd, user_id, segment_no, target_cnt, campaign_nm, campaign_desc, campaign_preface, campaign_sts
+          , create_dt, create_tm, campaign_type, template_type, sending_mode, log_yn, keepday, share_yn, retry_cnt, sender_nm
+          , sender_email, receiver_nm, sender_tel, retmail_receiver, htmlupdate_yn, etc_info1, campaign_class, channel_type, etc_info2, retmail_send_yn
+          , category_cd, promotion_type, campaign_level, relation_type, relation_tree, depth_no, survey_end_yn, survey_no, survey_start_dt, survey_start_tm
+          , survey_end_dt, survey_end_tm, req_dept_id, req_user_id, divide_yn, ab_test_type
+          , handler_seq, kakao_sender_key, kakao_tmpl_cd, kakao_image_no, failback_send_yn, failback_subject, use_yn)
+        SELECT
+			#{scenarioNo}, #{newCampaignNo}, grp_cd, user_id, #{segmentNo}, #{targetCnt}, campaign_nm, campaign_desc, #{campaignPreface, jdbcType=VARCHAR}, 'I'
+          , #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, campaign_type, template_type, 'N', log_yn, keepday, share_yn, retry_cnt, sender_nm
+          , sender_email, receiver_nm, sender_tel, retmail_receiver, htmlupdate_yn, etc_info1, 'A', coalesce(#{channelType, jdbcType=CHAR}, channel_type), etc_info2, retmail_send_yn
+          , category_cd, promotion_type, CASE WHEN campaign_level = '3' THEN '2' ELSE campaign_level END campaign_level, #{relationType, jdbcType=CHAR}, #{relationTree, jdbcType=VARCHAR}
+          , coalesce(depth_no,1) + 1, survey_end_yn, survey_no, survey_start_dt, survey_start_tm
+          , survey_end_dt, survey_end_tm, req_dept_id, req_user_id, 'N', 'N'
+          , #{handlerSeq}, kakao_sender_key, kakao_tmpl_cd, kakao_image_no, failback_send_yn, failback_subject, 'Y'
+        FROM nvcampaign
+        WHERE campaign_no = #{campaignNo}
+    </insert>
+
+    <select id="selectCampaign" parameterType="int" resultMap="resultCampaign">
+        SELECT 	a.campaign_no,segment_no,campaign_nm,campaign_preface,campaign_sts
+				,create_dt,create_tm,target_cnt,sender_nm,sender_email
+				,sender_tel,channel_type,scenario_no,divide_yn,divide_interval,divide_cnt
+				,kakao_sender_key,kakao_image_no,failback_send_yn,failback_subject,use_yn
+				,relation_type,relation_tree,depth_no
+				,concat(a.sendstart_dt, a.sendstart_tm) as sendstart_dtm
+				, (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = a.campaign_sts AND lang = 'ko') campaign_sts_nm
+				, (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = a.relation_type AND lang = 'ko') relation_type_nm
+        		,b.template ,b.kakao_buttons
+        FROM nvcampaign a, nvtemplate b
+        WHERE a.campaign_no = #{campaignNo}
+        AND  a.campaign_no = b.campaign_no
+    </select>
+
+
+	<select id="selectCampaignListCount" parameterType="int" resultType="int">
+		SELECT	count(1)
+		FROM NVCAMPAIGN a
+		<include refid="campaignListWhere"/>
+	</select>
+
+	<select id="selectCampaignList" parameterType="int" resultMap="resultCampaign">
+		SELECT *
+		FROM(
+			SELECT
+				row_number() OVER(ORDER BY a.campaign_no DESC) rnum,
+				a.campaign_no,segment_no,campaign_nm,campaign_preface,campaign_sts
+				,create_dt,create_tm,sendstart_dt,sendstart_tm,target_cnt,sender_nm,sender_email
+				,sender_tel,channel_type,scenario_no,divide_yn,divide_interval,divide_cnt
+				,kakao_sender_key,kakao_image_no,failback_send_yn,failback_subject,use_yn
+				,relation_type,relation_tree,depth_no
+				,concat(a.sendstart_dt, a.sendstart_tm) as sendstart_dtm
+				, (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = a.campaign_sts AND lang = 'ko') campaign_sts_nm
+				, (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = a.relation_type AND lang = 'ko') relation_type_nm
+        		,'' as template ,'' as kakao_buttons
+			FROM NVCAMPAIGN a
+			<include refid="campaignListWhere"/>
+			ORDER BY campaign_no DESC
+			)
+		WHERE rnum &gt;= ((#{nowPage} - 1) * #{limit} + 1)
+        AND rnum &lt;= #{nowPage} * #{limit}
+	</select>
+
+ 	<select id="selectNextCampaignNo" resultType="int">
+        SELECT coalesce(max(campaign_no),0)+1
+        FROM nvcampaign
+    </select>
+
+    <select id="getEmOmniCount" resultType="int" parameterType="Campaign">
+        SELECT count(1)
+        FROM nvcampaign
+        WHERE scenario_no = #{scenarioNo}
+        AND depth_no = #{depthNo}
+        AND relation_type= #{relationType}
+    </select>
+
+    <update id="updateCampaign" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET
+         	lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+	        , lastupdate_tm = #{lastUpdateTm, jdbcType=CHAR}
+         	<if test="grpCd != null and grpCd != ''">
+           	 , grp_cd = #{grpCd, jdbcType=VARCHAR}
+          	</if>
+          	<if test="userId != null and userId != ''">
+         		, user_id = #{userId, jdbcType=VARCHAR}
+          	</if>
+          	<if test="segmentNo != 0 ">
+	          , segment_no = #{segmentNo}
+         	</if>
+         	<if test="campaignNm != null and campaignNm != ''">
+	          , campaign_nm = #{campaignNm, jdbcType=VARCHAR}
+          	</if>
+          	<if test="campaignDesc != null and campaignDesc != ''">
+	          , campaign_desc = #{campaignDesc, jdbcType=VARCHAR}
+          	</if>
+          	<if test="targetCnt != 0">
+	          , target_cnt = #{targetCnt}
+          	</if>
+          	<if test="retryCnt != 0">
+	          , retry_cnt = #{retryCnt}
+          	</if>
+          	<if test="senderNm != null and senderNm != ''">
+	          , sender_nm = #{senderNm, jdbcType=VARCHAR}
+          	</if>
+          	<if test="senderEmail != null and senderEmail != ''">
+	          , sender_email = #{senderEmail, jdbcType=VARCHAR}
+          	</if>
+          	<if test="senderTel != null and senderTel != ''">
+	          , sender_tel = #{senderTel, jdbcType=VARCHAR}
+          	</if>
+          	<if test="retmailReceiver != null and retmailReceiver != ''">
+	          , retmail_receiver = #{retmailReceiver, jdbcType=VARCHAR}
+          	</if>
+            <if test="kakaoSenderKey != null and kakaoSenderKey != ''">
+          	  , kakao_sender_key = #{kakaoSenderKey, jdbcType=VARCHAR}
+            </if>
+            <if test="kakaoTmplCd != null and kakaoTmplCd != ''">
+          	  , kakao_tmpl_cd = #{kakaoTmplCd, jdbcType=VARCHAR}
+            </if>
+            <if test="kakaoImageNo != 0">
+         	  , kakao_image_no = #{kakaoImageNo}
+            </if>
+            <if test="failbackSendYn != null and failbackSendYn != ''">
+         	  , failback_send_yn = #{failbackSendYn, jdbcType=CHAR}
+            </if>
+            <if test="failbackSendYn == 'Y'.toString()">
+          	  , failback_subject = #{failbackSubject, jdbcType=VARCHAR}
+            </if>
+            <if test="failbackSendYn == 'N'.toString()">
+          	  , failback_subject = ''
+            </if>
+             <if test="divideYn != null and divideYn != ''">
+ 	         	, divide_yn = #{divideYn, jdbcType=CHAR}
+            </if>
+            <if test="divideInterval != null and divideInterval != ''">
+            	,divide_interval = #{divideInterval}
+            </if>
+            <if test="divideCnt != null and divideCnt != ''">
+            	, divide_cnt = #{divideCnt}
+            </if>
+            <if test="abTestCond != null and abTestCond != ''">
+          		, ab_test_cond = #{abTestCond, jdbcType=CHAR}
+            </if>
+			<if test="abTestRate != null and abTestRate != ''">
+				, ab_test_rate = #{abTestRate}
+			</if>
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+     <update id="deleteCampaign" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET	use_yn= #{useYn , jdbcType=VARCHAR} , campaign_sts = 'P'
+		WHERE campaign_no = #{campaignNo}
+     </update>
+
+     <!--  캠페인 상태 변경  -->
+    <update id="updateState" parameterType="Campaign">
+        UPDATE nvcampaign
+        SET campaign_sts = #{campaignSts, jdbcType=CHAR}
+        	<if test="sendStartDt != null and sendStartDt != ''">
+           		,sendstart_dt = #{sendStartDt, jdbcType=CHAR}
+           	</if>
+           	<if test="sendStartTm != null and sendStartTm != ''">
+          		, sendstart_tm = #{sendStartTm, jdbcType=CHAR}
+          	</if>
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+
+	<!-- 캠페인 하위 옴니 발송리스트-->
+    <select id="findOmniCampaign" parameterType="int" resultMap="findOmni">
+       SELECT
+            c.campaign_nm, c.campaign_no, c.depth_no, c.channel_type
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = c.campaign_sts AND lang = 'ko') campaign_sts_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100221' AND cd = c.relation_type AND lang = 'ko') relation_type_nm
+          , concat(c.sendstart_dt, c.sendstart_tm) as sendstart_dtm, d.segment_size as target_cnt
+        FROM (
+            SELECT b.campaign_nm, b.campaign_no, b.segment_no, b.depth_no, b.channel_type, b.relation_type, b.campaign_sts, b.sendstart_dt, b.sendstart_tm, b.relation_tree
+            FROM nvscenario a, nvcampaign b
+            WHERE a.scenario_no = b.scenario_no
+            AND a.scenario_no = (SELECT scenario_no FROM nvcampaign WHERE campaign_no = #{campaignNo})
+            AND b.relation_type IN ('N', 'S', 'F', 'O')
+            AND b.DEPTH_NO > 1
+        ) c LEFT OUTER JOIN nvsegment d
+        ON c.segment_no = d.segment_no
+        ORDER BY rpad(
+            c.relation_tree
+          , (SELECT max(depth_no) FROM nvcampaign WHERE scenario_no = (SELECT scenario_no FROM nvcampaign WHERE campaign_no = #{campaignNo}))
+          , 0
+        ), c.campaign_no
+    </select>
+
+
+
+
+
+</mapper>

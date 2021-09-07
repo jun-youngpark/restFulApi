@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.KakaoRptSendResult">
+    <!--<resultMap id="resultKakaoRptSendResult" type="KakaoRptSendResult">
+        <result column="report_dt"          property="reportDt"/>
+        <result column="service_no"         property="serviceNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="service_type"       property="serviceType"/>
+        <result column="req_dept_id"        property="reqDeptId"/>
+        <result column="tmpl_cd"            property="tmplCd"/>
+        <result column="target_cnt"         property="targetCnt"/>
+        <result column="send_cnt"           property="sendCnt"/>
+        <result column="success_cnt"        property="successCnt"/>
+        <result column="fail_cnt"           property="failCnt"/>
+        <result column="sms_target_cnt"     property="smsTargetCnt"/>
+        <result column="sms_send_cnt"       property="smsSendCnt"/>
+        <result column="sms_success_cnt"    property="smsSuccessCnt"/>
+        <result column="sms_fail_cnt"       property="smsFailCnt"/>
+        <result column="lms_target_cnt"     property="lmsTargetCnt"/>
+        <result column="lms_send_cnt"       property="lmsSendCnt"/>
+        <result column="lms_success_cnt"    property="lmsSuccessCnt"/>
+        <result column="lms_fail_cnt"       property="lmsFailCnt"/>
+        <result column="mms_target_cnt"     property="mmsTargetCnt"/>
+        <result column="mms_send_cnt"       property="mmsSendCnt"/>
+        <result column="mms_success_cnt"    property="mmsSuccessCnt"/>
+        <result column="mms_fail_cnt"       property="mmsFailCnt"/>
+        <result column="send_gbn"           property="sendGbn"/>
+        <result column="send_tm"            property="sendTm"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <sql id="campaignStatListWhereQuery2">
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.grpCd  != null and userVo.grpCd  != ''">AND grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="searchChannel != null and searchChannel != ''">AND channel_type = #{searchChannel}</if>
+    </sql>
+
+    <select id="selectCampaignKakaoMonthlyStat" parameterType="map" resultMap="mapper.SendResult.resultSendResult">
+        SELECT report_dt, coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt
+        FROM (
+            SELECT
+                <if test="gubun == 'daily'">substr(report_dt,1, 8) as report_dt, success_cnt, fail_cnt</if>
+                <if test="gubun == 'month'">substr(report_dt,1, 6) as report_dt, success_cnt, fail_cnt</if>
+            FROM nvkakaorptsendresult a, nvcampaign b
+            WHERE a.service_no = b.campaign_no
+            AND service_type = 'em'
+            <include refid="campaignStatListWhereQuery2"/>
+            AND report_dt LIKE concat(#{searchDate},'%')
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+
+    <select id="selectEcareKakaoDailyReportList" parameterType="map" resultMap="mapper.Common.resultRptSendResult">
+        SELECT
+            report_dt, report_dt as start_dt, '000000' start_tm, '00000000' end_dt, '000000' end_tm
+          <if test="isDaily == 'Y'.toString()">, '' as result_seq, '' resend_sts</if>
+          <if test="isDaily == 'N'.toString()">, a.result_seq, '' resend_sts</if>
+          , coalesce(sum(send_cnt),0) as send_cnt, coalesce(sum(success_cnt),0) as success_cnt
+          , coalesce(sum(fail_cnt),0) as soft_bounce_cnt, 0 hard_bounce_cnt
+          , coalesce(sum(sms_success_cnt),0) as sms_success_cnt, coalesce(sum(sms_fail_cnt),0) as sms_fail_cnt
+          , coalesce(sum(lms_success_cnt),0) as lms_success_cnt, coalesce(sum(lms_fail_cnt),0) as lms_fail_cnt
+          , 0 returnmail_cnt, 0 open_cnt, 0 duration_cnt, 0 link_cnt
+        FROM nvkakaorptsendresult a, nvecaremsg b
+        WHERE a.service_no = b.ecare_no
+        AND a.service_no = #{ecareNo}
+        AND a.report_dt BETWEEN #{searchStartDt} AND #{searchEndDt}
+        <if test="isDaily == 'Y'.toString()">
+        GROUP BY report_dt
+        </if>
+        <if test="isDaily == 'N'.toString()">
+        GROUP BY report_dt, a.result_seq
+        </if>
+        ORDER BY report_dt DESC
+    </select>
+
+    <sql id="ecareStatListWhereQuery">
+        <if test="searchServiceType != null and searchServiceType != ''">AND a.service_type = #{searchServiceType}</if>
+        <if test="searchSubType     != null and searchSubType     != ''">AND a.sub_type = #{searchSubType}</if>
+        <if test="ecareNo           != 0"                               >AND a.ecare_no = #{ecareNo}</if>
+        <if test="userVo.grpCd      != null and userVo.grpCd      != ''">AND a.grp_cd LIKE concat(#{userVo.grpCd},'%')</if>
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND a.user_id LIKE concat(#{userVo.userId},'%')
+            </if>
+        </if>
+        <if test="searchChannel != null and searchChannel != ''">
+        AND a.channel_type = #{searchChannel}
+            <if test="searchDate != null and searchDate != ''">
+        AND b.report_dt LIKE concat(#{searchDate},'%')
+            </if>
+            <if test="searchStartDate != null and searchStartDate != ''">
+        AND b.start_dt LIKE concat(#{searchStartDate},'%')
+            </if>
+        </if>
+    </sql>
+
+    <select id="selectEcareKakaoMonthlyStat" parameterType="map" resultMap="mapper.Common.resultRptSendResult">
+        SELECT
+            substr(report_dt, 1, 6) as report_dt
+          , coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt
+          , coalesce(sum(sms_success_cnt),0) as sms_success_cnt, coalesce(sum(sms_fail_cnt),0) as sms_fail_cnt
+          , coalesce(sum(lms_success_cnt),0) as lms_success_cnt, coalesce(sum(lms_fail_cnt),0) as lms_fail_cnt
+          , 0 as open_cnt, 0 as duration_cnt, 0 as link_cnt, 0 as returnmail_cnt
+        FROM (
+            SELECT
+                report_dt, success_cnt, fail_cnt, sms_success_cnt, sms_fail_cnt
+              , lms_success_cnt + mms_success_cnt as lms_success_cnt, lms_fail_cnt + mms_fail_cnt as lms_fail_cnt
+            FROM nvecaremsg a, nvkakaorptsendresult b
+            WHERE a.ecare_no = b.service_no
+            <include refid="ecareStatListWhereQuery"/>
+        ) c
+        GROUP BY substr(report_dt, 1, 6)
+        ORDER BY substr(report_dt, 1, 6)
+    </select>
+
+    <select id="selectEcareKakaoDailyStat" parameterType="map" resultMap="mapper.Common.resultRptSendResult">
+        SELECT
+            report_dt
+          , coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as fail_cnt
+          , coalesce(sum(sms_success_cnt),0) as sms_success_cnt, coalesce(sum(sms_fail_cnt),0) as sms_fail_cnt
+          , coalesce(sum(lms_success_cnt),0) as lms_success_cnt, coalesce(sum(lms_fail_cnt),0) as lms_fail_cnt
+          , 0 as open_cnt, 0 as duration_cnt, 0 as link_cnt, 0 as returnmail_cnt
+        FROM (
+            SELECT
+                report_dt, success_cnt, fail_cnt, sms_success_cnt, sms_fail_cnt
+              , lms_success_cnt + mms_success_cnt as lms_success_cnt, lms_fail_cnt + mms_fail_cnt as lms_fail_cnt
+            FROM nvecaremsg a, nvkakaorptsendresult b
+            WHERE a.ecare_no = b.service_no
+            <include refid="ecareStatListWhereQuery"/>
+        ) c
+        GROUP BY report_dt
+        ORDER BY report_dt
+    </select>
+
+    <select id="selectKakaoSendResult" parameterType="map" resultMap="mapper.Common.resultRptSendResult">
+        SELECT
+            report_dt as start_dt
+          , coalesce(sum(success_cnt),0) as success_cnt, coalesce(sum(fail_cnt),0) as soft_bounce_cnt
+          , coalesce(sum(sms_success_cnt),0) as sms_success_cnt, coalesce(sum(sms_fail_cnt),0) as sms_fail_cnt
+          , coalesce(sum(lms_success_cnt),0) as lms_success_cnt, coalesce(sum(lms_fail_cnt),0) as lms_fail_cnt
+        FROM nvecaremsg a, nvkakaorptsendresult b
+        WHERE a.ecare_no = b.service_no
+        AND b.service_no = #{ecare_no}
+        AND b.report_dt = #{report_dt}
+        <if test="isDaily == 'N'.toString() and result_seq != 0">
+        AND b.result_seq = #{result_seq}
+        </if>
+        GROUP BY report_dt
+    </select>
+
+</mapper>

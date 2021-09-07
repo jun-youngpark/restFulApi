@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Segment">
+    <resultMap id="resultSegment" type="Segment">
+        <result column="segment_no"         property="segmentNo"/>
+        <result column="user_id"            property="userId"/>
+        <result column="grp_cd"             property="grpCd"/>
+        <result column="segment_nm"         property="segmentNm"/>
+        <result column="dbinfo_seq"         property="dbinfoSeq"/>
+        <result column="segment_desc"       property="segmentDesc"/>
+        <result column="sqlhead"            property="sqlHead"/>
+        <result column="sqltail"            property="sqlTail"/>
+        <result column="sqlbody"            property="sqlBody"/>
+        <result column="sqlfilter"          property="sqlfilter"/>
+        <result column="lastupdate_dt"      property="lastUpdateDt"/>
+        <result column="segment_size"       property="segmentSize"/>
+        <result column="crtgrp_cd"          property="crtGrpCd"/>
+        <result column="segment_type"       property="segmentType"/>
+        <result column="filetodb_yn"        property="fileToDbYn"/>
+        <result column="editor_id"          property="editorId"/>
+        <result column="share_yn"           property="shareYn"/>
+        <result column="active_yn"          property="activeYn"/>
+        <result column="category_cd"        property="categoryCd"/>
+        <result column="segment_sts"        property="segmentSts"/>
+        <result column="tag_no"             property="tagNo"/>
+        <result column="psegment_no"        property="psegmentNo"/>
+        <result column="plink_seq"          property="plinkSeq"/>
+        <result column="seg_type"           property="segType"/>
+        <result column="testquery"          property="testQuery"/>
+        <result column="updatequery"        property="updateQuery"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="name_kor"           property="nameKor"/>
+        <result column="tag_nm"             property="tagNm"/>
+        <result column="service_sts"        property="serviceSts"/>
+        <result column="field_key"          property="fieldKey"/>
+        <result column="permission_count"   property="permissionCount"/>
+    </resultMap>
+
+    <resultMap id="resultTargetQueryInfo" type="TargetQueryInfo">
+        <result column="dbinfo_seq"         property="dbInfoSeq"/>
+        <result column="sqlhead"            property="sqlHead"/>
+        <result column="sqlbody"            property="sqlBody"/>
+        <result column="sqltail"            property="sqlTail"/>
+        <result column="testquery"          property="testQuery"/>
+        <result column="dbkind"             property="dbKind"/>
+        <result column="driver_nm"          property="driverNm"/>
+        <result column="driver_dsn"         property="driverDsn"/>
+        <result column="dbuser_id"          property="dbUserId"/>
+        <result column="dbpassword"         property="dbPassword"/>
+        <result column="encoding"           property="encoding"/>
+        <result column="decoding"           property="decoding"/>
+        <result column="updatequery"           property="updateQuery"/>
+    </resultMap>
+
+    <resultMap id="resultUsingSegment" type="UsingSegment">
+        <result column="type"               property="type"/>
+        <result column="service_no"         property="serviceNo"/>
+        <result column="service_nm"         property="serviceNm"/>
+        <result column="grp_cd"             property="grpCd"/>
+        <result column="grp_nm"             property="grpNm"/>
+        <result column="user_id"            property="userId"/>
+        <result column="name_kor"           property="nameKor"/>
+        <result column="lastupdate_date"    property="lastupdateDate"/>
+        <result column="service_sts"        property="serviceSts"/>
+        <result column="status_nm"          property="statusNm"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSegment" parameterType="Segment">
+        INSERT INTO nvsegment (segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter, lastupdate_dt, segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, share_yn, active_yn, category_cd, segment_sts, tag_no, psegment_no, plink_seq, seg_type, testquery, updatequery)
+        VALUES (#{segmentNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{segmentNm, jdbcType=VARCHAR}, #{dbinfoSeq}, #{segmentDesc, jdbcType=VARCHAR}, #{sqlHead, jdbcType=VARCHAR}, #{sqlTail, jdbcType=VARCHAR}, #{sqlBody , jdbcType=VARCHAR}, #{sqlfilter, jdbcType=VARCHAR}, #{lastUpdateDt, jdbcType=CHAR}, #{segmentSize, jdbcType=VARCHAR}, #{crtGrpCd, jdbcType=VARCHAR}, #{segmentType, jdbcType=CHAR}, #{fileToDbYn, jdbcType=CHAR}, #{editorId, jdbcType=VARCHAR}, #{shareYn, jdbcType=CHAR}, #{activeYn, jdbcType=CHAR}, #{categoryCd, jdbcType=VARCHAR}, #{segmentSts, jdbcType=CHAR}, #{tagNo}, #{psegmentNo}, #{plinkSeq, jdbcType=VARCHAR}, #{segType, jdbcType=CHAR}, #{testQuery, jdbcType=VARCHAR}, #{updateQuery, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="copySegment" parameterType="Segment">
+        INSERT INTO nvsegment (
+            segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, share_yn, active_yn, category_cd, segment_sts
+          , tag_no, psegment_no, plink_seq, seg_type, testquery
+        )
+        SELECT
+            #{newSegmentNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, '[COPY]' + segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , #{lastUpdateDt, jdbcType=CHAR}, segment_size, #{grpCd, jdbcType=VARCHAR}, segment_type, filetodb_yn, #{userId, jdbcType=VARCHAR}, share_yn, active_yn, category_cd, segment_sts
+          , tag_no, psegment_no, plink_seq, seg_type, testquery
+        FROM nvsegment
+        WHERE segment_no = #{segmentNo}
+    </insert>
+
+    <insert id="copySegmentForResend" parameterType="Segment">
+        INSERT INTO nvsegment (
+            segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, share_yn, active_yn, category_cd, segment_sts
+          , tag_no, psegment_no, plink_seq, seg_type
+        )
+        SELECT
+            #{segmentNo}, user_id, grp_cd, #{segmentNm}, dbinfo_seq, segment_desc, coalesce(#{sqlHead},sqlhead), sqltail, coalesce(#{sqlBody},sqlbody), #{sqlfilter, jdbcType=VARCHAR}
+          , lastupdate_dt, #{segmentSize}, crtgrp_cd, segment_type, filetodb_yn, editor_id, 'N', 'N', category_cd, segment_sts
+          , tag_no, #{psegmentNo}, plink_seq, #{segType, jdbcType=CHAR}
+        FROM nvsegment
+        WHERE segment_no = #{psegmentNo}
+    </insert>
+
+    <insert id="copySegmentForOmniSend" parameterType="Segment">
+        INSERT INTO nvsegment (
+            segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, segment_size, segment_type, filetodb_yn, editor_id, share_yn, active_yn, segment_sts
+          , tag_no, psegment_no, plink_seq, seg_type, updatequery
+        )
+        SELECT
+            #{segmentNo}, user_id, grp_cd, #{segmentNm, jdbcType=VARCHAR}, dbinfo_seq, segment_desc, #{sqlHead}, null, #{sqlBody}, null
+          , #{lastUpdateDt, jdbcType=CHAR}, -1, 'Q', 'N', editor_id, 'N', 'Y', segment_sts
+          , tag_no, #{psegmentNo}, plink_seq, #{segType, jdbcType=CHAR}, #{updateQuery}
+        FROM nvsegment
+        WHERE segment_no = #{psegmentNo}
+    </insert>
+
+    <insert id="insertPermission" parameterType="Segment">
+        INSERT INTO nvsegment (
+            segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, share_yn, active_yn, category_cd, segment_sts
+          , tag_no, psegment_no, plink_seq, seg_type, testquery, updatequery
+        )
+        SELECT
+            #{psegmentNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , #{lastUpdateDt, jdbcType=CHAR}, segment_size, crtgrp_cd, segment_type, filetodb_yn, #{userId, jdbcType=VARCHAR}, 'Y', active_yn, category_cd, segment_sts
+          , tag_no, psegment_no, plink_seq, 'S', testquery, updatequery
+        FROM nvsegment
+        WHERE segment_no = #{segmentNo}
+    </insert>
+
+    <insert id="insertLinkClickSegment" parameterType="Segment">
+        INSERT INTO nvsegment (
+            segment_no, user_id, grp_cd, segment_nm, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, share_yn, active_yn, category_cd, segment_sts
+          , tag_no, psegment_no, plink_seq, seg_type
+        )
+        SELECT
+            #{segmentNo}, #{userId, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{segmentNm, jdbcType=VARCHAR}, dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, #{sqlfilter, jdbcType=VARCHAR}
+          , lastupdate_dt, #{segmentSize}, crtgrp_cd, #{segmentType}, filetodb_yn, editor_id, 'N', 'N', category_cd, segment_sts
+          , tag_no, 0, #{plinkSeq, jdbcType=VARCHAR}, #{segType, jdbcType=CHAR}
+        FROM nvsegment
+        WHERE segment_no = #{psegmentNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSegmentByPk" parameterType="Segment">
+        UPDATE nvsegment
+        SET
+            segment_desc = #{segmentDesc, jdbcType=VARCHAR}
+          <if test="userId       != null and userId       != ''">,user_id = #{userId, jdbcType=VARCHAR}</if>
+          <if test="grpCd       != null and grpCd       != ''">, grp_cd = #{grpCd, jdbcType=VARCHAR}</if>
+          <if test="segmentNm       != null and segmentNm       != ''">, segment_nm = #{segmentNm, jdbcType=VARCHAR}</if>
+          <if test="dbinfoSeq       != 0 ">, dbinfo_seq = #{dbinfoSeq}</if>
+          <if test="segmentDesc       != null and segmentDesc       != ''">, segment_desc = #{segmentDesc, jdbcType=VARCHAR}</if>
+          <if test="sqlHead       != null and sqlHead       != ''">, sqlhead = #{sqlHead}</if>
+          <if test="sqlTail       != null and sqlTail       != ''">, sqltail = #{sqlTail}</if>
+          <if test="sqlBody       != null and sqlBody       != ''">, sqlbody = #{sqlBody}</if>
+          <if test="lastUpdateDt       != null and lastUpdateDt       != ''">, lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}</if>
+          <if test="segmentSize       != 0 ">, segment_size = #{segmentSize}</if>
+          <if test="segmentType       != null and segmentType       != ''">, segment_type = #{segmentType, jdbcType=CHAR}</if>
+          <if test="fileToDbYn       != null and fileToDbYn       != ''">, filetodb_yn = #{fileToDbYn, jdbcType=CHAR}</if>
+          <if test="editorId       != null and editorId       != ''">, editor_id = #{editorId, jdbcType=VARCHAR}</if>
+          <if test="shareYn       != null and shareYn       != ''">, share_yn = #{shareYn, jdbcType=CHAR}</if>
+          <if test="activeYn       != null and activeYn       != ''">, active_yn = #{activeYn, jdbcType=CHAR}</if>
+          <if test="segmentSts       != null and segmentSts       != ''">, segment_sts = #{segmentSts, jdbcType=CHAR}</if>
+          <if test="tagNo       != null and tagNo       != ''">, tag_no = #{tagNo}</if>
+          <if test="psegmentNo     != 0 ">, psegment_no = #{psegmentNo}</if>
+          <if test="plinkSeq       != null and plinkSeq       != ''">, plink_seq = #{plinkSeq, jdbcType=VARCHAR}</if>
+          <if test="testQuery       != null and testQuery       != ''">, testquery = #{testQuery}</if>
+          <if test="updateQuery       != null and updateQuery       != ''">, updatequery = #{updateQuery}</if>
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateSegmentInfoAfterImportFile" parameterType="Segment">
+        UPDATE nvsegment
+        SET
+            segment_size = #{segmentSize}
+          , sqlbody = #{sqlBody}
+          , active_yn = #{activeYn, jdbcType=CHAR}
+          , segment_sts = #{segmentSts, jdbcType=CHAR}
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateSegmentSize" parameterType="Segment">
+        UPDATE nvsegment
+        SET segment_size = #{segmentSize}
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateTestQuery" parameterType="Segment">
+        UPDATE nvsegment
+        SET testquery = #{testQuery}
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateUpdateQuery" parameterType="Segment">
+        UPDATE nvsegment
+        SET updatequery = #{updateQuery}
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateActiveYnToN" parameterType="int">
+        UPDATE nvsegment
+        SET active_yn = 'N'
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateSegmentSql" parameterType="Segment">
+        UPDATE nvsegment
+        SET sqlhead = #{sqlHead}, sqlbody = #{sqlBody}, sqltail = #{sqlTail}
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateSegmentSts" parameterType="Segment">
+        UPDATE nvsegment
+        SET segment_sts = #{segmentSts, jdbcType=CHAR}
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+    <update id="updateSqlfilter">
+        UPDATE nvsegment
+        SET sqlfilter = #{sqlfilter, jdbcType=VARCHAR}
+        WHERE segment_no = #{segmentNo}
+    </update>
+
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSegmentByPk" parameterType="map">
+        DELETE FROM nvsegment
+        WHERE segment_no = #{segmentNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectSegmentByPk" parameterType="int" resultMap="resultSegment">
+        SELECT
+            segment_no, user_id, grp_cd, segment_nm, coalesce(dbinfo_seq,0) dbinfo_seq, segment_desc, sqlhead, sqltail, sqlbody, sqlfilter
+          , lastupdate_dt, coalesce(segment_size,0) segment_size, crtgrp_cd, segment_type, filetodb_yn, editor_id, coalesce(share_yn,'N') share_yn, coalesce(active_yn,'Y') active_yn, category_cd, segment_sts
+          , coalesce(tag_no,0) tag_no, coalesce(psegment_no,0) psegment_no, plink_seq, seg_type, testquery, updatequery
+          , (SELECT name_kor FROM nvuser WHERE user_id = coalesce(a.editor_id, a.user_id)) name_kor
+          , (SELECT tag_nm FROM nvsegmenttag WHERE tag_no = a.tag_no) as tag_nm
+        FROM nvsegment a
+        WHERE segment_no = #{segmentNo}
+    </select>
+
+    <select id="selectSegmentByCampaignNo" parameterType="int" resultMap="resultSegment">
+        SELECT segment_no, segment_nm, sqlhead, tag_no, coalesce(psegment_no,0) psegment_no, plink_seq
+        FROM nvsegment
+        WHERE segment_no IN (
+            SELECT segment_no
+            FROM nvcampaign
+            WHERE campaign_no = #{campaignNo}
+        )
+    </select>
+
+    <select id="selectCampaignSegmentQueryInfo" parameterType="int" resultMap="resultSegment">
+        SELECT b.segment_no, b.dbinfo_seq, b.sqlhead, b.sqltail, b.sqlbody, b.sqlfilter, coalesce(b.segment_size,0) segment_size, a.campaign_sts as service_sts
+        FROM nvcampaign a, nvsegment b
+        WHERE a.segment_no = b.segment_no
+        AND a.campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectEcareSegmentQueryInfo" parameterType="int" resultMap="resultSegment">
+        SELECT b.segment_no, b.dbinfo_seq, b.sqlhead, b.sqltail, b.sqlbody, b.sqlfilter, coalesce(b.segment_size,0) segment_size, a.ecare_sts as service_sts
+        FROM nvecaremsg a, nvsegment b
+        WHERE a.segment_no = b.segment_no
+        AND a.ecare_no = #{ecareNo}
+    </select>
+
+    <select id="selectAssignPermission" parameterType="int" resultMap="resultSegment">
+        SELECT segment_no, grp_cd
+        FROM nvsegment
+        WHERE segment_no IN (SELECT segment_no FROM nvseggenealogy WHERE genealogy_seq = 1 AND suprasegment_no = #{segmentNo})
+        OR segment_no IN (SELECT segment_no FROM nvcampaign WHERE segment_no = #{segmentNo})
+    </select>
+
+    <select id="getSegmentListForAsync" resultMap="resultSegment">
+        SELECT segment_no, sqlbody
+        FROM nvsegment
+        WHERE segment_sts = '0'
+        AND seg_type = 'F'
+        ORDER BY segment_no DESC
+    </select>
+
+    <select id="getUploadRunListForAsync" resultMap="resultSegment">
+        SELECT segment_no, sqlbody
+        FROM nvsegment
+        WHERE segment_sts = '1'
+        AND seg_type = 'F'
+        ORDER BY segment_no DESC
+    </select>
+
+    <select id="selectTargetQueryInfo" parameterType="int" resultMap="resultTargetQueryInfo">
+        SELECT
+            a.dbinfo_seq, coalesce(a.sqlhead,' ') sqlhead, coalesce(a.sqlbody,' ') sqlbody, coalesce(a.sqltail,' ') sqltail, a.testquery
+          , b.dbkind, b.driver_nm, b.driver_dsn, b.dbuser_id, b.dbpassword, b.encoding, b.decoding, a.updatequery
+        FROM nvsegment a,  nvdbinfo b
+        WHERE a.dbinfo_seq = b.dbinfo_seq
+        AND a.segment_no = #{segmentNo}
+    </select>
+
+    <select id="getCampaignTargetQuery" parameterType="int" resultType="string">
+        SELECT sqlhead + sqlbody
+        FROM nvsegment
+        WHERE segment_no = (
+            SELECT segment_no
+            FROM nvcampaign
+            WHERE campaign_no = #{campaignNo}
+        )
+    </select>
+
+    <select id="getEcareTargetQuery" parameterType="int" resultType="string">
+        SELECT sqlhead + sqlbody
+        FROM nvsegment
+        WHERE segment_no = (
+            SELECT segment_no
+            FROM nvecaremsg
+            WHERE ecare_no = #{ecareNo}
+        )
+    </select>
+
+    <select id="selectSegmentCountByDbInfoSeq" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM nvsegment
+        WHERE dbinfo_seq = #{dbInfoSeq}
+    </select>
+
+    <select id="selectNextSegmentNo" resultType="int">
+        SELECT coalesce(max(segment_no),0)+1
+        FROM nvsegment
+    </select>
+
+    <sql id="segmentListWhereQuery">
+        <if test="searchWord        != null and searchWord != ''">AND b.segment_nm LIKE '%' + #{searchWord} + '%'</if>
+        <if test="userVo.userTypeCd == 'U'.toString()"           >AND (b.grp_cd = #{userVo.grpCd} AND (b.user_id = #{userVo.userId} OR share_yn = 'Y'))</if>
+        <if test="userVo.userTypeCd == 'M'.toString()"           >AND b.grp_cd LIKE #{userVo.grpCd} + '%'</if>
+        <if test="tagNo             != -1"                       >AND b.tag_no = #{tagNo}</if>
+    </sql>
+
+    <select id="selectSegmentTotalCount" parameterType="Segment" resultType="int">
+        SELECT count(*)
+        FROM nvuser a, nvsegment b
+        WHERE a.user_id = b.user_id
+        AND b.segment_type = 'N'
+        AND (b.active_yn = 'Y' OR b.active_yn IS NULL)
+        <include refid="segmentListWhereQuery"/>
+    </select>
+
+    <select id="selectSegmentList" parameterType="Segment" resultMap="resultSegment">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER (ORDER BY b.segment_no DESC) as rnum
+              , a.user_id, a.name_kor, b.segment_no, b.segment_nm, b.segment_size, b.seg_type, b.lastupdate_dt, coalesce(b.psegment_no, 0) psegment_no, b.share_yn, c.field_key
+              , (SELECT count(*) FROM nvseggenealogy WHERE genealogy_seq = 1 AND suprasegment_no = b.segment_no) permission_count
+              , (SELECT tag_nm FROM nvsegmenttag WHERE tag_no = b.tag_no) tag_nm
+            FROM nvuser a, nvsegment b LEFT OUTER JOIN (
+                SELECT segment_no, field_key
+                FROM nvsemantic
+                WHERE field_key = 'S'
+            ) c
+            ON b.segment_no = c.segment_no
+            AND b.segment_type = 'N'
+            WHERE a.user_id = b.user_id
+            AND (b.active_yn ='Y' OR b.active_yn IS NULL)
+            AND b.segment_no &gt; 0
+            AND b.segment_type = 'N'
+            <include refid="segmentListWhereQuery"/>
+        ) e
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+    </select>
+
+    <select id="selectUsingList" parameterType="map" resultMap="resultUsingSegment">
+        SELECT
+            'CAMPAIGN' as type, a.campaign_no as service_no, a.campaign_nm as service_nm, a.grp_cd, a.user_id
+          , (a.lastupdate_dt + a.lastupdate_tm) as lastupdate_date, a.campaign_sts as service_sts, b.name_kor, c.grp_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100111' AND cd = a.campaign_sts AND lang = #{userVo.language}) as status_nm
+        FROM nvcampaign a, nvuser b, nvusergrp c
+        WHERE a.user_id = b.user_id
+        AND a.grp_cd = c.grp_cd
+        AND a.segment_no = #{segmentVo.segmentNo}
+
+        UNION ALL
+        SELECT
+            'ECARE' as type, a.ecare_no as service_no, a.ecare_nm as service_nm, a.grp_cd, a.user_id
+          , (a.lastupdate_dt + a.lastupdate_tm) as lastupdate_date, a.ecare_sts as service_sts, b.name_kor, c.grp_nm
+          , (SELECT val FROM nv_cd_mst WHERE cd_cat = '100121' AND cd = a.ecare_sts AND lang = #{userVo.language}) as status_nm
+        FROM nvecaremsg a, nvuser b, nvusergrp c
+        WHERE a.user_id = b.user_id
+        AND a.grp_cd = c.grp_cd
+        AND a.segment_no = #{segmentVo.segmentNo}
+    </select>
+
+    <select id="selectSendList" parameterType="int" resultType="int">
+        SELECT a.campaign_no
+        FROM nvcampaign a, nvuser b, nvusergrp c
+        WHERE a.user_id = b.user_id
+        AND a.grp_cd = c.grp_cd
+        AND a.campaign_sts NOT IN ('I', 'P')
+        AND a.segment_no = #{segmentNo}
+
+        UNION ALL
+        SELECT a.ecare_no
+        FROM nvecaremsg a, nvuser b, nvusergrp c
+        WHERE a.user_id = b.user_id
+        AND a.grp_cd = c.grp_cd
+        AND a.ecare_sts NOT IN ('I', 'P')
+        AND a.segment_no = #{segmentNo}
+    </select>
+
+    <sql id="bookmarkListWhereQuery">
+        <if test="userVo.userTypeCd == 'U'.toString()"           >AND (a.grp_cd = #{userVo.grpCd} AND (a.user_id = #{userVo.userId} OR share_yn = 'Y'))</if>
+        <if test="userVo.userTypeCd == 'M'.toString()"           >AND a.grp_cd LIKE #{userVo.grpCd} + '%'</if>
+        <if test="segmentNm         != null and segmentNm  != ''">AND a.segment_nm LIKE '%' + #{searchWord} + '%'</if>
+        <if test="segType           != null and segType    != ''">AND seg_type = #{segType}</if>
+        <if test="fileToDbYn        != null and fileToDbYn != ''">AND filetodb_yn = 'Y'</if>
+    </sql>
+
+    <select id="selectBookmarkListTotalCount" parameterType="Bookmark" resultType="int">
+        SELECT count(*)
+        FROM nvsegment a, nvsegmenttag b, nvuser c, (
+            SELECT segment_no
+            FROM nvsemantic
+            WHERE field_key = #{semanticKey}
+        ) d
+        WHERE a.tag_no = b.tag_no
+        AND a.user_id = c.user_id
+        AND a.segment_no = d.segment_no
+        AND a.segment_type = 'N'
+        AND (a.active_yn = 'Y' OR a.active_yn IS NULL)
+        <include refid="bookmarkListWhereQuery"/>
+    </select>
+
+    <select id="selectBookmarkList" parameterType="Bookmark" resultMap="resultSegment">
+        SELECT *
+        FROM (
+            SELECT TOP ${listCnt} *
+            FROM (
+                SELECT TOP ${endRow}
+                    a.segment_no, a.segment_nm, a.segment_size, a.filetodb_yn, a.lastupdate_dt, a.seg_type, b.tag_nm, c.name_kor
+                FROM nvsegment a, nvsegmenttag b, nvuser c, (
+                    SELECT segment_no
+                    FROM nvsemantic
+                    WHERE field_key = #{semanticKey}
+                ) d
+                WHERE a.tag_no = b.tag_no
+                AND a.user_id = c.user_id
+                AND a.segment_no = d.segment_no
+                AND a.segment_type = 'N'
+                AND (a.active_yn = 'Y' OR a.active_yn IS NULL)
+                <include refid="bookmarkListWhereQuery"/>
+                ORDER BY a.segment_no DESC
+            ) e
+            ORDER BY segment_no
+        ) f
+        ORDER BY segment_no DESC
+    </select>
+
+    <select id="selectDefaultBookmarkListTotalCount" parameterType="Bookmark" resultType="int">
+        SELECT count(*)
+        FROM nvsegment a, nvsegmenttag b, nvuser c, nvsegmentcheck d, (
+            SELECT segment_no
+            FROM nvsemantic
+            WHERE field_key = #{semanticKey}
+        ) e
+        WHERE a.tag_no = b.tag_no
+        AND a.user_id = c.user_id
+        AND a.segment_no = d.segment_no
+        AND a.segment_no = e.segment_no
+        AND a.segment_type = 'N'
+        AND (a.active_yn = 'Y' OR a.active_yn IS NULL)
+        <include refid="bookmarkListWhereQuery"/>
+    </select>
+
+    <select id="selectDefaultBookmarkList" parameterType="Bookmark" resultMap="resultSegment">
+        SELECT *
+        FROM (
+            SELECT TOP ${listCnt} *
+            FROM (
+                SELECT TOP ${endRow}
+                    a.segment_no, a.segment_nm, a.segment_size, a.filetodb_yn, a.lastupdate_dt, a.seg_type, b.tag_nm, c.name_kor
+                FROM nvsegment a, nvsegmenttag b, nvuser c, nvsegmentcheck d, (
+                    SELECT segment_no
+                    FROM nvsemantic
+                    WHERE field_key = #{semanticKey}
+                ) e
+                WHERE a.tag_no = b.tag_no
+                AND a.user_id = c.user_id
+                AND a.segment_no = d.segment_no
+                AND a.segment_no = e.segment_no
+                AND a.segment_type = 'N'
+                AND (a.active_yn = 'Y' OR a.active_yn IS NULL)
+                <include refid="bookmarkListWhereQuery"/>
+                ORDER BY a.segment_no DESC
+            ) f
+            ORDER BY segment_no
+        ) g
+        ORDER BY segment_no DESC
+    </select>
+</mapper>

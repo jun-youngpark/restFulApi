@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.StatusReq">
+    <resultMap id="resultStatusReq" type="StatusReq">
+        <result column="req_kind"   property="reqKind"/>
+        <result column="create_tm"  property="createTm"/>
+        <result column="task_id"    property="taskId"/>
+        <result column="req"        property="req"/>
+        <result column="result"     property="result"/>
+        <result column="update_tm"  property="updateTm"/>
+        <result column="user_id"    property="userId"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertStatusReq" parameterType="StatusReq">
+        INSERT INTO nv_status_req (req_kind, create_tm, task_id, req, result, update_tm, user_id)
+        VALUES (#{reqKind}, #{createTm}, #{taskId}, #{req, jdbcType=VARCHAR}, #{result}, #{updateTm, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSvrStatusReq" parameterType="map">
+        INSERT INTO nv_status_req (req_kind, create_tm, task_id, req, result, update_tm, user_id)
+        VALUES (#{reqKind}, #{createTm}, #{taskId}, #{req, jdbcType=VARCHAR}, 0, '', #{userId, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateStatusReqByPk" parameterType="StatusReq">
+        UPDATE nv_status_req
+        SET
+            req = #{req, jdbcType=VARCHAR}
+          , result = #{result}
+          , update_tm = #{updateTm, jdbcType=VARCHAR}
+          , user_id = #{userId, jdbcType=VARCHAR}
+        WHERE req_kind = #{reqKind}
+        AND create_tm = #{createTm}
+        AND task_id = #{taskId}
+    </update>
+
+    <update id="updateSvrStatusReq" parameterType="map">
+        UPDATE nv_status_req
+        SET result = #{result}, update_tm = #{updateTm, jdbcType=VARCHAR}
+        WHERE req_kind = #{reqKind}
+        AND create_tm = #{createTm}
+        AND task_id = #{taskId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteStatusReqByPk" parameterType="map">
+        DELETE FROM nv_status_req
+        WHERE req_kind = #{reqKind}
+        AND create_tm = #{createTm}
+        AND task_id = #{taskId}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectStatusReqByPk" parameterType="map" resultMap="resultStatusReq">
+        SELECT req_kind, create_tm, task_id, req, result, update_tm, user_id
+        FROM nv_status_req
+        WHERE req_kind = #{reqKind}
+        AND create_tm = #{createTm}
+        AND task_id = #{taskId}
+    </select>
+
+    <select id="retrieveSvrStatusReqResult" parameterType="map" resultType="string">
+        SELECT result
+        FROM nv_status_req
+        WHERE req_kind = #{reqKind}
+        AND create_tm = #{createTm}
+        AND task_id = #{taskId}
+    </select>
+</mapper>

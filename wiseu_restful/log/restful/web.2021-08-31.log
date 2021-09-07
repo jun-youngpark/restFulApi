@@ -1,0 +1,1329 @@
+08-31 10:58:54.830 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 10:58:54.843 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 10:58:54.843 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 10:58:58.885 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 10:58:59.734 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 10:59:01.015 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.005
+Headers : {content-length=643, postman-token=8b9bab83-8619-466a-8f0d-b1977ceab835, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 10:59:16.232 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.002
+Headers : {content-length=643, postman-token=9adc5012-404a-4305-96cd-8c7c922b3b33, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 11:03:00.238 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 11:03:00.240 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 11:03:00.240 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 11:03:01.154 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 11:03:01.762 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 11:03:03.261 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.007
+Headers : {content-length=643, postman-token=ca6e92c1-b939-4722-8400-f1a8d830e1dc, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 11:03:06.715 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.001
+Headers : {content-length=643, postman-token=bbf46ee6-294c-49b4-9be1-5c3a2364bb3b, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 11:15:12.428 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 11:15:12.431 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 11:15:12.431 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 11:15:17.289 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 11:15:18.207 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 11:15:39.951 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.002
+Headers : {content-length=643, postman-token=ae6e8346-8e98-4623-aa04-db1507a066f5, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 11:15:53.383 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.003
+Headers : {content-length=643, postman-token=ceda2929-dbb3-4beb-9793-9a1c4046f894, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 11:18:18.352 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.002
+Headers : {content-length=643, postman-token=f1dbb1cc-bfad-405b-8916-a6634e040a84, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 11:19:12.247 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 11:19:12.249 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 11:19:12.250 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 11:19:15.406 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 11:19:16.114 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 11:19:17.253 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 0.003
+Headers : {content-length=643, postman-token=f726370a-c7c4-494a-9d61-c40070c675a3, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 11:20:02.991 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/send/realtime 404 - 3.618
+Headers : {content-length=643, postman-token=3228254c-34b8-4571-8501-a5416f089f6f, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request :  - 
+Response :  - 
+
+08-31 13:08:30.651 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:08:30.653 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:08:30.653 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:08:32.460 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:08:32.902 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:10:56.526 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:10:56.527 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:10:56.527 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:10:57.201 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:10:57.843 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:12:12.666 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:12:12.668 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:12:12.668 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:12:13.421 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:21:29.572 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:21:29.576 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:21:29.577 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:21:30.750 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:21:32.173 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:22:27.632 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:22:27.635 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:22:27.635 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:22:28.192 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:22:29.017 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:23:35.119 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:23:35.121 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:23:35.121 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:23:35.678 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:23:36.051 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:24:11.945 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:24:11.947 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:24:11.947 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:24:12.900 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:24:13.930 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:25:20.833 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:25:20.835 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:25:20.835 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:25:22.810 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:25:23.983 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:29:47.044 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:29:47.046 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:29:47.046 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:29:47.707 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:29:48.142 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:31:30.292 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:31:30.294 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:31:30.294 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:31:31.900 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:31:32.884 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:33:43.453 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:33:43.455 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:33:43.456 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:33:44.490 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:33:45.304 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:36:47.363 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:36:47.371 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:36:47.372 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:36:48.625 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:36:49.478 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:37:46.532 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:37:46.536 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:37:46.536 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:37:47.973 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:37:48.895 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 13:43:54.718 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:43:54.721 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:43:54.721 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:43:55.673 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:44:26.447 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:44:26.449 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:44:26.449 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:44:29.921 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:45:25.210 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:45:25.212 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:45:25.212 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:45:25.803 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:45:40.708 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:45:40.711 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:45:40.711 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:45:44.544 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:48:01.561 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:48:01.563 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:48:01.563 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:48:02.112 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:48:56.639 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:48:56.642 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:48:56.643 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:49:07.720 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 13:50:33.772 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 13:50:33.774 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 13:50:33.774 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 13:50:34.511 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:00:48.601 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:00:48.604 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:00:48.604 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:00:52.559 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:01:09.332 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:01:09.334 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:01:09.335 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:01:12.793 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:02:07.630 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:02:07.632 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:02:07.632 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:02:08.348 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:02:09.287 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:02:24.159 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:02:24.161 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:02:24.161 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:02:25.157 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:02:25.521 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:02:45.006 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:02:45.009 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:02:45.009 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:02:47.861 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:02:48.333 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:03:19.987 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 11.041
+Headers : {content-length=197, postman-token=af7dd1d1-1d7f-4b7d-b86a-d501f20b36ce, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":15}}
+
+08-31 14:03:43.426 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:03:43.429 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:03:43.429 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:03:47.587 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:03:48.879 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:04:09.736 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 10.826
+Headers : {content-length=197, postman-token=cb77c415-32f5-4b59-9e19-f953b1271207, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":16}}
+
+08-31 14:04:36.995 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:04:36.996 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:04:36.996 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:04:37.905 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:04:38.382 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:04:48.558 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:04:48.560 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:04:48.561 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:04:51.322 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:04:52.014 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:05:10.769 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 11.515
+Headers : {content-length=197, postman-token=29193ad8-28cf-4f59-bec1-e230a4475a7f, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":17}}
+
+08-31 14:05:23.180 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 2.864
+Headers : {content-length=197, postman-token=584c51fc-87c2-42e8-9839-46ece749ed62, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":18}}
+
+08-31 14:06:09.714 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:06:09.715 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:06:09.716 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:06:10.677 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:06:11.138 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:06:28.439 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:06:28.441 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:06:28.442 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:06:32.514 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:06:33.743 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:06:46.782 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 11.168
+Headers : {content-length=197, postman-token=f064f6a4-be8e-4973-80af-e9eca0ea9689, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":19}}
+
+08-31 14:07:22.244 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:07:22.246 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:07:22.247 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:07:23.137 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:07:23.748 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:07:36.216 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:07:36.219 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:07:36.219 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:07:39.957 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:07:40.930 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:07:53.638 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 11.192
+Headers : {content-length=197, postman-token=c6707bee-f1fe-4615-8f25-18d54d38c142, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":20}}
+
+08-31 14:07:56.543 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 0.265
+Headers : {content-length=197, postman-token=154ede57-405b-4e01-9e6e-39ec87c10ec1, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":21}}
+
+08-31 14:09:39.851 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:09:39.854 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:09:39.855 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:09:42.229 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:09:43.170 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:09:58.372 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:09:58.374 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:09:58.375 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:10:02.097 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:10:02.913 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:10:07.829 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 3.301
+Headers : {content-length=197, postman-token=c7eae1b9-9a6b-43c8-9c70-820c2b76dc81, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":22}}
+
+08-31 14:14:40.005 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:14:40.023 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:14:40.023 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:14:43.449 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 14:14:44.922 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 14:14:56.537 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 3.894
+Headers : {content-length=197, postman-token=b5ddf4cb-2dbe-4ead-b307-e3994b5181ff, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":23}}
+
+08-31 14:17:06.509 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:17:06.511 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:17:06.512 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:17:47.715 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:17:47.717 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:17:47.717 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:19:30.535 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:19:30.538 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:19:30.538 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:21:17.408 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:21:17.411 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:21:17.411 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:22:00.149 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:22:00.152 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:22:00.152 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:22:53.179 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:22:53.185 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:22:53.185 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:37:13.873 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:37:13.875 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:37:13.876 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:43:53.028 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:43:53.050 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:43:53.051 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:45:27.833 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:45:27.836 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:45:27.836 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 14:46:52.823 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 14:46:52.825 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 14:46:52.825 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:34:57.522 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:34:57.523 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:34:57.524 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:35:54.974 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:35:54.976 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:35:54.976 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:36:40.045 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:36:40.047 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:36:40.047 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:37:01.714 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:37:01.716 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:37:01.716 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:40:10.904 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:40:10.906 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:40:10.906 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:40:39.001 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:40:39.004 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:40:39.004 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:43:07.116 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:43:07.117 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:43:07.118 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:43:15.723 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:43:15.725 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:43:15.725 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:50:40.438 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:50:40.440 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:50:40.440 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:50:57.968 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:50:57.969 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:50:57.970 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:51:14.835 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:51:14.839 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:51:14.839 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:52:43.136 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:52:43.137 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:52:43.138 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:52:43.821 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 15:52:44.336 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 15:52:58.499 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:52:58.501 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:52:58.501 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:53:02.459 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 15:54:27.489 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:54:27.491 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:54:27.492 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:54:31.033 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 15:54:32.012 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 15:54:56.653 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 0.32
+Headers : {content-length=197, postman-token=da502c26-12e3-4fba-a024-e67b214ee4a3, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response :  - 
+
+08-31 15:55:12.680 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 0.004
+Headers : {content-length=197, postman-token=c092b73b-976f-4369-83b7-cca0abb6ca4d, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response :  - 
+
+08-31 15:55:29.173 http-nio-8084-exec-5 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 0.002
+Headers : {content-length=197, postman-token=99fcfd8b-92c6-44f8-a950-ab72b5017c19, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response :  - 
+
+08-31 15:55:37.306 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 0.001
+Headers : {content-length=197, postman-token=dbb895a9-c0b1-4dfe-a8ad-b6aa186a3d3a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response :  - 
+
+08-31 15:56:41.459 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:56:41.462 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:56:41.462 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:56:42.822 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 15:56:43.706 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 15:56:54.068 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:56:54.071 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:56:54.071 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:56:58.699 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 15:57:09.649 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 15:58:32.480 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 39.935
+Headers : {content-length=197, postman-token=79ffc8bd-854f-4f1d-8cb7-7aa6d9bb9e97, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":24}}
+
+08-31 15:59:09.056 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 15:59:09.058 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 15:59:09.058 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 15:59:10.015 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:11:05.032 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:11:33.421 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:11:33.422 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:11:33.423 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:11:34.500 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:11:37.776 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:12:23.295 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:12:23.296 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:12:23.297 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:12:24.070 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:12:24.788 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:12:59.860 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:12:59.862 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:12:59.863 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:13:01.115 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:13:02.375 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:13:50.918 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:13:50.920 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:13:50.920 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:13:52.424 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:13:53.382 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:14:18.048 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:14:18.049 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:14:18.050 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:14:18.790 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:14:19.299 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:14:54.232 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:14:54.233 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:14:54.234 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:14:54.960 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:14:55.738 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:15:55.552 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:15:55.554 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:15:55.554 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:15:58.608 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:15:59.434 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:17:09.819 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:17:09.823 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:17:09.823 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:17:13.417 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:17:14.167 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:17:17.537 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 404 - 0.286
+Headers : {content-length=197, postman-token=158ac91c-04dd-4635-b53a-80cfd54eee1f, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"해당 API는 사용 중지 중입니다."}
+
+08-31 16:17:48.625 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:17:48.627 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:17:48.627 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:17:49.330 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:17:49.685 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:17:56.612 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 404 - 0.179
+Headers : {content-length=197, postman-token=ae2cf53b-a62e-4b8c-8eda-ed9ad32d1b43, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"해당 API는 사용 중지 중입니다."}
+
+08-31 16:18:13.856 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:18:13.857 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:18:13.858 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:18:14.887 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:18:15.325 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:22:24.486 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:22:24.487 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:22:24.488 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:22:25.331 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:22:25.823 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:22:49.861 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:22:49.863 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:22:49.863 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:22:50.749 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:22:51.592 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:23:05.333 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:23:05.335 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:23:05.335 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:23:05.932 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:23:06.274 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:23:46.949 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:23:46.950 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:23:46.951 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:23:50.084 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:23:51.124 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:24:12.530 http-nio-8084-exec-2 ERROR c.m.w.w.rest.service.CommonService    61 APILOG기록중 에러가 발생하였습니다.org.springframework.jdbc.BadSqlGrammarException: 
+### Error updating database.  Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+### The error may involve mapper.Common.insertApiLog-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO NV_API_LOG (   REGDATE,   SEQ,   REGTYPE,   INTERFACE_ID,   MSG,   IN_VAL,   DTL_MSG  ) VALUES (   to_char(systimestamp, 'yyyyMMddHH24MISSFF3')   ,?   ,?   ,?   ,?   ,?   ,?  )
+### Cause: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:230)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:73)
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:73)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:446)
+	at com.sun.proxy.$Proxy14.insert(Unknown Source)
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:278)
+	at com.mnwise.wiseu.web.rest.parent.BaseDao.insert(BaseDao.java:53)
+	at com.mnwise.wiseu.web.rest.dao.common.CommonDao.insertApiLog(CommonDao.java:36)
+	at com.mnwise.wiseu.web.rest.service.CommonService.insertApiLog(CommonService.java:27)
+	at com.mnwise.wiseu.web.rest.service.CommonService.regApiLog(CommonService.java:57)
+	at com.mnwise.wiseu.web.rest.factory.AspectContext.LogginApi(AspectContext.java:47)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethodWithGivenArgs(AbstractAspectJAdvice.java:627)
+	at org.springframework.aop.aspectj.AbstractAspectJAdvice.invokeAdviceMethod(AbstractAspectJAdvice.java:609)
+	at org.springframework.aop.aspectj.AspectJMethodBeforeAdvice.before(AspectJMethodBeforeAdvice.java:43)
+	at org.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor.invoke(MethodBeforeAdviceInterceptor.java:55)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:168)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.mnwise.wiseu.web.rest.web.v1.CampaignController$$EnhancerBySpringCGLIB$$754d0cd.create(<generated>)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:854)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:765)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:648)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:729)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:291)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at com.mnwise.wiseu.web.rest.web.LoggingFilter.doFilter(LoggingFilter.java:34)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:239)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:217)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:106)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:502)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:142)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:79)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:616)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:88)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:518)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1091)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:673)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1500)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.run(NioEndpoint.java:1456)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.sql.SQLSyntaxErrorException: ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:509)
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:461)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1104)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:550)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:268)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:655)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:270)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:91)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:970)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1205)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3666)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeInternal(T4CPreparedStatement.java:1426)
+	at oracle.jdbc.driver.OraclePreparedStatement.execute(OraclePreparedStatement.java:3778)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.execute(OraclePreparedStatementWrapper.java:1081)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:197)
+	at org.apache.commons.dbcp2.DelegatingPreparedStatement.execute(DelegatingPreparedStatement.java:197)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.logging.jdbc.PreparedStatementLogger.invoke(PreparedStatementLogger.java:59)
+	at com.sun.proxy.$Proxy60.execute(Unknown Source)
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:46)
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.ibatis.plugin.Plugin.invoke(Plugin.java:63)
+	at com.sun.proxy.$Proxy58.update(Unknown Source)
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50)
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117)
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:198)
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:185)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:433)
+	... 69 more
+Caused by: Error : 942, Position : 12, Sql = INSERT INTO NV_API_LOG (
+		REGDATE,
+		SEQ,
+		REGTYPE,
+		INTERFACE_ID,
+		MSG,
+		IN_VAL,
+		DTL_MSG
+	) VALUES (
+		to_char(systimestamp, 'yyyyMMddHH24MISSFF3')
+		,:1 
+		,:2 
+		,:3 
+		,:4 
+		,:5 
+		,:6 
+	), OriginalSql = INSERT INTO NV_API_LOG (
+		REGDATE,
+		SEQ,
+		REGTYPE,
+		INTERFACE_ID,
+		MSG,
+		IN_VAL,
+		DTL_MSG
+	) VALUES (
+		to_char(systimestamp, 'yyyyMMddHH24MISSFF3')
+		,?
+		,?
+		,?
+		,?
+		,?
+		,?
+	), Error Msg = ORA-00942: 테이블 또는 뷰가 존재하지 않습니다
+
+	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:513)
+	... 108 more
+
+08-31 16:24:17.056 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 24.415
+Headers : {content-length=197, postman-token=2d750763-5d57-48dd-a864-b44475865f47, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":25}}
+
+08-31 16:26:03.139 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:26:03.141 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:26:03.142 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:26:08.994 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:26:10.129 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:26:58.485 http-nio-8084-exec-2 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 46.142
+Headers : {content-length=197, postman-token=3e9894ef-cb70-45df-8876-762b2705c0fb, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":26}}
+
+08-31 16:27:39.518 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:27:39.520 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:27:39.521 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:27:40.409 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:27:42.055 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:28:23.384 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:28:23.387 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:28:23.387 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:28:27.466 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:28:28.525 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:29:16.759 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 40.74
+Headers : {content-length=197, postman-token=9d68eea2-b45a-40bd-9c48-6fcf98e2d8e4, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response :  - 
+
+08-31 16:30:25.243 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:30:25.245 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:30:25.245 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:30:27.934 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:30:28.551 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:30:47.183 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 3.232
+Headers : {content-length=197, postman-token=7e3729a1-9501-4ed3-b125-7f7614f3f79a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":27}}
+
+08-31 16:36:57.808 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:36:57.813 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:36:57.813 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:37:32.759 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:37:32.761 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:37:32.762 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:37:46.470 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:37:46.472 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:37:46.472 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:38:03.190 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:38:03.193 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:38:03.194 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:40:33.457 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:40:33.459 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:40:33.459 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:40:45.735 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:40:45.737 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:40:45.738 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:43:00.880 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:43:00.884 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:43:00.884 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:44:39.963 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:44:39.964 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:44:39.965 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:44:40.826 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:44:41.526 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:45:26.981 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:45:26.984 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:45:26.985 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:45:27.989 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:45:28.765 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:48:38.642 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:48:38.645 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:48:38.645 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:48:42.613 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:48:43.887 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:49:23.188 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:49:23.190 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:49:23.190 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:49:26.091 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:49:26.845 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:49:44.959 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 200 - 7.82
+Headers : {content-length=197, postman-token=15a39e0e-5e4f-44b8-8143-f57a175eac35, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"SUCCESS","message":"success","data":{"campaignNo":28}}
+
+08-31 16:49:56.704 http-nio-8084-exec-4 ERROR c.m.w.w.r.web.v1.CampaignController    53 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","segmentNo":8,"campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","scenarioNo":29,"handlerSeq":8,"handler":"import com.mnwise.ASE.agent.messageagent.MessageAgent
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MessageAgent smsagent = new MessageAgent(context)
+
+smsagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _SMS_FIELD_SEQ = context.getInt("_SMS_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+MessageBaseItem smsitem = null;
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+while (target.next()) {
+  try {
+    smsitem = new MessageBaseItem();
+    // 부서별 과금을 위해 사용
+    smsitem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    smsitem.setReqUserId(context.get("_REQ_USER_ID"))
+    smsitem.setCallback(context.get("_SENDER_TEL"))
+    context.put("record", target.getRecord())
+
+    smsitem.setPhoneNo(target.getString(_SMS_FIELD_SEQ))
+    smsitem.setUserId(target.getString(_KEY_FIELD_SEQ));
+    smsitem.setUserName(target.getString(_NAME_FIELD_SEQ));
+    smsitem.setSlot1("0")
+    smsitem.setSlot2("")
+    smsitem.setMsg(message.execGroovyTemplate())
+    smsagent.send(smsitem)
+
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_SMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  }
+}
+
+exlogger.close()
+target.close()
+smsagent.close()","template":"SMS로 문자발송 테스트하기","language":"ko"}
+08-31 16:49:56.761 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 500 - 0.757
+Headers : {content-length=487, postman-token=f0541a87-1e48-445c-afb5-ac15e9417729, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+","data":null}
+
+08-31 16:50:44.414 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 16:50:44.417 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 16:50:44.418 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 16:50:51.584 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 16:50:53.382 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 16:51:13.731 http-nio-8084-exec-1 ERROR c.m.w.w.r.web.v1.CampaignController    53 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","segmentNo":8,"campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","scenarioNo":29,"handlerSeq":8,"handler":"import com.mnwise.ASE.agent.messageagent.MessageAgent
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MessageAgent smsagent = new MessageAgent(context)
+
+smsagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _SMS_FIELD_SEQ = context.getInt("_SMS_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+MessageBaseItem smsitem = null;
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+while (target.next()) {
+  try {
+    smsitem = new MessageBaseItem();
+    // 부서별 과금을 위해 사용
+    smsitem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    smsitem.setReqUserId(context.get("_REQ_USER_ID"))
+    smsitem.setCallback(context.get("_SENDER_TEL"))
+    context.put("record", target.getRecord())
+
+    smsitem.setPhoneNo(target.getString(_SMS_FIELD_SEQ))
+    smsitem.setUserId(target.getString(_KEY_FIELD_SEQ));
+    smsitem.setUserName(target.getString(_NAME_FIELD_SEQ));
+    smsitem.setSlot1("0")
+    smsitem.setSlot2("")
+    smsitem.setMsg(message.execGroovyTemplate())
+    smsagent.send(smsitem)
+
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_SMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  }
+}
+
+exlogger.close()
+target.close()
+smsagent.close()","template":"SMS로 문자발송 테스트하기","language":"ko"}
+08-31 16:51:13.759 http-nio-8084-exec-1 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 500 - 18.195
+Headers : {content-length=487, postman-token=3e6d746c-d1b0-4c95-816e-95adde38572a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+","data":null}
+
+08-31 16:51:26.111 http-nio-8084-exec-4 ERROR c.m.w.w.r.web.v1.CampaignController    53 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","segmentNo":8,"campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","scenarioNo":29,"handlerSeq":8,"handler":"import com.mnwise.ASE.agent.messageagent.MessageAgent
+import com.mnwise.ASE.agent.messageagent.MessageBaseItem
+import com.mnwise.ASE.agent.util.ExceptionLogger
+import com.mnwise.ASE.agent.util.TextReader
+import com.mnwise.ASE.pscript.Message
+import com.mnwise.common.util.LoggerAid
+
+MessageAgent smsagent = new MessageAgent(context)
+
+smsagent.open()
+TextReader target = new TextReader(context)
+Message message = new Message(context)
+message.prepareGroovyTemplate()
+
+int _KEY_FIELD_SEQ = context.getInt("_KEY_FIELD_SEQ")
+int _NAME_FIELD_SEQ = context.getInt("_NAME_FIELD_SEQ")
+int _SMS_FIELD_SEQ = context.getInt("_SMS_FIELD_SEQ")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+MessageBaseItem smsitem = null;
+boolean isSendMode = "N".equals(context.get("_PREVIEW_YN"));
+while (target.next()) {
+  try {
+    smsitem = new MessageBaseItem();
+    // 부서별 과금을 위해 사용
+    smsitem.setReqDeptId(context.get("_REQ_DEPT_ID"))
+    smsitem.setReqUserId(context.get("_REQ_USER_ID"))
+    smsitem.setCallback(context.get("_SENDER_TEL"))
+    context.put("record", target.getRecord())
+
+    smsitem.setPhoneNo(target.getString(_SMS_FIELD_SEQ))
+    smsitem.setUserId(target.getString(_KEY_FIELD_SEQ));
+    smsitem.setUserName(target.getString(_NAME_FIELD_SEQ));
+    smsitem.setSlot1("0")
+    smsitem.setSlot2("")
+    smsitem.setMsg(message.execGroovyTemplate())
+    smsagent.send(smsitem)
+
+  } catch(Exception e) {
+    context.put("_EXCEPTION", e);
+    exlogger.write(target.toString(), e)
+    if(isSendMode) {
+      errMsg = LoggerAid.onlyOneLine(e).substring(0, 125)
+      exlogger.insertSendLog(target, target.getString(_SMS_FIELD_SEQ), target.getString(_KEY_FIELD_SEQ), target.getString(_NAME_FIELD_SEQ), errMsg, target.getString(_KEY_FIELD_SEQ), context.get("_REQ_DEPT_ID"))
+    }
+  }
+}
+
+exlogger.close()
+target.close()
+smsagent.close()","template":"SMS로 문자발송 테스트하기","language":"ko"}
+08-31 16:51:29.965 http-nio-8084-exec-4 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 500 - 3.938
+Headers : {content-length=487, postman-token=9f3fc04f-9e17-40b2-adbe-37668bf2354a, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+","data":null}
+
+08-31 17:12:13.892 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:12:13.893 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:12:13.893 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:12:14.912 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:12:15.641 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:12:31.029 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:12:31.031 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:12:31.031 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:12:32.122 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:12:32.845 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:17:55.760 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:17:55.794 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:17:55.795 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:18:00.389 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:18:01.237 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:22:31.957 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:22:31.959 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:22:31.960 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:22:35.285 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:22:36.508 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:22:57.484 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    43 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{}
+08-31 17:22:57.887 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    36 
+[REQUEST] POST - /api/v1/campaign/create 500 - 10.659
+Headers : {content-length=487, postman-token=7098bf38-2e2f-4af1-bdef-a7a849bfc115, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+"}
+
+08-31 17:23:51.785 http-nio-8084-exec-4 ERROR c.m.w.w.r.web.RestExceptionHandler    43 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{}
+08-31 17:36:18.554 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:36:18.556 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:36:18.557 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:36:25.533 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:36:27.612 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:36:44.425 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    43 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{}
+08-31 17:51:26.004 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:51:26.007 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:51:26.007 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:51:28.192 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:51:29.251 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:52:36.021 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:52:36.024 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:52:36.025 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:52:37.051 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:52:38.199 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:54:25.759 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:54:25.761 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:54:25.761 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:54:33.806 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:54:36.178 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:55:30.152 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:55:30.154 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:55:30.154 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:55:33.453 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:55:34.333 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:55:57.355 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    47 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터: - 
+08-31 17:56:00.653 http-nio-8084-exec-3 DEBUG c.m.w.web.rest.web.LoggingFilter    33 
+[REQUEST] POST - /api/v1/campaign/create 500 - 5.828
+Headers : {content-length=487, postman-token=6ad50083-93c9-4581-959f-7b58225be581, host=127.0.0.1:8084, content-type=application/json, connection=keep-alive, accept-encoding=gzip, deflate, br, user-agent=PostmanRuntime/7.26.8, accept=*/*}
+Request : {
+    "grpCd":"01" ,
+    "userId":"admin" ,
+    "campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기",
+    "channelType":"S",
+    "template":"SMS로 문자발송 테스트하기",
+    "segmentNo":8
+}
+Response : {"code":"FAIL","message":"
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+"}
+
+08-31 17:56:48.856 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:56:48.858 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:56:48.859 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:56:52.869 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:56:54.072 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:58:28.322 ardEngine[Catalina]] INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:58:28.325 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:58:28.325 ardEngine[Catalina]] DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:58:29.834 ardEngine[Catalina]] INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:58:30.848 ardEngine[Catalina]] INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:59:12.956 ocalhost-startStop-1 INFO  c.m.w.web.common.ConfigInitListener    21 ConfigInitListener Start...
+08-31 17:59:12.958 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    23 /WEB-INF/rest-applicationContext.xml
+08-31 17:59:12.959 ocalhost-startStop-1 DEBUG c.m.w.web.common.ConfigInitListener    28 loaded file:///D:\dev\workspace_peper\wiseu_restful/conf/web/log4jdbc.log4j2.properties
+08-31 17:59:16.455 ocalhost-startStop-1 INFO  c.m.common.security.DataSecurity    71  Data Security 적용하지 않음.
+08-31 17:59:17.432 ocalhost-startStop-1 INFO  o.hibernate.validator.util.Version    24 Hibernate Validator 4.2.0.Final
+08-31 17:59:35.366 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    48 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터: - 

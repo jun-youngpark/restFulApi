@@ -1,0 +1,9 @@
+
+이클립스의 아래 경로에 압축파일의 모든 jar 파일을 위치시키고 이클립스를 재실행 하면 됩니다.
+
+%ECLIPSE%\plugins
+
+net.java.amateras.db_1.0.9.jar
+net.java.amateras.umleditor.java_1.3.4.jar
+net.java.amateras.umleditor_1.3.4.jar
+net.java.amateras.xstream_1.3.4.jar

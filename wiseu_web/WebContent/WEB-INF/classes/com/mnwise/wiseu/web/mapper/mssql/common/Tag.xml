@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Tag">
+    <resultMap id="resultTag" type="Tag">
+        <result column="tag_no"             property="tagNo"/>
+        <result column="tag_nm"             property="tagNm"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="tag_cnt"            property="tagCnt"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertTag" parameterType="map">
+        <selectKey keyProperty="tagNo" resultType="int" order="BEFORE">
+        SELECT coalesce(max(tag_no),0)+1
+        FROM ${tableName}
+        </selectKey>
+        INSERT INTO ${tableName} (tag_no, tag_nm)
+        VALUES (#{tagNo}, #{tagNm, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateTagByPk" parameterType="map">
+        UPDATE ${tableName}
+        SET tag_nm = #{tagNm, jdbcType=VARCHAR}
+        WHERE tag_no = #{tagNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteTagByPk" parameterType="map">
+        DELETE FROM ${tableName}
+        WHERE tag_no = #{tagNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectTagByPk" parameterType="map" resultMap="resultTag">
+        SELECT tag_no, tag_nm
+        FROM ${tableName}
+        WHERE tag_no = #{tagNo}
+    </select>
+
+    <select id="selectTagNmByPk" parameterType="map" resultType="string">
+        SELECT tag_nm
+        FROM ${tableName}
+        WHERE tag_no = #{tagNo}
+    </select>
+
+    <select id="selectTagNo" parameterType="map" resultType="int">
+        SELECT tag_no
+        FROM ${tableName}
+        <if test="tagNm != null and tagNm != ''">
+        WHERE tag_nm = #{tagNm}
+        </if>
+        <if test="tagNm == null or tagNm == ''">
+         WHERE (tag_nm = '' OR tag_nm IS NULL)
+        </if>
+    </select>
+
+    <select id="selectNextTagNo" parameterType="string" resultType="int">
+        SELECT coalesce(max(tag_no),0) + 1
+        FROM ${tableName}
+    </select>
+
+    <select id="selectTagList" parameterType="map" resultMap="resultTag">
+        SELECT TOP 20 *
+        FROM (
+            SELECT a.tag_no, b.tag_nm, count(a.tag_no) tag_cnt
+            <if test="onMenu == 'campaign'">
+            FROM nvscenario a, nvcamptag b
+            </if>
+            <if test="onMenu == 'ecare'">
+            FROM nvecarescenario a, nvecaremsgtag b
+            </if>
+            <if test="onMenu == 'template'">
+            FROM nvcontents a, nvcontentstag b
+            </if>
+            <if test="onMenu == 'segment'">
+            FROM nvsegment a, nvsegmenttag b
+            </if>
+            <if test="onMenu == 'mobileTemplate'">
+            FROM nvmobilecontents a, nvmobilecontentstag b
+            </if>
+            WHERE a.tag_no = b.tag_no
+            AND b.tag_nm IS NOT NULL
+            <if test="userVo.userTypeCd == 'U'.toString()">
+                <if test="userVo.userId != null and userVo.userId != ''">
+            AND a.user_id = #{userVo.userId}
+                </if>
+            </if>
+            <if test="userVo.grpCd != null and userVo.grpCd != ''">
+            AND a.grp_cd LIKE #{userVo.grpCd} + '%'
+            </if>
+            <if test="onMenu == 'segment'">
+            AND a.active_yn = 'Y'
+            </if>
+            GROUP BY a.tag_no, b.tag_nm
+        ) c
+        ORDER BY tag_cnt DESC
+    </select>
+
+    <select id="selectTagCloudList" parameterType="map" resultMap="resultTag">
+        SELECT a.tag_no, a.tag_nm
+        FROM nvcamptag a, nvscenario b, nvcampaign c
+        WHERE a.tag_no = b.tag_no
+        AND a.tag_no &gt; 0
+        AND a.tag_nm &gt; ' '
+        AND b.scenario_no = c.scenario_no
+        AND c.campaign_sts IN ('W', 'E')
+        <if test="userVo.userTypeCd == 'U'.toString()">
+            <if test="userVo.userId != null and userVo.userId != ''">
+        AND b.user_id = #{userVo.userId}
+            </if>
+        </if>
+        <if test="userVo.grpCd != null and userVo.grpCd != ''">
+        AND b.grp_cd LIKE #{userVo.grpCd} + '%'
+        </if>
+        GROUP BY a.tag_no, tag_nm
+        ORDER BY tag_nm
+    </select>
+</mapper>

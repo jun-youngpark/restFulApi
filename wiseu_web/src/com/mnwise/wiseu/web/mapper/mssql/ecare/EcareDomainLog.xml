@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcareDomainLog">
+    <!--<resultMap id="resultEcareDomainLog" type="EcareDomainLog">
+        <result column="ecare_no"           property="ecareNo"/>
+        <result column="result_seq"         property="resultSeq"/>
+        <result column="domain_nm"          property="domainNm"/>
+        <result column="error_cd"           property="errorCd"/>
+        <result column="send_dt"            property="sendDt"/>
+        <result column="send_cnt"           property="sendCnt"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectDomainResultMsgList"  parameterType="EcareScenarioInfo" resultMap="mapper.DomainLog.resultDomainLog">
+        SELECT
+            a.cd as error_cd, a.val as error_desc, coalesce(b.target_cnt,0) as target_cnt
+          , CASE WHEN a.cd IN ('550','553','610','800') THEN 'HARD'
+                 WHEN a.cd NOT IN ('250','550','553','610','800') THEN 'SOFT'
+            END as bounce
+        FROM nv_cd_mst a LEFT OUTER JOIN (
+            SELECT error_cd, sum(send_cnt) as target_cnt
+            FROM nvecaredomainlog
+            WHERE send_dt = #{ecareInfoVo.reportDt}
+            AND ecare_no = #{ecareInfoVo.ecareNo}
+            AND error_cd NOT IN ('000', '250')
+            <if test="ecareInfoVo.serviceType == 'S'.toString()">
+                <if test="ecareInfoVo.subType == 'S'.toString()">
+            AND result_seq = #{ecareInfoVo.resultSeq}
+                </if>
+            </if>
+            <if test="ecareInfoVo.searchDomainNm != null and ecareInfoVo.searchDomainNm != ''">
+            AND domain_nm = #{ecareInfoVo.searchDomainNm}
+            </if>
+            GROUP BY error_cd
+        ) b
+        ON a.cd = b.error_cd
+        WHERE a.cd_cat IN ('C00001','C00011', 'C00021')
+        AND a.cd NOT IN ('000','250')
+        AND a.lang = #{language}
+        ORDER BY a.cd
+    </select>
+
+    <select id="selectErrCdResultMsgList" parameterType="EcareScenarioInfo" resultMap="mapper.DomainLog.resultDomainLog">
+        SELECT domain_nm, send_cnt
+        FROM nvecaredomainlog
+        WHERE send_dt = #{ecareInfoVo.reportDt}
+        AND ecare_no = #{ecareInfoVo.ecareNo}
+        AND error_cd = #{ecareInfoVo.searchErrCd}
+        <if test="ecareInfoVo.serviceType == 'S'.toString()">
+            <if test="ecareInfoVo.subType == 'S'.toString()">
+        AND result_seq = #{ecareInfoVo.resultSeq}
+            </if>
+        </if>
+        <if test="ecareInfoVo.searchDomainNm != null and ecareInfoVo.searchDomainNm != ''">
+        AND domain_nm = #{ecareInfoVo.searchDomainNm}
+        </if>
+        ORDER BY send_cnt DESC
+    </select>
+
+    <select id="selectDomainLogList" parameterType="EcareScenarioInfo" resultMap="mapper.DomainLog.resultDomainLog">
+        SELECT
+            a.domain_nm, sum(a.success_cnt + a.hard_cnt + a.soft_cnt) as target_cnt
+          , sum(a.success_cnt) as success_cnt, sum(a.hard_cnt) as hard_cnt, sum(a.soft_cnt) as soft_cnt
+        FROM (
+            SELECT
+                domain_nm
+              , CASE WHEN error_cd = '250' THEN send_cnt ELSE 0 END as success_cnt
+              , CASE WHEN error_cd IN ('550','553','610','800') THEN send_cnt ELSE 0 END as hard_cnt
+              , CASE WHEN error_cd NOT IN ('250','550','553','610','800') THEN send_cnt ELSE 0 END as soft_cnt
+            FROM nvecaredomainlog
+            WHERE send_dt = #{ecareInfoVo.reportDt}
+            AND ecare_no = #{ecareInfoVo.ecareNo}
+            <if test="ecareInfoVo.serviceType == 'S'.toString()">
+                <if test="ecareInfoVo.subType == 'S'.toString()">
+            AND result_seq = #{ecareInfoVo.resultSeq}
+                </if>
+            </if>
+        ) a
+        GROUP BY domain_nm
+        ORDER BY target_cnt DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>에러 메시지</comment>
+	<entry key="errors.header"></entry>
+	<entry key="errors.footer"></entry>
+	<entry key="errors.prefix"></entry>
+	<entry key="errors.suffix"></entry>
+	<entry key="errors.required">{0}은(는) 필수 사항입니다.</entry>
+	<entry key="errors.minlength">{0}은(는) {1}글자 이하 입력하여야 합니다.</entry>
+	<entry key="errors.maxlength">{0}은(는) {1}글자 이상 입력하여야 합니다.</entry>
+	<entry key="errors.invalid">{0}가 잘못 입력되었습니다.</entry>
+	<entry key="errors.byte">{0}은(는) byte형이어야 합니다.</entry>
+	<entry key="errors.short">{0}은(는) short형이어야 합니다.</entry>
+	<entry key="errors.integer">{0}은(는) integer형이어야 합니다.</entry>
+	<entry key="errors.long">{0}은(는) long형이어야 합니다.</entry>
+	<entry key="errors.float">{0}은(는) float형이어야 합니다.</entry>
+	<entry key="errors.double">{0}은(는) double형이어야 합니다.</entry>
+	<entry key="errors.date">{0}은(는) 날자형으로 입력하여야 합니다.</entry>
+	<entry key="errors.range">{0}은(는) {1} ~ {2} 사이의 값이어야 합니다.</entry>
+	<entry key="errors.creditcard">{0}은(는) 잘못된 신용카드번호입니다.</entry>
+	<entry key="errors.email">{0}은(는) 잘못된 이메일주소 입니다.</entry>
+</properties>

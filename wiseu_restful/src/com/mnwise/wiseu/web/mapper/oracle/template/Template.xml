@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Template">
+
+	<!--  ==================== INSERT ====================  -->
+  	<insert id="insertEmTemplate" parameterType="campaign">
+        INSERT INTO nvtemplate (campaign_no, seg, template, kakao_buttons)
+        VALUES (#{campaignNo}, #{seg}, #{template, jdbcType=VARCHAR}, #{kakaoButtons, jdbcType=VARCHAR})
+    </insert>
+
+  	<insert id="copyEmTemplate" parameterType="campaign">
+        INSERT INTO nvtemplate (campaign_no, seg, template, kakao_buttons)
+        SELECT #{newCampaignNo}, seg, template, kakao_buttons
+        FROM nvtemplate
+        WHERE campaign_no = #{campaignNo}
+    </insert>
+
+  	<insert id="insertEcTemplate" parameterType="ecare">
+        INSERT INTO nvecaretemplate (ecare_no, seg, template, kakao_buttons)
+        VALUES (#{ecareNo}, #{seg}, #{template, jdbcType=VARCHAR}, #{kakaoButtons, jdbcType=VARCHAR})
+    </insert>
+
+	<insert id="copyEcTemplate" parameterType="ecare">
+        INSERT INTO nvecaretemplate (ecare_no, seg, template, kakao_buttons)
+        SELECT #{newEcareNo}, seg, template, kakao_buttons
+        FROM nvecaretemplate
+        WHERE ecare_no = #{ecareNo}
+    </insert>
+
+	<!--  ==================== UPDATE ====================  -->
+  	<update id="updateEmTemplate" parameterType="campaign">
+        UPDATE nvtemplate
+        SET template = #{template}
+        <if test="kakaoButtons != null and kakaoButtons != ''">
+        	,  kakao_buttons = #{kakaoButtons}
+       	</if>
+        WHERE campaign_no = #{campaignNo}
+        AND seg = #{seg}
+     </update>
+
+  	<update id="updateEcTemplate" parameterType="ecare">
+        UPDATE nvecaretemplate
+        SET template = #{template}
+        <if test="kakaoButtons != null and kakaoButtons != ''">
+        	,  kakao_buttons = #{kakaoButtons}
+       	</if>
+        WHERE ecare_no = #{ecareNo}
+        AND seg = #{seg}
+     </update>
+
+</mapper>

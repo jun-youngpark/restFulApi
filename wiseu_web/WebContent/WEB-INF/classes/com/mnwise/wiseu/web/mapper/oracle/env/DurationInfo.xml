@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.DurationInfo">
+    <!--<resultMap id="resultDurationInfo" type="DurationInfo">
+        <result column="durationinfo_cd"    property="durationinfoCd"/>
+        <result column="maxtime"            property="maxtime"/>
+        <result column="mintime"            property="mintime"/>
+        <result column="valid_chk"          property="validChk"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <!--<insert id="insertDurationInfo" parameterType="DurationInfo">
+        INSERT INTO nvdurationinfo (durationinfo_cd, maxtime, mintime, valid_chk)
+        VALUES (#{durationinfoCd}, #{maxtime}, #{mintime}, #{validChk, jdbcType=CHAR})
+    </insert>-->
+
+    <!--  ==================== UPDATE ====================  -->
+    <!--<update id="updateDurationInfoByPk" parameterType="DurationInfo">
+        UPDATE nvdurationinfo
+        SET maxtime = #{maxtime}, mintime = #{mintime}, valid_chk = #{validChk, jdbcType=CHAR}
+        WHERE durationinfo_cd = #{durationinfoCd}
+    </update>-->
+
+    <update id="updateEnvServerInfoDurationTime" parameterType="int">
+        UPDATE nvdurationinfo
+        SET mintime = #{durationTime}
+        WHERE durationinfo_cd = '01'
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteDurationInfoByPk" parameterType="map">
+        DELETE FROM nvdurationinfo
+        WHERE durationinfo_cd = #{durationinfoCd}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!--<select id="selectDurationInfoByPk" parameterType="map" resultMap="resultDurationInfo">
+        SELECT durationinfo_cd, maxtime, mintime, valid_chk
+        FROM nvdurationinfo
+        WHERE durationinfo_cd = #{durationinfoCd}
+    </select>-->
+</mapper>

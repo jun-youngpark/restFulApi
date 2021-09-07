@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.EcMsgHandlerHistory">
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertEcareHandlerHistory" parameterType="History">
+        INSERT INTO nvecmsghandlerhistory (ecare_no, user_id, lastupdate_dt, lastupdate_tm, type, appsource, history_msg, handler_ver)
+        VALUES (#{ecareNo}, #{userId}, #{lastupdateDt, jdbcType=CHAR}, #{lastupdateTm, jdbcType=VARCHAR}, #{type}, #{appsource}, #{historyMsg, jdbcType=VARCHAR}, #{handlerVer})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteEcmsgHandlerHistoryAll" parameterType="int">
+        DELETE FROM nvecmsghandlerhistory
+        WHERE ecare_no = #{ecareNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectEcarePreviousHandler" parameterType="MailPreview" resultMap="mapper.Common.resultMailPreview">
+        SELECT appsource, type as handler_type
+        FROM nvecmsghandlerhistory
+        WHERE ecare_no = #{serviceNo}
+        AND handler_ver = #{handlerVer}
+    </select>
+
+    <sql id="contsHistoryInfoListWhereQuery">
+        <if test="ecareNo != 0"                     >AND a.ecare_no = #{ecareNo}</if>
+        <if test="ecareNm != null and ecareNm != ''">AND b.ecare_nm LIKE '%'||#{ecareNm}||'%'</if>
+    </sql>
+
+    <select id="selectContsHandlerTotalCount" parameterType="EcareContsHistory" resultType="int">
+        SELECT count(*)
+        FROM nvecmsghandlerhistory a, nvecaremsg b, nvuser c
+        WHERE a.ecare_no = b.ecare_no
+        AND a.user_id = c.user_id
+        <include refid="contsHistoryInfoListWhereQuery"/>
+    </select>
+
+    <select id="selectContsHandlerHistoryList" parameterType="EcareContsHistory" resultMap="mapper.Common.resultEcareContsHistory">
+        SELECT *
+        FROM (
+            SELECT
+                row_number() OVER(ORDER BY a.lastupdate_dt, a.lastupdate_tm) l_rank
+              , row_number() OVER(ORDER BY a.lastupdate_dt DESC, a.lastupdate_tm DESC) rnum
+              , coalesce(a.ecare_no,0) ecare_no, a.appsource, coalesce(a.handler_ver,0) handler_ver, a.lastupdate_dt, a.lastupdate_tm, a.history_msg
+              , b.ecare_nm, b.channel_type, c.name_kor, '' as seg, 0 as tmpl_ver, '' as template
+            FROM nvecmsghandlerhistory a, nvecaremsg b, nvuser c
+            WHERE a.ecare_no = b.ecare_no
+            AND a.user_id = c.user_id
+            <include refid="contsHistoryInfoListWhereQuery"/>
+            ORDER BY a.lastupdate_dt DESC, a.lastupdate_tm DESC
+        ) x
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+    </select>
+
+    <select id="selectContsHandlerHistoryInfo" parameterType="EcareContsHistory" resultMap="mapper.Common.resultEcareContsHistory">
+        SELECT
+            0 AS l_rank, coalesce(a.ecare_no,0) ecare_no, a.lastupdate_dt, a.lastupdate_tm, coalesce(a.handler_ver,0) handler_ver, a.appsource, a.history_msg
+          , b.ecare_nm, b.channel_type, c.name_kor, '' as seg, '' as template, 0 as tmpl_ver
+        FROM nvecmsghandlerhistory a, nvecaremsg b, nvuser c
+        WHERE a.ecare_no = b.ecare_no
+        AND a.user_id = c.user_id
+        AND a.ecare_no = #{ecareNo}
+        AND a.handler_ver = #{handlerVer}
+    </select>
+
+    <select id="selectNextHandlerVersion" parameterType="int" resultType="int">
+        SELECT coalesce(max(handler_ver), 0) + 1
+        FROM nvecmsghandlerhistory
+        WHERE ecare_no = #{ecareNo}
+    </select>
+</mapper>

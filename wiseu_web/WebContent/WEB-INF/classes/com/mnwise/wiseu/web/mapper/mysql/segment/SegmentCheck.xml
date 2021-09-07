@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SegmentCheck">
+    <!--<resultMap id="resultSegmentCheck" type="SegmentCheck">
+        <result column="segment_no"     property="segmentNo"/>
+        <result column="user_id"        property="userId"/>-->
+        <!--  ========== 추가 컬럼 ==========  -->
+    <!--</resultMap>-->
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSegmentCheck" parameterType="map">
+        INSERT INTO nvsegmentcheck (segment_no, user_id)
+        VALUES (#{segmentNo}, #{userId})
+    </insert>
+
+    <insert id="copySegmentCheck" parameterType="Segment">
+        INSERT INTO nvsegmentcheck (segment_no, user_id)
+        SELECT #{newSegmentNo}, #{userId}
+        FROM nvsegmentcheck
+        WHERE segment_no = #{segmentNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <!--<update id="updateSegmentCheckByPk" parameterType="SegmentCheck">
+        UPDATE nvsegmentcheck
+        SET
+        WHERE segment_no = #{segmentNo}
+        AND user_id = #{userId}
+    </update>-->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSegmentCheckByPk" parameterType="map">
+        DELETE FROM nvsegmentcheck
+        WHERE segment_no = #{segmentNo}
+        AND user_id = #{userId}
+    </delete>
+
+    <delete id="deleteSegmentCheckBySegmentNo" parameterType="int">
+        DELETE FROM nvsegmentcheck
+        WHERE segment_no = #{segmentNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <!--<select id="selectSegmentCheckByPk" parameterType="map" resultMap="resultSegmentCheck">
+        SELECT *
+        FROM nvsegmentcheck
+        WHERE segment_no = #{segmentNo}
+        AND user_id = #{userId}
+    </select>-->
+
+    <select id="selectBookMarkCnt" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM nvsegmentcheck
+        WHERE segment_no = #{segmentNo}
+    </select>
+
+</mapper>

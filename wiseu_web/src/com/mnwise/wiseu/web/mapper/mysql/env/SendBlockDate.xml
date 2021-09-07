@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SendBlockDate">
+    <resultMap id="resultSendBlockDate" type="SendBlockDate">
+        <result column="chk_year"       property="chkYear"/>
+        <result column="block_dt"       property="blockDt"/>
+        <result column="channel_type"   property="channelType"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSendBlockDate" parameterType="SendBlockDate">
+        INSERT INTO nvsendblockdate (chk_year, block_dt, channel_type)
+        VALUES (#{chkYear}, #{blockDt}, #{channelType})
+    </insert>
+
+    <insert id="insertRestDays" parameterType="SendBlockDate">
+        INSERT INTO nvsendblockdate (chk_year, block_dt, channel_type)
+        VALUES (#{chkYear}, #{blockDt}, 'M')
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSendBlockDateByPk" parameterType="SendBlockDate">
+        UPDATE nvsendblockdate
+        SET
+        WHERE chk_year = #{chkYear}
+        AND block_dt = #{blockDt}
+        AND channel_type = #{channelType}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSendBlockDateByPk" parameterType="map">
+        DELETE FROM nvsendblockdate
+        WHERE chk_year = #{chkYear}
+        AND block_dt = #{blockDt}
+        AND channel_type = #{channelType}
+    </delete>
+
+    <delete id="deleteRestDays" parameterType="SendBlockDate">
+        DELETE FROM nvsendblockdate
+        WHERE chk_year = #{chkYear}
+        AND block_dt = #{blockDt}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectRestDays" resultMap="resultSendBlockDate">
+        SELECT chk_year, block_dt, channel_type
+        FROM nvsendblockdate
+    </select>
+
+    <select id="confirmRestDays" parameterType="SendBlockDate" resultType="int">
+        SELECT count(*)
+        FROM nvsendblockdate
+        WHERE chk_year = #{chkYear}
+        AND block_dt = #{blockDt}
+    </select>
+
+</mapper>

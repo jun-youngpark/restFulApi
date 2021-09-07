@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- set appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{MM-dd HH:mm:ss.SSS} %-20.20thread %-5level %logger{35} %5line %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${wiseu.home}/log/web/web.log</File>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date{MM-dd HH:mm:ss.SSS} %-20.20thread %-5level %logger{35} %5line %msg%n</pattern>
+        </layout>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${wiseu.home}/log/web/web.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${wiseu.home}/log/web/web-error.log</File>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${wiseu.home}/log/web/web-error.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date{MM-dd HH:mm:ss.SSS} %-20.20thread %-5level %logger{35} %5line %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="MYBATIS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${wiseu.home}/log/web/web-mybatis.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${wiseu.home}/log/web/web-mybatis.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date{MM-dd HH:mm:ss.SSS} %-20.20thread %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <logger name="org.springframework" level="INFO" />
+    <logger name="org.apache" level="ERROR" />
+    <logger name="com.mnwise" level="DEBUG" />
+
+    <logger name="java.sql" level="DEBUG" additivity="false">
+        <appender-ref ref="MYBATIS" />
+    </logger>
+    <logger name="org.apache.ibatis" level="DEBUG" additivity="false">
+        <appender-ref ref="MYBATIS" />
+    </logger>
+    <logger name="org.mybatis.spring" level="WARN" additivity="false">
+        <appender-ref ref="MYBATIS" />
+    </logger>
+
+    <logger name="com.mnwise.wiseu.web.base.MyBatisInterceptor" level="DEBUG" additivity="false">
+        <appender-ref ref="MYBATIS" />
+    </logger>
+
+    <logger name="jdbc" level="WARN" additivity="false">
+        <appender-ref ref="MYBATIS" />
+    </logger>
+
+    <!-- 개발 MyBatis 로깅
+    <logger name="jdbc.sqlonly" level="DEBUG" additivity="false">
+        <appender-ref ref="MYBATIS" />
+    </logger>
+    -->
+
+    <!-- 운영 MyBatis 로깅
+    -->
+    <logger name="mapper" level="DEBUG" additivity="false">
+        <appender-ref ref="MYBATIS" />
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ERROR" />
+    </root>
+</configuration>

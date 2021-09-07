@@ -1,0 +1,84 @@
+09-01 16:38:27.684 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    45 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:null
+09-01 16:43:26.843 http-nio-8084-exec-3 ERROR c.m.w.w.r.web.RestExceptionHandler    45 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:null
+09-01 16:51:42.281 http-nio-8084-exec-5 ERROR c.m.w.w.r.web.RestExceptionHandler    45 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:null
+09-01 16:59:27.167 http-nio-8084-exec-2 ERROR c.m.w.w.r.web.RestExceptionHandler    50 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 220, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기옴니채널 테스트 하기","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-01 17:41:57.225 http-nio-8084-exec-3 ERROR c.m.w.w.r.e.RestExceptionHandler    51 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-01 17:59:24.080 http-nio-8084-exec-2 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}
+09-01 17:59:52.340 http-nio-8084-exec-4 ERROR c.m.w.w.r.e.RestExceptionHandler    56 에러내용:org.springframework.jdbc.UncategorizedSQLException: 
+### Error updating database.  Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+### The error may exist in ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Scenario.xml]
+### The error may involve mapper.Scenario.insertScenarioForFirst-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO nvscenario (scenario_no, user_id, grp_cd, scenario_nm, scenario_desc, scenario_type, create_dt, create_tm, lastupdate_dt, lastupdate_tm, tag_no, finish_yn, handler_type)         VALUES (?, ?, ?, ?, ?, 'M', ?, ?, ?, ?, 1, 'N', 'G')
+### Cause: java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+
+; uncategorized SQLException for SQL []; SQL state [72000]; error code [12899]; ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+; nested exception is java.sql.SQLException: ORA-12899: "WISEU7"."NVSCENARIO"."SCENARIO_NM" 열에 대한 값이 너무 큼(실제: 118, 최대값: 100)
+ 데이터:{"grpCd":"01","userId":"admin","campaignNm":"옴니채널 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니 테스트 하기옴니채널 테스트 하기옴니채","channelType":"S","template":"SMS로 문자발송 테스트하기","segmentNo":8}

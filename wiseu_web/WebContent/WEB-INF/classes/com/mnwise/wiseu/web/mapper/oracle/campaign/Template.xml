@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Template">
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertTemplate" parameterType="Template">
+        INSERT INTO nvtemplate (campaign_no, seg, template, kakao_buttons)
+        VALUES (#{campaignNo}, #{seg}, #{template}, #{kakaoButtons, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertEditorCampaignTemplate" parameterType="Template">
+        INSERT INTO nvtemplate (campaign_no, seg, template)
+        VALUES (#{no}, #{seg}, #{template})
+    </insert>
+
+    <insert id="copyTemplate" parameterType="map">
+        INSERT INTO nvtemplate (campaign_no, seg, template, kakao_buttons)
+        VALUES (#{newCampaignNo}, #{templateVo.seg}, #{templateVo.template}, #{templateVo.kakaoButtons})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateEditorCampaignTemplate" parameterType="Template">
+        UPDATE nvtemplate
+        SET template = #{template}
+        WHERE campaign_no = #{no}
+        AND seg = #{seg}
+    </update>
+
+    <update id="updateCampaignKakaoButtons" parameterType="Template">
+        UPDATE nvtemplate
+        SET kakao_buttons = #{kakaoButtons}
+        WHERE campaign_no = #{no}
+        AND seg = #{seg}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteTemplateByPk" parameterType="map">
+        DELETE FROM nvtemplate
+        WHERE campaign_no = #{campaignNo}
+        AND seg = #{seg}
+    </delete>
+
+    <delete id="deleteTemplateAll" parameterType="Scenario">
+        DELETE FROM nvtemplate
+        <if test="campaignVo.campaignNoArray != null">
+        WHERE campaign_no IN (
+        <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+            #{campaignNo}
+        </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="getTemplate" parameterType="Template" resultMap="mapper.Common.resultTemplate">
+        SELECT campaign_no, seg, template, kakao_buttons
+        FROM nvtemplate
+        WHERE campaign_no = #{campaignNo}
+        <if test="seg != null and seg != ''">
+        AND seg = #{seg}
+        </if>
+        <if test="seg == null or seg == ''">
+        AND seg = ' '
+        </if>
+    </select>
+
+    <select id="getTemplateList" parameterType="int" resultMap="mapper.Common.resultTemplate">
+        SELECT campaign_no, seg, template, kakao_buttons
+        FROM nvtemplate
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectEditorCampaignTemplate" parameterType="int" resultMap="mapper.Common.resultTemplate">
+        SELECT seg, template, kakao_buttons, CASE WHEN seg = ' ' THEN 0 ELSE 1 END seg_no
+        FROM nvtemplate
+        WHERE campaign_no = #{no}
+        ORDER BY seg_no
+    </select>
+
+    <select id="selectEditorCampaignFrtalkTemplate" parameterType="int" resultMap="mapper.Common.resultTemplate">
+        SELECT
+            a.seg, a.template, a.kakao_buttons, CASE WHEN a.seg = ' ' THEN 0 ELSE 1 END as seg_no
+          , CASE WHEN b.kakao_image_no IS NULL THEN '' ELSE (SELECT file_preview_path FROM nvmobilecontents WHERE conts_no = b.kakao_image_no) end AS image_url
+        FROM nvtemplate a, nvcampaign b
+        WHERE a.campaign_no = b.campaign_no
+        AND b.campaign_no = #{no}
+        ORDER BY seg_no
+    </select>
+
+    <select id="selectCampaignTemplate" parameterType="map" resultMap="mapper.Common.resultMailPreview">
+        SELECT seg, nvl(template,'') template
+        FROM nvtemplate
+        WHERE campaign_no = #{serviceNo}
+        <if test="seg != ' '.toString()">
+        AND seg = #{seg}
+        </if>
+    </select>
+
+    <!-- 캠페인 A/B 테스트 (템플릿) -->
+    <select id="selectCampaignTemplateAb" parameterType="map" resultMap="mapper.Common.resultMailPreview">
+        SELECT seg, nvl(template,'') template
+        FROM nvtemplate
+        WHERE campaign_no = #{serviceNo}
+    </select>
+
+    <select id="getCampaignTemplate" parameterType="int" resultType="string">
+        SELECT template
+        FROM nvtemplate
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectCampaignKakaoButtons" parameterType="int" resultType="string">
+        SELECT kakao_buttons
+        FROM nvtemplate
+        WHERE campaign_no = #{campaignNo}
+        AND seg = ' '
+    </select>
+
+    <select id="selectEditorCampaignTemplateCount" parameterType="Template" resultType="int">
+        SELECT count(*)
+        FROM nvtemplate
+        WHERE campaign_no = #{no}
+        AND seg = #{seg}
+    </select>
+</mapper>

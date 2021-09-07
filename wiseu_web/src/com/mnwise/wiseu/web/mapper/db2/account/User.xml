@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.User">
+    <resultMap id="resultUser" type="User">
+        <result column="user_id" property="userId"/>
+        <result column="pass_wd" property="passWd"/>
+        <result column="pass_salt" property="passSalt"/>
+        <result column="grp_cd" property="grpCd"/>
+        <result column="name_kor" property="nameKor"/>
+        <result column="name_eng" property="nameEng"/>
+        <result column="tel_no" property="telNo"/>
+        <result column="email" property="email"/>
+        <result column="user_class" property="userClass"/>
+        <result column="usertype_cd" property="userTypeCd"/>
+        <result column="lastupdate_dt" property="lastUpdateDt"/>
+        <result column="active_yn" property="activeYn"/>
+        <result column="accept_yn" property="acceptYn"/>
+        <result column="list_count_per_page" property="listCountPerPage"/>
+        <result column="soeid" property="soeid"/>
+        <result column="geid" property="geid"/>
+        <result column="isa_role" property="isaRole"/>
+        <result column="work_doc" property="workDoc"/>
+        <result column="user_role" property="userRole"/>
+        <result column="create_user" property="createUser"/>
+        <result column="permit_sts" property="permitSts"/>
+        <result column="permit_dt" property="permitDt"/>
+        <result column="login_cnt" property="loginCnt"/>
+        <result column="lastlogin_dt" property="lastLoginDt"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="grp_nm" property="grpNm"/>
+        <result column="req_dept" property="reqDept"/>
+        <result column="req_user" property="reqUser"/>
+        <result column="usertype_nm" property="userTypeNm"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertUser" parameterType="User">
+        INSERT INTO nvuser (user_id, pass_wd, pass_salt, grp_cd, name_kor, name_eng, tel_no, email, user_class, usertype_cd, lastupdate_dt, active_yn, accept_yn, list_count_per_page, soeid, geid, isa_role, work_doc, user_role, create_user, permit_sts, permit_dt, login_cnt, lastlogin_dt)
+        VALUES (#{userId}, #{passWd, jdbcType=VARCHAR}, #{passSalt, jdbcType=VARCHAR}, #{grpCd, jdbcType=VARCHAR}, #{nameKor, jdbcType=VARCHAR}, #{nameEng, jdbcType=VARCHAR}, #{telNo, jdbcType=VARCHAR}, #{email, jdbcType=VARCHAR}, #{userClass, jdbcType=VARCHAR}, #{userTypeCd}, to_char(CURRENT TIMESTAMP, 'yyyymmdd'), #{activeYn, jdbcType=CHAR}, #{acceptYn, jdbcType=CHAR}, '10', #{soeid, jdbcType=CHAR}, #{geid, jdbcType=CHAR}, #{isaRole, jdbcType=CHAR}, #{workDoc, jdbcType=VARCHAR}, #{userRole, jdbcType=CHAR}, #{createUser, jdbcType=VARCHAR}, #{permitSts, jdbcType=CHAR}, #{permitDt, jdbcType=VARCHAR}, #{loginCnt}, #{lastLoginDt, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateUserByPk" parameterType="map">
+        UPDATE nvuser
+        SET
+            pass_wd = #{passWd, jdbcType=VARCHAR}
+          , pass_salt = #{passSalt, jdbcType=VARCHAR}
+          , grp_cd = #{grpCd, jdbcType=VARCHAR}
+          , name_kor = #{nameKor, jdbcType=VARCHAR}
+          , name_eng = #{nameEng, jdbcType=VARCHAR}
+          , tel_no = #{telNo, jdbcType=VARCHAR}
+          , email = #{email, jdbcType=VARCHAR}
+          , user_class = #{userClass, jdbcType=VARCHAR}
+          , usertype_cd = #{userTypeCd}
+          , lastupdate_dt = #{lastUpdateDt, jdbcType=CHAR}
+          , active_yn = #{activeYn, jdbcType=CHAR}
+          , accept_yn = #{acceptYn, jdbcType=CHAR}
+          , list_count_per_page = #{listCountPerPage, jdbcType=VARCHAR}
+          , soeid = #{soeid, jdbcType=CHAR}
+          , geid = #{geid, jdbcType=CHAR}
+          , isa_role = #{isaRole, jdbcType=CHAR}
+          , work_doc = #{workDoc, jdbcType=VARCHAR}
+          , user_role = #{userRole, jdbcType=CHAR}
+          , create_user = #{createUser, jdbcType=VARCHAR}
+          , permit_sts = #{permitSts, jdbcType=CHAR}
+          , permit_dt = #{permitDt, jdbcType=VARCHAR}
+          , login_cnt = #{loginCnt}
+          , lastlogin_dt = #{lastLoginDt, jdbcType=VARCHAR}
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateUserInfo" parameterType="User">
+        UPDATE nvuser
+        SET
+            tel_no = #{telNo, jdbcType=VARCHAR}
+            <if test="passWd != null and passWd != ''">
+          , pass_wd = #{passWd, jdbcType=VARCHAR}
+          , pass_salt = #{passSalt, jdbcType=VARCHAR}
+            </if>
+          , email = #{email, jdbcType=VARCHAR}
+          , user_class = #{userClass, jdbcType=VARCHAR}
+          , usertype_cd = #{userTypeCd}
+          , lastupdate_dt = to_char(CURRENT TIMESTAMP, 'yyyymmdd')
+          , soeid = #{soeid, jdbcType=CHAR}
+          , geid = #{geid, jdbcType=CHAR}
+          , work_doc = #{workDoc, jdbcType=VARCHAR}
+          , user_role = #{userRole, jdbcType=CHAR}
+          , permit_sts = null
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateEnvMyInfo" parameterType="EnvMyInfo">
+        UPDATE nvuser
+        SET
+            pass_wd = #{passWd, jdbcType=VARCHAR}
+          , pass_salt = #{passSalt, jdbcType=VARCHAR}
+          , name_kor = #{nameKor, jdbcType=VARCHAR}
+          , tel_no = #{telNo, jdbcType=VARCHAR}
+          , email = #{email, jdbcType=VARCHAR}
+          , user_class = #{userClass, jdbcType=VARCHAR}
+          , lastupdate_dt = #{lastupdateDt, jdbcType=CHAR}
+          , list_count_per_page = #{listCountPerPage, jdbcType=VARCHAR}
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateLoginCntReset" parameterType="string">
+        UPDATE nvuser
+        SET login_cnt = 0
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateUserDelete" parameterType="User">
+        UPDATE nvuser
+        SET accept_yn = 'N'
+        WHERE user_id IN (<foreach collection="saUserId" item="userId" separator=",">#{userId}</foreach>)
+    </update>
+
+    <update id="updateUserErase" parameterType="User">
+        UPDATE nvuser
+        SET active_yn = 'N', accept_yn = 'N'
+        WHERE user_id IN (
+        <foreach collection="saUserId" item="userId" separator=",">
+            #{userId}
+        </foreach>
+        )
+    </update>
+
+    <update id="updateLoginFailCountToInitial" parameterType="string">
+        UPDATE nvuser
+        SET login_cnt = '0', lastlogin_dt = to_char(sysdate, 'yyyyMMdd')
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateLoginFailCount" parameterType="string">
+        UPDATE nvuser
+        SET login_cnt = login_cnt + 1
+        WHERE user_id = #{userId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectUserByPk" parameterType="string" resultMap="resultUser">
+        SELECT user_id, pass_wd, pass_salt, grp_cd, name_kor, name_eng, tel_no, email, user_class, usertype_cd, lastupdate_dt, active_yn, accept_yn, list_count_per_page, soeid, geid, isa_role, work_doc, user_role, create_user, permit_sts, permit_dt, login_cnt, lastlogin_dt
+        FROM nvuser
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectAdminByAdminId" parameterType="string" resultMap="resultUser">
+        SELECT
+            a.user_id, a.pass_wd, a.pass_salt, a.grp_cd, a.name_kor, a.name_eng, a.tel_no, a.email, a.user_class, a.usertype_cd, a.lastupdate_dt, a.active_yn, a.accept_yn
+          , a.list_count_per_page, a.soeid, a.geid, a.isa_role, a.work_doc, a.user_role, a.create_user, a.permit_sts, a.permit_dt, a.login_cnt, a.lastlogin_dt
+          , b.grp_nm, b.req_dept_id as req_dept, a.user_id as req_user
+        FROM nvuser a, nvusergrp b
+        WHERE a.grp_cd = b.grp_cd
+        AND a.user_id = #{userId}
+        AND a.active_yn = 'Y'
+        AND a.accept_yn = 'Y'
+    </select>
+
+    <select id="userChecker" parameterType="string" resultType="int">
+        SELECT count(*)
+        FROM nvuser
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="selectNotRegList" parameterType="map" resultMap="resultUser">
+        SELECT
+            a.user_id, a.pass_wd, a.pass_salt, a.grp_cd, a.name_kor, a.name_eng, a.tel_no, a.email, a.user_class, a.usertype_cd, a.lastupdate_dt, a.active_yn, a.accept_yn
+          , a.list_count_per_page, a.soeid, a.geid, a.isa_role, a.work_doc, a.user_role, a.create_user, a.permit_sts, a.permit_dt, a.login_cnt, a.lastlogin_dt
+          , b.grp_nm, (SELECT val FROM nv_cd_mst WHERE cd_cat = 'C00061' AND cd = a.usertype_cd AND lang = #{language}) usertype_nm
+        FROM nvuser a, nvusergrp b
+        WHERE a.grp_cd = b.grp_cd
+        AND a.active_yn IN ('N', 'R')
+        AND a.accept_yn = 'Y'
+        <if test="userId != null">
+        AND a.create_user = #{userId}
+        </if>
+        ORDER BY name_kor
+    </select>
+
+    <select id="selectNotDelList" parameterType="map" resultMap="resultUser">
+        SELECT
+            a.user_id, a.pass_wd, a.pass_salt, a.grp_cd, a.name_kor, a.name_eng, a.tel_no, a.email, a.user_class, a.usertype_cd, a.lastupdate_dt, a.active_yn, a.accept_yn
+          , a.list_count_per_page, a.soeid, a.geid, a.isa_role, a.work_doc, a.user_role, a.create_user, a.permit_sts, a.permit_dt, a.login_cnt, a.lastlogin_dt
+          , b.grp_nm, (SELECT val FROM nv_cd_mst WHERE cd_cat = 'C00061' AND cd = a.usertype_cd AND lang = #{language}) usertype_nm
+        FROM nvuser a, nvusergrp b
+        WHERE a.grp_cd = b.grp_cd
+        AND a.active_yn = 'Y'
+        AND a.accept_yn = 'N'
+        <if test="userId != null">
+        AND a.create_user = #{userId}
+        </if>
+        ORDER BY name_kor
+    </select>
+
+    <select id="getRequestPermitUserList" parameterType="string" resultMap="resultUser">
+        SELECT
+            a.user_id, a.name_kor, a.tel_no, a.email, a.user_class, a.usertype_cd, a.active_yn, a.user_role, a.permit_sts, a.permit_dt, a.login_cnt
+          , b.grp_nm, (SELECT val FROM nv_cd_mst WHERE cd_cat = 'C00061' AND cd = a.usertype_cd AND lang = #{lang}) usertype_nm
+        FROM nvuser a, nvusergrp b
+        WHERE a.grp_cd = b.grp_cd
+        AND a.active_yn = 'Y'
+        AND a.accept_yn = 'Y'
+        AND a.permit_sts is not null
+    </select>
+
+    <select id="getAccountTotalCount" parameterType="map" resultType="int" >
+        SELECT count(*)
+        FROM nvuser a, nvusergrp b
+        WHERE a.grp_cd = b.grp_cd
+        AND a.grp_cd = #{grpCd}
+        AND a.active_yn = 'Y'
+        AND a.accept_yn = 'Y'
+        <if test="serchID != null and serchID != ''">
+        AND a.user_id LIKE concat(#{serchID}, '%')
+        </if>
+    </select>
+
+    <select id="selectUserListPageing" parameterType="map" resultMap="resultUser">
+        SELECT *
+        FROM (
+            SELECT user_id, name_kor, tel_no, email, user_class, usertype_cd, active_yn, user_role, permit_sts, login_cnt, grp_nm, usertype_nm
+            FROM (
+                SELECT
+                    a.user_id, a.name_kor, a.tel_no, a.email, a.user_class, a.usertype_cd, a.active_yn, a.user_role, a.permit_sts, a.login_cnt
+                  , b.grp_nm, (SELECT val FROM nv_cd_mst WHERE cd_cat = 'C00061' AND cd = a.usertype_cd AND lang = #{language}) usertype_nm
+                FROM nvuser a, nvusergrp b
+                WHERE a.grp_cd = b.grp_cd
+                AND a.grp_cd = #{grpCd}
+                AND a.active_yn = 'Y'
+                AND a.accept_yn = 'Y'
+                <if test="serchID != null and serchID != ''">
+                AND a.user_id LIKE concat(#{serchID}, '%')
+                </if>
+                ORDER BY user_id FETCH FIRST ${nowPage} ROWS ONLY
+            ) c
+            ORDER BY user_id DESC FETCH FIRST ${listCountPerPage} ROWS ONLY
+        ) d
+        ORDER BY user_id
+    </select>
+
+    <select id="getUserInfoBySoeid" parameterType="string" resultMap="resultUser">
+        SELECT user_id, pass_wd
+        FROM nvuser
+        WHERE soeid = #{soeid}
+        AND active_yn = 'Y'
+        AND accept_yn = 'Y'
+    </select>
+
+    <select id="selectEnvMyInfo" parameterType="string" resultMap="resultUser">
+        SELECT
+            user_id, pass_wd, name_kor, tel_no, email, user_class, usertype_cd, list_count_per_page
+          , to_char(to_date(lastupdate_dt, 'yyyyMMdd'), 'yyyy-MM-dd') lastupdate_dt
+        FROM nvuser
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

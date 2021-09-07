@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Semantic">
+    <resultMap id="resultSemantic" type="Semantic">
+        <result column="segment_no"     property="segmentNo"/>
+        <result column="field_seq"      property="fieldSeq"/>
+        <result column="field_nm"       property="fieldNm"/>
+        <result column="field_desc"     property="fieldDesc"/>
+        <result column="field_type"     property="fieldType"/>
+        <result column="field_length"   property="fieldLength"/>
+        <result column="initvalue"      property="initvalue"/>
+        <result column="minvalue"       property="minvalue"/>
+        <result column="maxvalue"       property="maxvalue"/>
+        <result column="null_yn"        property="nullYn"/>
+        <result column="field_key"      property="fieldKey"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSemantic" parameterType="Semantic">
+        INSERT INTO nvsemantic (segment_no, field_seq, field_nm, field_desc, field_type, field_length, initvalue, minvalue, `maxvalue`, null_yn, field_key)
+        VALUES (#{segmentNo}, #{fieldSeq}, #{fieldNm}, #{fieldDesc, jdbcType=VARCHAR}, #{fieldType, jdbcType=VARCHAR}, #{fieldLength}, #{initvalue, jdbcType=VARCHAR}, #{minvalue, jdbcType=VARCHAR}, #{maxvalue, jdbcType=VARCHAR}, #{nullYn, jdbcType=CHAR}, #{fieldKey, jdbcType=CHAR})
+    </insert>
+
+    <insert id="copySemantic" parameterType="map">
+        INSERT INTO nvsemantic (segment_no, field_seq, field_nm, field_desc, field_type, field_length, initvalue, minvalue, `maxvalue`, null_yn, field_key)
+        SELECT #{toSegmentNo}, field_seq, field_nm, field_desc, field_type, field_length, initvalue, minvalue, `maxvalue`, null_yn, field_key
+        FROM nvsemantic
+        WHERE segment_no = #{fromSegmentNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSemanticByPk" parameterType="map">
+        UPDATE nvsemantic
+        SET
+            field_nm = #{fieldNm}
+          , field_desc = #{fieldDesc, jdbcType=VARCHAR}
+          , field_type = #{fieldType, jdbcType=VARCHAR}
+          , field_length = #{fieldLength}
+          , initvalue = #{initvalue, jdbcType=VARCHAR}
+          , minvalue = #{minvalue, jdbcType=VARCHAR}
+          , `maxvalue` = #{maxvalue, jdbcType=VARCHAR}
+          , null_yn = #{nullYn, jdbcType=CHAR}
+          , field_key = #{fieldKey, jdbcType=CHAR}
+        WHERE segment_no = #{segmentNo}
+        AND field_seq = #{fieldSeq}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSemanticByPk" parameterType="map">
+        DELETE FROM nvsemantic
+        WHERE segment_no = #{segmentNo}
+        AND field_seq = #{fieldSeq}
+    </delete>
+
+    <delete id="deleteSemanticBySegmentNo" parameterType="int">
+        DELETE FROM nvsemantic
+        WHERE segment_no = #{segmentNo}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectSemanticByPk" parameterType="map" resultMap="resultSemantic">
+        SELECT *
+        FROM nvsemantic
+        WHERE segment_no = #{segmentNo}
+        AND field_seq = #{fieldSeq}
+    </select>
+
+    <select id="getEcareSemanticList" parameterType="int" resultMap="resultSemantic">
+        SELECT field_seq, field_key, field_desc
+        FROM nvsemantic
+        WHERE segment_no = (
+            SELECT segment_no
+            FROM nvecaremsg
+            WHERE ecare_no = #{ecareNo}
+        )
+    </select>
+
+    <select id="selectSemanticListBySegmentNo" parameterType="int" resultMap="resultSemantic">
+        SELECT field_seq, field_nm, field_desc, coalesce(field_key,'') field_key
+        FROM nvsemantic
+        WHERE segment_no = #{segmentNo}
+        ORDER BY field_seq
+    </select>
+
+    <select id="selectSementicInfoForTarget" parameterType="Segment" resultMap="resultSemantic">
+        SELECT
+            segment_no, field_seq, field_nm, field_desc, null_yn
+          , (CASE WHEN field_key != ' ' THEN field_key ELSE field_nm END) field_key
+          , (CASE
+             WHEN field_key = 'K' THEN 1
+             WHEN field_key = 'N' THEN 2
+             WHEN field_key = 'E' THEN 3
+             WHEN field_key = 'S' THEN 4
+             WHEN field_key = 'A' THEN 5
+             WHEN field_key = 'B' THEN 6
+             WHEN field_key = 'C' THEN 7
+             WHEN field_key = 'X' THEN 8
+             WHEN field_key = 'Y' THEN 9
+             WHEN field_key = 'Z' THEN 10
+             ELSE 99 END) sort
+        FROM nvsemantic
+        WHERE (field_key != 'D' OR field_key IS NULL)
+        <if test="psegmentNo != 0">
+        AND segment_no = #{psegmentNo}
+        </if>
+        <if test="psegmentNo == 0">
+        AND segment_no = #{segmentNo}
+        </if>
+        ORDER BY field_seq
+    </select>
+
+    <select id="selectSementicInfo" parameterType="int" resultMap="resultSemantic">
+        SELECT
+            segment_no, field_seq, field_nm, field_desc, null_yn, field_key
+          , (CASE
+             WHEN field_key = 'K' THEN 1
+             WHEN field_key = 'N' THEN 2
+             WHEN field_key = 'E' THEN 3
+             WHEN field_key = 'S' THEN 4
+             WHEN field_key = 'A' THEN 5
+             WHEN field_key = 'B' THEN 6
+             ELSE 99 END) sort
+        FROM nvsemantic
+        WHERE segment_no = #{segmentNo}
+        ORDER BY sort
+    </select>
+
+    <select id="selectSementField" parameterType="int" resultType="string">
+        SELECT field_nm
+        FROM nvsemantic
+        WHERE segment_no = #{segmentNo}
+        ORDER BY field_seq ASC
+    </select>
+
+    <select id="selectCampaignSemanticKey" parameterType="int" resultType="string">
+        SELECT field_key
+        FROM nvsemantic
+        WHERE segment_no = (SELECT segment_no FROM nvcampaign WHERE scenario_no = #{scenarioNo} AND depth_no = 1)
+        AND field_key IS NOT NULL
+    </select>
+
+    <select id="selectEcareSemanticKey" parameterType="int" resultType="string">
+        SELECT field_key
+        FROM nvsemantic
+        WHERE segment_no = (SELECT segment_no FROM nvecaremsg WHERE scenario_no = #{scenarioNo} AND depth_no = 1)
+        AND field_key IS NOT NULL
+    </select>
+
+</mapper>

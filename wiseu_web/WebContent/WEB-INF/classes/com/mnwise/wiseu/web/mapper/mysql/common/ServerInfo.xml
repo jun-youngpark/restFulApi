@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ServerInfo">
+    <resultMap id="resultServerInfo" type="ServerInfo">
+        <result column="host_nm"                        property="hostNm"/>
+        <result column="port_no"                        property="portNo"/>
+        <result column="driver_nm"                      property="driverNm"/>
+        <result column="driver_dsn"                     property="driverDsn"/>
+        <result column="dbuser_id"                      property="dbuserId"/>
+        <result column="dbpassword"                     property="dbpassword"/>
+        <result column="openclick_path"                 property="openclickPath"/>
+        <result column="survey_path"                    property="surveyPath"/>
+        <result column="link_path"                      property="linkPath"/>
+        <result column="htmlmaker_path"                 property="htmlmakerPath"/>
+        <result column="openimage_path"                 property="openimagePath"/>
+        <result column="duration_path"                  property="durationPath"/>
+        <result column="reject_path"                    property="rejectPath"/>
+        <result column="smtp_ip"                        property="smtpIp"/>
+        <result column="smtp_port"                      property="smtpPort"/>
+        <result column="fula_ip"                        property="fulaIp"/>
+        <result column="fula_port"                      property="fulaPort"/>
+        <result column="ftp_yn"                         property="ftpYn"/>
+        <result column="ftp_user_id"                    property="ftpUserId"/>
+        <result column="ftp_password"                   property="ftpPassword"/>
+        <result column="lastupdate_dt"                  property="lastupdateDt"/>
+        <result column="editor_id"                      property="editorId"/>
+        <result column="ret_domain"                     property="retDomain"/>
+        <result column="retry_cnt"                      property="retryCnt"/>
+        <result column="b4_send_approve_yn"             property="b4SendApproveYn"/>
+        <result column="b4_send_verify_yn"              property="b4SendVerifyYn"/>
+        <result column="b4_real_send_test_send_yn"      property="b4RealSendTestSendYn"/>
+        <result column="ase_link_merge_param"           property="aseLinkMergeParam"/>
+        <result column="ase_reject_merge_param"         property="aseRejectMergeParam"/>
+        <result column="ase_open_scriptlet"             property="aseOpenScriptlet"/>
+        <result column="groovy_link_merge_param"        property="groovyLinkMergeParam"/>
+        <result column="groovy_reject_merge_param"      property="groovyRejectMergeParam"/>
+        <result column="groovy_open_scriptlet"          property="groovyOpenScriptlet"/>
+        <result column="resend_include_returnmail_yn"   property="resendIncludeReturnmailYn"/>
+        <result column="resend_include_mail_key_yn"     property="resendIncludeMailKeyYn"/>
+        <result column="resend_error_cd"                property="resendErrorCd"/>
+        <result column="fax_resend_error_cd"            property="faxResendErrorCd"/>
+        <result column="sms_resend_error_cd"            property="smsResendErrorCd"/>
+        <result column="altalk_resend_error_cd"         property="altalkResendErrorCd"/>
+        <result column="push_resend_error_cd"           property="pushResendErrorCd"/>
+        <result column="spool_preserve_period"          property="spoolPreservePeriod"/>
+        <result column="log_preserve_period"            property="logPreservePeriod"/>
+        <result column="result_file_download_yn"        property="resultFileDownloadYn"/>
+        <result column="sucs_result_file_download_yn"   property="sucsResultFileDownloadYn"/>
+        <result column="kakao_template_last_sync_dtm"   property="kakaoTemplateLastSyncDtm"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+        <result column="duration_time"                  property="durationTime"/>
+        <result column="fax_resend_error_cd"            property="resendFaxErrorCd"/>
+        <result column="sms_resend_error_cd"            property="resendSmsErrorCd"/>
+        <result column="altalk_resend_error_cd"         property="resendAltalkErrorCd"/>
+        <result column="push_resend_error_cd"           property="resendPushErrorCd"/>
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertServerInfo" parameterType="ServerInfo">
+        INSERT INTO nvserverinfo (host_nm, port_no, driver_nm, driver_dsn, dbuser_id, dbpassword, openclick_path, survey_path, link_path, htmlmaker_path, openimage_path, duration_path, reject_path, smtp_ip, smtp_port, fula_ip, fula_port, ftp_yn, ftp_user_id, ftp_password, lastupdate_dt, editor_id, ret_domain, retry_cnt, b4_send_approve_yn, b4_send_verify_yn, b4_real_send_test_send_yn, ase_link_merge_param, ase_reject_merge_param, ase_open_scriptlet, groovy_link_merge_param, groovy_reject_merge_param, groovy_open_scriptlet, resend_include_returnmail_yn, resend_include_mail_key_yn, resend_error_cd, fax_resend_error_cd, sms_resend_error_cd, altalk_resend_error_cd, push_resend_error_cd, spool_preserve_period, log_preserve_period, result_file_download_yn, sucs_result_file_download_yn, kakao_template_last_sync_dtm)
+        VALUES (#{hostNm}, #{portNo, jdbcType=VARCHAR}, #{driverNm, jdbcType=VARCHAR}, #{driverDsn, jdbcType=VARCHAR}, #{dbuserId, jdbcType=VARCHAR}, #{dbpassword, jdbcType=VARCHAR}, #{openclickPath, jdbcType=VARCHAR}, #{surveyPath, jdbcType=VARCHAR}, #{linkPath, jdbcType=VARCHAR}, #{htmlmakerPath, jdbcType=VARCHAR}, #{openimagePath, jdbcType=VARCHAR}, #{durationPath, jdbcType=VARCHAR}, #{rejectPath, jdbcType=VARCHAR}, #{smtpIp, jdbcType=VARCHAR}, #{smtpPort, jdbcType=VARCHAR}, #{fulaIp, jdbcType=VARCHAR}, #{fulaPort, jdbcType=VARCHAR}, #{ftpYn, jdbcType=CHAR}, #{ftpUserId, jdbcType=VARCHAR}, #{ftpPassword, jdbcType=VARCHAR}, #{lastupdateDt, jdbcType=CHAR}, #{editorId, jdbcType=VARCHAR}, #{retDomain, jdbcType=VARCHAR}, #{retryCnt}, #{b4SendApproveYn, jdbcType=CHAR}, #{b4SendVerifyYn, jdbcType=CHAR}, #{b4RealSendTestSendYn, jdbcType=CHAR}, #{aseLinkMergeParam, jdbcType=VARCHAR}, #{aseRejectMergeParam, jdbcType=VARCHAR}, #{aseOpenScriptlet, jdbcType=VARCHAR}, #{groovyLinkMergeParam, jdbcType=VARCHAR}, #{groovyRejectMergeParam, jdbcType=VARCHAR}, #{groovyOpenScriptlet, jdbcType=VARCHAR}, #{resendIncludeReturnmailYn, jdbcType=CHAR}, #{resendIncludeMailKeyYn, jdbcType=CHAR}, #{resendErrorCd, jdbcType=VARCHAR}, #{faxResendErrorCd, jdbcType=VARCHAR}, #{smsResendErrorCd, jdbcType=VARCHAR}, #{altalkResendErrorCd, jdbcType=VARCHAR}, #{pushResendErrorCd, jdbcType=VARCHAR}, #{spoolPreservePeriod, jdbcType=VARCHAR}, #{logPreservePeriod, jdbcType=VARCHAR}, #{resultFileDownloadYn, jdbcType=CHAR}, #{sucsResultFileDownloadYn, jdbcType=CHAR}, #{kakaoTemplateLastSyncDtm, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateServerInfoByPk" parameterType="map">
+        UPDATE nvserverinfo
+        SET
+            port_no = #{portNo, jdbcType=VARCHAR}
+          , driver_nm = #{driverNm, jdbcType=VARCHAR}
+          , driver_dsn = #{driverDsn, jdbcType=VARCHAR}
+          , dbuser_id = #{dbuserId, jdbcType=VARCHAR}
+          , dbpassword = #{dbpassword, jdbcType=VARCHAR}
+          , openclick_path = #{openclickPath, jdbcType=VARCHAR}
+          , survey_path = #{surveyPath, jdbcType=VARCHAR}
+          , link_path = #{linkPath, jdbcType=VARCHAR}
+          , htmlmaker_path = #{htmlmakerPath, jdbcType=VARCHAR}
+          , openimage_path = #{openimagePath, jdbcType=VARCHAR}
+          , duration_path = #{durationPath, jdbcType=VARCHAR}
+          , reject_path = #{rejectPath, jdbcType=VARCHAR}
+          , smtp_ip = #{smtpIp, jdbcType=VARCHAR}
+          , smtp_port = #{smtpPort, jdbcType=VARCHAR}
+          , fula_ip = #{fulaIp, jdbcType=VARCHAR}
+          , fula_port = #{fulaPort, jdbcType=VARCHAR}
+          , ftp_yn = #{ftpYn, jdbcType=CHAR}
+          , ftp_user_id = #{ftpUserId, jdbcType=VARCHAR}
+          , ftp_password = #{ftpPassword, jdbcType=VARCHAR}
+          , lastupdate_dt = #{lastupdateDt, jdbcType=CHAR}
+          , editor_id = #{editorId, jdbcType=VARCHAR}
+          , ret_domain = #{retDomain, jdbcType=VARCHAR}
+          , retry_cnt = #{retryCnt}
+          , b4_send_approve_yn = #{b4SendApproveYn, jdbcType=CHAR}
+          , b4_send_verify_yn = #{b4SendVerifyYn, jdbcType=CHAR}
+          , b4_real_send_test_send_yn = #{b4RealSendTestSendYn, jdbcType=CHAR}
+          , ase_link_merge_param = #{aseLinkMergeParam, jdbcType=VARCHAR}
+          , ase_reject_merge_param = #{aseRejectMergeParam, jdbcType=VARCHAR}
+          , ase_open_scriptlet = #{aseOpenScriptlet, jdbcType=VARCHAR}
+          , groovy_link_merge_param = #{groovyLinkMergeParam, jdbcType=VARCHAR}
+          , groovy_reject_merge_param = #{groovyRejectMergeParam, jdbcType=VARCHAR}
+          , groovy_open_scriptlet = #{groovyOpenScriptlet, jdbcType=VARCHAR}
+          , resend_include_returnmail_yn = #{resendIncludeReturnmailYn, jdbcType=CHAR}
+          , resend_include_mail_key_yn = #{resendIncludeMailKeyYn, jdbcType=CHAR}
+          , resend_error_cd = #{resendErrorCd, jdbcType=VARCHAR}
+          , fax_resend_error_cd = #{faxResendErrorCd, jdbcType=VARCHAR}
+          , sms_resend_error_cd = #{smsResendErrorCd, jdbcType=VARCHAR}
+          , altalk_resend_error_cd = #{altalkResendErrorCd, jdbcType=VARCHAR}
+          , push_resend_error_cd = #{pushResendErrorCd, jdbcType=VARCHAR}
+          , spool_preserve_period = #{spoolPreservePeriod, jdbcType=VARCHAR}
+          , log_preserve_period = #{logPreservePeriod, jdbcType=VARCHAR}
+          , result_file_download_yn = #{resultFileDownloadYn, jdbcType=CHAR}
+          , sucs_result_file_download_yn = #{sucsResultFileDownloadYn, jdbcType=CHAR}
+          , kakao_template_last_sync_dtm = #{kakaoTemplateLastSyncDtm, jdbcType=VARCHAR}
+        WHERE host_nm = #{hostNm}
+    </update>
+
+    <update id="updateEnvServerInfo" parameterType="ServerInfo">
+        UPDATE nvserverinfo
+        SET
+            openclick_path = #{openclickPath, jdbcType=VARCHAR}
+          , survey_path = #{surveyPath, jdbcType=VARCHAR}
+          , link_path = #{linkPath, jdbcType=VARCHAR}
+          , reject_path = #{rejectPath, jdbcType=VARCHAR}
+          , retry_cnt = #{retryCnt}
+          , b4_send_verify_yn = #{b4SendVerifyYn, jdbcType=CHAR}
+          , b4_send_approve_yn = #{b4SendApproveYn, jdbcType=CHAR}
+          , ase_link_merge_param = #{aseLinkMergeParam, jdbcType=VARCHAR}
+          , groovy_link_merge_param = #{groovyLinkMergeParam, jdbcType=VARCHAR}
+          , ase_open_scriptlet = #{aseOpenScriptlet, jdbcType=VARCHAR}
+          , groovy_open_scriptlet = #{groovyOpenScriptlet, jdbcType=VARCHAR}
+          , resend_include_returnmail_yn = #{resendIncludeReturnmailYn, jdbcType=CHAR}
+          , resend_include_mail_key_yn = #{resendIncludeMailKeyYn, jdbcType=CHAR}
+          , spool_preserve_period = #{spoolPreservePeriod, jdbcType=VARCHAR}
+          , log_preserve_period = #{logPreservePeriod, jdbcType=VARCHAR}
+          , result_file_download_yn = #{resultFileDownloadYn, jdbcType=CHAR}
+          , sucs_result_file_download_yn = #{sucsResultFileDownloadYn, jdbcType=CHAR}
+          , ase_reject_merge_param = #{aseRejectMergeParam, jdbcType=VARCHAR}
+          , groovy_reject_merge_param = #{groovyRejectMergeParam, jdbcType=VARCHAR}
+          , resend_error_cd = #{resendErrorCd, jdbcType=VARCHAR}
+          , b4_real_send_test_send_yn = #{b4RealSendTestSendYn, jdbcType=CHAR}
+          , fax_resend_error_cd = #{resendFaxErrorCd, jdbcType=VARCHAR}
+          , altalk_resend_error_cd = #{resendAltalkErrorCd, jdbcType=VARCHAR}
+          , sms_resend_error_cd = #{resendSmsErrorCd, jdbcType=VARCHAR}
+          , push_resend_error_cd = #{resendPushErrorCd, jdbcType=VARCHAR}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteServerInfoByPk" parameterType="map">
+        DELETE FROM nvserverinfo
+        WHERE host_nm = #{hostNm}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectServerInfoByPk" parameterType="map" resultMap="resultServerInfo">
+        SELECT
+            host_nm, port_no, driver_nm, driver_dsn, dbuser_id, dbpassword, openclick_path, survey_path, link_path, htmlmaker_path
+          , openimage_path, duration_path, reject_path, smtp_ip, smtp_port, fula_ip, fula_port, ftp_yn, ftp_user_id, ftp_password
+          , lastupdate_dt, editor_id, ret_domain, coalesce(retry_cnt,0) retry_cnt, b4_send_approve_yn, b4_send_verify_yn, b4_real_send_test_send_yn, ase_link_merge_param, ase_reject_merge_param, ase_open_scriptlet
+          , groovy_link_merge_param, groovy_reject_merge_param, groovy_open_scriptlet, resend_include_returnmail_yn, resend_include_mail_key_yn, resend_error_cd, fax_resend_error_cd, sms_resend_error_cd, altalk_resend_error_cd, push_resend_error_cd
+          , spool_preserve_period, log_preserve_period, result_file_download_yn, sucs_result_file_download_yn, kakao_template_last_sync_dtm
+        FROM nvserverinfo
+        WHERE host_nm = #{hostNm}
+    </select>
+
+    <select id="selectServerInfo" resultMap="resultServerInfo">
+        SELECT
+            host_nm, port_no, driver_nm, driver_dsn, dbuser_id, dbpassword, openclick_path, survey_path, link_path, htmlmaker_path
+          , openimage_path, duration_path, reject_path, smtp_ip, smtp_port, fula_ip, fula_port, ftp_yn, ftp_user_id, ftp_password
+          , lastupdate_dt, editor_id, ret_domain, coalesce(retry_cnt,0) retry_cnt, b4_send_approve_yn, b4_send_verify_yn, b4_real_send_test_send_yn, ase_link_merge_param, ase_reject_merge_param, ase_open_scriptlet
+          , groovy_link_merge_param, groovy_reject_merge_param, groovy_open_scriptlet, resend_include_returnmail_yn, resend_include_mail_key_yn, resend_error_cd, fax_resend_error_cd, sms_resend_error_cd, altalk_resend_error_cd, push_resend_error_cd
+          , spool_preserve_period, log_preserve_period, result_file_download_yn, sucs_result_file_download_yn, kakao_template_last_sync_dtm
+          , (SELECT mintime FROM nvdurationinfo WHERE durationinfo_cd = '01') as duration_time
+        FROM nvserverinfo
+    </select>
+
+    <select id="selectResendErrorCd" resultType="string">
+        SELECT push_resend_error_cd
+        FROM nvserverinfo
+    </select>
+
+    <select id="selectKakaoTemplateLastSyncDtm" resultType="string">
+        SELECT kakao_template_last_sync_dtm
+        FROM nvserverinfo
+        WHERE host_nm = 1
+    </select>
+
+    <select id="selectResendMailErrorCd" resultType="string">
+        SELECT resend_error_cd
+        FROM nvserverinfo
+    </select>
+
+    <select id="selectResendFaxErrorCd" resultType="string">
+        SELECT fax_resend_error_cd
+        FROM nvserverinfo
+    </select>
+
+    <select id="selectResendSmsErrorCd" resultType="string">
+        SELECT sms_resend_error_cd
+        FROM nvserverinfo
+    </select>
+
+    <select id="selectResendAltalkErrorCd" resultType="string">
+        SELECT altalk_resend_error_cd
+        FROM nvserverinfo
+    </select>
+
+    <select id="selectResendFRTErrorCd" resultType="string">
+        SELECT altalk_resend_error_cd
+        FROM nvserverinfo
+    </select>
+
+</mapper>

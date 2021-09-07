@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Schedule">
+    <resultMap id="resultSchedule" type="Schedule">
+        <result column="scenario_no"            property="scenarioNo"/>
+        <result column="schedule_seq"           property="scheduleSeq"/>
+        <result column="campaign_no"            property="campaignNo"/>
+        <result column="supracampaign_no"       property="supracampaignNo"/>
+        <result column="campaign_dt"            property="campaignDt"/>
+        <result column="position_x"             property="positionX"/>
+        <result column="position_y"             property="positionY"/>
+        <result column="sizewidth"              property="sizewidth"/>
+        <result column="sizeheight"             property="sizeheight"/>
+        <result column="duration_tm"            property="durationTm"/>
+        <result column="receipt_yn"             property="receiptYn"/>
+        <result column="fromsql"                property="fromsql"/>
+        <result column="wheresql"               property="wheresql"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertCamSchedule1StepInfo" parameterType="Scenario">
+        <selectKey keyProperty="campaignVo.scheduleVo.scheduleSeq" resultType="int" order="BEFORE">
+        SELECT coalesce(max(schedule_seq),0)+1 as scheduleSeq
+        FROM nvschedule
+        WHERE scenario_no = #{scenarioNo}
+        </selectKey>
+        INSERT INTO nvschedule (scenario_no, schedule_seq, campaign_no, supracampaign_no, campaign_dt)
+        VALUES( #{scenarioNo}, #{campaignVo.scheduleVo.scheduleSeq}, #{campaignVo.campaignNo}, 0, #{lastUpdateDt, jdbcType=CHAR})
+    </insert>
+
+    <insert id="copySchedule" parameterType="Scenario">
+        INSERT INTO nvschedule (scenario_no, schedule_seq, campaign_no, supracampaign_no, campaign_dt)
+        SELECT #{newScenarioNo}, schedule_seq, #{campaignVo.newCampaignNo}, 0, #{createDt, jdbcType=CHAR}
+        FROM NVSCHEDULE
+        WHERE SCENARIO_NO = #{scenarioNo}
+        AND CAMPAIGN_NO = #{campaignVo.campaignNo}
+    </insert>
+
+    <insert id="copyScheduleForResend" parameterType="Scenario">
+        INSERT INTO nvschedule (scenario_no, schedule_seq, campaign_no, supracampaign_no, campaign_dt)
+        SELECT
+            #{newScenarioNo}
+          , coalesce((SELECT max(SCHEDULE_SEQ) FROM nvschedule WHERE scenario_no=#{newScenarioNo}),0)+1 as schedule_seq
+          , #{campaignVo.newCampaignNo}, #{campaignVo.campaignNo}, #{createDt, jdbcType=CHAR}
+        FROM nvschedule
+        WHERE scenario_no = #{scenarioNo}
+        AND campaign_no = #{campaignVo.campaignNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteCamScheduleAll" parameterType="Scenario">
+        DELETE FROM nvschedule
+        <if test="campaignVo.campaignNoArray != null">
+        WHERE campaign_no IN (
+        <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+            #{campaignNo}
+        </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+
+</mapper>

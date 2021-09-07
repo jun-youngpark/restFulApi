@@ -1,0 +1,66 @@
+import com.mnwise.ASE.agent.mailagent.MailAgent5;
+import com.mnwise.ASE.pscript.Message;
+import com.mnwise.common.util.DateUtil;
+import java.text.SimpleDateFormat;
+import com.mnwise.ASE.agent.mailagent.MailBody2;
+import com.mnwise.common.mail.*
+import java.util.Date;
+import com.mnwise.common.security.*;
+
+import com.mnwise.ASE.agent.util.ExceptionLogger;
+import com.mnwise.mts.mail.encrypt.MailSecurityFactory;
+
+MailAgent5 mailagent = new MailAgent5(context)
+mailagent.setRetry(context.get("_RETRY_CNT"))
+mailagent.open()
+mailagent.setMailFrom(context.get("_RETMAIL_RECEIVER"))
+Message message = new Message(context)
+
+// 보안메일 커버
+message.prepareGroovyTemplate("COVER", context.get("_TEMPLATE_COVER"))
+// 보안메일 머리말
+message.prepareGroovyTemplate("PREFACE", context.get("_TEMPLATE_PREFACE"))
+
+message.prepareGroovyTemplate()
+Date dt = new Date()
+DateUtil term = new DateUtil()
+SimpleDateFormat time = new SimpleDateFormat("yyyyMMddHHmmss")
+addterm = term.addTime(dt,"7","00","00","00")
+context.put("_START_DATE", time.format(dt))
+context.put("_END_DATE", time.format(addterm))
+context.put("record", "TCP")
+
+ExceptionLogger exlogger = new ExceptionLogger(context)
+
+// 보안클래스 생성
+MailSecurity security = MailSecurityFactory.getClass(context)
+
+MailBody2 body = new MailBody2(context)
+body.setEncodingType("base64")
+body.setCharset("euc-kr")
+
+body.setSubject("")
+
+body.setFrom(context.get("_SENDER_NM"), context.get("_SENDER_EMAIL"))
+body.setTo(context.get("INAME"), context.get("IEMAIL"))
+mailagent.setRcpt(context.get("IEMAIL"), context.get("IUSERID"), context.get("INAME"), "0")
+
+// 메일 커버
+String cover = message.execGroovyTemplate("COVER")
+
+body.addAlterContent("text/html", cover)
+
+// 메일 첨부 본문 생성 및 암호화
+msg = security.encode(message.execGroovyTemplate(), "1111")
+
+// 메일 헤더 + 첨부
+msg = message.execGroovyTemplate("PREFACE") + msg
+
+// 메일 본문 셋팅
+body.addAttachment("Message.html", msg.getBytes())
+
+body.makeHeader()
+body.makeBody()
+
+mailagent.send(body)
+mailagent.close()

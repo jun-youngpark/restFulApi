@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.RequestTable">
+    <resultMap id="resultRealtimeaccept" type="Realtimeaccept">
+        <result column="seq"                  property="seq"/>
+        <result column="result_seq"                  property="resultSeq"/>
+        <result column="list_seq"                  property="listSeq"/>
+        <result column="ecare_no"             property="ecareNo"/>
+        <result column="channel"              property="channel"/>
+        <result column="req_dt"               property="reqDt"/>
+        <result column="req_tm"               property="reqTm"/>
+        <result column="req_dept_id"               property="reqDeptId"/>
+        <result column="req_user_id"               property="reqUserId"/>
+        <result column="sender"               property="sender"/>
+        <result column="sender_nm"            property="senderNm"/>
+        <result column="receiver_nm"          property="receiverNm"/>
+        <result column="receiver_id"             property="receiverId"/>
+        <result column="receiver"             property="receiver"/>
+        <result column="send_fg"              property="sendFg"/>
+        <result column="jonmun"  typeHandler="org.apache.ibatis.type.ClobTypeHandler"             property="jonmun"/>
+        <result column="error_msg"               property="errorMsg"/>
+        <result column="file_path1"           property="filePath1"/>
+        <result column="file_path2"           property="filePath2"/>
+        <result column="file_path3"           property="filePath3"/>
+    </resultMap>
+    <!--  ==================== INSERT ====================  -->
+
+    <insert id="insertResendOne" parameterType="map" >
+        INSERT
+		    INTO
+		    nvrealtimeaccept(
+		    seq,
+		    ecare_no,
+		    channel,
+		    svc_id,
+		    req_user_id,
+		    req_dept_id,
+		    req_dt,
+		    req_tm,
+		    tmpl_type,
+		    receiver_id,
+		    receiver_nm,
+		    receiver,
+		    sender_nm,
+		    sender,
+		    subject,
+		    send_fg,
+		    secu_key,
+		    security_path,
+		    reserved_date,
+		    preview_type,
+		    data_cnt,
+		    file_path1,
+		    file_path2,
+		    file_path3,
+		    srfidd, 
+		    jonmun,
+		    slot1,
+		    slot2,
+		    slot3,
+		    slot4,
+		    slot5,
+		    slot6,
+		    slot7,
+		    slot8,
+		    slot9,
+		    slot10)
+		SELECT
+            'RESEND' || TO_CHAR(SYSDATE, 'yyyymmddhh24missSS') AS seq,
+            ecare_no,
+            channel,
+            svc_id,
+            req_user_id,
+            req_dept_id,
+            TO_CHAR(SYSDATE, 'yyyymmdd') AS req_dt,
+            TO_CHAR(SYSDATE, 'hh24miss') AS req_tm,
+            tmpl_type,
+            receiver_id,
+            receiver_nm,
+            receiver,
+            sender_nm,
+            sender,
+            subject,
+            'R' AS send_fg,
+            secu_key,
+            security_path,
+            reserved_date,
+            preview_type,
+            data_cnt,
+            file_path1,
+            file_path2,
+            file_path3,
+            srfidd,
+            jonmun,
+            slot1,
+            slot2,
+            slot3,
+            slot4,
+            slot5,
+            slot6,
+            slot7,
+            slot8,
+            slot9,
+            slot10
+		FROM
+		    nvrealtimeaccept
+		WHERE
+	        seq = #{seq}
+    </insert>
+    <insert id="insertResendOneBatch" parameterType="map" >
+        INSERT
+            INTO
+            nvrealtimeaccept(
+            seq,
+            ecare_no,
+            channel,
+            svc_id,
+            req_user_id,
+            req_dept_id,
+            req_dt,
+            req_tm,
+            tmpl_type,
+            receiver_id,
+            receiver_nm,
+            receiver,
+            sender_nm,
+            sender,
+            subject,
+            send_fg,
+            secu_key,
+            security_path,
+            reserved_date,
+            preview_type,
+            data_cnt,
+            file_path1,
+            file_path2,
+            file_path3,
+            srfidd,
+            jonmun,
+            slot1,
+            slot2,
+            slot3,
+            slot4,
+            slot5,
+            slot6,
+            slot7,
+            slot8,
+            slot9,
+            slot10)
+        SELECT
+            'RESEND' || TO_CHAR(SYSDATE, 'yyyymmddhh24missSS') AS seq,
+            ecare_no,
+            channel,
+            svc_id,
+            req_user_id,
+            req_dept_id,
+            TO_CHAR(SYSDATE, 'yyyymmdd') AS req_dt,
+            TO_CHAR(SYSDATE, 'hh24miss') AS req_tm,
+            tmpl_type,
+            receiver_id,
+            receiver_nm,
+            receiver,
+            sender_nm,
+            sender,
+            subject,
+            'R' AS send_fg,
+            secu_key,
+            security_path,
+            reserved_date,
+            preview_type,
+            data_cnt,
+            file_path1,
+            file_path2,
+            file_path3,
+            srfidd,
+            jonmun,
+            slot1,
+            slot2,
+            slot3,
+            slot4,
+            slot5,
+            slot6,
+            slot7,
+            slot8,
+            slot9,
+            slot10
+        FROM
+            nvbatch
+        WHERE
+            seq = #{seq}
+    </insert>
+    <!--  ==================== UPDATE ====================  -->
+    
+    <!--  ==================== DELETE ====================  -->
+
+    <!--  ==================== SELECT ====================  -->
+    <sql id="requestTableWhere">
+        WHERE 
+        a.req_dt||a.req_tm BETWEEN #{searchQstartDt}||#{searchStartReqTm} AND #{searchQendDt}||#{searchEndReqTm}
+        <if test="searchWord != null and searchWord != ''">
+                AND a.receiver LIKE '%'||#{searchWord}||'%'
+        </if>
+        <if test="searchSeq != null and searchSeq != ''">
+            AND a.seq LIKE '%'||#{searchSeq}||'%'
+        </if>
+        <if test="searchColumn != null and searchColumn != ''">
+            AND a.ecare_no = #{searchColumn}
+        </if>
+        <if test="searchChannel != null and searchChannel != ''">
+            AND a.channel = #{searchChannel}
+        </if>
+        <if test="searchSendFg != null and searchSendFg != ''">
+             AND a.send_fg = #{searchSendFg}
+        </if>
+    </sql>
+    
+    <select id="selectRealtimeacceptCount" parameterType="map" resultType="int">
+        SELECT
+            count(*)
+        FROM nvrealtimeaccept a
+        <include refid="requestTableWhere"/>
+    </select>
+    <select id="selectRealtimeacceptList" parameterType="map" resultMap="resultRealtimeaccept">
+        SELECT * FROM 
+	        (SELECT
+	            seq
+	            , ecare_no
+                , result_seq
+                , list_seq
+	            , channel
+	            , req_dept_id
+	            , req_user_id
+	            , req_dt
+	            , req_tm
+	            , sender
+	            , sender_nm
+                , receiver
+                , receiver_id
+	            , receiver_nm
+	            , send_fg
+	            , jonmun
+	            , error_msg
+	            , file_path1
+	            , file_path2
+	            , file_path3
+	            , row_number() OVER (ORDER BY req_dt DESC, req_tm DESC) as rnum
+	        FROM nvrealtimeaccept a
+	            <include refid="requestTableWhere"/>
+	        )
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+    </select>
+    <select id="selectBatchCount" parameterType="map" resultType="int">
+        SELECT
+            count(*)
+        FROM nvbatch a
+            <include refid="requestTableWhere"/>
+    </select>
+    <select id="selectBatchList" parameterType="map" resultMap="resultRealtimeaccept">
+        SELECT * FROM 
+            (SELECT
+                seq
+                , ecare_no
+                , channel
+                , req_dept_id
+                , req_user_id
+                , req_dt
+                , req_tm
+                , sender
+                , sender_nm
+                , receiver
+                , receiver_id
+                , receiver_nm
+                , send_fg
+                , jonmun
+                , error_msg
+                , file_path1
+                , file_path2
+                , file_path3
+                , row_number() OVER (ORDER BY ecare_no DESC) as rnum
+            FROM nvbatch a
+                <include refid="requestTableWhere"/>
+            )
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+    </select>
+    
+    
+    <select id="selectAllInterfaceCount" parameterType="map" resultType="int">
+        SELECT
+            count(*) c
+        FROM V_REALTIME_BATCH a
+            <include refid="requestTableWhere"/>
+    </select>
+    <select id="selectAllInterfaceList" parameterType="map" resultMap="resultRealtimeaccept">
+	    SELECT * FROM (
+	        SELECT 
+	           seq
+                , ecare_no
+                , channel
+                , req_dept_id
+                , req_user_id
+                , req_dt
+                , req_tm
+                , sender
+                , sender_nm
+                , receiver
+                , receiver_id
+                , receiver_nm
+                , send_fg
+                , jonmun
+                , error_msg
+                , file_path1
+                , file_path2
+                , file_path3
+	            , row_number() OVER (ORDER BY req_dt DESC, req_tm DESC) as rnum
+	        FROM
+	            V_REALTIME_BATCH a
+	        <include refid="requestTableWhere"/>
+	    )
+        WHERE rnum &gt;= ((#{nowPage} - 1) * #{countPerPage} + 1)
+        AND rnum &lt;= #{nowPage} * #{countPerPage}
+    </select>
+    
+    
+    
+    <select id="seleceSubType" parameterType="String" resultType="String">
+        SELECT
+            sub_type
+        FROM nvecaremsg a
+        WHERE ecare_no = #{ecareNo}
+    </select>
+    
+</mapper>

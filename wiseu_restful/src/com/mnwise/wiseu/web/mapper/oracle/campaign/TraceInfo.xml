@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.TraceInfo">
+    <resultMap id="resultTraceInfo" type="TraceInfo">
+        <result column="campaign_no"            property="serviceNo"/>
+        <result column="trace_type"             property="traceType"/>
+        <result column="start_dt"               property="startDt"/>
+        <result column="start_tm"               property="startTm"/>
+        <result column="end_dt"                 property="endDt"/>
+        <result column="end_tm"                 property="endTm"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertTraceInfo" parameterType="TraceInfo">
+        INSERT INTO nvtraceinfo (campaign_no, trace_type, start_dt, start_tm, end_dt, end_tm)
+        VALUES(#{serviceNo}, #{traceType}, #{startDt, jdbcType=CHAR}, #{startTm, jdbcType=CHAR}, #{endDt, jdbcType=CHAR}, #{endTm, jdbcType=CHAR} )
+    </insert>
+
+    <insert id="copyTraceInfo" parameterType="Campaign">
+        INSERT INTO nvtraceinfo(campaign_no, trace_type, start_dt, start_tm, end_dt, end_tm)
+        SELECT #{newCampaignNo}, trace_type, start_dt, start_tm, end_dt, end_tm
+        FROM nvtraceinfo
+        WHERE campaign_no = #{campaignNo}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateTraceInfo" parameterType="Campaign">
+        UPDATE nvtraceinfo
+        SET
+            start_dt = #{traceInfoVo.startDtDB, jdbcType=CHAR}
+          , start_tm = #{traceInfoVo.startTmDB, jdbcType=CHAR}
+          , end_dt = #{traceInfoVo.endDtDB, jdbcType=CHAR}
+          , end_tm = #{traceInfoVo.endTmDB, jdbcType=CHAR}
+        WHERE campaign_no = #{campaignNo}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteCamTraceInfoAll" parameterType="Scenario">
+        DELETE FROM nvtraceinfo
+        <if test="campaignVo.campaignNoArray != null">
+        WHERE campaign_no IN (
+        <foreach collection="campaignVo.campaignNoArray" item="campaignNo" separator=",">
+            #{campaignNo}
+        </foreach>
+        )
+        </if>
+        <if test="campaignVo.campaignNo != 0">
+        WHERE campaign_no = #{campaignVo.campaignNo}
+        </if>
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectTraceInfo" parameterType="int" resultMap="resultTraceInfo">
+        SELECT campaign_no, trace_type, start_dt, start_tm, end_dt, end_tm
+        FROM nvtraceinfo
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+    <select id="selectTraceInfoCnt" parameterType="int" resultType="int">
+        SELECT count(*)
+        FROM nvtraceinfo
+        WHERE campaign_no = #{campaignNo}
+    </select>
+
+</mapper>

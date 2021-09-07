@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.DefaultHandler">
+    <resultMap id="resultDefaultHandler" type="DefaultHandler">
+        <result column="seq"            property="seq"/>
+        <result column="handle_nm"      property="handleNm"/>
+        <result column="handle_desc"    property="handleDesc"/>
+        <result column="service_type"   property="serviceType"/>
+        <result column="channel"        property="channel"/>
+        <result column="handle_type"    property="handleType"/>
+        <result column="handle_attr"    property="handleAttr"/>
+        <result column="user_id"        property="userId"/>
+        <result column="create_dt"      property="createDt"/>
+        <result column="create_tm"      property="createTm"/>
+        <result column="handler"        property="handler"/>
+        <result column="ab_test_yn"     property="abTestYn"/>
+        <result column="msg_type"       property="msgType"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertDefaultHandler" parameterType="DefaultHandler">
+        INSERT INTO nvdefaulthandler (seq, handle_nm, handle_desc, service_type, channel, handle_type, handle_attr, user_id, create_dt, create_tm, handler, ab_test_yn, msg_type)
+        VALUES (#{seq}, #{handleNm, jdbcType=VARCHAR}, #{handleDesc, jdbcType=VARCHAR}, #{serviceType, jdbcType=CHAR}, #{channel}, #{handleType, jdbcType=CHAR}, #{handleAttr, jdbcType=CHAR}, #{userId, jdbcType=VARCHAR}, #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{handler}, #{abTestYn, jdbcType=VARCHAR}, #{msgType, jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertHandler" parameterType="DefaultHandler">
+        INSERT INTO nvdefaulthandler (seq, handle_nm, handle_desc, service_type, channel, handle_type, handle_attr, user_id, create_dt, create_tm, handler, ab_test_yn, msg_type)
+        SELECT
+            (SELECT coalesce(max(SEQ),0)+1 FROM nvdefaulthandler)
+          , #{handleNm, jdbcType=VARCHAR}, #{handleDesc, jdbcType=VARCHAR}, #{serviceType, jdbcType=CHAR}, #{channel}, #{handleType, jdbcType=CHAR}, #{handleAttr, jdbcType=CHAR}, #{userId, jdbcType=VARCHAR} , #{createDt, jdbcType=CHAR}, #{createTm, jdbcType=CHAR}, #{handler}, #{abTestYn, jdbcType=VARCHAR}, #{msgType, jdbcType=VARCHAR}
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateDefaultHandlerByPk" parameterType="DefaultHandler">
+        UPDATE nvdefaulthandler
+        SET
+            handle_nm = #{handleNm, jdbcType=VARCHAR}
+          , handle_desc = #{handleDesc, jdbcType=VARCHAR}
+          , service_type = #{serviceType, jdbcType=CHAR}
+          , channel = #{channel}
+          , handle_type = #{handleType, jdbcType=CHAR}
+          , handle_attr = #{handleAttr, jdbcType=CHAR}
+          , user_id = #{userId, jdbcType=VARCHAR}
+          , create_dt = #{createDt, jdbcType=CHAR}
+          , create_tm = #{createTm, jdbcType=CHAR}
+          , handler = #{handler}
+          , ab_test_yn = #{abTestYn, jdbcType=VARCHAR}
+          <if test="msgType != null and msgType != ''">, msg_type = #{msgType, jdbcType=VARCHAR}</if>
+        WHERE seq = #{seq}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteDefaultHandlerByPk" parameterType="map">
+        DELETE FROM nvdefaulthandler
+        WHERE seq = #{seq}
+    </delete>
+
+
+    <delete id="deleteHandler" parameterType="DefaultHandler">
+        DELETE FROM nvdefaulthandler
+        WHERE seq IN (
+        <if test="noArray != null">
+            <foreach collection="noArray" item="seq" separator=",">
+                #{seq}
+            </foreach>
+        </if>
+        )
+    </delete>
+
+    <delete id="deleteEditorDefaultHandler">
+        DELETE FROM nvdefaulthandler
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectDefaultHandlerByPk" parameterType="map" resultMap="resultDefaultHandler">
+        SELECT *
+        FROM nvdefaulthandler
+        WHERE seq = #{seq}
+    </select>
+
+    <select id="selectDefaultHandler" parameterType="DefaultHandler" resultMap="resultDefaultHandler">
+        SELECT
+            seq, handle_nm, handle_desc, service_type, channel, handle_attr, handle_type, user_id
+          , date_format(now(),'%Y-%m-%d') create_dt
+          , date_format(now(),'%H:%i:%s') create_tm
+          , handler, ab_test_yn, msg_type, 0 as total_rows
+        FROM nvdefaulthandler
+        WHERE seq = #{seq}
+    </select>
+
+    <sql id="handlerListWhereQuery">
+        <if test="searchServiceType == 'EM'">
+        AND (msg_type = 'C' OR service_type IS NULL)
+        </if>
+        <if test="searchServiceType != 'EM'">
+            <if test="searchServiceType != null and searchServiceType != ''">
+        AND service_type = #{searchServiceType}
+            </if>
+        </if>
+        <if test="searchChannel != null and searchChannel != ''">
+        AND channel = #{searchChannel}
+        </if>
+        <if test="searchWord != null and searchWord != ''">
+        AND handle_nm LIKE concat('%',#{searchWord},'%')
+        </if>
+    </sql>
+
+    <select id="selectDefaultHandlerCount" parameterType="DefaultHandler" resultType="int">
+        SELECT count(*)
+        FROM nvdefaulthandler
+        WHERE 1=1
+        <include refid="handlerListWhereQuery"/>
+    </select>
+
+    <select id="selectHandlerList" parameterType="DefaultHandler" resultMap="resultDefaultHandler">
+        SELECT
+            seq, handle_nm, handle_desc, service_type, channel, handle_type, handle_attr, user_id
+          , create_dt, create_tm, handler, ab_test_yn, msg_type
+        FROM nvdefaulthandler
+        WHERE 1=1
+        <include refid="handlerListWhereQuery"/>
+        ORDER BY (CASE service_type WHEN 'R' THEN 2 WHEN 'N' THEN 3 WHEN 'S' THEN 4 WHEN 'P' THEN 5 ELSE 1 END), channel, handle_attr, handle_type
+        LIMIT #{startRow}, #{countPerPage}
+    </select>
+
+    <select id="selectHandlerUseList" parameterType="map" resultMap="resultDefaultHandler">
+        SELECT seq, handle_nm, handle_desc
+        FROM nvdefaulthandler c
+        WHERE EXISTS (
+            SELECT 0
+            <if test="service_gubun == 'EM'">
+            FROM nvcampaign a, nvscenario b
+            WHERE a.scenario_no = b.scenario_no
+            AND a.channel_type = c.channel
+            AND b.handler_type = c.handle_type
+            AND a.campaign_no = #{service_no}
+            AND c.service_type IS NULL
+            AND c.ab_test_yn = (CASE a.ab_test_type WHEN 'N' THEN 'N' ELSE 'Y' END)
+            </if>
+            <if test="service_gubun == 'EC'">
+            FROM nvecaremsg a, nvecarescenario b
+            WHERE a.scenario_no = b.scenario_no
+            AND a.channel_type = c.channel
+            AND b.handler_type = c.handle_type
+            AND a.ecare_no = #{service_no}
+            AND c.service_type = (CASE WHEN a.sub_type ='N' THEN 'N' WHEN a.service_type ='S' THEN 'S' ELSE 'R' END )
+            AND c.handle_attr = (CASE WHEN a.mail_type ='NONE' THEN 'D' WHEN a.mail_type ='' THEN 'D' ELSE a.mail_type END )
+            </if>
+        )
+        ORDER BY seq
+    </select>
+
+</mapper>

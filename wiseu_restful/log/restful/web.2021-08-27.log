@@ -1,0 +1,4 @@
+08-27 10:27:24.414 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]]
+08-27 10:27:26.680 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>
+08-27 10:27:38.569 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean   211 modified files : [ServletContext resource [/WEB-INF/classes/com/mnwise/wiseu/web/mapper/oracle/campaign/Campaign.xml]]
+08-27 10:27:38.569 Timer-0              INFO  c.m.w.w.b.RefreshableSqlSessionFactoryBean    83 << refreshing SqlSessionFactory. >>

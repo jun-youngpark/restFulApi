@@ -1,0 +1,9 @@
+WATCHDOG_IP=127.0.0.1
+WATCHDOG_PORT=8101
+
+
+# JAVA_SETTING
+#TMS_IP=127.0.0.1
+#JVM="D:/dev/jdk/jdk1.6/bin/java"
+#XMX=-Xmx1024m
+#XMS=-Xms512m

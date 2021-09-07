@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SvcMain">
+    <resultMap id="resultSvcMain" type="SvcMain">
+        <result column="t_id"           property="tId"/>
+        <result column="server_id"      property="serverId"/>
+        <result column="start_tm"       property="startTm"/>
+        <result column="end_tm"         property="endTm"/>
+        <result column="service_sts"    property="serviceSts"/>
+        <result column="service_nm"     property="serviceNm"/>
+        <result column="send_mode"      property="sendMode"/>
+        <result column="service_type"   property="serviceType"/>
+        <result column="client"         property="client"/>
+        <result column="user_id"        property="userId"/>
+        <result column="mts_cnt"        property="mtsCnt"/>
+        <result column="target_cnt"     property="targetCnt"/>
+        <result column="channel"        property="channel"/>
+        <result column="etc_info"       property="etcInfo"/>
+        <result column="err_msg"        property="errMsg"/>
+        <result column="display_yn"     property="displayYn"/>
+        <result column="status"         property="status"/>
+        <result column="del_yn"         property="delYn"/>
+        <result column="rtn_mail_cnt"   property="rtnMailCnt"/>
+        <result column="rcv_cnfm_em"    property="rcvCnfmEm"/>
+        <result column="lnk_trc_em"     property="lnkTrcEm"/>
+        <result column="rcv_cnfm_ec"    property="rcvCnfmEc"/>
+        <result column="rcv_trc_ec"     property="rcvTrcEc"/>
+        <result column="rcv_usr_def"    property="rcvUsrDef"/>
+        <result column="update_tm"      property="updateTm"/>
+        <result column="create_tm"      property="createTm"/>
+        <!--  ========== 추가 컬럼 ==========  -->
+    </resultMap>
+
+    <!--  ==================== INSERT ====================  -->
+    <insert id="insertSvcMain" parameterType="SvcMain">
+        INSERT INTO nv_svc_main (t_id, server_id, start_tm, end_tm, service_sts, service_nm, send_mode, service_type, client, user_id, mts_cnt, target_cnt, channel, etc_info, err_msg, display_yn, status, del_yn, rtn_mail_cnt, rcv_cnfm_em, lnk_trc_em, rcv_cnfm_ec, rcv_trc_ec, rcv_usr_def, update_tm, create_tm)
+        VALUES (#{tId}, #{serverId}, #{startTm, jdbcType=VARCHAR}, #{endTm, jdbcType=VARCHAR}, #{serviceSts, jdbcType=VARCHAR}, #{serviceNm, jdbcType=VARCHAR}, #{sendMode, jdbcType=CHAR}, #{serviceType, jdbcType=CHAR}, #{client, jdbcType=VARCHAR}, #{userId, jdbcType=VARCHAR}, #{mtsCnt}, #{targetCnt}, #{channel, jdbcType=CHAR}, #{etcInfo, jdbcType=VARCHAR}, #{errMsg, jdbcType=VARCHAR}, #{displayYn, jdbcType=VARCHAR}, #{status, jdbcType=VARCHAR}, #{delYn, jdbcType=CHAR}, #{rtnMailCnt}, #{rcvCnfmEm}, #{lnkTrcEm}, #{rcvCnfmEc}, #{rcvTrcEc}, #{rcvUsrDef}, #{updateTm, jdbcType=VARCHAR}, #{createTm, jdbcType=VARCHAR})
+    </insert>
+
+    <!--  ==================== UPDATE ====================  -->
+    <update id="updateSvcMainByPk" parameterType="SvcMain">
+        UPDATE nv_svc_main
+        SET
+            start_tm = #{startTm, jdbcType=VARCHAR}
+          , end_tm = #{endTm, jdbcType=VARCHAR}
+          , service_sts = #{serviceSts, jdbcType=VARCHAR}
+          , service_nm = #{serviceNm, jdbcType=VARCHAR}
+          , send_mode = #{sendMode, jdbcType=CHAR}
+          , service_type = #{serviceType, jdbcType=CHAR}
+          , client = #{client, jdbcType=VARCHAR}
+          , user_id = #{userId, jdbcType=VARCHAR}
+          , mts_cnt = #{mtsCnt}
+          , target_cnt = #{targetCnt}
+          , channel = #{channel, jdbcType=CHAR}
+          , etc_info = #{etcInfo, jdbcType=VARCHAR}
+          , err_msg = #{errMsg, jdbcType=VARCHAR}
+          , display_yn = #{displayYn, jdbcType=VARCHAR}
+          , status = #{status, jdbcType=VARCHAR}
+          , del_yn = #{delYn, jdbcType=CHAR}
+          , rtn_mail_cnt = #{rtnMailCnt}
+          , rcv_cnfm_em = #{rcvCnfmEm}
+          , lnk_trc_em = #{lnkTrcEm}
+          , rcv_cnfm_ec = #{rcvCnfmEc}
+          , rcv_trc_ec = #{rcvTrcEc}
+          , rcv_usr_def = #{rcvUsrDef}
+          , update_tm = #{updateTm, jdbcType=VARCHAR}
+          , create_tm = #{createTm, jdbcType=VARCHAR}
+        WHERE t_id = #{tId}
+        AND server_id = #{serverId}
+    </update>
+
+    <update id="updateSvcDelYn" parameterType="string">
+        UPDATE nv_svc_main
+        SET del_yn = 'Y'
+        WHERE t_id = #{tId}
+    </update>
+
+    <!--  ==================== DELETE ====================  -->
+    <delete id="deleteSvcMainByPk" parameterType="map">
+        DELETE FROM nv_svc_main
+        WHERE t_id = #{tId}
+        AND server_id = #{serverId}
+    </delete>
+
+    <!--  ==================== SELECT ====================  -->
+    <select id="selectSvcMainByPk" parameterType="map" resultMap="resultSvcMain">
+        SELECT *
+        FROM nv_svc_main
+        WHERE t_id = #{tId}
+        AND server_id = #{serverId}
+    </select>
+
+    <select id="selectServiceList" parameterType="map" resultMap="resultSvcMain">
+        SELECT
+            t_id, server_id, start_tm, end_tm, service_sts, service_nm, send_mode, service_type, client, user_id
+          , mts_cnt, target_cnt, channel, etc_info, err_msg, display_yn, status, create_tm, update_tm, rownumber() over() AS rownum
+        FROM (
+            SELECT
+                t_id, server_id, start_tm, end_tm, service_sts, service_nm, send_mode, service_type, client, user_id
+              , mts_cnt, target_cnt, channel, etc_info, err_msg, display_yn, status, create_tm
+              , (SELECT max(update_tm) FROM nv_svc_mts WHERE t_id = a.t_id) update_tm
+            FROM nv_svc_main a
+            WHERE client = #{client}
+            AND display_yn = 'Y'
+            AND del_yn = 'N'
+            <if test="selectNum == 15">
+            AND substr(start_tm,1,8) &gt; to_char(SYSDATE -15 DAYS,'YYYYMMDD')
+            </if>
+            <if test="selectNum == 30">
+            AND substr(start_tm,1,8) &gt; to_char(SYSDATE -30 DAYS,'YYYYMMDD')
+            </if>
+            ORDER BY start_tm DESC
+        ) b
+        <if test="selectNum == 10">
+        FETCH FIRST 10 ROWS ONLY
+        </if>
+        <if test="selectNum == 20">
+        FETCH FIRST 20 ROWS ONLY
+        </if>
+        <if test="selectNum == 50">
+        FETCH FIRST 50 ROWS ONLY
+        </if>
+        <if test="selectNum == 100">
+        FETCH FIRST 100 ROWS ONLY
+        </if>
+    </select>
+
+    <select id="getInfoService_lts" parameterType="string" resultMap="resultSvcMain">
+        SELECT
+            t_id, server_id, start_tm, end_tm, service_sts, service_nm, send_mode, service_type, client, user_id
+          , mts_cnt, target_cnt, channel, etc_info, err_msg, display_yn, status, create_tm
+          , (SELECT max(update_tm) FROM nv_svc_mts WHERE t_id = a.t_id) update_tm
+        FROM nv_svc_main a
+        WHERE t_id = #{tId}
+    </select>
+
+</mapper>
